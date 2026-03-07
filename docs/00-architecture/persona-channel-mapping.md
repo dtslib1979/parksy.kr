@@ -4,6 +4,17 @@ parksy.kr = Local Broadcast Station
 5 Personas = 5 Channels
 25 Tistory Blogs = 25 Regular Programs
 
+## Account Information
+
+| Account | Kakao ID | Domain/Alias |
+|---------|----------|--------------|
+| parksy.kr | think4good@kakao.com | parksy.kr |
+| eae.kr | eae_kr@kakao.com | eae.kr |
+| dtslib | dtslib@kakao.com | dtslib |
+| dtslib1k | dtslib1k@kakao.com | dtslib1k |
+| dtslib2k | dtslib2k@kakao.com | dtslib2k |
+| dtslib1979 | dtslib1979@kakao.com | dtslib1979 (GitHub) |
+
 ## Architecture
 
 ```
