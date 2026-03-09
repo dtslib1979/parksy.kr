@@ -23,11 +23,10 @@ build/
 .cache/
 .parcel-cache/
 
-# PWA (금지)
+# PWA SW (금지) — manifest.json은 standalone 바로가기용으로 허용
 sw.js
 service-worker.js
 workbox-*.js
-manifest.json
 manifest.webmanifest
 
 # IDE
