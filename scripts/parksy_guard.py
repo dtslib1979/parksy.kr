@@ -14,6 +14,7 @@ ROOT_WHITELIST = {
     # 기존 필수 파일
     "index.html",
     "README.md",
+    "CLAUDE.md",
     "CNAME",
     ".nojekyll",
     ".gitignore",
@@ -24,6 +25,12 @@ ROOT_WHITELIST = {
     "feed.xml",
     # 바로가기 설치용 (SW 없음, standalone 전용)
     "manifest.json",
+    "manifest.webmanifest",
+    # 아키텍처/팩토리 문서
+    "FACTORY.json",
+    "ARCHITECTURE.md",
+    # 이미지 에셋
+    "Parksy.kr.png",
 }
 
 ALLOWED_DIRS = {
@@ -39,6 +46,16 @@ ALLOWED_DIRS = {
     "platform",      # 플랫폼 코드 (Console + Frontend)
     "data",          # Repository as Database
     "api",           # 정적 API 엔드포인트
+    # 운영 디렉토리
+    "00_TRUTH",      # 진실 선언
+    "commands",      # CLI 명령 모음
+    "design",        # 디자인 에셋
+    "inbox",         # 인박스
+    "pipelines",     # 파이프라인 정의
+    "po",            # 발주/PO
+    "process",       # 프로세스 문서
+    "specs",         # 명세서
+    "output",        # 출력물
 }
 
 # 여전히 금지되는 항목들
