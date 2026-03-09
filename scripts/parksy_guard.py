@@ -23,6 +23,7 @@ ROOT_WHITELIST = {
     "robots.txt",
     "sitemap.xml",
     "feed.xml",
+    "404.html",
     # 바로가기 설치용 (SW 없음, standalone 전용)
     "manifest.json",
     "manifest.webmanifest",
