@@ -17,19 +17,28 @@ jobs:
   sync:
     runs-on: ubuntu-latest
 
-    # YouTube API 키가 설정된 경우에만 실행
-    if: ${{ vars.YOUTUBE_CHANNEL_ID != '' }}
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Check credentials
+        id: check
+        run: |
+          if [ -z "${{ vars.YOUTUBE_CHANNEL_ID }}" ] || [ -z "${{ secrets.YOUTUBE_API_KEY }}" ]; then
+            echo "⚠️ YOUTUBE_CHANNEL_ID 또는 YOUTUBE_API_KEY 미설정. 건너뜀."
+            echo "skip=true" >> $GITHUB_OUTPUT
+          else
+            echo "skip=false" >> $GITHUB_OUTPUT
+          fi
+
       - name: Setup Python
+        if: steps.check.outputs.skip == 'false'
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
       - name: Run YouTube Sync
+        if: steps.check.outputs.skip == 'false'
         env:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
           YOUTUBE_CHANNEL_ID: ${{ vars.YOUTUBE_CHANNEL_ID }}
