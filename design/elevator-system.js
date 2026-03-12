@@ -101,17 +101,41 @@
   // ─────────────────────────────────────────────────────────────
   // Graph Data — B2 KR Merit / B3 HS Curriculum
   // ─────────────────────────────────────────────────────────────
+  // Blog URL registry — update subdomains here when confirmed
+  // dtslib2k@kakao.com: KR Merit-사면민주주의 / KR Merit-편집강박어그로 / KR Merit-하프블러드 어학 / KR Merit-허세교양
+  // dtslib1k@kakao.com: 중년고딩철학 / 중년고딩수학 / 중년고딩사회 / 중년고딩과학
+  // parksy_kr@kakao.com: philosopher-parksy / blogger-parksy / visualizer-parksy / musician-parksy / technician-parksy
+  var TISTORY = {
+    // dtslib2k — KR Merit blogs (subdomain 확인 후 업데이트)
+    dm:  'https://dtslib2k.tistory.com', // blog: KR Merit-사면민주주의
+    eo:  'https://dtslib2k.tistory.com', // blog: KR Merit-편집강박어그로
+    hb:  'https://dtslib2k.tistory.com', // blog: KR Merit-하프블러드 어학
+    ba:  'https://dtslib2k.tistory.com', // blog: KR Merit-허세교양
+    // dtslib1k — HS Curriculum blogs (subdomain 확인 후 업데이트)
+    hsp: 'https://dtslib1k.tistory.com', // blog: 중년고딩철학
+    hsm: 'https://dtslib1k.tistory.com', // blog: 중년고딩수학
+    hss: 'https://dtslib1k.tistory.com', // blog: 중년고딩사회
+    hsk: 'https://dtslib1k.tistory.com', // blog: KR Merit x KR reading material (대표)
+    hsc: 'https://dtslib1k.tistory.com', // blog: 중년고딩과학
+    // parksy_kr — channel Tistory blogs (subdomain 확정)
+    ch_philosopher: 'https://philosopher-parksy.tistory.com',
+    ch_blogger:     'https://blogger-parksy.tistory.com',
+    ch_visualizer:  'https://visualizer-parksy.tistory.com',
+    ch_musician:    'https://musician-parksy.tistory.com',
+    ch_technician:  'https://technician-parksy.tistory.com'
+  };
+
   var GRAPH_DATA = {
     'kr-merit': {
       nodes: [
-        { id:'dm',  label:'민주주의\n판타지',   en:'Democracy Fantasy',  type:'primary',   color:'#7b68ee', url:'https://dtslib2k.tistory.com', desc:'Korean politics decoded as fantasy genre' },
-        { id:'eo',  label:'편집\n평가강박',      en:'Edit Obsession',     type:'primary',   color:'#ff6b35', url:'https://dtslib2k.tistory.com', desc:'Korean perfectionism & obsessive editing' },
-        { id:'hb',  label:'하프블러드\n어학',    en:'Halfblood Language', type:'primary',   color:'#4ecdc4', url:'https://dtslib2k.tistory.com', desc:'Korean language through a half-foreigner' },
-        { id:'ba',  label:'허세교양',            en:'Bluff Liberal Arts', type:'primary',   color:'#f4d35e', url:'https://dtslib2k.tistory.com', desc:'Korean performance of educated knowledge' },
-        { id:'hsp', label:'철학',                en:'HS Philosophy',      type:'secondary', color:'#555',    url:'https://dtslib1k.tistory.com', desc:'HS Philosophy → dtslib1k' },
-        { id:'hss', label:'사회',                en:'HS Social Studies',  type:'secondary', color:'#555',    url:'https://dtslib1k.tistory.com', desc:'HS Social Studies → dtslib1k' },
-        { id:'hsm', label:'수학',                en:'HS Math',            type:'secondary', color:'#555',    url:'https://dtslib1k.tistory.com', desc:'HS Math → dtslib1k' },
-        { id:'hsc', label:'과학',                en:'HS Science',         type:'secondary', color:'#555',    url:'https://dtslib1k.tistory.com', desc:'HS Science → dtslib1k' }
+        { id:'dm',  label:'민주주의\n판타지',  en:'Democracy Fantasy',  type:'primary',   color:'#7b68ee', url:TISTORY.dm,  desc:'KR Merit-사면민주주의 — dtslib2k' },
+        { id:'eo',  label:'편집\n평가강박',     en:'Edit Obsession',     type:'primary',   color:'#ff6b35', url:TISTORY.eo,  desc:'KR Merit-편집강박어그로 — dtslib2k' },
+        { id:'hb',  label:'하프블러드\n어학',   en:'Halfblood Language', type:'primary',   color:'#4ecdc4', url:TISTORY.hb,  desc:'KR Merit-하프블러드 어학 — dtslib2k' },
+        { id:'ba',  label:'허세교양',           en:'Bluff Liberal Arts', type:'primary',   color:'#f4d35e', url:TISTORY.ba,  desc:'KR Merit-허세교양 — dtslib2k' },
+        { id:'hsp', label:'철학',               en:'중년고딩철학',       type:'secondary', color:'#555',    url:TISTORY.hsp, desc:'중년고딩철학 — dtslib1k' },
+        { id:'hss', label:'사회',               en:'중년고딩사회',       type:'secondary', color:'#555',    url:TISTORY.hss, desc:'중년고딩사회 — dtslib1k' },
+        { id:'hsm', label:'수학',               en:'중년고딩수학',       type:'secondary', color:'#555',    url:TISTORY.hsm, desc:'중년고딩수학 — dtslib1k' },
+        { id:'hsc', label:'과학',               en:'중년고딩과학',       type:'secondary', color:'#555',    url:TISTORY.hsc, desc:'중년고딩과학 — dtslib1k' }
       ],
       edges: [
         {a:'dm', b:'hsp'}, {a:'eo', b:'hss'}, {a:'hb', b:'hsm'}, {a:'ba', b:'hsc'}
@@ -119,15 +143,15 @@
     },
     'hs-curriculum': {
       nodes: [
-        { id:'hsp', label:'철학',       en:'Philosophy',      type:'primary',   color:'#7b68ee', url:'https://dtslib1k.tistory.com', desc:'Korean HS Philosophy — SAT-level Socrates memorized' },
-        { id:'hsm', label:'수학',       en:'Math',            type:'primary',   color:'#4ecdc4', url:'https://dtslib1k.tistory.com', desc:'Korean SAT Math — Half-blood Edition' },
-        { id:'hss', label:'사회',       en:'Social Studies',  type:'primary',   color:'#ff6b35', url:'https://dtslib1k.tistory.com', desc:'Korean Social Studies — subjects unknown outside Korea' },
-        { id:'hsk', label:'국어',       en:'Korean Language', type:'primary',   color:'#f4d35e', url:'https://dtslib1k.tistory.com', desc:'Classical poetry remixed into music with Lyria3' },
-        { id:'hsc', label:'과학',       en:'Science',         type:'primary',   color:'#95e1d3', url:'https://dtslib1k.tistory.com', desc:'Memorization as performance art — AI decoded' },
-        { id:'dm',  label:'민주\n판타지', en:'Democracy Fantasy', type:'secondary', color:'#555', url:'https://dtslib2k.tistory.com', desc:'KR Merit → dtslib2k' },
-        { id:'hb',  label:'하프\n블러드', en:'Halfblood',        type:'secondary', color:'#555', url:'https://dtslib2k.tistory.com', desc:'KR Merit → dtslib2k' },
-        { id:'eo',  label:'편집\n강박',   en:'Edit Obsession',   type:'secondary', color:'#555', url:'https://dtslib2k.tistory.com', desc:'KR Merit → dtslib2k' },
-        { id:'ba',  label:'허세\n교양',   en:'Bluff Liberal Arts', type:'secondary', color:'#555', url:'https://dtslib2k.tistory.com', desc:'KR Merit → dtslib2k' }
+        { id:'hsp', label:'철학', en:'중년고딩철학',       type:'primary', color:'#7b68ee', url:TISTORY.hsp, desc:'중년고딩철학 — dtslib1k' },
+        { id:'hsm', label:'수학', en:'중년고딩수학',       type:'primary', color:'#4ecdc4', url:TISTORY.hsm, desc:'중년고딩수학 — dtslib1k' },
+        { id:'hss', label:'사회', en:'중년고딩사회',       type:'primary', color:'#ff6b35', url:TISTORY.hss, desc:'중년고딩사회 — dtslib1k' },
+        { id:'hsk', label:'국어', en:'KR Merit x 국어',   type:'primary', color:'#f4d35e', url:TISTORY.hsk, desc:'KR Merit x KR reading material — dtslib1k' },
+        { id:'hsc', label:'과학', en:'중년고딩과학',       type:'primary', color:'#95e1d3', url:TISTORY.hsc, desc:'중년고딩과학 — dtslib1k' },
+        { id:'dm',  label:'민주\n판타지', en:'KR Merit-사면민주주의',  type:'secondary', color:'#555', url:TISTORY.dm, desc:'KR Merit-사면민주주의 — dtslib2k' },
+        { id:'hb',  label:'하프\n블러드', en:'KR Merit-하프블러드어학', type:'secondary', color:'#555', url:TISTORY.hb, desc:'KR Merit-하프블러드 어학 — dtslib2k' },
+        { id:'eo',  label:'편집\n강박',   en:'KR Merit-편집강박어그로', type:'secondary', color:'#555', url:TISTORY.eo, desc:'KR Merit-편집강박어그로 — dtslib2k' },
+        { id:'ba',  label:'허세\n교양',   en:'KR Merit-허세교양',       type:'secondary', color:'#555', url:TISTORY.ba, desc:'KR Merit-허세교양 — dtslib2k' }
       ],
       edges: [
         {a:'hsp', b:'dm'}, {a:'hsm', b:'hb'}, {a:'hss', b:'eo'}, {a:'hsc', b:'ba'}, {a:'hsk', b:'hb'}
