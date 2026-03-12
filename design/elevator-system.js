@@ -12,11 +12,11 @@
   // Configuration
   // ─────────────────────────────────────────────────────────────
   const FLOORS = {
-    lobby: { level: '1F', name: 'Lobby', locked: false },
-    channels: { level: 'B1', name: 'Channels', locked: false },
-    studio: { level: 'B2', name: 'Studio', locked: false },
-    console: { level: 'B3', name: 'Console', locked: false },
-    office: { level: 'B4', name: 'Office', locked: true, code: '1126' }
+    lobby:    { level: '1F', name: 'Lobby',       locked: false },
+    channels: { level: 'B1', name: 'Schedule',    locked: false },
+    studio:   { level: 'B2', name: 'KR Merit',    locked: false },
+    console:  { level: 'B3', name: 'HS Curriculum', locked: false },
+    office:   { level: 'B4', name: 'Office',      locked: true, code: '1126' }
   };
 
   const PERSONAS = [
@@ -98,6 +98,292 @@
     }
   ];
 
+  // ─────────────────────────────────────────────────────────────
+  // Graph Data — B2 KR Merit / B3 HS Curriculum
+  // ─────────────────────────────────────────────────────────────
+  var GRAPH_DATA = {
+    'kr-merit': {
+      nodes: [
+        { id:'dm',  label:'민주주의\n판타지',   en:'Democracy Fantasy',  type:'primary',   color:'#7b68ee', url:'https://dtslib2k.tistory.com', desc:'Korean politics decoded as fantasy genre' },
+        { id:'eo',  label:'편집\n평가강박',      en:'Edit Obsession',     type:'primary',   color:'#ff6b35', url:'https://dtslib2k.tistory.com', desc:'Korean perfectionism & obsessive editing' },
+        { id:'hb',  label:'하프블러드\n어학',    en:'Halfblood Language', type:'primary',   color:'#4ecdc4', url:'https://dtslib2k.tistory.com', desc:'Korean language through a half-foreigner' },
+        { id:'ba',  label:'허세교양',            en:'Bluff Liberal Arts', type:'primary',   color:'#f4d35e', url:'https://dtslib2k.tistory.com', desc:'Korean performance of educated knowledge' },
+        { id:'hsp', label:'철학',                en:'HS Philosophy',      type:'secondary', color:'#555',    url:'https://dtslib1k.tistory.com', desc:'HS Philosophy → dtslib1k' },
+        { id:'hss', label:'사회',                en:'HS Social Studies',  type:'secondary', color:'#555',    url:'https://dtslib1k.tistory.com', desc:'HS Social Studies → dtslib1k' },
+        { id:'hsm', label:'수학',                en:'HS Math',            type:'secondary', color:'#555',    url:'https://dtslib1k.tistory.com', desc:'HS Math → dtslib1k' },
+        { id:'hsc', label:'과학',                en:'HS Science',         type:'secondary', color:'#555',    url:'https://dtslib1k.tistory.com', desc:'HS Science → dtslib1k' }
+      ],
+      edges: [
+        {a:'dm', b:'hsp'}, {a:'eo', b:'hss'}, {a:'hb', b:'hsm'}, {a:'ba', b:'hsc'}
+      ]
+    },
+    'hs-curriculum': {
+      nodes: [
+        { id:'hsp', label:'철학',       en:'Philosophy',      type:'primary',   color:'#7b68ee', url:'https://dtslib1k.tistory.com', desc:'Korean HS Philosophy — SAT-level Socrates memorized' },
+        { id:'hsm', label:'수학',       en:'Math',            type:'primary',   color:'#4ecdc4', url:'https://dtslib1k.tistory.com', desc:'Korean SAT Math — Half-blood Edition' },
+        { id:'hss', label:'사회',       en:'Social Studies',  type:'primary',   color:'#ff6b35', url:'https://dtslib1k.tistory.com', desc:'Korean Social Studies — subjects unknown outside Korea' },
+        { id:'hsk', label:'국어',       en:'Korean Language', type:'primary',   color:'#f4d35e', url:'https://dtslib1k.tistory.com', desc:'Classical poetry remixed into music with Lyria3' },
+        { id:'hsc', label:'과학',       en:'Science',         type:'primary',   color:'#95e1d3', url:'https://dtslib1k.tistory.com', desc:'Memorization as performance art — AI decoded' },
+        { id:'dm',  label:'민주\n판타지', en:'Democracy Fantasy', type:'secondary', color:'#555', url:'https://dtslib2k.tistory.com', desc:'KR Merit → dtslib2k' },
+        { id:'hb',  label:'하프\n블러드', en:'Halfblood',        type:'secondary', color:'#555', url:'https://dtslib2k.tistory.com', desc:'KR Merit → dtslib2k' },
+        { id:'eo',  label:'편집\n강박',   en:'Edit Obsession',   type:'secondary', color:'#555', url:'https://dtslib2k.tistory.com', desc:'KR Merit → dtslib2k' },
+        { id:'ba',  label:'허세\n교양',   en:'Bluff Liberal Arts', type:'secondary', color:'#555', url:'https://dtslib2k.tistory.com', desc:'KR Merit → dtslib2k' }
+      ],
+      edges: [
+        {a:'hsp', b:'dm'}, {a:'hsm', b:'hb'}, {a:'hss', b:'eo'}, {a:'hsc', b:'ba'}, {a:'hsk', b:'hb'}
+      ]
+    }
+  };
+
+  // ─────────────────────────────────────────────────────────────
+  // NodeGraph — force-directed graph (canvas, vanilla JS)
+  // ─────────────────────────────────────────────────────────────
+  function NodeGraph(canvasId, graphKey) {
+    var self = this;
+    self.canvas = document.getElementById(canvasId);
+    if (!self.canvas) return;
+    self.ctx = self.canvas.getContext('2d');
+    var raw = GRAPH_DATA[graphKey];
+    if (!raw) return;
+
+    self.nodes = raw.nodes.map(function(n) {
+      return { id:n.id, label:n.label, en:n.en, type:n.type,
+               color:n.color, url:n.url, desc:n.desc, x:0, y:0, vx:0, vy:0 };
+    });
+    self.edges = raw.edges;
+    self.tooltip = document.getElementById(canvasId + '-tip');
+    self.dragging = null;
+    self.dragMoved = false;
+    self.hovered = null;
+
+    self._resize();
+    self._scatter();
+    self._bindEvents();
+    self._tick();
+  }
+
+  NodeGraph.prototype._resize = function() {
+    var wrap = this.canvas.parentElement;
+    var W = wrap.offsetWidth || 360;
+    var H = 320;
+    var dpr = window.devicePixelRatio || 1;
+    this.W = W; this.H = H;
+    this.canvas.width = W * dpr;
+    this.canvas.height = H * dpr;
+    this.canvas.style.width = W + 'px';
+    this.canvas.style.height = H + 'px';
+    this.ctx.scale(dpr, dpr);
+  };
+
+  NodeGraph.prototype._scatter = function() {
+    var cx = this.W / 2, cy = this.H / 2;
+    var primaries   = this.nodes.filter(function(n){ return n.type === 'primary'; });
+    var secondaries = this.nodes.filter(function(n){ return n.type === 'secondary'; });
+    var rP = Math.min(this.W, this.H) * 0.22;
+    var rS = Math.min(this.W, this.H) * 0.40;
+    primaries.forEach(function(n, i) {
+      var a = (i / primaries.length) * Math.PI * 2 - Math.PI / 2;
+      n.x = cx + Math.cos(a) * rP;
+      n.y = cy + Math.sin(a) * rP;
+    });
+    secondaries.forEach(function(n, i) {
+      var a = (i / secondaries.length) * Math.PI * 2;
+      n.x = cx + Math.cos(a) * rS;
+      n.y = cy + Math.sin(a) * rS;
+    });
+  };
+
+  NodeGraph.prototype._simulate = function() {
+    var W = this.W, H = this.H;
+    var cx = W / 2, cy = H / 2;
+    var nodes = this.nodes, edges = this.edges;
+
+    nodes.forEach(function(n) {
+      n.vx += (cx - n.x) * 0.007;
+      n.vy += (cy - n.y) * 0.007;
+    });
+
+    for (var i = 0; i < nodes.length; i++) {
+      for (var j = i + 1; j < nodes.length; j++) {
+        var a = nodes[i], b = nodes[j];
+        var dx = b.x - a.x, dy = b.y - a.y;
+        var d2 = dx*dx + dy*dy || 0.1;
+        var d  = Math.sqrt(d2);
+        var f  = 2800 / d2;
+        a.vx -= dx/d * f; a.vy -= dy/d * f;
+        b.vx += dx/d * f; b.vy += dy/d * f;
+      }
+    }
+
+    edges.forEach(function(e) {
+      var a = null, b = null;
+      for (var k = 0; k < nodes.length; k++) {
+        if (nodes[k].id === e.a) a = nodes[k];
+        if (nodes[k].id === e.b) b = nodes[k];
+      }
+      if (!a || !b) return;
+      var dx = b.x - a.x, dy = b.y - a.y;
+      var d  = Math.sqrt(dx*dx + dy*dy) || 1;
+      var f  = (d - 110) * 0.022;
+      a.vx += dx/d * f; a.vy += dy/d * f;
+      b.vx -= dx/d * f; b.vy -= dy/d * f;
+    });
+
+    nodes.forEach(function(n) {
+      if (n._pinned) return;
+      n.vx *= 0.80; n.vy *= 0.80;
+      n.x  += n.vx;  n.y  += n.vy;
+      var m = n.type === 'primary' ? 32 : 22;
+      n.x = Math.max(m, Math.min(W - m, n.x));
+      n.y = Math.max(m, Math.min(H - m, n.y));
+    });
+  };
+
+  NodeGraph.prototype._radius = function(n) {
+    return n.type === 'primary' ? 26 : 17;
+  };
+
+  NodeGraph.prototype._draw = function() {
+    var self = this;
+    var ctx  = this.ctx;
+    ctx.clearRect(0, 0, this.W, this.H);
+
+    this.edges.forEach(function(e) {
+      var a = null, b = null;
+      for (var k = 0; k < self.nodes.length; k++) {
+        if (self.nodes[k].id === e.a) a = self.nodes[k];
+        if (self.nodes[k].id === e.b) b = self.nodes[k];
+      }
+      if (!a || !b) return;
+      ctx.beginPath();
+      ctx.moveTo(a.x, a.y);
+      ctx.lineTo(b.x, b.y);
+      ctx.strokeStyle = 'rgba(255,107,53,0.22)';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    });
+
+    this.nodes.forEach(function(n) {
+      var r    = self._radius(n);
+      var isHov = n === self.hovered;
+
+      if (n.type === 'primary') {
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, r + 9, 0, Math.PI * 2);
+        ctx.fillStyle = n.color + '1a';
+        ctx.fill();
+      }
+
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, r, 0, Math.PI * 2);
+      ctx.fillStyle   = n.type === 'primary' ? n.color + 'bb' : '#1c1c1c';
+      ctx.strokeStyle = isHov ? '#ffffff' : (n.type === 'primary' ? n.color : '#3a3a3a');
+      ctx.lineWidth   = isHov ? 2 : 1;
+      ctx.fill();
+      ctx.stroke();
+
+      var lines = n.label.split('\n');
+      ctx.fillStyle     = n.type === 'primary' ? '#fff' : '#666';
+      ctx.font          = (n.type === 'primary' ? 'bold ' : '') + '9px monospace';
+      ctx.textAlign     = 'center';
+      ctx.textBaseline  = 'middle';
+      var lh = 11;
+      var sy = n.y - (lines.length - 1) * lh / 2;
+      lines.forEach(function(line, li) {
+        ctx.fillText(line, n.x, sy + li * lh);
+      });
+    });
+  };
+
+  NodeGraph.prototype._nodeAt = function(x, y) {
+    for (var i = this.nodes.length - 1; i >= 0; i--) {
+      var n  = this.nodes[i];
+      var r  = this._radius(n) + 8;
+      var dx = n.x - x, dy = n.y - y;
+      if (dx*dx + dy*dy < r*r) return n;
+    }
+    return null;
+  };
+
+  NodeGraph.prototype._showTip = function(n, cx, cy) {
+    if (!this.tooltip) return;
+    this.tooltip.innerHTML = '<strong>' + n.en + '</strong><span>' + n.desc + '</span>';
+    this.tooltip.style.opacity = '1';
+    var tx = Math.min(cx + 14, this.W - 184);
+    var ty = Math.max(cy - 54, 4);
+    this.tooltip.style.left = tx + 'px';
+    this.tooltip.style.top  = ty + 'px';
+  };
+
+  NodeGraph.prototype._hideTip = function() {
+    if (this.tooltip) this.tooltip.style.opacity = '0';
+  };
+
+  NodeGraph.prototype._bindEvents = function() {
+    var self = this, c = this.canvas;
+    var THRESH = 5, sx, sy;
+
+    function pos(e) {
+      var r   = c.getBoundingClientRect();
+      var src = e.touches ? e.touches[0] : e;
+      return { x: src.clientX - r.left, y: src.clientY - r.top };
+    }
+
+    c.addEventListener('mousedown', function(e) {
+      var p = pos(e); sx = p.x; sy = p.y;
+      self.dragging = self._nodeAt(p.x, p.y);
+      self.dragMoved = false;
+    });
+    c.addEventListener('mousemove', function(e) {
+      var p = pos(e);
+      if (self.dragging) {
+        if (Math.abs(p.x-sx) + Math.abs(p.y-sy) > THRESH) self.dragMoved = true;
+        self.dragging.x = p.x; self.dragging.y = p.y;
+        self.dragging.vx = 0;  self.dragging.vy = 0;
+        self._hideTip();
+      } else {
+        var n = self._nodeAt(p.x, p.y);
+        self.hovered = n;
+        if (n) { self._showTip(n, p.x, p.y); c.style.cursor = 'pointer'; }
+        else   { self._hideTip(); c.style.cursor = 'default'; }
+      }
+    });
+    c.addEventListener('mouseup', function() {
+      if (self.dragging && !self.dragMoved) window.open(self.dragging.url, '_blank');
+      self.dragging = null;
+    });
+    c.addEventListener('mouseleave', function() {
+      self.hovered = null; self._hideTip();
+    });
+
+    c.addEventListener('touchstart', function(e) {
+      e.preventDefault();
+      var p = pos(e); sx = p.x; sy = p.y;
+      self.dragging = self._nodeAt(p.x, p.y);
+      self.dragMoved = false;
+    }, { passive: false });
+    c.addEventListener('touchmove', function(e) {
+      e.preventDefault();
+      var p = pos(e);
+      if (self.dragging) {
+        if (Math.abs(p.x-sx) + Math.abs(p.y-sy) > THRESH) self.dragMoved = true;
+        self.dragging.x = p.x; self.dragging.y = p.y;
+        self.dragging.vx = 0;  self.dragging.vy = 0;
+      }
+    }, { passive: false });
+    c.addEventListener('touchend', function() {
+      if (self.dragging && !self.dragMoved) window.open(self.dragging.url, '_blank');
+      self.dragging = null;
+    });
+  };
+
+  NodeGraph.prototype._tick = function() {
+    var self = this;
+    self._simulate();
+    self._draw();
+    requestAnimationFrame(function() { self._tick(); });
+  };
+
   const STORAGE_KEY = 'parksy-unlocked-floors';
 
   // ─────────────────────────────────────────────────────────────
@@ -128,6 +414,7 @@
     setupStudioWorkspace();
     setupOfficeUnlock();
     initSchedule();
+    initGraphs();
 
     // Check URL hash
     const hash = window.location.hash.replace('#floor-', '');
@@ -178,7 +465,7 @@
       } else {
         btn.classList.remove('locked');
         // Restore original icon
-        const icons = { lobby: '🏛️', channels: '📺', studio: '🎬', console: '🖥️', office: '📋' };
+        const icons = { lobby: '🏛️', channels: '📺', studio: '🗺️', console: '📚', office: '📋' };
         btn.querySelector('.btn-icon').textContent = icons[floorId] || '📋';
       }
     });
@@ -658,6 +945,14 @@
         applyFilters();
       });
     });
+  }
+
+  // ─────────────────────────────────────────────────────────────
+  // Graph Init — B2 KR Merit / B3 HS Curriculum
+  // ─────────────────────────────────────────────────────────────
+  function initGraphs() {
+    new NodeGraph('b2-graph', 'kr-merit');
+    new NodeGraph('b3-graph', 'hs-curriculum');
   }
 
   // Exposed globally for inline onclick on dynamically rendered elements

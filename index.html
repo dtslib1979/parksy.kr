@@ -594,6 +594,80 @@
       .sched-flabel { min-width: 3.5rem; }
       .sched-fbt { font-size: 0.52rem; padding: 0.18rem 0.48rem; }
     }
+
+    /* ── Graph Module — B2 / B3 ── */
+    .graph-wrap {
+      position: relative;
+      width: 100%;
+      height: 320px;
+      background: var(--cave-deep, #111);
+      border: 1px solid rgba(255,107,53,0.1);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 1rem;
+    }
+    .graph-canvas { display: block; touch-action: none; }
+    .graph-tip {
+      position: absolute; top: 0; left: 0;
+      background: rgba(20,20,20,0.96);
+      border: 1px solid var(--flame-core, #ff6b35);
+      border-radius: 6px;
+      padding: 7px 11px;
+      font-size: 0.68rem; line-height: 1.5;
+      color: var(--cave-glow, #e8e8e8);
+      pointer-events: none; opacity: 0;
+      transition: opacity 0.12s;
+      max-width: 180px; z-index: 10;
+    }
+    .graph-tip strong { display: block; color: var(--flame-core, #ff6b35); font-size: 0.72rem; }
+    .graph-tip span   { color: #888; font-size: 0.62rem; }
+    .graph-legend {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5px 10px;
+      margin-bottom: 0.5rem;
+    }
+    .graph-leg-row {
+      display: flex; align-items: center; gap: 7px;
+      font-size: 0.62rem;
+      color: var(--cave-dim, #555);
+      font-family: var(--font-mono, monospace);
+    }
+    .graph-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%; flex-shrink: 0;
+    }
+    .graph-dot.sec { background: #2a2a2a; border: 1px solid #444; }
+    .graph-hint {
+      text-align: center; font-size: 0.58rem;
+      color: var(--cave-dim, #555);
+      letter-spacing: 0.08em;
+      font-family: var(--font-mono, monospace);
+    }
+    /* Floor badge accent colors */
+    .floor-badge.b2 { background: rgba(78,205,196,0.12); color: #4ecdc4; border-color: rgba(78,205,196,0.28); }
+    .floor-badge.b3 { background: rgba(244,211,94,0.12);  color: #f4d35e; border-color: rgba(244,211,94,0.28); }
+    /* B4 inner sections */
+    .b4-inner-section { margin-bottom: 1.5rem; }
+    .b4-platform-grid {
+      display: grid; grid-template-columns: repeat(4,1fr); gap: 8px;
+      margin-bottom: 1.5rem;
+    }
+    .b4-plat-card {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 4px; padding: 10px 6px;
+      background: var(--cave-wall, #1a1a1a);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 8px;
+      text-decoration: none;
+      color: var(--cave-glow, #e8e8e8);
+      font-family: var(--font-mono, monospace);
+      font-size: 0.6rem; text-align: center;
+      transition: border-color 0.15s;
+    }
+    .b4-plat-card:active { border-color: rgba(255,107,53,0.4); }
+    .b4-plat-icon { font-size: 1.2rem; }
+    .b4-plat-name { color: #888; }
   </style>
 </head>
 <body>
@@ -624,14 +698,14 @@
 
         <button class="elevator-btn" data-floor="studio" data-level="B2">
           <span class="btn-level">B2</span>
-          <span class="btn-icon">🎬</span>
-          <span class="btn-label">Studio</span>
+          <span class="btn-icon">🗺️</span>
+          <span class="btn-label">KR Merit</span>
         </button>
 
         <button class="elevator-btn" data-floor="console" data-level="B3">
           <span class="btn-level">B3</span>
-          <span class="btn-icon">🖥️</span>
-          <span class="btn-label">Console</span>
+          <span class="btn-icon">📚</span>
+          <span class="btn-label">HS Curr.</span>
         </button>
 
         <button class="elevator-btn locked" data-floor="office" data-level="B4" data-code="1126">
@@ -838,330 +912,89 @@
   </section>
 
   <!-- ═══════════════════════════════════════════════════════════════
-       B2 STUDIO - Engine & Workspace
+       B2 KR MERIT - Korean Identity Node Graph
        ═══════════════════════════════════════════════════════════════ -->
   <section class="floor-section" id="floor-studio">
     <header class="floor-header">
-      <span class="floor-badge">B2</span>
-      <h2 class="floor-title">Studio</h2>
-      <p class="floor-desc">Content Engines & Workspace</p>
+      <span class="floor-badge b2">B2</span>
+      <h2 class="floor-title">KR Merit</h2>
+      <p class="floor-desc">Korean Identity Graph — tap node to explore on Tistory</p>
     </header>
 
-    <!-- Engine Grid -->
-    <div class="engine-grid">
-      <!-- Claude Code Engine -->
-      <div class="engine-card primary">
-        <div class="engine-header">
-          <span class="engine-icon">🤖</span>
-          <span class="engine-status online">Online</span>
-        </div>
-        <h3 class="engine-name">Claude Code Engine</h3>
-        <p class="engine-desc">AI-powered code generation and content automation. Connect with local Python workflows.</p>
-        <div class="engine-actions">
-          <a href="https://claude.ai" target="_blank" class="engine-btn">Open Claude</a>
-          <button class="engine-btn secondary" data-action="instructions">View Instructions</button>
-        </div>
-      </div>
-
-      <!-- Content Transform Engine -->
-      <div class="engine-card">
-        <div class="engine-header">
-          <span class="engine-icon">⚡</span>
-          <span class="engine-status online">Ready</span>
-        </div>
-        <h3 class="engine-name">Transform Engine</h3>
-        <p class="engine-desc">Convert raw ideas into structured broadcast content with persona & merit styles.</p>
-        <div class="engine-actions">
-          <button class="engine-btn" data-action="open-transform">Launch</button>
-        </div>
-      </div>
-
-      <!-- Python Pipeline -->
-      <div class="engine-card">
-        <div class="engine-header">
-          <span class="engine-icon">🐍</span>
-          <span class="engine-status standby">Local</span>
-        </div>
-        <h3 class="engine-name">Python Pipeline</h3>
-        <p class="engine-desc">Local automation scripts for content processing, YouTube sync, and media handling.</p>
-        <div class="engine-actions">
-          <a href="https://github.com/dtslib1979/parksy.kr/tree/main/scripts" class="engine-btn" target="_blank">View Scripts</a>
-        </div>
-      </div>
-
-      <!-- Factory System -->
-      <div class="engine-card">
-        <div class="engine-header">
-          <span class="engine-icon">🏭</span>
-          <span class="engine-status standby">System</span>
-        </div>
-        <h3 class="engine-name">Content Factory</h3>
-        <p class="engine-desc">Inbox → Process → Output workflow for systematic content production.</p>
-        <div class="engine-actions">
-          <a href="/FACTORY.json" class="engine-btn">Config</a>
-        </div>
-      </div>
-
-      <!-- PO Dispatch Engine -->
-      <div class="engine-card po-engine">
-        <div class="engine-header">
-          <span class="engine-icon">📦</span>
-          <span class="engine-status pending">Pending</span>
-        </div>
-        <h3 class="engine-name">PO Dispatch</h3>
-        <p class="engine-desc">Send production orders to Studio Engine for batch processing on local PC.</p>
-        <div class="engine-actions">
-          <button class="engine-btn" data-action="open-po">Create Order</button>
-          <a href="/po/" class="engine-btn secondary">Queue (0)</a>
-        </div>
-      </div>
+    <!-- KR Merit Node Graph -->
+    <div class="graph-wrap" id="b2-graph-wrap">
+      <canvas id="b2-graph" class="graph-canvas"></canvas>
+      <div class="graph-tip" id="b2-graph-tip"></div>
     </div>
 
-    <!-- PO Dispatch Panel -->
-    <div class="po-dispatch-panel" id="po-panel">
-      <div class="po-header">
-        <h3 class="po-title">📦 Production Order Dispatch</h3>
-        <div class="po-status">
-          <span class="po-status-dot pending"></span>
-          <span class="po-status-text">Target: studio-engine</span>
-        </div>
+    <div class="graph-legend">
+      <div class="graph-leg-row">
+        <span class="graph-dot" style="background:#7b68ee;"></span>
+        <span>민주주의판타지 → dtslib2k</span>
       </div>
-
-      <div class="po-body">
-        <!-- Order Type Selection -->
-        <div class="po-section">
-          <label class="po-label">Order Type → Studio Routing</label>
-          <div class="po-type-grid">
-            <button class="po-type-btn" data-type="webtoon" data-studio="parksy-image" data-auto="false">
-              <span class="po-type-icon">🎨</span>
-              <span class="po-type-name">Webtoon</span>
-            </button>
-            <button class="po-type-btn" data-type="bgm" data-studio="parksy-audio" data-auto="false">
-              <span class="po-type-icon">🎵</span>
-              <span class="po-type-name">BGM</span>
-            </button>
-            <button class="po-type-btn" data-type="lecture-script" data-studio="Claude" data-auto="true">
-              <span class="po-type-icon">📝</span>
-              <span class="po-type-name">Script</span>
-            </button>
-            <button class="po-type-btn" data-type="lecture-video" data-studio="Tistory+Camera" data-auto="false">
-              <span class="po-type-icon">🎬</span>
-              <span class="po-type-name">Video</span>
-            </button>
-            <button class="po-type-btn" data-type="kr-merit-post" data-studio="dtslib2k" data-auto="false">
-              <span class="po-type-icon">🇰🇷</span>
-              <span class="po-type-name">KR Merit</span>
-            </button>
-            <button class="po-type-btn" data-type="highschool-post" data-studio="dtslib1k" data-auto="false">
-              <span class="po-type-icon">📚</span>
-              <span class="po-type-name">고교 교재</span>
-            </button>
-            <button class="po-type-btn" data-type="short-clip" data-studio="cloud-appstore" data-auto="false">
-              <span class="po-type-icon">⚡</span>
-              <span class="po-type-name">Short Clip</span>
-            </button>
-            <button class="po-type-btn" data-type="custom" data-studio="—" data-auto="false">
-              <span class="po-type-icon">⚙️</span>
-              <span class="po-type-name">Custom</span>
-            </button>
-          </div>
-          <div class="po-routing-display" id="po-routing">
-            <span class="po-routing-label">Studio:</span>
-            <span class="po-routing-target" id="po-routing-target">— select type —</span>
-            <span class="po-routing-auto" id="po-routing-auto"></span>
-          </div>
-        </div>
-
-        <!-- Channel Selection -->
-        <div class="po-section">
-          <label class="po-label">Target Channel</label>
-          <select class="po-select" id="po-channel">
-            <option value="all">All Channels</option>
-            <option value="philosopher">CH.01 Philosopher</option>
-            <option value="blogger">CH.02 Blogger</option>
-            <option value="visualizer">CH.03 Visualizer</option>
-            <option value="musician">CH.04 Musician</option>
-            <option value="technician">CH.05 Technician</option>
-          </select>
-        </div>
-
-        <!-- Order Details -->
-        <div class="po-section">
-          <label class="po-label">Order Title</label>
-          <input type="text" class="po-input" id="po-title" placeholder="Brief description of the order">
-        </div>
-
-        <div class="po-section">
-          <label class="po-label">Payload / Instructions</label>
-          <textarea class="po-textarea" id="po-payload" placeholder="Detailed instructions or content for the order..."></textarea>
-        </div>
-
-        <!-- Priority -->
-        <div class="po-section">
-          <label class="po-label">Priority</label>
-          <div class="po-priority-grid">
-            <button class="po-priority-btn" data-priority="low">Low</button>
-            <button class="po-priority-btn active" data-priority="normal">Normal</button>
-            <button class="po-priority-btn" data-priority="high">High</button>
-            <button class="po-priority-btn" data-priority="urgent">Urgent</button>
-          </div>
-        </div>
-
-        <!-- Actions -->
-        <div class="po-actions">
-          <button class="po-btn secondary" data-action="save-draft">Save Draft</button>
-          <button class="po-btn primary" data-action="dispatch" disabled>
-            <span class="po-btn-icon">📤</span>
-            Dispatch to Engine
-          </button>
-        </div>
-
-        <!-- Status Info -->
-        <div class="po-info">
-          <p class="po-info-text">
-            📋 <strong>PO → GitHub Issue:</strong> Dispatch creates a GitHub Issue in the target upstream repo.
-            Claude Code picks it up next session.
-          </p>
-        </div>
+      <div class="graph-leg-row">
+        <span class="graph-dot" style="background:#ff6b35;"></span>
+        <span>편집평가강박 → dtslib2k</span>
+      </div>
+      <div class="graph-leg-row">
+        <span class="graph-dot" style="background:#4ecdc4;"></span>
+        <span>하프블러드어학 → dtslib2k</span>
+      </div>
+      <div class="graph-leg-row">
+        <span class="graph-dot" style="background:#f4d35e;"></span>
+        <span>허세교양 → dtslib2k</span>
+      </div>
+      <div class="graph-leg-row">
+        <span class="graph-dot sec"></span>
+        <span>— HS Curriculum nodes → dtslib1k</span>
       </div>
     </div>
-
-    <!-- Transform Workspace -->
-    <div class="workspace" id="transform-workspace">
-      <div class="workspace-header">
-        <h3 class="workspace-title">Transform Workspace</h3>
-        <button class="workspace-close">×</button>
-      </div>
-
-      <div class="workspace-body">
-        <!-- Persona Selection -->
-        <div class="selector-section">
-          <label class="selector-label">Voice Persona</label>
-          <div class="selector-grid personas">
-            <!-- Generated by JS -->
-          </div>
-        </div>
-
-        <!-- Merit Selection -->
-        <div class="selector-section">
-          <label class="selector-label">Merit Style</label>
-          <div class="selector-grid merits">
-            <!-- Generated by JS -->
-          </div>
-        </div>
-
-        <!-- Input -->
-        <div class="input-section">
-          <label class="input-label">Raw Input</label>
-          <textarea class="transform-input" placeholder="Paste your raw content, LLM response, or ideas here..."></textarea>
-        </div>
-
-        <!-- Transform Button -->
-        <button class="transform-btn" disabled>Select persona & merit to transform</button>
-
-        <!-- Output -->
-        <div class="output-section">
-          <label class="output-label">Transformed Output</label>
-          <div class="transform-output">
-            <p class="output-placeholder">Your transformed content will appear here...</p>
-          </div>
-          <div class="output-actions">
-            <button class="action-btn" data-action="copy" disabled>Copy</button>
-            <button class="action-btn" data-action="download" disabled>Download HTML</button>
-          </div>
-        </div>
-      </div>
-    </div>
+    <p class="graph-hint">drag nodes · tap to open tistory</p>
   </section>
 
   <!-- ═══════════════════════════════════════════════════════════════
-       B3 CONSOLE - Platform Integration
+       B3 HS CURRICULUM - Korean High School Node Graph
        ═══════════════════════════════════════════════════════════════ -->
   <section class="floor-section" id="floor-console">
     <header class="floor-header">
-      <span class="floor-badge">B3</span>
-      <h2 class="floor-title">Console</h2>
-      <p class="floor-desc">Platform Integration Hub</p>
+      <span class="floor-badge b3">B3</span>
+      <h2 class="floor-title">HS Curriculum</h2>
+      <p class="floor-desc">Korean High School Graph — tap node to explore on Tistory</p>
     </header>
 
-    <!-- Platform Grid -->
-    <div class="platform-grid">
-      <a href="https://studio.youtube.com" target="_blank" class="platform-card">
-        <span class="platform-icon">📺</span>
-        <span class="platform-name">YouTube Studio</span>
-        <span class="platform-desc">Channel management</span>
-      </a>
-
-      <a href="https://github.com/dtslib1979/parksy.kr" target="_blank" class="platform-card">
-        <span class="platform-icon">🔧</span>
-        <span class="platform-name">GitHub</span>
-        <span class="platform-desc">Code repository</span>
-      </a>
-
-      <a href="https://analytics.google.com" target="_blank" class="platform-card">
-        <span class="platform-icon">📊</span>
-        <span class="platform-name">Analytics</span>
-        <span class="platform-desc">Traffic insights</span>
-      </a>
-
-      <a href="https://notion.so" target="_blank" class="platform-card">
-        <span class="platform-icon">📝</span>
-        <span class="platform-name">Notion</span>
-        <span class="platform-desc">Documentation</span>
-      </a>
-
-      <a href="https://podcasters.spotify.com" target="_blank" class="platform-card">
-        <span class="platform-icon">🎵</span>
-        <span class="platform-name">Spotify</span>
-        <span class="platform-desc">Podcast & Music</span>
-      </a>
-
-      <a href="https://midjourney.com" target="_blank" class="platform-card">
-        <span class="platform-icon">🖼️</span>
-        <span class="platform-name">Midjourney</span>
-        <span class="platform-desc">Image generation</span>
-      </a>
-
-      <a href="https://claude.ai" target="_blank" class="platform-card">
-        <span class="platform-icon">🤖</span>
-        <span class="platform-name">Claude</span>
-        <span class="platform-desc">AI assistant</span>
-      </a>
-
-      <a href="https://canva.com" target="_blank" class="platform-card">
-        <span class="platform-icon">🎨</span>
-        <span class="platform-name">Canva</span>
-        <span class="platform-desc">Design tools</span>
-      </a>
+    <!-- HS Curriculum Node Graph -->
+    <div class="graph-wrap" id="b3-graph-wrap">
+      <canvas id="b3-graph" class="graph-canvas"></canvas>
+      <div class="graph-tip" id="b3-graph-tip"></div>
     </div>
 
-    <!-- Quartet Flow -->
-    <div class="trilogy-section">
-      <h3 class="trilogy-title">Broadcasting Quartet</h3>
-      <p class="trilogy-desc" style="color: var(--cave-glow, #e8e8e8); opacity: 0.5; font-size: 0.75rem; margin: 0.5rem 0 1rem; text-align: center;">Raw · Business · Education · Academy</p>
-      <div class="quartet-grid">
-        <a href="https://parksy.kr" class="quartet-card active">
-          <span class="quartet-domain">parksy.kr</span>
-          <span class="quartet-role">Raw / Entity</span>
-          <span class="quartet-badge badge-raw">RAW</span>
-        </a>
-        <a href="https://dtslib.kr" target="_blank" class="quartet-card">
-          <span class="quartet-domain">dtslib.kr</span>
-          <span class="quartet-role">Business / Economy</span>
-          <span class="quartet-badge badge-biz">BIZ</span>
-        </a>
-        <a href="https://eae.kr" target="_blank" class="quartet-card">
-          <span class="quartet-domain">eae.kr</span>
-          <span class="quartet-role">Education / MDX</span>
-          <span class="quartet-badge badge-edu">EDU</span>
-        </a>
-        <a href="https://dtslib1979.github.io/eae-univ/" target="_blank" class="quartet-card">
-          <span class="quartet-domain">eae-univ</span>
-          <span class="quartet-role">Academy / Hub</span>
-          <span class="quartet-badge badge-hub">HUB</span>
-        </a>
+    <div class="graph-legend">
+      <div class="graph-leg-row">
+        <span class="graph-dot" style="background:#7b68ee;"></span>
+        <span>철학 → dtslib1k</span>
+      </div>
+      <div class="graph-leg-row">
+        <span class="graph-dot" style="background:#4ecdc4;"></span>
+        <span>수학 → dtslib1k</span>
+      </div>
+      <div class="graph-leg-row">
+        <span class="graph-dot" style="background:#ff6b35;"></span>
+        <span>사회 → dtslib1k</span>
+      </div>
+      <div class="graph-leg-row">
+        <span class="graph-dot" style="background:#f4d35e;"></span>
+        <span>국어 → dtslib1k</span>
+      </div>
+      <div class="graph-leg-row">
+        <span class="graph-dot" style="background:#95e1d3;"></span>
+        <span>과학 → dtslib1k</span>
+      </div>
+      <div class="graph-leg-row">
+        <span class="graph-dot sec"></span>
+        <span>— KR Merit nodes → dtslib2k</span>
       </div>
     </div>
+    <p class="graph-hint">drag nodes · tap to open tistory</p>
   </section>
 
   <!-- ═══════════════════════════════════════════════════════════════
@@ -1185,6 +1018,165 @@
 
     <!-- Office Content (hidden until unlocked) -->
     <div class="office-content" style="display: none;">
+
+      <!-- Platform Tools -->
+      <div class="b4-section-title">PLATFORM TOOLS</div>
+      <div class="b4-platform-grid">
+        <a href="https://studio.youtube.com" target="_blank" class="b4-plat-card">
+          <span class="b4-plat-icon">📺</span>
+          <span class="b4-plat-name">YT Studio</span>
+        </a>
+        <a href="https://github.com/dtslib1979/parksy.kr" target="_blank" class="b4-plat-card">
+          <span class="b4-plat-icon">🔧</span>
+          <span class="b4-plat-name">GitHub</span>
+        </a>
+        <a href="https://analytics.google.com" target="_blank" class="b4-plat-card">
+          <span class="b4-plat-icon">📊</span>
+          <span class="b4-plat-name">Analytics</span>
+        </a>
+        <a href="https://notion.so" target="_blank" class="b4-plat-card">
+          <span class="b4-plat-icon">📝</span>
+          <span class="b4-plat-name">Notion</span>
+        </a>
+        <a href="https://podcasters.spotify.com" target="_blank" class="b4-plat-card">
+          <span class="b4-plat-icon">🎵</span>
+          <span class="b4-plat-name">Spotify</span>
+        </a>
+        <a href="https://midjourney.com" target="_blank" class="b4-plat-card">
+          <span class="b4-plat-icon">🖼️</span>
+          <span class="b4-plat-name">Midjourney</span>
+        </a>
+        <a href="https://claude.ai" target="_blank" class="b4-plat-card">
+          <span class="b4-plat-icon">🤖</span>
+          <span class="b4-plat-name">Claude</span>
+        </a>
+        <a href="https://canva.com" target="_blank" class="b4-plat-card">
+          <span class="b4-plat-icon">🎨</span>
+          <span class="b4-plat-name">Canva</span>
+        </a>
+      </div>
+
+      <!-- Production Order Dispatch -->
+      <div class="b4-section-title">PRODUCTION ORDER</div>
+      <div class="po-dispatch-panel" id="po-panel">
+        <div class="po-header">
+          <h3 class="po-title">📦 Production Order Dispatch</h3>
+          <div class="po-status">
+            <span class="po-status-dot pending"></span>
+            <span class="po-status-text">Target: studio-engine</span>
+          </div>
+        </div>
+        <div class="po-body">
+          <div class="po-section">
+            <label class="po-label">Order Type → Studio Routing</label>
+            <div class="po-type-grid">
+              <button class="po-type-btn" data-type="webtoon" data-studio="parksy-image" data-auto="false">
+                <span class="po-type-icon">🎨</span><span class="po-type-name">Webtoon</span>
+              </button>
+              <button class="po-type-btn" data-type="bgm" data-studio="parksy-audio" data-auto="false">
+                <span class="po-type-icon">🎵</span><span class="po-type-name">BGM</span>
+              </button>
+              <button class="po-type-btn" data-type="lecture-script" data-studio="Claude" data-auto="true">
+                <span class="po-type-icon">📝</span><span class="po-type-name">Script</span>
+              </button>
+              <button class="po-type-btn" data-type="lecture-video" data-studio="Tistory+Camera" data-auto="false">
+                <span class="po-type-icon">🎬</span><span class="po-type-name">Video</span>
+              </button>
+              <button class="po-type-btn" data-type="kr-merit-post" data-studio="dtslib2k" data-auto="false">
+                <span class="po-type-icon">🇰🇷</span><span class="po-type-name">KR Merit</span>
+              </button>
+              <button class="po-type-btn" data-type="highschool-post" data-studio="dtslib1k" data-auto="false">
+                <span class="po-type-icon">📚</span><span class="po-type-name">고교 교재</span>
+              </button>
+              <button class="po-type-btn" data-type="short-clip" data-studio="cloud-appstore" data-auto="false">
+                <span class="po-type-icon">⚡</span><span class="po-type-name">Short Clip</span>
+              </button>
+              <button class="po-type-btn" data-type="custom" data-studio="—" data-auto="false">
+                <span class="po-type-icon">⚙️</span><span class="po-type-name">Custom</span>
+              </button>
+            </div>
+            <div class="po-routing-display" id="po-routing">
+              <span class="po-routing-label">Studio:</span>
+              <span class="po-routing-target" id="po-routing-target">— select type —</span>
+              <span class="po-routing-auto" id="po-routing-auto"></span>
+            </div>
+          </div>
+          <div class="po-section">
+            <label class="po-label">Target Channel</label>
+            <select class="po-select" id="po-channel">
+              <option value="all">All Channels</option>
+              <option value="philosopher">CH.01 Philosopher</option>
+              <option value="blogger">CH.02 Blogger</option>
+              <option value="visualizer">CH.03 Visualizer</option>
+              <option value="musician">CH.04 Musician</option>
+              <option value="technician">CH.05 Technician</option>
+            </select>
+          </div>
+          <div class="po-section">
+            <label class="po-label">Order Title</label>
+            <input type="text" class="po-input" id="po-title" placeholder="Brief description of the order">
+          </div>
+          <div class="po-section">
+            <label class="po-label">Payload / Instructions</label>
+            <textarea class="po-textarea" id="po-payload" placeholder="Detailed instructions or content for the order..."></textarea>
+          </div>
+          <div class="po-section">
+            <label class="po-label">Priority</label>
+            <div class="po-priority-grid">
+              <button class="po-priority-btn" data-priority="low">Low</button>
+              <button class="po-priority-btn active" data-priority="normal">Normal</button>
+              <button class="po-priority-btn" data-priority="high">High</button>
+              <button class="po-priority-btn" data-priority="urgent">Urgent</button>
+            </div>
+          </div>
+          <div class="po-actions">
+            <button class="po-btn secondary" data-action="save-draft">Save Draft</button>
+            <button class="po-btn primary" data-action="dispatch" disabled>
+              <span class="po-btn-icon">📤</span>Dispatch to Engine
+            </button>
+          </div>
+          <div class="po-info">
+            <p class="po-info-text">
+              📋 <strong>PO → GitHub Issue:</strong> Dispatch creates a GitHub Issue in the target upstream repo.
+              Claude Code picks it up next session.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Transform Engine -->
+      <div class="b4-section-title">TRANSFORM ENGINE</div>
+      <div class="workspace" id="transform-workspace">
+        <div class="workspace-header">
+          <h3 class="workspace-title">Transform Workspace</h3>
+          <button class="workspace-close">×</button>
+        </div>
+        <div class="workspace-body">
+          <div class="selector-section">
+            <label class="selector-label">Voice Persona</label>
+            <div class="selector-grid personas"><!-- Generated by JS --></div>
+          </div>
+          <div class="selector-section">
+            <label class="selector-label">Merit Style</label>
+            <div class="selector-grid merits"><!-- Generated by JS --></div>
+          </div>
+          <div class="input-section">
+            <label class="input-label">Raw Input</label>
+            <textarea class="transform-input" placeholder="Paste your raw content, LLM response, or ideas here..."></textarea>
+          </div>
+          <button class="transform-btn" disabled>Select persona & merit to transform</button>
+          <div class="output-section">
+            <label class="output-label">Transformed Output</label>
+            <div class="transform-output">
+              <p class="output-placeholder">Your transformed content will appear here...</p>
+            </div>
+            <div class="output-actions">
+              <button class="action-btn" data-action="copy" disabled>Copy</button>
+              <button class="action-btn" data-action="download" disabled>Download HTML</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <!-- KPI Strip -->
       <div class="b4-kpi-strip">
