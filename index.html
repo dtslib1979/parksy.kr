@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>PARKSY Broadcasting — AI-Powered Media Station</title>
+  <title>PARKSY Broadcasting — Korean Liberal Arts × AI</title>
 
   <!-- SEO -->
-  <meta name="description" content="Be a panelist with AI. PARKSY Broadcasting offers what YouTube cannot — a multi-channel media platform where everyone becomes a voice.">
+  <meta name="description" content="Korean philosophy, education &amp; identity — decoded by AI. 5-channel broadcasting where KR Merit meets High School curriculum meets Liberal Arts. Powered by Claude.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://parksy.kr/">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="PARKSY Broadcasting — AI-Powered Media Station">
-  <meta property="og:description" content="Be a panelist with AI. Multi-channel broadcasting platform.">
+  <meta property="og:title" content="PARKSY Broadcasting — Korean Liberal Arts × AI">
+  <meta property="og:description" content="Why do Koreans memorize Socrates for the SAT? 5-channel AI broadcasting decoding Korean education, identity &amp; philosophy for the world.">
   <meta property="og:url" content="https://parksy.kr/">
   <meta property="og:image" content="https://parksy.kr/assets/og/cover.png">
 
@@ -27,7 +27,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Inter:wght@300;400;500;600&family=Noto+Serif+KR:wght@300;400&display=swap" rel="stylesheet">
 
   <!-- Styles -->
   <link rel="stylesheet" href="/design/cave-ui.css">
@@ -322,6 +322,117 @@
       .b4-kpi { min-width: 30%; }
       .b4-phase { flex-direction: column; gap: 0.2rem; }
     }
+
+    /* ── LOBBY MURAL — 78vh Hero ── */
+    .lobby-mural {
+      min-height: 78vh;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      text-align: center;
+      padding: var(--space-cavern) var(--space-room) var(--space-chamber);
+    }
+    .lobby-mural .station-masthead {
+      display: flex; flex-direction: column;
+      align-items: center; gap: 0;
+    }
+
+    /* Station title — bigger than default */
+    .lobby-mural .station-title {
+      font-size: clamp(2.8rem, 9vw, 4.5rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      margin: var(--space-step) 0 var(--space-room);
+    }
+
+    /* ── Korean × AI Identity Line ── */
+    .station-kr-axis {
+      display: flex; align-items: baseline; gap: 0.6rem;
+      margin-bottom: var(--space-chamber);
+      opacity: 0;
+      animation: emerge 1.2s 1.8s forwards;
+    }
+    .kr-axis-word {
+      font-family: 'Noto Serif KR', Georgia, serif;
+      font-size: 1.6rem; font-weight: 300;
+      color: var(--cave-glow);
+      letter-spacing: 0.12em;
+    }
+    .kr-axis-sep {
+      font-family: var(--font-mono);
+      font-size: 0.9rem; color: var(--cave-faint);
+    }
+    .kr-axis-tech {
+      font-family: var(--font-mono);
+      font-size: 0.75rem; font-weight: 600;
+      color: #4ecdc4; letter-spacing: 0.2em;
+    }
+
+    /* ── KR Merit Whisper ── */
+    .merit-whisper {
+      font-family: 'Noto Serif KR', Georgia, serif;
+      font-size: 0.68rem; color: var(--cave-faint);
+      letter-spacing: 0.04em; line-height: 2;
+      opacity: 0;
+      animation: emerge 2s 3s forwards;
+    }
+
+    /* ── THE QUESTION — Own Section ── */
+    .the-question {
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      min-height: 32vh;
+      padding: var(--space-cavern) var(--space-room);
+      text-align: center;
+      border-top: 1px solid var(--cave-faint);
+      border-bottom: 1px solid var(--cave-faint);
+      margin-bottom: var(--space-chamber);
+      position: relative;
+    }
+    .question-ornament {
+      font-family: var(--font-mono);
+      font-size: 0.6rem; color: var(--cave-faint);
+      letter-spacing: 0.4em;
+      margin-bottom: var(--space-room);
+    }
+    .question-text {
+      font-family: 'Noto Serif KR', Georgia, serif;
+      font-size: clamp(1.2rem, 4vw, 1.9rem);
+      font-weight: 300;
+      color: var(--cave-glow);
+      line-height: 1.8;
+      margin-bottom: var(--space-room);
+      letter-spacing: 0.02em;
+    }
+    .question-answer {
+      font-family: var(--font-mono);
+      font-size: 0.58rem; color: var(--cave-dim);
+      letter-spacing: 0.12em; text-transform: uppercase;
+      max-width: 40ch; line-height: 1.8;
+    }
+
+    /* ── Channel Merit Reveal (hover) ── */
+    .ch-row-merit {
+      font-family: 'Noto Serif KR', Georgia, serif;
+      font-size: 0.6rem;
+      color: var(--flame-core);
+      margin-top: 0.4rem;
+      opacity: 0;
+      transform: translateY(3px);
+      transition: opacity 0.35s ease, transform 0.35s ease;
+      display: block;
+      letter-spacing: 0.03em;
+    }
+    .ch-row:hover .ch-row-merit {
+      opacity: 0.85;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 480px) {
+      .lobby-mural { min-height: 65vh; }
+      .kr-axis-word { font-size: 1.2rem; }
+      .question-text { font-size: 1.1rem; }
+    }
   </style>
 </head>
 <body>
@@ -384,76 +495,106 @@
     <span class="ticker-live"><span class="ticker-dot"></span>SIGNAL ON</span>
     <div class="ticker-stats">
       <span class="ticker-stat"><span>5</span> CH</span>
-      <span class="ticker-stat"><span>4</span> DOMAINS</span>
-      <span class="ticker-stat"><span>25</span> TOOLS</span>
-      <span class="ticker-stat"><span>12</span> PIPELINES</span>
+      <span class="ticker-stat" style="color:#4ecdc4;font-weight:600;letter-spacing:0.1em;">AI</span>
+      <span class="ticker-stat" style="color:var(--flame-core);font-weight:600;">KR MERIT</span>
+      <span class="ticker-stat" style="color:#6baaff;font-weight:600;">HS CURRICULUM</span>
+      <span class="ticker-stat">LIBERAL ARTS</span>
     </div>
   </div>
 
   <main class="floor-section active" id="floor-lobby">
-    <header class="lobby-header">
+
+    <!-- ── MURAL: 78vh Hero ── -->
+    <header class="lobby-header lobby-mural">
       <div class="station-masthead">
         <div class="on-air-badge">
           <span class="on-air-dot"></span>
           ON AIR
         </div>
+
         <h1 class="station-title">PARKSY<br>Broadcasting</h1>
-        <p class="station-tagline">Be a Panelist with AI</p>
+
+        <!-- Korean × AI — Identity Line -->
+        <div class="station-kr-axis">
+          <span class="kr-axis-word">철학</span>
+          <span class="kr-axis-sep">×</span>
+          <span class="kr-axis-tech">AI</span>
+        </div>
+
+        <!-- KR Merit Whisper — 4 words, 3s delay -->
+        <p class="merit-whisper">허세교양 · 하프블러드 · 편집평가강박 · 민주주의판타지</p>
       </div>
     </header>
 
-    <!-- 5 CHANNELS ON AIR -->
+    <!-- ── THE QUESTION — Standalone Section ── -->
+    <div class="the-question">
+      <p class="question-ornament">◈ ◈ ◈</p>
+      <p class="question-text">Why do Koreans<br>memorize Socrates<br>for the SAT?</p>
+      <p class="question-answer">Korean HS Curriculum × KR Merit × AI<br>5 channels · 25 programs · broadcasting to the world</p>
+    </div>
+
+    <!-- ── 5 CHANNELS — Clean, Hover Reveals KR Merit ── -->
     <div class="bcast-header"><span class="live-pulse"></span>5 CHANNELS — ALL ON AIR</div>
+
     <a href="/channel/philosopher/" class="ch-row on-air">
       <span class="ch-row-num">01</span>
       <span class="ch-row-icon">🤔</span>
       <div class="ch-row-info">
         <span class="ch-row-name">PHILOSOPHER TV</span>
         <span class="ch-row-tags">Commentary · Framing · Experiment · Systems</span>
+        <span class="ch-row-merit">철학 × 민주주의판타지</span>
       </div>
       <div class="ch-row-status">
         <span class="live-badge"><span class="live-pulse"></span>LIVE</span>
       </div>
     </a>
+
     <a href="/channel/blogger/" class="ch-row on-air">
       <span class="ch-row-num">02</span>
       <span class="ch-row-icon">📝</span>
       <div class="ch-row-info">
         <span class="ch-row-name">BLOGGER TV</span>
         <span class="ch-row-tags">Worldview · Essay · Narrative</span>
+        <span class="ch-row-merit">수학 × 하프블러드</span>
       </div>
       <div class="ch-row-status">
         <span class="live-badge"><span class="live-pulse"></span>LIVE</span>
       </div>
     </a>
+
     <a href="/channel/visualizer/" class="ch-row on-air">
       <span class="ch-row-num">03</span>
       <span class="ch-row-icon">🎨</span>
       <div class="ch-row-info">
         <span class="ch-row-name">VISUALIZER TV</span>
         <span class="ch-row-tags">Webtoon · Image · CAD · Pipeline</span>
+        <span class="ch-row-merit">사회 × 편집평가강박</span>
       </div>
       <div class="ch-row-status">
         <span class="live-badge"><span class="live-pulse"></span>LIVE</span>
       </div>
     </a>
+
     <a href="/channel/musician/" class="ch-row on-air">
       <span class="ch-row-num">04</span>
       <span class="ch-row-icon">🎵</span>
       <div class="ch-row-info">
         <span class="ch-row-name">MUSICIAN TV</span>
         <span class="ch-row-tags">BGM · Audio · Lyria3</span>
+        <span class="ch-row-merit">국어 × 고전시가 × AI</span>
       </div>
       <div class="ch-row-status">
         <span class="live-badge"><span class="live-pulse"></span>LIVE</span>
       </div>
     </a>
+
     <a href="/channel/technician/" class="ch-row on-air">
       <span class="ch-row-num">05</span>
       <span class="ch-row-icon">🔧</span>
       <div class="ch-row-info">
         <span class="ch-row-name">TECHNICIAN TV</span>
         <span class="ch-row-tags">Automation · Pipeline · Behind-the-scenes</span>
+        <span class="ch-row-merit">과학 × 허세교양</span>
       </div>
       <div class="ch-row-status">
         <span class="live-badge"><span class="live-pulse"></span>LIVE</span>
@@ -1099,7 +1240,7 @@
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "PARKSY Broadcasting",
-    "description": "AI-Powered Media Station — Be a panelist with AI",
+    "description": "Korean Liberal Arts decoded by AI. Philosophy, KR Merit, HS Curriculum — 5-channel broadcasting.",
     "url": "https://parksy.kr",
     "applicationCategory": "Entertainment",
     "author": {
