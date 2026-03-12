@@ -1,44 +1,34 @@
-# PARKSY Broadcasting — DEV PLAN v4.0
-> 기준일: 2026-03-12 | 버전: 4.0 (8.5/10 리뷰 반영 → 100점 목표)
-> 계정: dimas.thomas.sancho@gmail.com (Account C)
-> SoT: api/v1/programs.json (25슬롯), kr-merit.json, highschool.json
+# PARKSY Broadcasting — DEV PLAN v5.0 (Final)
+> 기준일: 2026-03-12 | 상태: Phase 0 완료
+> 참조 문서: ARCHITECTURE-OVERVIEW.md / CHANNEL-PAGES.md / LANDING-REDESIGN.md
+> SoT: api/v1/programs.json · kr-merit.json · highschool.json · youtube.json
 
 ---
 
-## 단일 진실 원칙 (SoT 구조)
+## 구조 프레임 (반도체 공정)
 
 ```
-중복 관리 제거:
-  docs/00-architecture/persona-channel-mapping.md → 폐기 예정
-  api/v1/programs.json                            → 25프로그램 SoT
-  api/v1/kr-merit.json                            → KR Merit 4모듈 SoT
-  api/v1/highschool.json                          → 고교 과목 SoT
-  api/v1/youtube.json                             → YouTube 채널 SoT
-
-B4 오피스 현황판은 programs.json 하나만 읽어서 렌더링.
-DEV-PLAN은 설계 원칙만. 데이터는 JSON이 관리.
+웨이퍼 (원자재)   = Tistory 25개         — CDN + 초크보드
+전공정 (소재생산) = parksy-image          — 웹툰/선화
+                  parksy-audio           — BGM/Lyria3
+                  dtslib-cloud-appstore  — 강의도구
+후공정 (조립)     = parksy.kr            — 편성 + Mission Control
+테스트            = Claude Code          — 검증/QA/백엔드 대체
+출하              = YouTube 5채널        — 유일한 수익원
 ```
+
+**핵심 원칙:**
+- 서버 없음. JSON 파일 = API (GitHub Pages 정적 서빙)
+- 빌드 도구 없음. git push = 배포
+- 공격 표면 1개 (GitHub 2FA)
+- 비용: 연 ₩40,000 (도메인 4개만)
 
 ---
 
-## 핵심 명제
-
-```
-PARKSY Broadcasting =
-  KR Merit 4모듈 × 고교 교재 5과목 × With-AI 제작방식
-  × YouTube 루프백 (YouTube가 못 해주는 체험)
-
-YouTube = 유일한 수익 엔진 (5채널 광고)
-parksy.kr = Mission Control + 루프백 체험 공간
-Tistory = 웹툰 CDN + 강의 초크보드 (비용 0)
-```
-
----
-
-## 3축 콘텐츠 구조
+## 콘텐츠 3축
 
 ### 축 1 — 고교 교재 (dtslib1k)
-> SoT: `api/v1/highschool.json`
+한국 교육 강도는 외국에서 이미 유명. 수능/내신 체계 AI와 함께 해체.
 
 | 페르소나 | 과목 | YouTube 훅 |
 |---------|------|-----------|
@@ -49,102 +39,37 @@ Tistory = 웹툰 CDN + 강의 초크보드 (비용 0)
 | Technician | 과학 | Korean HS Science — memorization as performance art |
 
 ### 축 2 — KR Merit (dtslib2k)
-> SoT: `api/v1/kr-merit.json`
+외국인이 한국인을 이해 못 하는 이유를 모듈화.
 
 | 모듈 | 페르소나 | 컨셉 |
 |------|---------|------|
 | 허세교양 (Bluff Liberal Arts) | Technician | 아는 척 문화, 교양 퍼포먼스 |
-| 하프블러드 어학 (Half-blood Lang) | Blogger | 반쯤 아는 외국인 시점 언어학 |
+| 하프블러드 어학 (Half-blood) | Blogger | 반쯤 아는 외국인 시점 언어학 |
 | 편집평가강박 (Edit Obsession) | Visualizer | 완벽주의, 고쳐쓰기 강박 |
-| 민주주의 판타지 (Democracy Fantasy) | Philosopher | 한국 정치/사회 → 판타지 장르 |
+| 민주주의 판타지 (Democracy Fantasy) | Philosopher | 한국 정치/사회 → 판타지 재해석 |
 
 ### 축 3 — With-AI (제작 방식, 독립 모듈 아님)
-모든 콘텐츠에 관통. AI 사용 과정 투명 공개.
 ```
 공식: 프롬프트 공개 → AI 출력 → 페르소나 해설 = 영상 1편
-     (OrbitPrompt가 프롬프트 SoT)
-```
-
-### 3축 교차 = 소재 무한
-```
-Philosopher × 철학(고교) × 민주주의판타지 × Claude
-→ "AI로 한국 고교 철학 시험 문제를 민주주의 판타지로 바꿔봤다"
-
-Blogger × 수학(고교) × 하프블러드 × Claude
-→ "수능 수학을 반쯤 아는 외국인이 AI와 푸는 법"
-
-Musician × 국어(고교) × korean-parksy × Lyria3
-→ "한국 고전시가를 AI가 BGM으로 만들면"
-
-Visualizer × 사회(고교) × 편집강박 × parksy-image
-→ "한국 사회 교과서를 웹툰으로 강박적으로 재편집"
-
-Technician × 과학(고교) × 허세교양 × Claude
-→ "한국 과학 교육의 허세를 AI로 해부"
+5(페르소나) × 5(고교) × 4(KR Merit) = 100가지 교차 조합
+소재 고갈 구조적 불가능
 ```
 
 ---
 
-## 전체 구조도
+## 경로 구조 (확정)
 
 ```
-UPSTREAM STUDIOS
-parksy-image (웹툰/선화) ─────── Visualizer / 초크보드 소재
-parksy-audio (BGM/Lyria3) ────── Musician / 전 채널 배경음
-gohsy-fashion (패션렌더) ──────── Visualizer KR Merit
-OrbitPrompt (프롬프트) ─────────── With-AI 투명 공개
-dtslib-cloud-appstore (강의도구) ─ 초크보드 제작 지원
-        ↓
-parksy.kr MISSION CONTROL
-  1F  TV Guide (공개) ──── 5채널 TV 가이드
-  B1  Channels (공개) ──── 채널별 콘텐츠 + 루프백 서비스
-  B2  Studio Hub ────────── upstream 레포 연결 현황
-  B3  Console (PO 발행) ─── 콘텐츠 제작 명령
-  B4  Office (잠금:1126) ── 25프로그램 현황판 (programs.json 렌더)
-        ↓
-DISTRIBUTION
-YouTube 5채널 → 광고수익 (유일한 수익원)
-Tistory 25개  → CDN + 초크보드
-4 Domains     → SEO + 루프백 진입점
+/channel/philosopher/   ← 프로그램 페이지 (YouTube 연동)
+/channel/blogger/
+/channel/visualizer/
+/channel/musician/
+/channel/technician/
+
+/category/{name}/       ← 기존 경로 유지 (리다이렉트 또는 동일 콘텐츠)
 ```
 
----
-
-## Tistory 이중 역할 (비용 0)
-
-### CDN
-```
-parksy-image → 웹툰 제작 → Tistory 이미지 업로드
-→ parksy.kr/category/Visualizer embed
-→ YouTube 썸네일/스틸컷 재활용
-```
-
-### 초크보드 → YouTube 워크플로우 (수동 단계 명시)
-
-```
-[자동] OrbitPrompt + Claude → 강의 원고 생성
-[수동] Tistory에 원고 + 웹툰 이미지 업로드
-[수동] Samsung Internet 전체화면 + 화면녹화 + 보이스오버
-[수동] YouTube 업로드 (설명란에 Tistory 글 링크)
-[자동] GitHub Actions → YouTube API 감지 → youtube.json 갱신
-[자동] parksy.kr 채널 페이지 programs.json 읽어 자동 업데이트
-```
-
-> 화면녹화 + 보이스오버는 구조상 수동. 자동화 범위 밖.
-> 자동화 가능 구간: 원고 생성 / JSON 갱신 / 채널 페이지 업데이트.
-
----
-
-## YouTube 루프백 서비스 (YouTube 불가 → parksy.kr 제공)
-
-| 서비스 | YouTube 불가 이유 | parksy.kr 구현 |
-|--------|-----------------|----------------|
-| 인터랙티브 웹툰 | 정적 영상만 가능 | Tistory CDN embed + JS |
-| 강의 자료 전문 | 설명란 한계 | Tistory 초크보드 embed |
-| BGM 플레이어 | 배경음악 재생 불가 | Web Audio API |
-| AI 프롬프트 공개 | 메타데이터 없음 | OrbitPrompt 뷰어 |
-| KR Merit 자가진단 | 없음 | 4모듈 JS 인터랙션 |
-| 교과서 원문 vs AI 비교 | 없음 | 사이드바이사이드 뷰 |
+> CHANNEL-PAGES.md 스펙 기준. youtube.json siteUrl 업데이트 포함.
 
 ---
 
@@ -153,11 +78,46 @@ parksy-image → 웹툰 제작 → Tistory 이미지 업로드
 
 | Persona | parksy.kr | eae.kr | dtslib | dtslib1k (고교) | dtslib2k (KR Merit) |
 |---------|-----------|--------|--------|----------------|---------------------|
-| Philosopher | 홈베이스 | PnL/Philosophy | Digital Asset | 철학 | kr-merit-aggro |
-| Blogger | 홈베이스 | MAL/Webappsbook | Idea Selling | 수학 | kr-merit-halfblood |
-| Visualizer | 홈베이스 | PenOn/Qsketch | Stock Investment | 사회 | kr-merit-shaman |
-| Musician | 홈베이스 | EML/Emotion | MRT/GenUnderstanding | 국어 | korean-parksy |
-| Technician | 홈베이스 | PatchTech/MinMix | Finance & Legal | 과학 | kr-merit-bluff |
+| Philosopher | /channel/philosopher/ | PnL/Philosophy | Digital Asset | 철학 | kr-merit-aggro |
+| Blogger | /channel/blogger/ | MAL/Webappsbook | Idea Selling | 수학 | kr-merit-halfblood |
+| Visualizer | /channel/visualizer/ | PenOn/Qsketch | Stock Investment | 사회 | kr-merit-shaman |
+| Musician | /channel/musician/ | EML/Emotion | MRT/GenUnderstanding | 국어 | korean-parksy |
+| Technician | /channel/technician/ | PatchTech/MinMix | Finance & Legal | 과학 | kr-merit-bluff |
+
+---
+
+## YouTube 루프백
+
+```
+YouTube 영상
+  ↓ 설명란 링크 → /channel/{name}/
+  ├── 인터랙티브 웹툰 (Tistory CDN embed)
+  ├── 강의 자료 전문 (Tistory 초크보드)
+  ├── BGM 플레이어 (Web Audio API)
+  ├── AI 프롬프트 공개 (OrbitPrompt)
+  ├── KR Merit 자가진단 (JS 인터랙션)
+  └── 교과서 원문 vs AI 비교 뷰
+  ↓ 재방문 → 구독
+```
+
+---
+
+## Tistory 이중 역할
+
+### CDN
+```
+parksy-image → Tistory 이미지 업로드 → /channel/visualizer/ embed
+```
+
+### 초크보드 → YouTube 워크플로우
+```
+[자동] Claude → 강의 원고 초안
+[수동] Tistory 원고 + 이미지 업로드
+[수동] Samsung Internet 전체화면 + 화면녹화 + 보이스오버
+[수동] YouTube 업로드 (설명란 → /channel/{name}/ 링크)
+[자동] GitHub Actions → youtube.json 갱신
+[자동] /channel/{name}/ 페이지 자동 반영
+```
 
 ---
 
@@ -165,49 +125,55 @@ parksy-image → 웹툰 제작 → Tistory 이미지 업로드
 
 ### Phase 0 ✅ 완료
 - 랜딩 TV 가이드 (5채널 ALL ON AIR)
-- 8→5 채널 통폐합
+- 8→5 채널 통폐합 (Protocol/Orbit/Tester → Philosopher)
 - B4 비밀번호 1126
-- youtube.json verified 필드
+- youtube.json verified/subscribers 필드
 - 4도메인 Quartet
-- api/v1/ JSON 3개 (programs / kr-merit / highschool)
+- api/v1/ JSON 3종 (programs / kr-merit / highschool)
+- ARCHITECTURE-OVERVIEW.md (기술 명세)
+- CHANNEL-PAGES.md (채널 페이지 빌드 스펙)
 
 ---
 
-### Phase 1 — B4 오피스 현황판 `[즉시]`
+### Phase 1 — 채널 페이지 5개 생성 `[즉시]`
 
-programs.json 읽어서 25프로그램 테이블 렌더링.
-- 5×5 그리드 (Persona × Account)
-- 각 셀: 프로그램명 + 상태 + Tistory/YouTube 링크
-- 상태별 색상: active(flame) / planned(dim) / null(cave)
+> CHANNEL-PAGES.md 템플릿 완성됨 → 바로 실행 가능
+
+**1-A. `/channel/{name}/index.html` × 5개 생성**
+- CAVE UI 기반 (cave-ui.css + broadcast-ui.css)
+- 채널 히어로 + 프로그램 태그 + YouTube 구독 버튼 + 영상 플레이스홀더
+- Back to Lobby 링크
+
+**1-B. 경로 연결**
+- index.html `.ch-row` href → `/channel/{name}/`
+- youtube.json `siteUrl` → `https://parksy.kr/channel/{name}/`
+- programs.json `home.url` → `/channel/{name}/`
+
+**1-C. ARCHITECTURE-OVERVIEW.md 7채널 → 5채널 수정**
+- 문서 내 "7채널" 언급 전부 5로 정정
+
+---
+
+### Phase 2 — B4 오피스 현황판 `[Phase 1 후]`
+
+programs.json 읽어서 25슬롯 테이블 렌더링.
+- 5×5 그리드
+- 각 셀: 프로그램명 + 상태(active/planned) + 링크
 - KR Merit 모듈 + 고교 과목 태그
+- `chalkboardReady` 상태 표시
 
 ---
 
-### Phase 2 — 채널 페이지 완성 `[Phase 1 후]`
+### Phase 3 — B3 Console PO 라우팅 완성 `[Phase 2 후]`
 
-각 `/category/{채널}/index.html` 통일 구조:
-
-```
-[헤더] 페르소나 소개 + YouTube 채널 링크
-[Module 1] 고교 교재 섹션 — Tistory 초크보드 링크
-[Module 2] KR Merit 섹션 — 해당 모듈 웹툰/글
-[YouTube] 최신 영상 (youtube.json에서 렌더)
-[With-AI] 사용 프롬프트 공개 (OrbitPrompt 연결)
-[체험] 루프백 서비스 (모듈별 인터랙션)
-```
-
----
-
-### Phase 3 — B3 Console PO 라우팅 `[Phase 2 후]`
-
-실제 작동하는 제작 명령 시스템:
+실제 작동하는 제작 명령:
 
 ```
-PO 유형          → 담당 스튜디오
-─────────────────────────────────
+PO 유형          → 스튜디오
+─────────────────────────────
 webtoon          → parksy-image
 bgm              → parksy-audio + Lyria3
-lecture-script   → Claude + OrbitPrompt (자동)
+lecture-script   → Claude (자동)
 lecture-video    → 초크보드 워크플로우 (수동)
 short-clip       → dtslib-cloud-appstore
 kr-merit-post    → dtslib2k 해당 계정
@@ -216,19 +182,33 @@ highschool-post  → dtslib1k 해당 계정
 
 ---
 
-### Phase 4 — 자동화 루프 `[Phase 3 후]`
+### Phase 4 — 채널 페이지 루프백 서비스 `[Phase 3 후]`
+
+`/channel/{name}/` 인터랙션 구현:
+
+| 서비스 | 구현 |
+|--------|------|
+| 인터랙티브 웹툰 | Tistory CDN iframe + JS |
+| BGM 플레이어 | Web Audio API |
+| 프롬프트 공개 | OrbitPrompt 연결 |
+| KR Merit 자가진단 | 4모듈 JS 퀴즈 |
+| 초크보드 뷰어 | Tistory embed |
+
+---
+
+### Phase 5 — 자동화 `[Phase 4 후]`
 
 ```
-자동화 가능 구간:
-A. OrbitPrompt → Claude → 강의 원고 초안 생성
-B. parksy-image → Tistory CDN → programs.json tistoryUrl 갱신
+자동화 범위:
+A. Claude → 강의 원고 초안 (OrbitPrompt 연동)
+B. Tistory URL 갱신 → programs.json 업데이트
 C. YouTube 업로드 감지 → youtube.json 갱신 (GitHub Actions)
-D. programs.json 업데이트 → B4 현황판 자동 반영
+D. programs.json 변경 → B4 현황판 자동 반영
 
-수동 유지:
-- 화면녹화 + 보이스오버 (사람 개입 필수)
-- YouTube 업로드 (검토 후 수동)
-- Tistory 최종 편집
+수동 유지 (구조상 불가):
+- 화면녹화 + 보이스오버
+- YouTube 최종 업로드
+- Tistory 편집/검토
 ```
 
 ---
@@ -237,28 +217,25 @@ D. programs.json 업데이트 → B4 현황판 자동 반영
 
 | 지표 | 3개월 | 6개월 | 12개월 |
 |------|-------|-------|--------|
-| YouTube 영상 수 | 25+ | 100+ | 300+ |
-| Tistory 초크보드 글 | 25+ | 100+ | 300+ |
+| 채널 페이지 가동 | 5/5 | 5/5 | 5/5 |
+| YouTube 영상 | 25+ | 100+ | 300+ |
+| Tistory 초크보드 | 25+ | 100+ | 300+ |
 | 25프로그램 가동률 | 40% | 80% | 100% |
 | KR Merit 모듈 완성 | 1 | 4 | 4 |
 | 고교 과목 가동 | 1 | 5 | 5 |
-| parksy.kr 월 방문 | 1,000 | 10,000 | 100,000 |
 
 ---
 
-## 기술 원칙
+## 문서 관리 원칙
 
-- parksy.kr: 순수 HTML/CSS/JS, 빌드 도구 없음, 서버 없음
-- API: JSON 파일 정적 서빙 (GitHub Pages)
-- 자동화: GitHub Actions
-- CDN: Tistory (무료)
-- AI: Claude(텍스트), Lyria3(음악), parksy-image(시각)
-- 비용: ₩0
-
----
-
-## 다음 즉시 실행
-
-1. **B4 오피스 현황판** — programs.json 읽어서 25슬롯 테이블 렌더링
-2. **persona-channel-mapping.md 폐기** — programs.json으로 통합, 중복 제거
-3. **Tistory URL 실제 입력** — 계정별 첫 글 작성 후 programs.json 업데이트
+| 파일 | 역할 | 상태 |
+|------|------|------|
+| DEV-PLAN-2026-03.md | 설계 원칙 + 로드맵 | ✅ 이 파일 |
+| ARCHITECTURE-OVERVIEW.md | 기술 명세 (보안/비용/비교) | 7채널 수정 필요 |
+| CHANNEL-PAGES.md | 채널 페이지 빌드 스펙 | ✅ Phase 1 실행 준비 |
+| LANDING-REDESIGN.md | 랜딩 설계 원칙 | ✅ 완료 |
+| api/v1/programs.json | 25프로그램 SoT | ✅ |
+| api/v1/kr-merit.json | KR Merit 4모듈 SoT | ✅ |
+| api/v1/highschool.json | 고교 5과목 SoT | ✅ |
+| api/v1/youtube.json | YouTube 채널 SoT | siteUrl 업데이트 필요 |
+| docs/00-architecture/persona-channel-mapping.md | 폐기 예정 → programs.json으로 통합 | ⚠️ |
