@@ -14,55 +14,200 @@
       "persona": "Philosopher-Parksy",
       "youtubeChannel": "@philosopher-parksy",
       "programs": {
-        "home":       { "account": "parksy.kr",  "name": "Philosopher TV",     "url": "https://parksy.kr/category/Philosopher-Parksy/", "status": "active" },
-        "eae":        { "account": "eae.kr",      "name": "PnL/Philosophy",     "url": null, "status": "planned" },
-        "dtslib":     { "account": "dtslib",      "name": "Digital Asset",      "url": null, "status": "planned" },
-        "highschool": { "account": "dtslib1k",    "name": "철학 (Philosophy)",  "url": null, "status": "planned", "axis": "axis1", "subject": "philosophy" },
-        "kr-merit":   { "account": "dtslib2k",    "name": "kr-merit-aggro",     "url": null, "status": "planned", "axis": "axis2", "module": "democracy-fantasy" }
+        "home": {
+          "account": "parksy.kr",
+          "name": "Philosopher TV",
+          "url": "https://parksy.kr/channel/philosopher/",
+          "status": "active"
+        },
+        "eae": {
+          "account": "eae.kr",
+          "name": "PnL/Philosophy",
+          "url": null,
+          "status": "planned"
+        },
+        "dtslib": {
+          "account": "dtslib",
+          "name": "Digital Asset",
+          "url": null,
+          "status": "planned"
+        },
+        "highschool": {
+          "account": "dtslib1k",
+          "name": "철학 (Philosophy)",
+          "url": "https://dtslib1k.tistory.com",
+          "status": "planned",
+          "axis": "axis1",
+          "subject": "philosophy"
+        },
+        "kr-merit": {
+          "account": "dtslib2k",
+          "name": "kr-merit-aggro",
+          "url": "https://dtslib2k.tistory.com",
+          "status": "planned",
+          "axis": "axis2",
+          "module": "democracy-fantasy"
+        }
       }
     },
     "blogger": {
       "persona": "Blogger-Parksy",
       "youtubeChannel": "@blogger-parksy",
       "programs": {
-        "home":       { "account": "parksy.kr",  "name": "Blogger TV",         "url": "https://parksy.kr/category/Blogger-Parksy/", "status": "active" },
-        "eae":        { "account": "eae.kr",      "name": "MAL/Webappsbook",   "url": null, "status": "planned" },
-        "dtslib":     { "account": "dtslib",      "name": "Idea Selling",       "url": null, "status": "planned" },
-        "highschool": { "account": "dtslib1k",    "name": "수학 (Math)",        "url": null, "status": "planned", "axis": "axis1", "subject": "math" },
-        "kr-merit":   { "account": "dtslib2k",    "name": "kr-merit-halfblood", "url": null, "status": "planned", "axis": "axis2", "module": "halfblood-language" }
+        "home": {
+          "account": "parksy.kr",
+          "name": "Blogger TV",
+          "url": "https://parksy.kr/channel/blogger/",
+          "status": "active"
+        },
+        "eae": {
+          "account": "eae.kr",
+          "name": "MAL/Webappsbook",
+          "url": null,
+          "status": "planned"
+        },
+        "dtslib": {
+          "account": "dtslib",
+          "name": "Idea Selling",
+          "url": null,
+          "status": "planned"
+        },
+        "highschool": {
+          "account": "dtslib1k",
+          "name": "수학 (Math)",
+          "url": "https://dtslib1k.tistory.com",
+          "status": "planned",
+          "axis": "axis1",
+          "subject": "math"
+        },
+        "kr-merit": {
+          "account": "dtslib2k",
+          "name": "kr-merit-halfblood",
+          "url": "https://dtslib2k.tistory.com",
+          "status": "planned",
+          "axis": "axis2",
+          "module": "halfblood-language"
+        }
       }
     },
     "visualizer": {
       "persona": "Visualizer-Parksy",
       "youtubeChannel": "@visualizer-parksy",
       "programs": {
-        "home":       { "account": "parksy.kr",  "name": "Visualizer TV",      "url": "https://parksy.kr/category/Visualizer-Parksy/", "status": "active" },
-        "eae":        { "account": "eae.kr",      "name": "PenOn/Qsketch",     "url": null, "status": "planned" },
-        "dtslib":     { "account": "dtslib",      "name": "Stock Investment",   "url": null, "status": "planned" },
-        "highschool": { "account": "dtslib1k",    "name": "사회 (Social)",      "url": null, "status": "planned", "axis": "axis1", "subject": "social-studies" },
-        "kr-merit":   { "account": "dtslib2k",    "name": "kr-merit-shaman",   "url": null, "status": "planned", "axis": "axis2", "module": "edit-obsession" }
+        "home": {
+          "account": "parksy.kr",
+          "name": "Visualizer TV",
+          "url": "https://parksy.kr/channel/visualizer/",
+          "status": "active"
+        },
+        "eae": {
+          "account": "eae.kr",
+          "name": "PenOn/Qsketch",
+          "url": null,
+          "status": "planned"
+        },
+        "dtslib": {
+          "account": "dtslib",
+          "name": "Stock Investment",
+          "url": null,
+          "status": "planned"
+        },
+        "highschool": {
+          "account": "dtslib1k",
+          "name": "사회 (Social)",
+          "url": "https://dtslib1k.tistory.com",
+          "status": "planned",
+          "axis": "axis1",
+          "subject": "social-studies"
+        },
+        "kr-merit": {
+          "account": "dtslib2k",
+          "name": "kr-merit-shaman",
+          "url": "https://dtslib2k.tistory.com",
+          "status": "planned",
+          "axis": "axis2",
+          "module": "edit-obsession"
+        }
       }
     },
     "musician": {
       "persona": "Musician-Parksy",
       "youtubeChannel": "@musician-parksy",
       "programs": {
-        "home":       { "account": "parksy.kr",  "name": "Musician TV",        "url": "https://parksy.kr/category/Musician-Parksy/", "status": "active" },
-        "eae":        { "account": "eae.kr",      "name": "EML/Emotion",       "url": null, "status": "planned" },
-        "dtslib":     { "account": "dtslib",      "name": "MRT/GenUnderstanding","url": null, "status": "planned" },
-        "highschool": { "account": "dtslib1k",    "name": "국어 (Language)",    "url": null, "status": "planned", "axis": "axis1", "subject": "korean-language" },
-        "kr-merit":   { "account": "dtslib2k",    "name": "korean-parksy",     "url": null, "status": "planned", "axis": "axis2", "module": "language-music" }
+        "home": {
+          "account": "parksy.kr",
+          "name": "Musician TV",
+          "url": "https://parksy.kr/channel/musician/",
+          "status": "active"
+        },
+        "eae": {
+          "account": "eae.kr",
+          "name": "EML/Emotion",
+          "url": null,
+          "status": "planned"
+        },
+        "dtslib": {
+          "account": "dtslib",
+          "name": "MRT/GenUnderstanding",
+          "url": null,
+          "status": "planned"
+        },
+        "highschool": {
+          "account": "dtslib1k",
+          "name": "국어 (Language)",
+          "url": "https://dtslib1k.tistory.com",
+          "status": "planned",
+          "axis": "axis1",
+          "subject": "korean-language"
+        },
+        "kr-merit": {
+          "account": "dtslib2k",
+          "name": "korean-parksy",
+          "url": "https://dtslib2k.tistory.com",
+          "status": "planned",
+          "axis": "axis2",
+          "module": "language-music"
+        }
       }
     },
     "technician": {
       "persona": "Technician-Parksy",
       "youtubeChannel": "@technician-parksy",
       "programs": {
-        "home":       { "account": "parksy.kr",  "name": "Technician TV",      "url": "https://parksy.kr/category/Technician-Parksy/", "status": "active" },
-        "eae":        { "account": "eae.kr",      "name": "PatchTech/MinMix",  "url": null, "status": "planned" },
-        "dtslib":     { "account": "dtslib",      "name": "Finance & Legal",   "url": null, "status": "planned" },
-        "highschool": { "account": "dtslib1k",    "name": "과학 (Science)",    "url": null, "status": "planned", "axis": "axis1", "subject": "science" },
-        "kr-merit":   { "account": "dtslib2k",    "name": "kr-merit-bluff",    "url": null, "status": "planned", "axis": "axis2", "module": "bluff-liberal-arts" }
+        "home": {
+          "account": "parksy.kr",
+          "name": "Technician TV",
+          "url": "https://parksy.kr/channel/technician/",
+          "status": "active"
+        },
+        "eae": {
+          "account": "eae.kr",
+          "name": "PatchTech/MinMix",
+          "url": null,
+          "status": "planned"
+        },
+        "dtslib": {
+          "account": "dtslib",
+          "name": "Finance & Legal",
+          "url": null,
+          "status": "planned"
+        },
+        "highschool": {
+          "account": "dtslib1k",
+          "name": "과학 (Science)",
+          "url": "https://dtslib1k.tistory.com",
+          "status": "planned",
+          "axis": "axis1",
+          "subject": "science"
+        },
+        "kr-merit": {
+          "account": "dtslib2k",
+          "name": "kr-merit-bluff",
+          "url": "https://dtslib2k.tistory.com",
+          "status": "planned",
+          "axis": "axis2",
+          "module": "bluff-liberal-arts"
+        }
       }
     }
   }

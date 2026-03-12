@@ -8,38 +8,50 @@
     "bluff-liberal-arts": {
       "name": "허세교양 (Bluff Liberal Arts)",
       "persona": "technician",
-      "tistory": "kr-merit-bluff",
-      "tistoryUrl": null,
+      "tistory": "dtslib2k",
+      "tistoryUrl": "https://dtslib2k.tistory.com",
       "concept": "Korean culture of performing educated — memorizing without understanding",
       "youtubeHook": "Why Koreans act like they know everything (AI explains)",
-      "crossAxis": { "highschool": "science", "reason": "Korean science education as performance art" }
+      "crossAxis": {
+        "highschool": "science",
+        "reason": "Korean science education as performance art"
+      }
     },
     "halfblood-language": {
       "name": "하프블러드 어학 (Half-blood Language)",
       "persona": "blogger",
-      "tistory": "kr-merit-halfblood",
-      "tistoryUrl": null,
+      "tistory": "dtslib2k",
+      "tistoryUrl": "https://dtslib2k.tistory.com",
       "concept": "Korean language through eyes of someone who half-understands it",
       "youtubeHook": "Korean SAT explained by AI to a half-foreigner",
-      "crossAxis": { "highschool": "math", "reason": "Math culture seen through language barrier" }
+      "crossAxis": {
+        "highschool": "math",
+        "reason": "Math culture seen through language barrier"
+      }
     },
     "edit-obsession": {
       "name": "편집평가강박 (Edit Obsession)",
       "persona": "visualizer",
-      "tistory": "kr-merit-shaman",
-      "tistoryUrl": null,
+      "tistory": "dtslib2k",
+      "tistoryUrl": "https://dtslib2k.tistory.com",
       "concept": "Korean perfectionism — obsessive editing and evaluating everything",
       "youtubeHook": "Why Koreans rewrite everything 10 times (visualized)",
-      "crossAxis": { "highschool": "social-studies", "reason": "Social evaluation culture in education" }
+      "crossAxis": {
+        "highschool": "social-studies",
+        "reason": "Social evaluation culture in education"
+      }
     },
     "democracy-fantasy": {
       "name": "민주주의 판타지 (Democracy Fantasy)",
       "persona": "philosopher",
-      "tistory": "kr-merit-aggro",
-      "tistoryUrl": null,
+      "tistory": "dtslib2k",
+      "tistoryUrl": "https://dtslib2k.tistory.com",
       "concept": "Korean politics and society reinterpreted as fantasy genre",
       "youtubeHook": "Korean democracy explained as a fantasy novel (with AI)",
-      "crossAxis": { "highschool": "philosophy", "reason": "HS philosophy class feeds directly into political fantasy" }
+      "crossAxis": {
+        "highschool": "philosophy",
+        "reason": "HS philosophy class feeds directly into political fantasy"
+      }
     }
   }
 }
