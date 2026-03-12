@@ -3,36 +3,47 @@
   "meta": {
     "generatedAt": "2026-03-12T00:00:00Z",
     "account": "C (dimas.thomas.sancho@gmail.com)",
-    "note": "5 channels — Tester+Protocol+Orbit merged into Philosopher (2026-03-12). Fill channelId from YouTube Studio."
+    "note": "5 active YouTube channels (2026-03-12). Tester+Protocol+Orbit merged into Philosopher. Fill channelId from YouTube Studio.",
+    "verifiedAt": "2026-03-12"
   },
   "channels": {
-    "visualizer": {
-      "persona": "Visualizer-Parksy",
-      "handle": "@visualizer-parksy",
+    "philosopher": {
+      "persona": "Philosopher-Parksy",
+      "handle": "@philosopher-parksy",
       "channelId": null,
-      "category": "category/Visualizer-Parksy/",
-      "contentType": ["webtoon", "image", "cad", "pipeline"],
-      "siteUrl": "https://parksy.kr/category/Visualizer-Parksy/",
+      "youtubeUrl": "https://www.youtube.com/@philosopher-parksy",
+      "category": "category/Philosopher-Parksy/",
+      "contentType": ["commentary", "framing", "concert", "experiment", "systems", "analytics"],
+      "siteUrl": "https://parksy.kr/category/Philosopher-Parksy/",
+      "subscribers": 0,
+      "verified": true,
       "videos": [],
-      "lastSynced": null
+      "lastSynced": null,
+      "absorbed": ["Tester-Parksy", "Protocol-Parksy", "Orbit-Log"]
     },
     "blogger": {
       "persona": "Blogger-Parksy",
       "handle": "@blogger-parksy",
       "channelId": null,
+      "youtubeUrl": "https://www.youtube.com/@blogger-parksy",
       "category": "category/Blogger-Parksy/",
       "contentType": ["worldview", "essay", "narrative"],
       "siteUrl": "https://parksy.kr/category/Blogger-Parksy/",
+      "subscribers": 0,
+      "verified": true,
       "videos": [],
       "lastSynced": null
     },
-    "technician": {
-      "persona": "Technician-Parksy",
-      "handle": "@technician-parksy",
+    "visualizer": {
+      "persona": "Visualizer-Parksy",
+      "handle": "@visualizer-parksy",
       "channelId": null,
-      "category": "category/Technician-Parksy/",
-      "contentType": ["automation", "pipeline", "behind-the-scenes"],
-      "siteUrl": "https://parksy.kr/category/Technician-Parksy/",
+      "youtubeUrl": "https://www.youtube.com/@visualizer-parksy",
+      "category": "category/Visualizer-Parksy/",
+      "contentType": ["webtoon", "image", "cad", "pipeline"],
+      "siteUrl": "https://parksy.kr/category/Visualizer-Parksy/",
+      "subscribers": 0,
+      "verified": true,
       "videos": [],
       "lastSynced": null
     },
@@ -40,22 +51,27 @@
       "persona": "Musician-Parksy",
       "handle": "@musician-parksy",
       "channelId": null,
+      "youtubeUrl": "https://www.youtube.com/@musician-parksy",
       "category": "category/Musician-Parksy/",
       "contentType": ["bgm", "audio", "lyria3"],
       "siteUrl": "https://parksy.kr/category/Musician-Parksy/",
+      "subscribers": 1,
+      "verified": true,
       "videos": [],
       "lastSynced": null
     },
-    "philosopher": {
-      "persona": "Philosopher-Parksy",
-      "handle": "@philosopher-parksy",
+    "technician": {
+      "persona": "Technician-Parksy",
+      "handle": "@technician-parksy",
       "channelId": null,
-      "category": "category/Philosopher-Parksy/",
-      "contentType": ["commentary", "framing", "concert", "experiment", "systems", "analytics"],
-      "siteUrl": "https://parksy.kr/category/Philosopher-Parksy/",
+      "youtubeUrl": "https://www.youtube.com/@technician-parksy",
+      "category": "category/Technician-Parksy/",
+      "contentType": ["automation", "pipeline", "behind-the-scenes"],
+      "siteUrl": "https://parksy.kr/category/Technician-Parksy/",
+      "subscribers": 0,
+      "verified": true,
       "videos": [],
-      "lastSynced": null,
-      "absorbed": ["Tester-Parksy", "Protocol-Parksy", "Orbit-Log"]
+      "lastSynced": null
     }
   },
   "deprecated": {

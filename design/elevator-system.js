@@ -16,7 +16,7 @@
     channels: { level: 'B1', name: 'Channels', locked: false },
     studio: { level: 'B2', name: 'Studio', locked: false },
     console: { level: 'B3', name: 'Console', locked: false },
-    office: { level: 'B4', name: 'Office', locked: true, code: 'parksy' }
+    office: { level: 'B4', name: 'Office', locked: true, code: '1126' }
   };
 
   const PERSONAS = [
