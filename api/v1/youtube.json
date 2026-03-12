@@ -1,13 +1,68 @@
 {
   "success": true,
-  "data": {
-    "videos": [],
-    "total": 0,
-    "channelId": null,
-    "lastSynced": null
-  },
   "meta": {
-    "generatedAt": "2025-01-16T00:00:00Z",
-    "source": "/data/youtube/index.json"
+    "generatedAt": "2026-03-10T00:00:00Z",
+    "account": "C (dimas.thomas.sancho@gmail.com)",
+    "note": "5 persona channels — fill channelId from YouTube Studio > Settings > Channel > Advanced"
+  },
+  "channels": {
+    "visualizer": {
+      "persona": "Visualizer-Parksy",
+      "handle": "@visualizer-parksy",
+      "channelId": null,
+      "category": "category/Visualizer-Parksy/",
+      "contentType": ["webtoon", "image", "cad", "pipeline"],
+      "siteUrl": "https://parksy.kr/category/Visualizer-Parksy/",
+      "videos": [],
+      "lastSynced": null
+    },
+    "blogger": {
+      "persona": "Blogger-Parksy",
+      "handle": "@blogger-parksy",
+      "channelId": null,
+      "category": "category/Blogger-Parksy/",
+      "contentType": ["worldview", "essay", "narrative"],
+      "siteUrl": "https://parksy.kr/category/Blogger-Parksy/",
+      "videos": [],
+      "lastSynced": null
+    },
+    "technician": {
+      "persona": "Technician-Parksy",
+      "handle": "@technician-parksy",
+      "channelId": null,
+      "category": "category/Technician-Parksy/",
+      "contentType": ["automation", "pipeline", "behind-the-scenes"],
+      "siteUrl": "https://parksy.kr/category/Technician-Parksy/",
+      "videos": [],
+      "lastSynced": null
+    },
+    "musician": {
+      "persona": "Musician-Parksy",
+      "handle": "@musician-parksy",
+      "channelId": null,
+      "category": "category/Musician-Parksy/",
+      "contentType": ["bgm", "audio", "lyria3"],
+      "siteUrl": "https://parksy.kr/category/Musician-Parksy/",
+      "videos": [],
+      "lastSynced": null
+    },
+    "philosopher": {
+      "persona": "Philosopher-Parksy",
+      "handle": "@philosopher-parksy",
+      "channelId": null,
+      "category": "category/Philosopher-Parksy/",
+      "contentType": ["commentary", "framing", "concert"],
+      "siteUrl": "https://parksy.kr/category/Philosopher-Parksy/",
+      "videos": [],
+      "lastSynced": null
+    }
+  },
+  "deprecated": {
+    "old_format": {
+      "channelId": null,
+      "videos": [],
+      "total": 0,
+      "note": "단일 채널 구조 → 5채널 구조로 전환 (2026-03-10)"
+    }
   }
 }

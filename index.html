@@ -33,8 +33,95 @@
   <link rel="stylesheet" href="/design/cave-ui.css">
   <link rel="stylesheet" href="/design/broadcast-ui.css">
   <link rel="stylesheet" href="/design/elevator-ui.css">
+
+  <style>
+    /* ── Scroll Progress Bar ── */
+    .scroll-progress {
+      position: fixed; top: 0; left: 0;
+      width: 0%; height: 2px;
+      background: linear-gradient(90deg, var(--flame-core), var(--flame-edge));
+      z-index: 9999;
+      transition: width 0.1s linear;
+    }
+    /* ── Stats Bar ── */
+    .stats-bar {
+      display: flex; justify-content: center; gap: 2rem;
+      padding: 1rem 0; margin: 1.5rem 0;
+      border-top: 1px solid var(--cave-faint);
+      border-bottom: 1px solid var(--cave-faint);
+    }
+    .stat-item { text-align: center; }
+    .stat-value {
+      font-family: var(--font-mono);
+      font-size: 1.5rem; font-weight: 600;
+      color: var(--cave-glow);
+      display: block;
+    }
+    .stat-label {
+      font-size: 0.65rem; color: var(--cave-faint);
+      text-transform: uppercase; letter-spacing: 0.1em;
+    }
+    /* ── Hero Character Animation ── */
+    .station-title .char {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: char-rise 0.6s forwards;
+    }
+    @keyframes char-rise {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    /* ── Quartet Grid ── */
+    .quartet-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.75rem;
+    }
+    .quartet-card {
+      display: flex; flex-direction: column;
+      align-items: center; gap: 0.25rem;
+      padding: 1rem 0.5rem;
+      background: var(--cave-wall);
+      border: 1px solid var(--cave-faint);
+      border-radius: 4px;
+      text-decoration: none; color: inherit;
+      transition: all 0.3s ease;
+    }
+    .quartet-card:hover {
+      border-color: var(--cave-dim);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+    .quartet-card.active {
+      border-color: var(--flame-core);
+      box-shadow: 0 0 15px rgba(255,107,53,0.15);
+    }
+    .quartet-domain {
+      font-family: var(--font-mono);
+      font-size: 0.75rem; font-weight: 600;
+      color: var(--cave-glow);
+    }
+    .quartet-role {
+      font-size: 0.6rem; color: var(--cave-dim);
+      text-align: center;
+    }
+    .quartet-badge {
+      font-size: 0.5rem; padding: 0.15rem 0.4rem;
+      border-radius: 2px; margin-top: 0.25rem;
+    }
+    .badge-raw { background: var(--zone-parksy); color: white; }
+    .badge-biz { background: var(--zone-dtslib); color: white; }
+    .badge-edu { background: var(--zone-eae); color: white; }
+    .badge-hub { background: var(--broadcast-purple); color: white; }
+    @media (max-width: 480px) {
+      .quartet-grid { grid-template-columns: repeat(2, 1fr); }
+      .stats-bar { gap: 1rem; flex-wrap: wrap; }
+    }
+  </style>
 </head>
 <body>
+  <!-- Scroll Progress -->
+  <div class="scroll-progress" id="scroll-progress"></div>
 
   <!-- ═══════════════════════════════════════════════════════════════
        ELEVATOR PANEL - Fixed Navigation
@@ -99,6 +186,26 @@
       </div>
     </header>
 
+    <!-- Stats Bar -->
+    <div class="stats-bar">
+      <div class="stat-item">
+        <span class="stat-value">8</span>
+        <span class="stat-label">Channels</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">4</span>
+        <span class="stat-label">Domains</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">25</span>
+        <span class="stat-label">Tools</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">12</span>
+        <span class="stat-label">Pipelines</span>
+      </div>
+    </div>
+
     <!-- News Carousel -->
     <section class="news-carousel">
       <div class="carousel-header">
@@ -114,28 +221,28 @@
           <span class="news-tag">Featured</span>
           <h3 class="news-title">AI-Powered Content Curation Now Live</h3>
           <p class="news-excerpt">Transform your thoughts into broadcast-ready content with our new Studio engine.</p>
-          <time class="news-date">2025.01</time>
+          <time class="news-date">2026.03</time>
         </article>
 
         <article class="news-card">
           <span class="news-tag">Channel</span>
           <h3 class="news-title">Philosopher TV: New Series</h3>
           <p class="news-excerpt">Exploring the intersection of AI and human consciousness.</p>
-          <time class="news-date">2025.01</time>
+          <time class="news-date">2026.03</time>
         </article>
 
         <article class="news-card">
           <span class="news-tag">Update</span>
           <h3 class="news-title">Platform Integration Expanded</h3>
           <p class="news-excerpt">Now connected with YouTube, Spotify, and Notion ecosystems.</p>
-          <time class="news-date">2025.01</time>
+          <time class="news-date">2026.03</time>
         </article>
 
         <article class="news-card">
           <span class="news-tag">Tech</span>
           <h3 class="news-title">Studio Engine v2.0</h3>
           <p class="news-excerpt">Claude Code integration for automated content workflows.</p>
-          <time class="news-date">2025.01</time>
+          <time class="news-date">2026.03</time>
         </article>
       </div>
     </section>
@@ -170,7 +277,7 @@
     <!-- Station Info -->
     <footer class="lobby-footer">
       <p class="footer-philosophy">Beyond AI — Spirit · Intellect · Emotion</p>
-      <p class="footer-copy">© 2025 PARKSY Broadcasting · DTSLIB Media Empire</p>
+      <p class="footer-copy">© 2026 PARKSY Broadcasting · DTSLIB Media Empire</p>
     </footer>
   </main>
 
@@ -594,22 +701,30 @@
       </a>
     </div>
 
-    <!-- Trilogy Flow -->
+    <!-- Quartet Flow -->
     <div class="trilogy-section">
-      <h3 class="trilogy-title">Content Flow</h3>
-      <p class="trilogy-desc" style="color: var(--cave-glow, #e8e8e8); opacity: 0.5; font-size: 0.75rem; margin: 0.5rem 0 1rem; text-align: center;">Raw → Product → Education</p>
-      <div class="trilogy-grid">
-        <a href="https://parksy.kr" class="trilogy-card active">
-          <span class="trilogy-domain">parksy.kr</span>
-          <span class="trilogy-role">Raw / Entity</span>
+      <h3 class="trilogy-title">Broadcasting Quartet</h3>
+      <p class="trilogy-desc" style="color: var(--cave-glow, #e8e8e8); opacity: 0.5; font-size: 0.75rem; margin: 0.5rem 0 1rem; text-align: center;">Raw · Business · Education · Academy</p>
+      <div class="quartet-grid">
+        <a href="https://parksy.kr" class="quartet-card active">
+          <span class="quartet-domain">parksy.kr</span>
+          <span class="quartet-role">Raw / Entity</span>
+          <span class="quartet-badge badge-raw">RAW</span>
         </a>
-        <a href="https://dtslib.kr" target="_blank" class="trilogy-card">
-          <span class="trilogy-domain">dtslib.kr</span>
-          <span class="trilogy-role">Product / Company</span>
+        <a href="https://dtslib.kr" target="_blank" class="quartet-card">
+          <span class="quartet-domain">dtslib.kr</span>
+          <span class="quartet-role">Business / Economy</span>
+          <span class="quartet-badge badge-biz">BIZ</span>
         </a>
-        <a href="https://eae.kr" target="_blank" class="trilogy-card">
-          <span class="trilogy-domain">eae.kr</span>
-          <span class="trilogy-role">Education / Structure</span>
+        <a href="https://eae.kr" target="_blank" class="quartet-card">
+          <span class="quartet-domain">eae.kr</span>
+          <span class="quartet-role">Education / MDX</span>
+          <span class="quartet-badge badge-edu">EDU</span>
+        </a>
+        <a href="https://dtslib1979.github.io/eae-univ/" target="_blank" class="quartet-card">
+          <span class="quartet-domain">eae-univ</span>
+          <span class="quartet-role">Academy / Hub</span>
+          <span class="quartet-badge badge-hub">HUB</span>
         </a>
       </div>
     </div>
@@ -688,6 +803,43 @@
        SCRIPTS
        ═══════════════════════════════════════════════════════════════ -->
   <script src="/design/elevator-system.js"></script>
+  <script src="/design/cave-particles.js"></script>
+
+  <script>
+    // Scroll Progress Bar
+    (function() {
+      var bar = document.getElementById('scroll-progress');
+      if (!bar) return;
+      window.addEventListener('scroll', function() {
+        var doc = document.documentElement;
+        var scrolled = doc.scrollTop || document.body.scrollTop;
+        var total = doc.scrollHeight - doc.clientHeight;
+        bar.style.width = (total > 0 ? (scrolled / total * 100) : 0) + '%';
+      }, { passive: true });
+    })();
+
+    // Station Title Char Animation
+    (function() {
+      var title = document.querySelector('.station-title');
+      if (!title) return;
+      var html = title.innerHTML;
+      var result = '';
+      var delay = 0;
+      for (var i = 0; i < html.length; i++) {
+        if (html[i] === '<') {
+          var end = html.indexOf('>', i);
+          result += html.slice(i, end + 1);
+          i = end;
+        } else if (html[i] === ' ') {
+          result += ' ';
+        } else {
+          result += '<span class="char" style="animation-delay:' + delay + 'ms">' + html[i] + '</span>';
+          delay += 40;
+        }
+      }
+      title.innerHTML = result;
+    })();
+  </script>
 
   <!-- Structured Data -->
   <script type="application/ld+json">
