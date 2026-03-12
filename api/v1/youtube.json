@@ -1,7 +1,7 @@
 {
   "success": true,
   "meta": {
-    "generatedAt": "2026-03-12T00:00:00Z",
+    "generatedAt": "2026-03-12T07:54:54.701752Z",
     "account": "C (dimas.thomas.sancho@gmail.com)",
     "note": "5 active YouTube channels (2026-03-12). channelId auto-extracted from channel pages.",
     "verifiedAt": "2026-03-12"
@@ -24,13 +24,63 @@
       "siteUrl": "https://parksy.kr/channel/philosopher/",
       "subscribers": 0,
       "verified": true,
-      "videos": [],
-      "lastSynced": null,
+      "videos": [
+        {
+          "videoId": "KYIclf2A1Hs",
+          "title": "The 7 Drivers of Thought",
+          "description": "",
+          "publishedAt": "2026-03-02T05:58:57Z",
+          "thumbnails": {
+            "default": "https://i.ytimg.com/vi/KYIclf2A1Hs/default.jpg",
+            "medium": "https://i.ytimg.com/vi/KYIclf2A1Hs/mqdefault.jpg",
+            "high": "https://i.ytimg.com/vi/KYIclf2A1Hs/hqdefault.jpg"
+          },
+          "syncedAt": "2026-03-12T07:54:51.153421Z"
+        },
+        {
+          "videoId": "OFYuIVco9qQ",
+          "title": "“Creation Is Recombination.”",
+          "description": "",
+          "publishedAt": "2026-03-02T04:35:58Z",
+          "thumbnails": {
+            "default": "https://i.ytimg.com/vi/OFYuIVco9qQ/default.jpg",
+            "medium": "https://i.ytimg.com/vi/OFYuIVco9qQ/mqdefault.jpg",
+            "high": "https://i.ytimg.com/vi/OFYuIVco9qQ/hqdefault.jpg"
+          },
+          "syncedAt": "2026-03-12T07:54:51.153482Z"
+        },
+        {
+          "videoId": "2NAMAWG_qVM",
+          "title": "human prompt.htmlhierarchy",
+          "description": "",
+          "publishedAt": "2025-11-29T02:39:37Z",
+          "thumbnails": {
+            "default": "https://i.ytimg.com/vi/2NAMAWG_qVM/default.jpg",
+            "medium": "https://i.ytimg.com/vi/2NAMAWG_qVM/mqdefault.jpg",
+            "high": "https://i.ytimg.com/vi/2NAMAWG_qVM/hqdefault.jpg"
+          },
+          "syncedAt": "2026-03-12T07:54:51.153507Z"
+        },
+        {
+          "videoId": "xnjeGD6N2ck",
+          "title": "parksy os",
+          "description": "",
+          "publishedAt": "2025-11-29T02:38:49Z",
+          "thumbnails": {
+            "default": "https://i.ytimg.com/vi/xnjeGD6N2ck/default.jpg",
+            "medium": "https://i.ytimg.com/vi/xnjeGD6N2ck/mqdefault.jpg",
+            "high": "https://i.ytimg.com/vi/xnjeGD6N2ck/hqdefault.jpg"
+          },
+          "syncedAt": "2026-03-12T07:54:51.153525Z"
+        }
+      ],
+      "lastSynced": "2026-03-12T07:54:51.153927Z",
       "absorbed": [
         "Tester-Parksy",
         "Protocol-Parksy",
         "Orbit-Log"
-      ]
+      ],
+      "videoCount": 4
     },
     "blogger": {
       "persona": "Blogger-Parksy",
@@ -47,7 +97,8 @@
       "subscribers": 0,
       "verified": true,
       "videos": [],
-      "lastSynced": null
+      "lastSynced": "2026-03-12T07:54:51.907045Z",
+      "videoCount": 0
     },
     "visualizer": {
       "persona": "Visualizer-Parksy",
@@ -64,8 +115,22 @@
       "siteUrl": "https://parksy.kr/channel/visualizer/",
       "subscribers": 0,
       "verified": true,
-      "videos": [],
-      "lastSynced": null
+      "videos": [
+        {
+          "videoId": "-1NQHEnwRDA",
+          "title": "Sample",
+          "description": "",
+          "publishedAt": "2025-12-13T22:17:49Z",
+          "thumbnails": {
+            "default": "https://i.ytimg.com/vi/-1NQHEnwRDA/default.jpg",
+            "medium": "https://i.ytimg.com/vi/-1NQHEnwRDA/mqdefault.jpg",
+            "high": "https://i.ytimg.com/vi/-1NQHEnwRDA/hqdefault.jpg"
+          },
+          "syncedAt": "2026-03-12T07:54:52.757853Z"
+        }
+      ],
+      "lastSynced": "2026-03-12T07:54:52.757974Z",
+      "videoCount": 1
     },
     "musician": {
       "persona": "Musician-Parksy",
@@ -81,8 +146,130 @@
       "siteUrl": "https://parksy.kr/channel/musician/",
       "subscribers": 1,
       "verified": true,
-      "videos": [],
-      "lastSynced": null
+      "videos": [
+        {
+          "videoId": "fR4NUWlb2No",
+          "title": "dtslib logo song_80Euro",
+          "description": "",
+          "publishedAt": "2026-02-23T10:12:59Z",
+          "thumbnails": {
+            "default": "https://i.ytimg.com/vi/fR4NUWlb2No/default.jpg",
+            "medium": "https://i.ytimg.com/vi/fR4NUWlb2No/mqdefault.jpg",
+            "high": "https://i.ytimg.com/vi/fR4NUWlb2No/hqdefault.jpg"
+          },
+          "syncedAt": "2026-03-12T07:54:53.915632Z"
+        },
+        {
+          "videoId": "Ffb2i3zLVsY",
+          "title": "동선 스튜디오 CM송 No.1",
+          "description": "",
+          "publishedAt": "2026-02-21T06:54:20Z",
+          "thumbnails": {
+            "default": "https://i.ytimg.com/vi/Ffb2i3zLVsY/default.jpg",
+            "medium": "https://i.ytimg.com/vi/Ffb2i3zLVsY/mqdefault.jpg",
+            "high": "https://i.ytimg.com/vi/Ffb2i3zLVsY/hqdefault.jpg"
+          },
+          "syncedAt": "2026-03-12T07:54:53.915657Z"
+        },
+        {
+          "videoId": "95SEAGuVcpM",
+          "title": "dtslib 오프닝 CM송 No.2",
+          "description": "",
+          "publishedAt": "2026-02-21T06:16:58Z",
+          "thumbnails": {
+            "default": "https://i.ytimg.com/vi/95SEAGuVcpM/default.jpg",
+            "medium": "https://i.ytimg.com/vi/95SEAGuVcpM/mqdefault.jpg",
+            "high": "https://i.ytimg.com/vi/95SEAGuVcpM/hqdefault.jpg"
+          },
+          "syncedAt": "2026-03-12T07:54:53.915663Z"
+        },
+        {
+          "videoId": "ywkY53_dHqA",
+          "title": "dtslib 오프닝 CM송 No1",
+          "description": "",
+          "publishedAt": "2026-02-21T06:12:09Z",
+          "thumbnails": {
+            "default": "https://i.ytimg.com/vi/ywkY53_dHqA/default.jpg",
+            "medium": "https://i.ytimg.com/vi/ywkY53_dHqA/mqdefault.jpg",
+            "high": "https://i.ytimg.com/vi/ywkY53_dHqA/hqdefault.jpg"
+          },
+          "syncedAt": "2026-03-12T07:54:53.915668Z"
+        },
+        {
+          "videoId": "AKrLTCYazMw",
+          "title": "고쉬 프로덕션 CM송 No2",
+          "description": "",
+          "publishedAt": "2026-02-21T05:43:34Z",
+          "thumbnails": {
+            "default": "https://i.ytimg.com/vi/AKrLTCYazMw/default.jpg",
+            "medium": "https://i.ytimg.com/vi/AKrLTCYazMw/mqdefault.jpg",
+            "high": "https://i.ytimg.com/vi/AKrLTCYazMw/hqdefault.jpg"
+          },
+          "syncedAt": "2026-03-12T07:54:53.915673Z"
+        },
+        {
+          "videoId": "bgstvWOwaNY",
+          "title": "고쉬 프로덕션 CM송 No.1",
+          "description": "",
+          "publishedAt": "2026-02-21T04:58:35Z",
+          "thumbnails": {
+            "default": "https://i.ytimg.com/vi/bgstvWOwaNY/default.jpg",
+            "medium": "https://i.ytimg.com/vi/bgstvWOwaNY/mqdefault.jpg",
+            "high": "https://i.ytimg.com/vi/bgstvWOwaNY/hqdefault.jpg"
+          },
+          "syncedAt": "2026-03-12T07:54:53.915678Z"
+        },
+        {
+          "videoId": "IYsiWF549Pc",
+          "title": "남도현 응원가 No.1",
+          "description": "",
+          "publishedAt": "2026-02-21T04:39:16Z",
+          "thumbnails": {
+            "default": "https://i.ytimg.com/vi/IYsiWF549Pc/default.jpg",
+            "medium": "https://i.ytimg.com/vi/IYsiWF549Pc/mqdefault.jpg",
+            "high": "https://i.ytimg.com/vi/IYsiWF549Pc/hqdefault.jpg"
+          },
+          "syncedAt": "2026-03-12T07:54:53.915688Z"
+        },
+        {
+          "videoId": "S-5hw7NTIHg",
+          "title": "호야당 CM송 No.1",
+          "description": "",
+          "publishedAt": "2026-02-21T04:13:57Z",
+          "thumbnails": {
+            "default": "https://i.ytimg.com/vi/S-5hw7NTIHg/default.jpg",
+            "medium": "https://i.ytimg.com/vi/S-5hw7NTIHg/mqdefault.jpg",
+            "high": "https://i.ytimg.com/vi/S-5hw7NTIHg/hqdefault.jpg"
+          },
+          "syncedAt": "2026-03-12T07:54:53.915693Z"
+        },
+        {
+          "videoId": "J3Zh54aQKm0",
+          "title": "Panis Angelicus_Franck",
+          "description": "",
+          "publishedAt": "2026-02-19T15:54:15Z",
+          "thumbnails": {
+            "default": "https://i.ytimg.com/vi/J3Zh54aQKm0/default.jpg",
+            "medium": "https://i.ytimg.com/vi/J3Zh54aQKm0/mqdefault.jpg",
+            "high": "https://i.ytimg.com/vi/J3Zh54aQKm0/hqdefault.jpg"
+          },
+          "syncedAt": "2026-03-12T07:54:53.915698Z"
+        },
+        {
+          "videoId": "xCnucTlRwZ8",
+          "title": "Ave Verum_Mozart",
+          "description": "This audio is an original virtual instrument rendering based on a public domain musical composition.\nNo commercial recording, sampling, or master audio was used.\nAll audio production, MIDI arrangement, and rendering were independently created by the channel owner.\n\n본 음원은 저작권이 만료된 퍼블릭 도메인 악보를 기반으로 MI",
+          "publishedAt": "2026-02-19T15:39:27Z",
+          "thumbnails": {
+            "default": "https://i.ytimg.com/vi/xCnucTlRwZ8/default.jpg",
+            "medium": "https://i.ytimg.com/vi/xCnucTlRwZ8/mqdefault.jpg",
+            "high": "https://i.ytimg.com/vi/xCnucTlRwZ8/hqdefault.jpg"
+          },
+          "syncedAt": "2026-03-12T07:54:53.915704Z"
+        }
+      ],
+      "lastSynced": "2026-03-12T07:54:53.915765Z",
+      "videoCount": 24
     },
     "technician": {
       "persona": "Technician-Parksy",
@@ -98,8 +285,46 @@
       "siteUrl": "https://parksy.kr/channel/technician/",
       "subscribers": 0,
       "verified": true,
-      "videos": [],
-      "lastSynced": null
+      "videos": [
+        {
+          "videoId": "0ZDEbh090nU",
+          "title": "Parksy’s 3-Core Technique",
+          "description": "",
+          "publishedAt": "2025-12-24T04:43:34Z",
+          "thumbnails": {
+            "default": "https://i.ytimg.com/vi/0ZDEbh090nU/default.jpg",
+            "medium": "https://i.ytimg.com/vi/0ZDEbh090nU/mqdefault.jpg",
+            "high": "https://i.ytimg.com/vi/0ZDEbh090nU/hqdefault.jpg"
+          },
+          "syncedAt": "2026-03-12T07:54:54.699844Z"
+        },
+        {
+          "videoId": "NMBTDegu4xg",
+          "title": "Parksy OS",
+          "description": "",
+          "publishedAt": "2025-12-24T04:43:24Z",
+          "thumbnails": {
+            "default": "https://i.ytimg.com/vi/NMBTDegu4xg/default.jpg",
+            "medium": "https://i.ytimg.com/vi/NMBTDegu4xg/mqdefault.jpg",
+            "high": "https://i.ytimg.com/vi/NMBTDegu4xg/hqdefault.jpg"
+          },
+          "syncedAt": "2026-03-12T07:54:54.699900Z"
+        },
+        {
+          "videoId": "YXySUAKib-Q",
+          "title": "CNN script PWA-storyboard",
+          "description": "",
+          "publishedAt": "2025-12-08T07:00:08Z",
+          "thumbnails": {
+            "default": "https://i.ytimg.com/vi/YXySUAKib-Q/default.jpg",
+            "medium": "https://i.ytimg.com/vi/YXySUAKib-Q/mqdefault.jpg",
+            "high": "https://i.ytimg.com/vi/YXySUAKib-Q/hqdefault.jpg"
+          },
+          "syncedAt": "2026-03-12T07:54:54.699923Z"
+        }
+      ],
+      "lastSynced": "2026-03-12T07:54:54.700035Z",
+      "videoCount": 3
     }
   },
   "deprecated": {

@@ -1,0 +1,58 @@
+{
+  "channel": "philosopher",
+  "persona": "Philosopher-Parksy",
+  "channelId": "UCJaGuXjxoNjFMqfYUSFjZVg",
+  "subscribers": 0,
+  "videoCount": 4,
+  "lastSynced": "2026-03-12T07:54:51.153927Z",
+  "videos": [
+    {
+      "videoId": "KYIclf2A1Hs",
+      "title": "The 7 Drivers of Thought",
+      "description": "",
+      "publishedAt": "2026-03-02T05:58:57Z",
+      "thumbnails": {
+        "default": "https://i.ytimg.com/vi/KYIclf2A1Hs/default.jpg",
+        "medium": "https://i.ytimg.com/vi/KYIclf2A1Hs/mqdefault.jpg",
+        "high": "https://i.ytimg.com/vi/KYIclf2A1Hs/hqdefault.jpg"
+      },
+      "syncedAt": "2026-03-12T07:54:51.153421Z"
+    },
+    {
+      "videoId": "OFYuIVco9qQ",
+      "title": "“Creation Is Recombination.”",
+      "description": "",
+      "publishedAt": "2026-03-02T04:35:58Z",
+      "thumbnails": {
+        "default": "https://i.ytimg.com/vi/OFYuIVco9qQ/default.jpg",
+        "medium": "https://i.ytimg.com/vi/OFYuIVco9qQ/mqdefault.jpg",
+        "high": "https://i.ytimg.com/vi/OFYuIVco9qQ/hqdefault.jpg"
+      },
+      "syncedAt": "2026-03-12T07:54:51.153482Z"
+    },
+    {
+      "videoId": "2NAMAWG_qVM",
+      "title": "human prompt.htmlhierarchy",
+      "description": "",
+      "publishedAt": "2025-11-29T02:39:37Z",
+      "thumbnails": {
+        "default": "https://i.ytimg.com/vi/2NAMAWG_qVM/default.jpg",
+        "medium": "https://i.ytimg.com/vi/2NAMAWG_qVM/mqdefault.jpg",
+        "high": "https://i.ytimg.com/vi/2NAMAWG_qVM/hqdefault.jpg"
+      },
+      "syncedAt": "2026-03-12T07:54:51.153507Z"
+    },
+    {
+      "videoId": "xnjeGD6N2ck",
+      "title": "parksy os",
+      "description": "",
+      "publishedAt": "2025-11-29T02:38:49Z",
+      "thumbnails": {
+        "default": "https://i.ytimg.com/vi/xnjeGD6N2ck/default.jpg",
+        "medium": "https://i.ytimg.com/vi/xnjeGD6N2ck/mqdefault.jpg",
+        "high": "https://i.ytimg.com/vi/xnjeGD6N2ck/hqdefault.jpg"
+      },
+      "syncedAt": "2026-03-12T07:54:51.153525Z"
+    }
+  ]
+}

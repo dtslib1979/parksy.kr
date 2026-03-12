@@ -1,0 +1,46 @@
+{
+  "channel": "technician",
+  "persona": "Technician-Parksy",
+  "channelId": "UCfRaJjIn2oXyThHpAhOBSYg",
+  "subscribers": 0,
+  "videoCount": 3,
+  "lastSynced": "2026-03-12T07:54:54.700035Z",
+  "videos": [
+    {
+      "videoId": "0ZDEbh090nU",
+      "title": "Parksy’s 3-Core Technique",
+      "description": "",
+      "publishedAt": "2025-12-24T04:43:34Z",
+      "thumbnails": {
+        "default": "https://i.ytimg.com/vi/0ZDEbh090nU/default.jpg",
+        "medium": "https://i.ytimg.com/vi/0ZDEbh090nU/mqdefault.jpg",
+        "high": "https://i.ytimg.com/vi/0ZDEbh090nU/hqdefault.jpg"
+      },
+      "syncedAt": "2026-03-12T07:54:54.699844Z"
+    },
+    {
+      "videoId": "NMBTDegu4xg",
+      "title": "Parksy OS",
+      "description": "",
+      "publishedAt": "2025-12-24T04:43:24Z",
+      "thumbnails": {
+        "default": "https://i.ytimg.com/vi/NMBTDegu4xg/default.jpg",
+        "medium": "https://i.ytimg.com/vi/NMBTDegu4xg/mqdefault.jpg",
+        "high": "https://i.ytimg.com/vi/NMBTDegu4xg/hqdefault.jpg"
+      },
+      "syncedAt": "2026-03-12T07:54:54.699900Z"
+    },
+    {
+      "videoId": "YXySUAKib-Q",
+      "title": "CNN script PWA-storyboard",
+      "description": "",
+      "publishedAt": "2025-12-08T07:00:08Z",
+      "thumbnails": {
+        "default": "https://i.ytimg.com/vi/YXySUAKib-Q/default.jpg",
+        "medium": "https://i.ytimg.com/vi/YXySUAKib-Q/mqdefault.jpg",
+        "high": "https://i.ytimg.com/vi/YXySUAKib-Q/hqdefault.jpg"
+      },
+      "syncedAt": "2026-03-12T07:54:54.699923Z"
+    }
+  ]
+}

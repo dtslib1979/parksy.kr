@@ -1,0 +1,22 @@
+{
+  "channel": "visualizer",
+  "persona": "Visualizer-Parksy",
+  "channelId": "UC2MfUghTnMRE1xrODSfoELA",
+  "subscribers": 0,
+  "videoCount": 1,
+  "lastSynced": "2026-03-12T07:54:52.757974Z",
+  "videos": [
+    {
+      "videoId": "-1NQHEnwRDA",
+      "title": "Sample",
+      "description": "",
+      "publishedAt": "2025-12-13T22:17:49Z",
+      "thumbnails": {
+        "default": "https://i.ytimg.com/vi/-1NQHEnwRDA/default.jpg",
+        "medium": "https://i.ytimg.com/vi/-1NQHEnwRDA/mqdefault.jpg",
+        "high": "https://i.ytimg.com/vi/-1NQHEnwRDA/hqdefault.jpg"
+      },
+      "syncedAt": "2026-03-12T07:54:52.757853Z"
+    }
+  ]
+}
