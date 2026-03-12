@@ -2,27 +2,34 @@
   "success": true,
   "meta": {
     "generatedAt": "2026-03-12T00:00:00Z",
-    "account": "C (dimas.thomas.sancho@gmail.com)",
-    "note": "7 channels — Tester merged into Philosopher (2026-03-12). Fill channelId from YouTube Studio."
+    "account": "Parksy (dimas.thomas.sancho@gmail.com)",
+    "note": "5 active YouTube channels confirmed (2026-03-12). Protocol-Parksy, Orbit-Log have no YouTube channel. Tester merged into Philosopher. Fill channelId from YouTube Studio.",
+    "verifiedAt": "2026-03-12"
   },
   "channels": {
-    "visualizer": {
-      "persona": "Visualizer-Parksy",
-      "handle": "@visualizer-parksy",
-      "channelId": null,
-      "category": "category/Visualizer-Parksy/",
-      "contentType": ["webtoon", "image", "cad", "pipeline"],
-      "siteUrl": "https://parksy.kr/category/Visualizer-Parksy/",
-      "videos": [],
-      "lastSynced": null
-    },
     "blogger": {
       "persona": "Blogger-Parksy",
       "handle": "@blogger-parksy",
       "channelId": null,
+      "youtubeUrl": "https://www.youtube.com/@blogger-parksy",
       "category": "category/Blogger-Parksy/",
       "contentType": ["worldview", "essay", "narrative"],
       "siteUrl": "https://parksy.kr/category/Blogger-Parksy/",
+      "subscribers": 0,
+      "verified": true,
+      "videos": [],
+      "lastSynced": null
+    },
+    "visualizer": {
+      "persona": "Visualizer-Parksy",
+      "handle": "@visualizer-parksy",
+      "channelId": null,
+      "youtubeUrl": "https://www.youtube.com/@visualizer-parksy",
+      "category": "category/Visualizer-Parksy/",
+      "contentType": ["webtoon", "image", "cad", "pipeline"],
+      "siteUrl": "https://parksy.kr/category/Visualizer-Parksy/",
+      "subscribers": 0,
+      "verified": true,
       "videos": [],
       "lastSynced": null
     },
@@ -30,9 +37,12 @@
       "persona": "Technician-Parksy",
       "handle": "@technician-parksy",
       "channelId": null,
+      "youtubeUrl": "https://www.youtube.com/@technician-parksy",
       "category": "category/Technician-Parksy/",
       "contentType": ["automation", "pipeline", "behind-the-scenes"],
       "siteUrl": "https://parksy.kr/category/Technician-Parksy/",
+      "subscribers": 0,
+      "verified": true,
       "videos": [],
       "lastSynced": null
     },
@@ -40,9 +50,12 @@
       "persona": "Musician-Parksy",
       "handle": "@musician-parksy",
       "channelId": null,
+      "youtubeUrl": "https://www.youtube.com/@musician-parksy",
       "category": "category/Musician-Parksy/",
       "contentType": ["bgm", "audio", "lyria3"],
       "siteUrl": "https://parksy.kr/category/Musician-Parksy/",
+      "subscribers": 1,
+      "verified": true,
       "videos": [],
       "lastSynced": null
     },
@@ -50,9 +63,12 @@
       "persona": "Philosopher-Parksy",
       "handle": "@philosopher-parksy",
       "channelId": null,
+      "youtubeUrl": "https://www.youtube.com/@philosopher-parksy",
       "category": "category/Philosopher-Parksy/",
       "contentType": ["commentary", "framing", "concert", "experiment"],
       "siteUrl": "https://parksy.kr/category/Philosopher-Parksy/",
+      "subscribers": 0,
+      "verified": true,
       "videos": [],
       "lastSynced": null,
       "absorbed": ["Tester-Parksy"]
@@ -61,9 +77,12 @@
       "persona": "Protocol-Parksy",
       "handle": "@protocol-parksy",
       "channelId": null,
+      "youtubeUrl": null,
       "category": "category/Protocol-Parksy/",
       "contentType": ["systems", "frameworks", "architecture"],
       "siteUrl": "https://parksy.kr/category/Protocol-Parksy/",
+      "subscribers": null,
+      "verified": false,
       "videos": [],
       "lastSynced": null
     },
@@ -71,9 +90,12 @@
       "persona": "Orbit-Log",
       "handle": "@orbitlog-parksy",
       "channelId": null,
+      "youtubeUrl": null,
       "category": "category/Orbit-Log/",
       "contentType": ["analytics", "log", "tracking"],
       "siteUrl": "https://parksy.kr/category/Orbit-Log/",
+      "subscribers": null,
+      "verified": false,
       "videos": [],
       "lastSynced": null
     }
