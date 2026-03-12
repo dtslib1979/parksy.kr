@@ -37,6 +37,67 @@
     { id: 'shaman', name: 'Shaman', desc: 'Mystical tone' }
   ];
 
+  // ─────────────────────────────────────────────────────────────
+  // B1 Schedule — 5 Channels × 25 Programs
+  // ─────────────────────────────────────────────────────────────
+  const SCHEDULE = [
+    {
+      ch: '01', id: 'philosopher', name: 'PHILOSOPHER TV', icon: '🤔',
+      color: '#7b68ee', href: '/channel/philosopher/',
+      programs: [
+        { name: 'Commentary Series',  format: 'VIDEO',   merit: '민주주의판타지', desc: 'Deep takes on Korean social phenomena' },
+        { name: 'Framing Lab',        format: 'VIDEO',   merit: '편집평가강박',   desc: 'How Korea constructs its worldview' },
+        { name: 'Experiment Log',     format: 'TEXT',    merit: '하프블러드',     desc: 'Raw unfiltered thought experiments' },
+        { name: 'Systems Thinking',   format: 'VIDEO',   merit: '허세교양',       desc: 'Complex ideas made navigable' },
+        { name: 'Concert Notes',      format: 'TEXT',    merit: '민주주의판타지', desc: 'Live thinking in public' }
+      ]
+    },
+    {
+      ch: '02', id: 'blogger', name: 'BLOGGER TV', icon: '📝',
+      color: '#4ecdc4', href: '/channel/blogger/',
+      programs: [
+        { name: 'Worldview Essays',   format: 'TEXT',    merit: '하프블러드',     desc: 'Perspectives from between two worlds' },
+        { name: 'Daily Narrative',    format: 'TEXT',    merit: '편집평가강박',   desc: 'Obsessive daily documentation' },
+        { name: 'Korean Classroom',   format: 'TEXT',    merit: '허세교양',       desc: 'Subjects only Koreans know' },
+        { name: 'Half-Blood Letters', format: 'TEXT',    merit: '하프블러드',     desc: 'Code-switching as identity' },
+        { name: 'Review Circuit',     format: 'TEXT',    merit: '민주주의판타지', desc: 'Collective taste decoded' }
+      ]
+    },
+    {
+      ch: '03', id: 'visualizer', name: 'VISUALIZER TV', icon: '🎨',
+      color: '#ff6b35', href: '/channel/visualizer/',
+      programs: [
+        { name: 'Chalkboard Webtoon', format: 'WEBTOON', merit: '편집평가강박',   desc: 'Tistory-native illustrated series' },
+        { name: 'Image Pipeline',     format: 'VIDEO',   merit: '편집평가강박',   desc: 'AI image generation process revealed' },
+        { name: 'CAD Sessions',       format: 'VIDEO',   merit: '허세교양',       desc: 'Technical drawing as liberal art' },
+        { name: 'Prompt → Visual',    format: 'VIDEO',   merit: '하프블러드',     desc: 'Full prompt chain published' },
+        { name: 'Data Portrait',      format: 'VIDEO',   merit: '민주주의판타지', desc: 'Korean society in infographics' }
+      ]
+    },
+    {
+      ch: '04', id: 'musician', name: 'MUSICIAN TV', icon: '🎵',
+      color: '#f4d35e', href: '/channel/musician/',
+      programs: [
+        { name: 'BGM Series',         format: 'AUDIO',   merit: '하프블러드',     desc: 'Ambient soundscapes for deep work' },
+        { name: 'Lyria3 Studio',      format: 'AUDIO',   merit: '편집평가강박',   desc: 'AI composition workflow' },
+        { name: 'Korean Soundscape',  format: 'AUDIO',   merit: '민주주의판타지', desc: 'The sonic identity of Korea' },
+        { name: 'AI Playlist',        format: 'AUDIO',   merit: '허세교양',       desc: 'Curated by algorithm, approved by instinct' },
+        { name: 'Score Breakdown',    format: 'VIDEO',   merit: '편집평가강박',   desc: 'Anatomy of a track, frame by frame' }
+      ]
+    },
+    {
+      ch: '05', id: 'technician', name: 'TECHNICIAN TV', icon: '🔧',
+      color: '#95e1d3', href: '/channel/technician/',
+      programs: [
+        { name: 'Automation Diary',   format: 'VIDEO',   merit: '허세교양',       desc: 'Every pipeline documented live' },
+        { name: 'Pipeline Docs',      format: 'TEXT',    merit: '편집평가강박',   desc: 'Technical specs, public by default' },
+        { name: 'Behind the Scenes',  format: 'VIDEO',   merit: '하프블러드',     desc: 'The messy truth of solo production' },
+        { name: 'Tool Reviews',       format: 'VIDEO',   merit: '허세교양',       desc: 'Only tools actually in use' },
+        { name: 'DevLog',             format: 'TEXT',    merit: '민주주의판타지', desc: 'Public dev journal, no polish' }
+      ]
+    }
+  ];
+
   const STORAGE_KEY = 'parksy-unlocked-floors';
 
   // ─────────────────────────────────────────────────────────────
@@ -66,6 +127,7 @@
     setupCarousel();
     setupStudioWorkspace();
     setupOfficeUnlock();
+    initSchedule();
 
     // Check URL hash
     const hash = window.location.hash.replace('#floor-', '');
@@ -513,6 +575,96 @@
 
   // Initialize PO System
   setupPODispatch();
+
+  // ─────────────────────────────────────────────────────────────
+  // B1 Schedule Renderer
+  // ─────────────────────────────────────────────────────────────
+  function initSchedule() {
+    const grid = document.getElementById('sched-grid');
+    const empty = document.getElementById('sched-empty');
+    if (!grid) return;
+
+    // Render channel blocks from SCHEDULE data
+    grid.innerHTML = SCHEDULE.map(ch => `
+      <div class="sched-ch-block" data-ch="${ch.ch}" data-open="true"
+           style="border-color:${ch.color}22;">
+        <div class="sched-ch-hd" style="border-left-color:${ch.color};"
+             onclick="window.toggleSchedBlock(this.closest('.sched-ch-block'))">
+          <span class="sched-ch-num" style="color:${ch.color};">${ch.ch}</span>
+          <div class="sched-ch-meta">
+            <span class="sched-ch-name">${ch.name}</span>
+            <span class="sched-ch-cnt">${ch.programs.length} programs on air</span>
+          </div>
+          <span class="sched-ch-icon">${ch.icon}</span>
+          <span class="sched-ch-caret">▾</span>
+        </div>
+        <div class="sched-prog-list">
+          ${ch.programs.map(p => `
+            <a href="${ch.href}" class="sched-prog-row"
+               data-ch="${ch.ch}" data-format="${p.format}" data-merit="${p.merit}">
+              <div class="sched-prog-text">
+                <span class="sched-prog-name">${p.name}</span>
+                <span class="sched-prog-desc">${p.desc}</span>
+              </div>
+              <div class="sched-badges">
+                <span class="sched-fmt sched-fmt-${p.format}">${p.format}</span>
+                <span class="sched-merit">${p.merit}</span>
+              </div>
+              <span class="sched-arrow">→</span>
+            </a>
+          `).join('')}
+        </div>
+      </div>
+    `).join('');
+
+    // Filter state
+    const activeFilters = { channel: 'all', format: 'all', merit: 'all' };
+
+    function applyFilters() {
+      let totalVisible = 0;
+
+      document.querySelectorAll('.sched-ch-block').forEach(block => {
+        const ch = block.dataset.ch;
+        const chMatch = activeFilters.channel === 'all' || activeFilters.channel === ch;
+        let blockVisible = false;
+
+        block.querySelectorAll('.sched-prog-row').forEach(row => {
+          const fmtMatch  = activeFilters.format === 'all' || row.dataset.format === activeFilters.format;
+          const meritMatch = activeFilters.merit  === 'all' || row.dataset.merit  === activeFilters.merit;
+          const visible = chMatch && fmtMatch && meritMatch;
+          row.dataset.hidden = !visible;
+          if (visible) { blockVisible = true; totalVisible++; }
+        });
+
+        block.dataset.hidden = !blockVisible;
+        // Auto-open blocks that have visible programs after filtering
+        if (blockVisible && activeFilters.channel !== 'all') {
+          block.dataset.open = 'true';
+        }
+      });
+
+      if (empty) empty.classList.toggle('visible', totalVisible === 0);
+    }
+
+    document.querySelectorAll('.sched-fbt').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const type = this.dataset.filter;
+        const val  = this.dataset.val;
+        // Toggle active state within group
+        document.querySelectorAll(`.sched-fbt[data-filter="${type}"]`)
+          .forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        activeFilters[type] = val;
+        applyFilters();
+      });
+    });
+  }
+
+  // Exposed globally for inline onclick on dynamically rendered elements
+  window.toggleSchedBlock = function(block) {
+    if (!block) return;
+    block.dataset.open = block.dataset.open === 'true' ? 'false' : 'true';
+  };
 
   // ─────────────────────────────────────────────────────────────
   // Handle Browser Navigation

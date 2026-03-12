@@ -433,6 +433,167 @@
       .kr-axis-word { font-size: 1.2rem; }
       .question-text { font-size: 1.1rem; }
     }
+
+    /* ══ B1 ON AIR SCHEDULE ══════════════════════════════════════ */
+    .sched-header {
+      padding-bottom: var(--space-chamber);
+      border-bottom: 1px solid var(--cave-faint);
+      margin-bottom: var(--space-chamber);
+    }
+    .sched-header-top {
+      display: flex; align-items: center; gap: 0.75rem;
+      margin-bottom: var(--space-step);
+    }
+    .sched-b1-badge {
+      font-family: var(--font-mono); font-size: 0.62rem; font-weight: 700;
+      color: #7b68ee; background: rgba(123,104,238,0.14);
+      padding: 0.2rem 0.65rem; border-radius: 3px; letter-spacing: 0.12em;
+    }
+    .sched-live-strip {
+      display: flex; align-items: center; gap: 0.4rem;
+    }
+    .sched-live-label {
+      font-family: var(--font-mono); font-size: 0.58rem; font-weight: 600;
+      color: var(--cave-dim); letter-spacing: 0.16em;
+    }
+    .sched-title {
+      font-family: var(--font-mono); font-size: clamp(1.3rem, 4vw, 1.8rem);
+      font-weight: 700; color: var(--cave-glow);
+      margin: 0 0 var(--space-step); letter-spacing: -0.01em;
+    }
+    .sched-sub {
+      font-size: 0.72rem; color: var(--cave-dim);
+      margin: 0 0 var(--space-room);
+    }
+    .sched-stats {
+      display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap;
+    }
+    .sched-stat {
+      font-family: var(--font-mono); font-size: 0.58rem;
+      color: var(--cave-dim); letter-spacing: 0.1em;
+      display: flex; align-items: baseline; gap: 0.22rem;
+    }
+    .sched-stat-n { font-size: 0.88rem; font-weight: 700; color: #7b68ee; }
+    .sched-stat-sep { color: var(--cave-faint); font-size: 0.6rem; }
+
+    /* Filter Bar */
+    .sched-filters {
+      display: flex; flex-direction: column; gap: 0.55rem;
+      padding: var(--space-room) 0 var(--space-chamber);
+      border-bottom: 1px solid var(--cave-faint);
+      margin-bottom: var(--space-chamber);
+    }
+    .sched-fgrp { display: flex; align-items: center; gap: 0.7rem; flex-wrap: wrap; }
+    .sched-flabel {
+      font-family: var(--font-mono); font-size: 0.52rem; font-weight: 700;
+      color: var(--cave-faint); letter-spacing: 0.16em;
+      min-width: 4.5rem; text-transform: uppercase;
+    }
+    .sched-fbtns { display: flex; gap: 0.3rem; flex-wrap: wrap; }
+    .sched-fbt {
+      font-family: var(--font-mono); font-size: 0.56rem; font-weight: 600;
+      color: var(--cave-dim); background: transparent;
+      border: 1px solid var(--cave-faint);
+      padding: 0.2rem 0.58rem; border-radius: 2px;
+      cursor: pointer; letter-spacing: 0.08em;
+      transition: all 0.15s;
+    }
+    .sched-fbt:hover { border-color: var(--cave-dim); color: var(--cave-glow); }
+    .sched-fbt.active {
+      background: rgba(123,104,238,0.18);
+      border-color: #7b68ee; color: #a89ff5;
+    }
+
+    /* Schedule Grid */
+    .sched-grid { display: flex; flex-direction: column; gap: 0.4rem; }
+
+    .sched-ch-block {
+      border: 1px solid var(--cave-faint); border-radius: 4px; overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    .sched-ch-block[data-hidden="true"] { display: none; }
+
+    .sched-ch-hd {
+      display: flex; align-items: center; gap: 0.75rem;
+      padding: 0.8rem 1rem; cursor: pointer;
+      background: var(--cave-wall); border-left: 4px solid transparent;
+      user-select: none; transition: background 0.15s;
+    }
+    .sched-ch-hd:hover { background: rgba(255,255,255,0.02); }
+    .sched-ch-num {
+      font-family: var(--font-mono); font-size: 1.05rem; font-weight: 700;
+      min-width: 2.2rem; line-height: 1;
+    }
+    .sched-ch-meta { flex: 1; min-width: 0; }
+    .sched-ch-name {
+      font-family: var(--font-mono); font-size: 0.7rem; font-weight: 700;
+      color: var(--cave-glow); letter-spacing: 0.08em; display: block;
+    }
+    .sched-ch-cnt {
+      font-size: 0.56rem; color: var(--cave-dim);
+      margin-top: 0.12rem; display: block;
+    }
+    .sched-ch-icon { font-size: 1.1rem; }
+    .sched-ch-caret {
+      font-family: var(--font-mono); font-size: 0.6rem; color: var(--cave-faint);
+      margin-left: auto; transition: transform 0.2s;
+    }
+    .sched-ch-block[data-open="false"] .sched-ch-caret { transform: rotate(-90deg); }
+
+    .sched-prog-list { border-top: 1px solid var(--cave-faint); }
+    .sched-ch-block[data-open="false"] .sched-prog-list { display: none; }
+
+    .sched-prog-row {
+      display: flex; align-items: center; gap: 0.7rem;
+      padding: 0.6rem 1rem 0.6rem 1.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.025);
+      text-decoration: none; color: inherit;
+      transition: background 0.12s; position: relative;
+    }
+    .sched-prog-row:last-child { border-bottom: none; }
+    .sched-prog-row:hover { background: rgba(255,255,255,0.022); }
+    .sched-prog-row[data-hidden="true"] { display: none; }
+
+    .sched-prog-text { flex: 1; min-width: 0; }
+    .sched-prog-name {
+      font-size: 0.77rem; font-weight: 500; color: var(--cave-glow); display: block;
+    }
+    .sched-prog-desc {
+      font-size: 0.6rem; color: var(--cave-dim); margin-top: 0.12rem; display: block;
+    }
+    .sched-badges { display: flex; align-items: center; gap: 0.32rem; flex-shrink: 0; }
+    .sched-fmt {
+      font-family: var(--font-mono); font-size: 0.48rem; font-weight: 700;
+      padding: 0.13rem 0.42rem; border-radius: 2px; letter-spacing: 0.08em;
+    }
+    .sched-fmt-VIDEO   { background: rgba(255,107,53,0.14); color: #ff8c6a; }
+    .sched-fmt-TEXT    { background: rgba(78,205,196,0.12); color: #4ecdc4; }
+    .sched-fmt-WEBTOON { background: rgba(123,104,238,0.15); color: #a89ff5; }
+    .sched-fmt-AUDIO   { background: rgba(244,211,94,0.12); color: #f4d35e; }
+    .sched-merit {
+      font-family: 'Noto Serif KR', serif; font-size: 0.5rem; color: var(--cave-dim);
+      padding: 0.12rem 0.38rem;
+      border: 1px solid rgba(255,255,255,0.06); border-radius: 2px; white-space: nowrap;
+    }
+    .sched-arrow {
+      font-family: var(--font-mono); font-size: 0.58rem; color: var(--cave-faint);
+      flex-shrink: 0; transition: color 0.12s, transform 0.12s;
+    }
+    .sched-prog-row:hover .sched-arrow { color: var(--cave-dim); transform: translateX(3px); }
+
+    /* No-results message */
+    .sched-empty {
+      padding: 2rem; text-align: center;
+      font-family: var(--font-mono); font-size: 0.68rem; color: var(--cave-faint);
+      letter-spacing: 0.1em; display: none;
+    }
+    .sched-empty.visible { display: block; }
+
+    @media(max-width:480px) {
+      .sched-merit { display: none; }
+      .sched-flabel { min-width: 3.5rem; }
+      .sched-fbt { font-size: 0.52rem; padding: 0.18rem 0.48rem; }
+    }
   </style>
 </head>
 <body>
@@ -609,94 +770,71 @@
   </main>
 
   <!-- ═══════════════════════════════════════════════════════════════
-       B1 CHANNELS - Persona TV Channels
+       B1 ON AIR SCHEDULE — 5 Channels × 25 Programs
        ═══════════════════════════════════════════════════════════════ -->
   <section class="floor-section" id="floor-channels">
-    <header class="floor-header">
-      <span class="floor-badge">B1</span>
-      <h2 class="floor-title">Channels</h2>
-      <p class="floor-desc">5 Persona Broadcasting Channels</p>
+
+    <!-- Header -->
+    <header class="sched-header">
+      <div class="sched-header-top">
+        <span class="sched-b1-badge">B1</span>
+        <div class="sched-live-strip">
+          <span class="live-pulse"></span>
+          <span class="sched-live-label">ON AIR SCHEDULE</span>
+        </div>
+      </div>
+      <h2 class="sched-title">Program Guide</h2>
+      <p class="sched-sub">5 channels · 25 programs · all live on YouTube</p>
+      <div class="sched-stats">
+        <span class="sched-stat"><span class="sched-stat-n">5</span>CH</span>
+        <span class="sched-stat-sep">·</span>
+        <span class="sched-stat"><span class="sched-stat-n">25</span>PGMS</span>
+        <span class="sched-stat-sep">·</span>
+        <span class="sched-stat"><span class="sched-stat-n">4</span>FORMATS</span>
+        <span class="sched-stat-sep">·</span>
+        <span class="sched-stat"><span class="sched-stat-n">4</span>KR MERITS</span>
+      </div>
     </header>
 
-    <div class="channel-list">
-      <!-- CH.01 Philosopher -->
-      <a href="/channel/philosopher/" class="channel-row" data-channel="1">
-        <div class="channel-indicator">
-          <span class="ch-num">01</span>
-          <span class="ch-status live"></span>
+    <!-- Filter Bar -->
+    <div class="sched-filters">
+      <div class="sched-fgrp">
+        <span class="sched-flabel">CHANNEL</span>
+        <div class="sched-fbtns">
+          <button class="sched-fbt active" data-filter="channel" data-val="all">ALL</button>
+          <button class="sched-fbt" data-filter="channel" data-val="01">01</button>
+          <button class="sched-fbt" data-filter="channel" data-val="02">02</button>
+          <button class="sched-fbt" data-filter="channel" data-val="03">03</button>
+          <button class="sched-fbt" data-filter="channel" data-val="04">04</button>
+          <button class="sched-fbt" data-filter="channel" data-val="05">05</button>
         </div>
-        <div class="channel-info">
-          <h3 class="ch-name">Philosopher TV</h3>
-          <p class="ch-desc">Deep thinking & existential exploration</p>
+      </div>
+      <div class="sched-fgrp">
+        <span class="sched-flabel">FORMAT</span>
+        <div class="sched-fbtns">
+          <button class="sched-fbt active" data-filter="format" data-val="all">ALL</button>
+          <button class="sched-fbt" data-filter="format" data-val="VIDEO">VIDEO</button>
+          <button class="sched-fbt" data-filter="format" data-val="TEXT">TEXT</button>
+          <button class="sched-fbt" data-filter="format" data-val="WEBTOON">WEBTOON</button>
+          <button class="sched-fbt" data-filter="format" data-val="AUDIO">AUDIO</button>
         </div>
-        <span class="ch-icon">🤔</span>
-      </a>
-
-      <!-- CH.02 Blogger -->
-      <a href="/channel/blogger/" class="channel-row" data-channel="2">
-        <div class="channel-indicator">
-          <span class="ch-num">02</span>
-          <span class="ch-status"></span>
+      </div>
+      <div class="sched-fgrp">
+        <span class="sched-flabel">KR MERIT</span>
+        <div class="sched-fbtns">
+          <button class="sched-fbt active" data-filter="merit" data-val="all">ALL</button>
+          <button class="sched-fbt" data-filter="merit" data-val="민주주의판타지">민주주의</button>
+          <button class="sched-fbt" data-filter="merit" data-val="편집평가강박">편집강박</button>
+          <button class="sched-fbt" data-filter="merit" data-val="허세교양">허세교양</button>
+          <button class="sched-fbt" data-filter="merit" data-val="하프블러드">하프블러드</button>
         </div>
-        <div class="channel-info">
-          <h3 class="ch-name">Blogger TV</h3>
-          <p class="ch-desc">Daily essays & personal narratives</p>
-        </div>
-        <span class="ch-icon">📝</span>
-      </a>
-
-      <!-- CH.03 Visualizer -->
-      <a href="/channel/visualizer/" class="channel-row" data-channel="3">
-        <div class="channel-indicator">
-          <span class="ch-num">03</span>
-          <span class="ch-status live"></span>
-        </div>
-        <div class="channel-info">
-          <h3 class="ch-name">Visualizer TV</h3>
-          <p class="ch-desc">Data visualization & infographics</p>
-        </div>
-        <span class="ch-icon">🎨</span>
-      </a>
-
-      <!-- CH.04 Musician -->
-      <a href="/channel/musician/" class="channel-row" data-channel="4">
-        <div class="channel-indicator">
-          <span class="ch-num">04</span>
-          <span class="ch-status"></span>
-        </div>
-        <div class="channel-info">
-          <h3 class="ch-name">Musician TV</h3>
-          <p class="ch-desc">Music curation & audio experience</p>
-        </div>
-        <span class="ch-icon">🎵</span>
-      </a>
-
-      <!-- CH.05 Technician -->
-      <a href="/channel/technician/" class="channel-row" data-channel="5">
-        <div class="channel-indicator">
-          <span class="ch-num">05</span>
-          <span class="ch-status"></span>
-        </div>
-        <div class="channel-info">
-          <h3 class="ch-name">Technician TV</h3>
-          <p class="ch-desc">Tech tutorials & tool guides</p>
-        </div>
-        <span class="ch-icon">🔧</span>
-      </a>
-
-    </div>
-
-    <!-- Channel Index -->
-    <div class="channel-index">
-      <h3 class="index-title">Category Index</h3>
-      <div class="index-grid">
-        <a href="/channel/philosopher/" class="index-item">Philosophy</a>
-        <a href="/channel/blogger/" class="index-item">Essay</a>
-        <a href="/channel/visualizer/" class="index-item">Data</a>
-        <a href="/channel/musician/" class="index-item">Music</a>
-        <a href="/channel/technician/" class="index-item">Tech</a>
       </div>
     </div>
+
+    <!-- Schedule Grid — JS rendered via initSchedule() -->
+    <div class="sched-grid" id="sched-grid"></div>
+    <p class="sched-empty" id="sched-empty">NO PROGRAMS MATCH — RESET FILTERS</p>
+
   </section>
 
   <!-- ═══════════════════════════════════════════════════════════════
