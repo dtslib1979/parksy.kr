@@ -1,0 +1,54 @@
+{
+  "meta": {
+    "version": "1.0",
+    "description": "Korean High School Curriculum Module — dtslib1k axis",
+    "concept": "Korean HS subjects as content source. Global hook: Korean education intensity."
+  },
+  "subjects": {
+    "philosophy": {
+      "name": "철학 (Philosophy)",
+      "persona": "philosopher",
+      "tistoryAccount": "dtslib1k",
+      "tistoryUrl": null,
+      "youtubeHook": "Korean HS Philosophy — why they memorize Socrates for the SAT",
+      "krMeritLink": "democracy-fantasy",
+      "chalkboardReady": false
+    },
+    "math": {
+      "name": "수학 (Math)",
+      "persona": "blogger",
+      "tistoryAccount": "dtslib1k",
+      "tistoryUrl": null,
+      "youtubeHook": "Korean SAT Math with AI — Half-blood Edition",
+      "krMeritLink": "halfblood-language",
+      "chalkboardReady": false
+    },
+    "social-studies": {
+      "name": "사회 (Social Studies)",
+      "persona": "visualizer",
+      "tistoryAccount": "dtslib1k",
+      "tistoryUrl": null,
+      "youtubeHook": "Korean Social Studies — the subjects they don't teach outside Korea",
+      "krMeritLink": "edit-obsession",
+      "chalkboardReady": false
+    },
+    "korean-language": {
+      "name": "국어 (Korean Language/Literature)",
+      "persona": "musician",
+      "tistoryAccount": "dtslib1k",
+      "tistoryUrl": null,
+      "youtubeHook": "Korean classical poetry remixed into music with Lyria3",
+      "krMeritLink": "language-music",
+      "chalkboardReady": false
+    },
+    "science": {
+      "name": "과학 (Science)",
+      "persona": "technician",
+      "tistoryAccount": "dtslib1k",
+      "tistoryUrl": null,
+      "youtubeHook": "Korean HS Science — memorization as performance art (AI decoded)",
+      "krMeritLink": "bluff-liberal-arts",
+      "chalkboardReady": false
+    }
+  }
+}

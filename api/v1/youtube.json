@@ -2,11 +2,25 @@
   "success": true,
   "meta": {
     "generatedAt": "2026-03-12T00:00:00Z",
-    "account": "Parksy (dimas.thomas.sancho@gmail.com)",
-    "note": "5 active YouTube channels confirmed (2026-03-12). Protocol-Parksy, Orbit-Log have no YouTube channel. Tester merged into Philosopher. Fill channelId from YouTube Studio.",
+    "account": "C (dimas.thomas.sancho@gmail.com)",
+    "note": "5 active YouTube channels (2026-03-12). Tester+Protocol+Orbit merged into Philosopher. Fill channelId from YouTube Studio.",
     "verifiedAt": "2026-03-12"
   },
   "channels": {
+    "philosopher": {
+      "persona": "Philosopher-Parksy",
+      "handle": "@philosopher-parksy",
+      "channelId": null,
+      "youtubeUrl": "https://www.youtube.com/@philosopher-parksy",
+      "category": "category/Philosopher-Parksy/",
+      "contentType": ["commentary", "framing", "concert", "experiment", "systems", "analytics"],
+      "siteUrl": "https://parksy.kr/category/Philosopher-Parksy/",
+      "subscribers": 0,
+      "verified": true,
+      "videos": [],
+      "lastSynced": null,
+      "absorbed": ["Tester-Parksy", "Protocol-Parksy", "Orbit-Log"]
+    },
     "blogger": {
       "persona": "Blogger-Parksy",
       "handle": "@blogger-parksy",
@@ -33,19 +47,6 @@
       "videos": [],
       "lastSynced": null
     },
-    "technician": {
-      "persona": "Technician-Parksy",
-      "handle": "@technician-parksy",
-      "channelId": null,
-      "youtubeUrl": "https://www.youtube.com/@technician-parksy",
-      "category": "category/Technician-Parksy/",
-      "contentType": ["automation", "pipeline", "behind-the-scenes"],
-      "siteUrl": "https://parksy.kr/category/Technician-Parksy/",
-      "subscribers": 0,
-      "verified": true,
-      "videos": [],
-      "lastSynced": null
-    },
     "musician": {
       "persona": "Musician-Parksy",
       "handle": "@musician-parksy",
@@ -59,43 +60,16 @@
       "videos": [],
       "lastSynced": null
     },
-    "philosopher": {
-      "persona": "Philosopher-Parksy",
-      "handle": "@philosopher-parksy",
+    "technician": {
+      "persona": "Technician-Parksy",
+      "handle": "@technician-parksy",
       "channelId": null,
-      "youtubeUrl": "https://www.youtube.com/@philosopher-parksy",
-      "category": "category/Philosopher-Parksy/",
-      "contentType": ["commentary", "framing", "concert", "experiment"],
-      "siteUrl": "https://parksy.kr/category/Philosopher-Parksy/",
+      "youtubeUrl": "https://www.youtube.com/@technician-parksy",
+      "category": "category/Technician-Parksy/",
+      "contentType": ["automation", "pipeline", "behind-the-scenes"],
+      "siteUrl": "https://parksy.kr/category/Technician-Parksy/",
       "subscribers": 0,
       "verified": true,
-      "videos": [],
-      "lastSynced": null,
-      "absorbed": ["Tester-Parksy"]
-    },
-    "protocol": {
-      "persona": "Protocol-Parksy",
-      "handle": "@protocol-parksy",
-      "channelId": null,
-      "youtubeUrl": null,
-      "category": "category/Protocol-Parksy/",
-      "contentType": ["systems", "frameworks", "architecture"],
-      "siteUrl": "https://parksy.kr/category/Protocol-Parksy/",
-      "subscribers": null,
-      "verified": false,
-      "videos": [],
-      "lastSynced": null
-    },
-    "orbit": {
-      "persona": "Orbit-Log",
-      "handle": "@orbitlog-parksy",
-      "channelId": null,
-      "youtubeUrl": null,
-      "category": "category/Orbit-Log/",
-      "contentType": ["analytics", "log", "tracking"],
-      "siteUrl": "https://parksy.kr/category/Orbit-Log/",
-      "subscribers": null,
-      "verified": false,
       "videos": [],
       "lastSynced": null
     }
@@ -103,6 +77,12 @@
   "deprecated": {
     "tester": {
       "note": "Tester-Parksy → Philosopher-Parksy로 통폐합 (2026-03-12). YouTube 채널 없음, 글 1개(테스트용)."
+    },
+    "protocol": {
+      "note": "Protocol-Parksy → Philosopher-Parksy로 통폐합 (2026-03-12). YouTube 채널 없음, 글 4개."
+    },
+    "orbit": {
+      "note": "Orbit-Log → Philosopher-Parksy로 통폐합 (2026-03-12). YouTube 채널 없음, 글 4개."
     }
   }
 }
