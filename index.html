@@ -212,6 +212,116 @@
       .quartet-grid { grid-template-columns: repeat(2, 1fr); }
       .ch-row-num { font-size: 1.1rem; min-width: 2rem; }
     }
+
+    /* ── B3 PO Routing display ── */
+    .po-routing-display {
+      display: flex; align-items: center; gap: 0.75rem;
+      padding: 0.5rem 0.75rem; margin-top: 0.5rem;
+      background: var(--cave-deep); border: 1px solid var(--cave-faint);
+      border-radius: 3px; font-family: var(--font-mono); font-size: 0.65rem;
+    }
+    .po-routing-label { color: var(--cave-dim); }
+    .po-routing-target { color: var(--flame-core); font-weight: 600; flex: 1; }
+    .po-routing-auto { font-size: 0.6rem; }
+
+    /* ── B4 Office Dashboard ── */
+    .b4-kpi-strip {
+      display: flex; gap: 0; margin: 0 0 1.5rem;
+      border: 1px solid var(--cave-faint);
+      border-radius: 4px; overflow: hidden;
+    }
+    .b4-kpi {
+      flex: 1; display: flex; flex-direction: column;
+      align-items: center; padding: 0.75rem 0.5rem;
+      border-right: 1px solid var(--cave-faint);
+      text-align: center;
+    }
+    .b4-kpi:last-child { border-right: none; }
+    .b4-kpi span:first-child {
+      font-family: var(--font-mono); font-size: 1.1rem; font-weight: 600;
+      color: var(--flame-core);
+    }
+    .b4-kpi span:last-child {
+      font-size: 0.55rem; color: var(--cave-dim);
+      text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.2rem;
+    }
+    .b4-section-title {
+      font-family: var(--font-mono); font-size: 0.58rem; font-weight: 600;
+      color: var(--cave-dim); letter-spacing: 0.15em; text-transform: uppercase;
+      padding: 0.6rem 0; margin: 1rem 0 0.5rem;
+      border-top: 1px solid var(--cave-faint);
+    }
+    .b4-matrix-header {
+      display: grid; grid-template-columns: 100px repeat(5, 1fr);
+      gap: 2px; margin-bottom: 2px;
+    }
+    .b4-mh-label, .b4-mh-col {
+      font-family: var(--font-mono); font-size: 0.55rem;
+      color: var(--cave-dim); letter-spacing: 0.08em;
+      padding: 0.4rem 0.5rem; background: var(--cave-deep);
+      text-align: center; text-transform: uppercase;
+    }
+    .b4-mh-label { text-align: left; }
+    .b4-mh-col.b4-axis1 { color: #6baaff; }
+    .b4-mh-col.b4-axis2 { color: var(--flame-core); }
+    .b4-matrix-row {
+      display: grid; grid-template-columns: 100px repeat(5, 1fr);
+      gap: 2px; margin-bottom: 2px;
+    }
+    .b4-persona-cell {
+      font-family: var(--font-mono); font-size: 0.62rem; font-weight: 600;
+      color: var(--cave-glow); padding: 0.6rem 0.5rem;
+      background: var(--cave-wall); border-left: 3px solid var(--flame-core);
+      display: flex; align-items: center;
+    }
+    .b4-prog-cell {
+      padding: 0.5rem; background: var(--cave-wall);
+      border: 1px solid var(--cave-faint);
+      display: flex; flex-direction: column; gap: 0.2rem;
+    }
+    .b4-prog-cell.axis1 { border-top: 2px solid rgba(107,170,255,0.4); }
+    .b4-prog-cell.axis2 { border-top: 2px solid rgba(255,107,53,0.4); }
+    .b4-prog-cell.status-active { background: rgba(255,107,53,0.04); }
+    .b4-prog-name {
+      font-family: var(--font-mono); font-size: 0.6rem; font-weight: 600;
+      color: var(--cave-glow);
+    }
+    .b4-prog-status {
+      font-size: 0.52rem; font-family: var(--font-mono);
+    }
+    .b4-prog-status.active { color: var(--flame-core); }
+    .b4-prog-status.planned { color: var(--cave-dim); }
+    .b4-roadmap {
+      display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem;
+    }
+    .b4-phase {
+      display: flex; align-items: baseline; gap: 0.75rem;
+      padding: 0.6rem 1rem; background: var(--cave-wall);
+      border: 1px solid var(--cave-faint);
+      border-left: 3px solid var(--cave-dim);
+      border-radius: 3px;
+    }
+    .b4-phase.done { border-left-color: var(--cave-dim); opacity: 0.6; }
+    .b4-phase.active { border-left-color: var(--flame-core); background: rgba(255,107,53,0.04); }
+    .b4-phase-label {
+      font-family: var(--font-mono); font-size: 0.55rem;
+      color: var(--cave-dim); min-width: 3.5rem;
+    }
+    .b4-phase-name {
+      font-family: var(--font-mono); font-size: 0.7rem; font-weight: 600;
+      color: var(--cave-glow); min-width: 8rem;
+    }
+    .b4-phase.active .b4-phase-name { color: var(--flame-core); }
+    .b4-phase-desc { font-size: 0.62rem; color: var(--cave-dim); }
+    @media(max-width:600px) {
+      .b4-matrix-header, .b4-matrix-row {
+        grid-template-columns: 70px repeat(5, 1fr);
+      }
+      .b4-prog-name { font-size: 0.52rem; }
+      .b4-kpi-strip { flex-wrap: wrap; }
+      .b4-kpi { min-width: 30%; }
+      .b4-phase { flex-direction: column; gap: 0.2rem; }
+    }
   </style>
 </head>
 <body>
@@ -541,32 +651,45 @@
       <div class="po-body">
         <!-- Order Type Selection -->
         <div class="po-section">
-          <label class="po-label">Order Type</label>
+          <label class="po-label">Order Type → Studio Routing</label>
           <div class="po-type-grid">
-            <button class="po-type-btn" data-type="content_transform">
-              <span class="po-type-icon">⚡</span>
-              <span class="po-type-name">Transform</span>
+            <button class="po-type-btn" data-type="webtoon" data-studio="parksy-image" data-auto="false">
+              <span class="po-type-icon">🎨</span>
+              <span class="po-type-name">Webtoon</span>
             </button>
-            <button class="po-type-btn" data-type="video_render">
+            <button class="po-type-btn" data-type="bgm" data-studio="parksy-audio" data-auto="false">
+              <span class="po-type-icon">🎵</span>
+              <span class="po-type-name">BGM</span>
+            </button>
+            <button class="po-type-btn" data-type="lecture-script" data-studio="Claude" data-auto="true">
+              <span class="po-type-icon">📝</span>
+              <span class="po-type-name">Script</span>
+            </button>
+            <button class="po-type-btn" data-type="lecture-video" data-studio="Tistory+Camera" data-auto="false">
               <span class="po-type-icon">🎬</span>
               <span class="po-type-name">Video</span>
             </button>
-            <button class="po-type-btn" data-type="image_generate">
-              <span class="po-type-icon">🖼️</span>
-              <span class="po-type-name">Image</span>
+            <button class="po-type-btn" data-type="kr-merit-post" data-studio="dtslib2k" data-auto="false">
+              <span class="po-type-icon">🇰🇷</span>
+              <span class="po-type-name">KR Merit</span>
             </button>
-            <button class="po-type-btn" data-type="batch_publish">
-              <span class="po-type-icon">📤</span>
-              <span class="po-type-name">Publish</span>
+            <button class="po-type-btn" data-type="highschool-post" data-studio="dtslib1k" data-auto="false">
+              <span class="po-type-icon">📚</span>
+              <span class="po-type-name">고교 교재</span>
             </button>
-            <button class="po-type-btn" data-type="data_sync">
-              <span class="po-type-icon">🔄</span>
-              <span class="po-type-name">Sync</span>
+            <button class="po-type-btn" data-type="short-clip" data-studio="cloud-appstore" data-auto="false">
+              <span class="po-type-icon">⚡</span>
+              <span class="po-type-name">Short Clip</span>
             </button>
-            <button class="po-type-btn" data-type="custom">
+            <button class="po-type-btn" data-type="custom" data-studio="—" data-auto="false">
               <span class="po-type-icon">⚙️</span>
               <span class="po-type-name">Custom</span>
             </button>
+          </div>
+          <div class="po-routing-display" id="po-routing">
+            <span class="po-routing-label">Studio:</span>
+            <span class="po-routing-target" id="po-routing-target">— select type —</span>
+            <span class="po-routing-auto" id="po-routing-auto"></span>
           </div>
         </div>
 
@@ -617,8 +740,8 @@
         <!-- Status Info -->
         <div class="po-info">
           <p class="po-info-text">
-            🚧 <strong>System Status:</strong> Pending setup.
-            Connect <code>studio-engine</code> repository to enable dispatch.
+            📋 <strong>PO → GitHub Issue:</strong> Dispatch creates a GitHub Issue in the target upstream repo.
+            Claude Code picks it up next session.
           </p>
         </div>
       </div>
@@ -783,57 +906,154 @@
 
     <!-- Office Content (hidden until unlocked) -->
     <div class="office-content" style="display: none;">
-      <div class="office-grid">
-        <!-- Strategy Board -->
-        <div class="office-card">
-          <h3 class="office-card-title">📋 Strategy Board</h3>
-          <ul class="strategy-list">
-            <li>Content calendar planning</li>
-            <li>Channel growth metrics</li>
-            <li>Audience analysis</li>
-            <li>Revenue streams</li>
-          </ul>
-        </div>
 
-        <!-- Meeting Notes -->
-        <div class="office-card">
-          <h3 class="office-card-title">📝 Meeting Notes</h3>
-          <p class="office-note">Weekly review and planning sessions documented here.</p>
-          <span class="office-link" style="opacity:0.5;cursor:default">Coming Soon</span>
-        </div>
+      <!-- KPI Strip -->
+      <div class="b4-kpi-strip">
+        <div class="b4-kpi"><span id="kpi-active">0</span><span>Active</span></div>
+        <div class="b4-kpi"><span id="kpi-planned">0</span><span>Planned</span></div>
+        <div class="b4-kpi"><span>5</span><span>Channels</span></div>
+        <div class="b4-kpi"><span>25</span><span>Programs</span></div>
+        <div class="b4-kpi"><span>3</span><span>Axes</span></div>
+        <div class="b4-kpi"><span>₩0</span><span>Server Cost</span></div>
+      </div>
 
-        <!-- KPIs -->
-        <div class="office-card">
-          <h3 class="office-card-title">📊 KPI Dashboard</h3>
-          <div class="kpi-grid">
-            <div class="kpi-item">
-              <span class="kpi-value">8</span>
-              <span class="kpi-label">Channels</span>
-            </div>
-            <div class="kpi-item">
-              <span class="kpi-value">∞</span>
-              <span class="kpi-label">Potential</span>
-            </div>
-          </div>
-        </div>
+      <!-- 25 Program Matrix -->
+      <div class="b4-section-title">25 PROGRAM MATRIX</div>
+      <div class="b4-matrix-header">
+        <div class="b4-mh-label">PERSONA</div>
+        <div class="b4-mh-col">parksy.kr</div>
+        <div class="b4-mh-col">eae.kr</div>
+        <div class="b4-mh-col">dtslib</div>
+        <div class="b4-mh-col b4-axis1">고교 교재</div>
+        <div class="b4-mh-col b4-axis2">KR Merit</div>
+      </div>
+      <div id="b4-matrix">
+        <!-- JS rendered from programs.json -->
+      </div>
 
-        <!-- Roadmap -->
-        <div class="office-card full-width">
-          <h3 class="office-card-title">🗺️ Roadmap</h3>
-          <div class="roadmap">
-            <div class="roadmap-item done">Phase 1: Platform Setup ✓</div>
-            <div class="roadmap-item active">Phase 2: Content Engine</div>
-            <div class="roadmap-item">Phase 3: Community Building</div>
-            <div class="roadmap-item">Phase 4: Monetization</div>
-          </div>
+      <!-- Phase Roadmap -->
+      <div class="b4-section-title">ROADMAP</div>
+      <div class="b4-roadmap">
+        <div class="b4-phase done">
+          <span class="b4-phase-label">Phase 0</span>
+          <span class="b4-phase-name">Foundation ✓</span>
+          <span class="b4-phase-desc">Landing · Channels · JSON API · Docs</span>
+        </div>
+        <div class="b4-phase done">
+          <span class="b4-phase-label">Phase 1</span>
+          <span class="b4-phase-name">Channel Pages ✓</span>
+          <span class="b4-phase-desc">/channel/ × 5 · siteUrl · Links</span>
+        </div>
+        <div class="b4-phase active">
+          <span class="b4-phase-label">Phase 2</span>
+          <span class="b4-phase-name">B4 Dashboard ◉</span>
+          <span class="b4-phase-desc">25-program matrix · KPI · Roadmap</span>
+        </div>
+        <div class="b4-phase">
+          <span class="b4-phase-label">Phase 3</span>
+          <span class="b4-phase-name">B3 Console</span>
+          <span class="b4-phase-desc">PO routing · Studio connections</span>
+        </div>
+        <div class="b4-phase">
+          <span class="b4-phase-label">Phase 4</span>
+          <span class="b4-phase-name">Loopback Services</span>
+          <span class="b4-phase-desc">Webtoon viewer · BGM · Prompts · KR Merit quiz</span>
+        </div>
+        <div class="b4-phase">
+          <span class="b4-phase-label">Phase 5</span>
+          <span class="b4-phase-name">Automation</span>
+          <span class="b4-phase-desc">GitHub Actions · youtube.json CI · Auto-update</span>
         </div>
       </div>
+
     </div>
   </section>
 
   <!-- ═══════════════════════════════════════════════════════════════
        SCRIPTS
        ═══════════════════════════════════════════════════════════════ -->
+  <script>
+  // B3 Console — PO Routing display
+  (function() {
+    document.addEventListener('click', function(e) {
+      var btn = e.target.closest('.po-type-btn');
+      if (!btn) return;
+      document.querySelectorAll('.po-type-btn').forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      var target = document.getElementById('po-routing-target');
+      var autoEl = document.getElementById('po-routing-auto');
+      if (target) target.textContent = btn.dataset.studio || '—';
+      if (autoEl) {
+        var isAuto = btn.dataset.auto === 'true';
+        autoEl.textContent = isAuto ? '⚡ auto' : '✋ manual';
+        autoEl.style.color = isAuto ? 'var(--flame-core)' : 'var(--cave-dim)';
+      }
+      var dispatchBtn = document.querySelector('[data-action="dispatch"]');
+      if (dispatchBtn) dispatchBtn.disabled = false;
+    });
+  })();
+
+  // B4 Office — 25 Program Matrix (loads programs.json)
+  (function() {
+    var PERSONAS = ['philosopher','blogger','visualizer','musician','technician'];
+    var ICONS = { philosopher:'🤔', blogger:'📝', visualizer:'🎨', musician:'🎵', technician:'🔧' };
+    var COL_KEYS = ['home','eae','dtslib','highschool','kr-merit'];
+
+    function renderMatrix(data) {
+      var container = document.getElementById('b4-matrix');
+      if (!container) return;
+      var activeCount = 0, plannedCount = 0;
+      var html = '';
+      PERSONAS.forEach(function(persona) {
+        var p = data.matrix[persona];
+        if (!p) return;
+        html += '<div class="b4-matrix-row">';
+        html += '<div class="b4-persona-cell">' + ICONS[persona] + ' ' + persona.charAt(0).toUpperCase() + persona.slice(1) + '</div>';
+        COL_KEYS.forEach(function(key) {
+          var prog = p.programs[key];
+          if (!prog) { html += '<div class="b4-prog-cell"><span class="b4-prog-name">—</span></div>'; return; }
+          var axisClass = key === 'highschool' ? ' axis1' : key === 'kr-merit' ? ' axis2' : '';
+          var statusClass = ' status-' + prog.status;
+          if (prog.status === 'active') activeCount++;
+          else plannedCount++;
+          var link = prog.url ? ' onclick="window.open(\'' + prog.url + '\',\'_blank\')" style="cursor:pointer"' : '';
+          html += '<div class="b4-prog-cell' + axisClass + statusClass + '"' + link + '>';
+          html += '<span class="b4-prog-name">' + prog.name + '</span>';
+          html += '<span class="b4-prog-status ' + prog.status + '">' + (prog.status === 'active' ? '● LIVE' : '○ planned') + '</span>';
+          html += '</div>';
+        });
+        html += '</div>';
+      });
+      container.innerHTML = html;
+      var el1 = document.getElementById('kpi-active');
+      var el2 = document.getElementById('kpi-planned');
+      if (el1) el1.textContent = activeCount;
+      if (el2) el2.textContent = plannedCount;
+    }
+
+    // Load on B4 unlock
+    document.addEventListener('floorUnlocked', function(e) {
+      if (e.detail && e.detail.floor === 'office') {
+        fetch('/api/v1/programs.json')
+          .then(function(r){ return r.json(); })
+          .then(function(d){ renderMatrix(d); })
+          .catch(function(){ console.warn('programs.json load failed'); });
+      }
+    });
+
+    // Also try on page load (if already unlocked from localStorage)
+    window.addEventListener('load', function() {
+      var unlocked = [];
+      try { unlocked = JSON.parse(localStorage.getItem('parksy-unlocked-floors') || '[]'); } catch(e){}
+      if (unlocked.indexOf('office') !== -1) {
+        fetch('/api/v1/programs.json')
+          .then(function(r){ return r.json(); })
+          .then(function(d){ renderMatrix(d); })
+          .catch(function(){});
+      }
+    });
+  })();
+  </script>
   <script src="/design/elevator-system.js"></script>
   <script src="/design/cave-particles.js"></script>
 

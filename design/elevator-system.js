@@ -102,6 +102,7 @@
     unlockedFloors.add(floorId);
     saveUnlockedFloors();
     updateElevatorButtons();
+    document.dispatchEvent(new CustomEvent('floorUnlocked', { detail: { floor: floorId } }));
   }
 
   function updateElevatorButtons() {
