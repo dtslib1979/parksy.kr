@@ -38,8 +38,8 @@ Korean spirit expressed through English, not Korean text
 ## 층별 구조 (5-Floor Elevator)
 
 ```
-1F  Lobby   — Grand Entrance, 5-channel TV Guide
-B1  Channels — Full channel list + category index
+1F  Lobby    — Grand Entrance, 5-channel TV Guide
+B1  Schedule — On Air Program Guide (5 CH × 25 PGMS, JS-rendered, filterable)
 B2  Studio   — Engine & workspace
 B3  Console  — Production Order dispatch
 B4  Office   — Locked (code: date format)
