@@ -3,7 +3,7 @@
   "meta": {
     "generatedAt": "2026-03-12T00:00:00Z",
     "account": "C (dimas.thomas.sancho@gmail.com)",
-    "note": "7 channels — Tester merged into Philosopher (2026-03-12). Fill channelId from YouTube Studio."
+    "note": "5 channels — Tester+Protocol+Orbit merged into Philosopher (2026-03-12). Fill channelId from YouTube Studio."
   },
   "channels": {
     "visualizer": {
@@ -51,36 +51,22 @@
       "handle": "@philosopher-parksy",
       "channelId": null,
       "category": "category/Philosopher-Parksy/",
-      "contentType": ["commentary", "framing", "concert", "experiment"],
+      "contentType": ["commentary", "framing", "concert", "experiment", "systems", "analytics"],
       "siteUrl": "https://parksy.kr/category/Philosopher-Parksy/",
       "videos": [],
       "lastSynced": null,
-      "absorbed": ["Tester-Parksy"]
-    },
-    "protocol": {
-      "persona": "Protocol-Parksy",
-      "handle": "@protocol-parksy",
-      "channelId": null,
-      "category": "category/Protocol-Parksy/",
-      "contentType": ["systems", "frameworks", "architecture"],
-      "siteUrl": "https://parksy.kr/category/Protocol-Parksy/",
-      "videos": [],
-      "lastSynced": null
-    },
-    "orbit": {
-      "persona": "Orbit-Log",
-      "handle": "@orbitlog-parksy",
-      "channelId": null,
-      "category": "category/Orbit-Log/",
-      "contentType": ["analytics", "log", "tracking"],
-      "siteUrl": "https://parksy.kr/category/Orbit-Log/",
-      "videos": [],
-      "lastSynced": null
+      "absorbed": ["Tester-Parksy", "Protocol-Parksy", "Orbit-Log"]
     }
   },
   "deprecated": {
     "tester": {
       "note": "Tester-Parksy → Philosopher-Parksy로 통폐합 (2026-03-12). YouTube 채널 없음, 글 1개(테스트용)."
+    },
+    "protocol": {
+      "note": "Protocol-Parksy → Philosopher-Parksy로 통폐합 (2026-03-12). YouTube 채널 없음, 글 4개."
+    },
+    "orbit": {
+      "note": "Orbit-Log → Philosopher-Parksy로 통폐합 (2026-03-12). YouTube 채널 없음, 글 4개."
     }
   }
 }
