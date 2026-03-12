@@ -27,7 +27,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Inter:wght@300;400;500;600&family=Noto+Serif+KR:wght@300;400&display=swap" rel="stylesheet">
 
   <!-- Styles -->
   <link rel="stylesheet" href="/design/cave-ui.css">
@@ -323,99 +323,115 @@
       .b4-phase { flex-direction: column; gap: 0.2rem; }
     }
 
-    /* ── 3-Axis Equation ── */
-    .axis-equation {
-      display: flex; align-items: center; gap: 0.5rem;
-      margin: 1rem 0 0.75rem;
-      flex-wrap: wrap; justify-content: center;
+    /* ── LOBBY MURAL — 78vh Hero ── */
+    .lobby-mural {
+      min-height: 78vh;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      text-align: center;
+      padding: var(--space-cavern) var(--space-room) var(--space-chamber);
     }
-    .axis-pill {
-      font-family: var(--font-mono); font-size: 0.62rem; font-weight: 600;
-      padding: 0.25rem 0.65rem; border-radius: 2px;
-      letter-spacing: 0.08em; text-transform: uppercase;
-    }
-    .axis-pill.ai   { background: rgba(78,205,196,0.15); color: #4ecdc4; border: 1px solid rgba(78,205,196,0.3); }
-    .axis-pill.kr   { background: rgba(255,107,53,0.12); color: var(--flame-core); border: 1px solid rgba(255,107,53,0.3); }
-    .axis-pill.edu  { background: rgba(107,170,255,0.12); color: #6baaff; border: 1px solid rgba(107,170,255,0.3); }
-    .axis-cross {
-      font-family: var(--font-mono); font-size: 0.75rem;
-      color: var(--cave-faint); font-weight: 300;
+    .lobby-mural .station-masthead {
+      display: flex; flex-direction: column;
+      align-items: center; gap: 0;
     }
 
-    /* ── Hook Strip ── */
-    .hook-strip {
-      display: flex; flex-direction: column; gap: 0.4rem;
-      margin: 1.25rem 0 1.5rem;
-      border-left: 2px solid var(--cave-faint);
-      padding-left: 1rem;
+    /* Station title — bigger than default */
+    .lobby-mural .station-title {
+      font-size: clamp(2.8rem, 9vw, 4.5rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      margin: var(--space-step) 0 var(--space-room);
     }
-    .hook-item {
+
+    /* ── Korean × AI Identity Line ── */
+    .station-kr-axis {
       display: flex; align-items: baseline; gap: 0.6rem;
+      margin-bottom: var(--space-chamber);
+      opacity: 0;
+      animation: emerge 1.2s 1.8s forwards;
     }
-    .hook-label {
-      font-family: var(--font-mono); font-size: 0.55rem; font-weight: 600;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      min-width: 2.5rem; flex-shrink: 0;
+    .kr-axis-word {
+      font-family: 'Noto Serif KR', Georgia, serif;
+      font-size: 1.6rem; font-weight: 300;
+      color: var(--cave-glow);
+      letter-spacing: 0.12em;
     }
-    .hook-label.ai  { color: #4ecdc4; }
-    .hook-label.kr  { color: var(--flame-core); }
-    .hook-label.edu { color: #6baaff; }
-    .hook-text {
-      font-size: 0.72rem; color: var(--cave-dim);
-      line-height: 1.4;
+    .kr-axis-sep {
+      font-family: var(--font-mono);
+      font-size: 0.9rem; color: var(--cave-faint);
+    }
+    .kr-axis-tech {
+      font-family: var(--font-mono);
+      font-size: 0.75rem; font-weight: 600;
+      color: #4ecdc4; letter-spacing: 0.2em;
     }
 
-    /* ── Channel Axis Tags ── */
-    .ch-row-axis {
-      display: flex; gap: 0.35rem; flex-wrap: wrap; margin-top: 0.35rem;
+    /* ── KR Merit Whisper ── */
+    .merit-whisper {
+      font-family: 'Noto Serif KR', Georgia, serif;
+      font-size: 0.68rem; color: var(--cave-faint);
+      letter-spacing: 0.04em; line-height: 2;
+      opacity: 0;
+      animation: emerge 2s 3s forwards;
     }
-    .axis-tag {
-      font-family: var(--font-mono); font-size: 0.5rem;
-      padding: 0.15rem 0.45rem; border-radius: 2px;
-      letter-spacing: 0.06em;
-    }
-    .axis-tag.hs  { background: rgba(107,170,255,0.1); color: #6baaff; border: 1px solid rgba(107,170,255,0.2); }
-    .axis-tag.kr  { background: rgba(255,107,53,0.08); color: var(--flame-core); border: 1px solid rgba(255,107,53,0.2); }
-    .axis-tag.ai  { background: rgba(78,205,196,0.1); color: #4ecdc4; border: 1px solid rgba(78,205,196,0.2); }
 
-    /* ── Entry Points ── */
-    .entry-section { margin: 1.5rem 0 0.5rem; }
-    .entry-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 0.6rem; margin-top: 0.75rem;
+    /* ── THE QUESTION — Own Section ── */
+    .the-question {
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      min-height: 32vh;
+      padding: var(--space-cavern) var(--space-room);
+      text-align: center;
+      border-top: 1px solid var(--cave-faint);
+      border-bottom: 1px solid var(--cave-faint);
+      margin-bottom: var(--space-chamber);
+      position: relative;
     }
-    .entry-card {
-      display: flex; flex-direction: column; gap: 0.4rem;
-      padding: 1rem 0.85rem;
-      background: var(--cave-wall);
-      border: 1px solid var(--cave-faint);
-      border-radius: 4px;
-      transition: all 0.25s ease;
+    .question-ornament {
+      font-family: var(--font-mono);
+      font-size: 0.6rem; color: var(--cave-faint);
+      letter-spacing: 0.4em;
+      margin-bottom: var(--space-room);
     }
-    .entry-card:hover {
-      border-color: var(--cave-dim);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 24px rgba(0,0,0,0.35);
+    .question-text {
+      font-family: 'Noto Serif KR', Georgia, serif;
+      font-size: clamp(1.2rem, 4vw, 1.9rem);
+      font-weight: 300;
+      color: var(--cave-glow);
+      line-height: 1.8;
+      margin-bottom: var(--space-room);
+      letter-spacing: 0.02em;
     }
-    .entry-icon { font-size: 1.1rem; }
-    .entry-title {
-      font-family: var(--font-mono); font-size: 0.68rem; font-weight: 600;
-      color: var(--cave-glow); letter-spacing: 0.04em;
-      line-height: 1.3;
+    .question-answer {
+      font-family: var(--font-mono);
+      font-size: 0.58rem; color: var(--cave-dim);
+      letter-spacing: 0.12em; text-transform: uppercase;
+      max-width: 40ch; line-height: 1.8;
     }
-    .entry-desc {
-      font-size: 0.62rem; color: var(--cave-dim); line-height: 1.5;
+
+    /* ── Channel Merit Reveal (hover) ── */
+    .ch-row-merit {
+      font-family: 'Noto Serif KR', Georgia, serif;
+      font-size: 0.6rem;
+      color: var(--flame-core);
+      margin-top: 0.4rem;
+      opacity: 0;
+      transform: translateY(3px);
+      transition: opacity 0.35s ease, transform 0.35s ease;
+      display: block;
+      letter-spacing: 0.03em;
     }
-    .entry-link {
-      font-family: var(--font-mono); font-size: 0.58rem;
-      color: var(--flame-core); text-decoration: none;
-      margin-top: auto;
-      transition: color 0.2s;
+    .ch-row:hover .ch-row-merit {
+      opacity: 0.85;
+      transform: translateY(0);
     }
-    .entry-link:hover { color: var(--flame-edge); }
+
     @media (max-width: 480px) {
-      .entry-grid { grid-template-columns: 1fr; }
-      .axis-equation { gap: 0.3rem; }
+      .lobby-mural { min-height: 65vh; }
+      .kr-axis-word { font-size: 1.2rem; }
+      .question-text { font-size: 1.1rem; }
     }
   </style>
 </head>
@@ -479,7 +495,7 @@
     <span class="ticker-live"><span class="ticker-dot"></span>SIGNAL ON</span>
     <div class="ticker-stats">
       <span class="ticker-stat"><span>5</span> CH</span>
-      <span class="ticker-stat" style="color:#4ecdc4;font-weight:600;">AI</span>
+      <span class="ticker-stat" style="color:#4ecdc4;font-weight:600;letter-spacing:0.1em;">AI</span>
       <span class="ticker-stat" style="color:var(--flame-core);font-weight:600;">KR MERIT</span>
       <span class="ticker-stat" style="color:#6baaff;font-weight:600;">HS CURRICULUM</span>
       <span class="ticker-stat">LIBERAL ARTS</span>
@@ -487,145 +503,103 @@
   </div>
 
   <main class="floor-section active" id="floor-lobby">
-    <header class="lobby-header">
+
+    <!-- ── MURAL: 78vh Hero ── -->
+    <header class="lobby-header lobby-mural">
       <div class="station-masthead">
         <div class="on-air-badge">
           <span class="on-air-dot"></span>
           ON AIR
         </div>
+
         <h1 class="station-title">PARKSY<br>Broadcasting</h1>
 
-        <!-- 3-Axis Equation -->
-        <div class="axis-equation">
-          <span class="axis-pill ai">AI</span>
-          <span class="axis-cross">×</span>
-          <span class="axis-pill kr">KR Merit</span>
-          <span class="axis-cross">×</span>
-          <span class="axis-pill edu">Liberal Arts</span>
+        <!-- Korean × AI — Identity Line -->
+        <div class="station-kr-axis">
+          <span class="kr-axis-word">철학</span>
+          <span class="kr-axis-sep">×</span>
+          <span class="kr-axis-tech">AI</span>
         </div>
 
-        <p class="station-tagline">Korean philosophy for the world.</p>
+        <!-- KR Merit Whisper — 4 words, 3s delay -->
+        <p class="merit-whisper">허세교양 · 하프블러드 · 편집평가강박 · 민주주의판타지</p>
       </div>
     </header>
 
-    <!-- 3 Hook Lines — why this exists -->
-    <div class="hook-strip">
-      <div class="hook-item">
-        <span class="hook-label edu">HS</span>
-        <span class="hook-text">Why do Koreans memorize Socrates for the SAT?</span>
-      </div>
-      <div class="hook-item">
-        <span class="hook-label kr">KR</span>
-        <span class="hook-text">허세교양 · 하프블러드 · 편집평가강박 · 민주주의판타지 — decoded.</span>
-      </div>
-      <div class="hook-item">
-        <span class="hook-label ai">AI</span>
-        <span class="hook-text">1 person. 5 channels. 25 programs. ₩0 server cost.</span>
-      </div>
+    <!-- ── THE QUESTION — Standalone Section ── -->
+    <div class="the-question">
+      <p class="question-ornament">◈ ◈ ◈</p>
+      <p class="question-text">Why do Koreans<br>memorize Socrates<br>for the SAT?</p>
+      <p class="question-answer">Korean HS Curriculum × KR Merit × AI<br>5 channels · 25 programs · broadcasting to the world</p>
     </div>
 
-    <!-- 5 CHANNELS ON AIR — with axis tags -->
+    <!-- ── 5 CHANNELS — Clean, Hover Reveals KR Merit ── -->
     <div class="bcast-header"><span class="live-pulse"></span>5 CHANNELS — ALL ON AIR</div>
+
     <a href="/channel/philosopher/" class="ch-row on-air">
       <span class="ch-row-num">01</span>
       <span class="ch-row-icon">🤔</span>
       <div class="ch-row-info">
         <span class="ch-row-name">PHILOSOPHER TV</span>
         <span class="ch-row-tags">Commentary · Framing · Experiment · Systems</span>
-        <div class="ch-row-axis">
-          <span class="axis-tag hs">철학 · HS</span>
-          <span class="axis-tag kr">민주주의판타지 · KR</span>
-        </div>
-      </div>
-      <div class="ch-row-status">
-        <span class="live-badge"><span class="live-pulse"></span>LIVE</span>
-      </div>
-    </a>
-    <a href="/channel/blogger/" class="ch-row on-air">
-      <span class="ch-row-num">02</span>
-      <span class="ch-row-icon">📝</span>
-      <div class="ch-row-info">
-        <span class="ch-row-name">BLOGGER TV</span>
-        <span class="ch-row-tags">Worldview · Essay · Narrative</span>
-        <div class="ch-row-axis">
-          <span class="axis-tag hs">수학 · HS</span>
-          <span class="axis-tag kr">하프블러드 · KR</span>
-        </div>
-      </div>
-      <div class="ch-row-status">
-        <span class="live-badge"><span class="live-pulse"></span>LIVE</span>
-      </div>
-    </a>
-    <a href="/channel/visualizer/" class="ch-row on-air">
-      <span class="ch-row-num">03</span>
-      <span class="ch-row-icon">🎨</span>
-      <div class="ch-row-info">
-        <span class="ch-row-name">VISUALIZER TV</span>
-        <span class="ch-row-tags">Webtoon · Image · CAD · Pipeline</span>
-        <div class="ch-row-axis">
-          <span class="axis-tag hs">사회 · HS</span>
-          <span class="axis-tag kr">편집평가강박 · KR</span>
-        </div>
-      </div>
-      <div class="ch-row-status">
-        <span class="live-badge"><span class="live-pulse"></span>LIVE</span>
-      </div>
-    </a>
-    <a href="/channel/musician/" class="ch-row on-air">
-      <span class="ch-row-num">04</span>
-      <span class="ch-row-icon">🎵</span>
-      <div class="ch-row-info">
-        <span class="ch-row-name">MUSICIAN TV</span>
-        <span class="ch-row-tags">BGM · Audio · Lyria3</span>
-        <div class="ch-row-axis">
-          <span class="axis-tag hs">국어 · HS</span>
-          <span class="axis-tag ai">고전시가 × AI</span>
-        </div>
-      </div>
-      <div class="ch-row-status">
-        <span class="live-badge"><span class="live-pulse"></span>LIVE</span>
-      </div>
-    </a>
-    <a href="/channel/technician/" class="ch-row on-air">
-      <span class="ch-row-num">05</span>
-      <span class="ch-row-icon">🔧</span>
-      <div class="ch-row-info">
-        <span class="ch-row-name">TECHNICIAN TV</span>
-        <span class="ch-row-tags">Automation · Pipeline · Behind-the-scenes</span>
-        <div class="ch-row-axis">
-          <span class="axis-tag hs">과학 · HS</span>
-          <span class="axis-tag kr">허세교양 · KR</span>
-        </div>
+        <span class="ch-row-merit">철학 × 민주주의판타지</span>
       </div>
       <div class="ch-row-status">
         <span class="live-badge"><span class="live-pulse"></span>LIVE</span>
       </div>
     </a>
 
-    <!-- 3 Entry Points -->
-    <div class="entry-section">
-      <div class="bcast-header standby">WHO ARE YOU? — CHOOSE YOUR ENTRY</div>
-      <div class="entry-grid">
-        <div class="entry-card">
-          <span class="entry-icon">🌏</span>
-          <h3 class="entry-title">Curious about Korea?</h3>
-          <p class="entry-desc">Korean education &amp; personality decoded in English. Why are Koreans like that?</p>
-          <a href="/channel/philosopher/" class="entry-link">→ Philosopher TV</a>
-        </div>
-        <div class="entry-card">
-          <span class="entry-icon">🤖</span>
-          <h3 class="entry-title">Building with AI?</h3>
-          <p class="entry-desc">1 person · 5 channels · 25 programs · ₩0/month. See the blueprint.</p>
-          <a href="/channel/technician/" class="entry-link">→ Technician TV</a>
-        </div>
-        <div class="entry-card">
-          <span class="entry-icon">📚</span>
-          <h3 class="entry-title">Liberal Arts fan?</h3>
-          <p class="entry-desc">Philosophy, social studies, Korean language — all through an AI lens.</p>
-          <a href="/channel/blogger/" class="entry-link">→ Blogger TV</a>
-        </div>
+    <a href="/channel/blogger/" class="ch-row on-air">
+      <span class="ch-row-num">02</span>
+      <span class="ch-row-icon">📝</span>
+      <div class="ch-row-info">
+        <span class="ch-row-name">BLOGGER TV</span>
+        <span class="ch-row-tags">Worldview · Essay · Narrative</span>
+        <span class="ch-row-merit">수학 × 하프블러드</span>
       </div>
-    </div>
+      <div class="ch-row-status">
+        <span class="live-badge"><span class="live-pulse"></span>LIVE</span>
+      </div>
+    </a>
+
+    <a href="/channel/visualizer/" class="ch-row on-air">
+      <span class="ch-row-num">03</span>
+      <span class="ch-row-icon">🎨</span>
+      <div class="ch-row-info">
+        <span class="ch-row-name">VISUALIZER TV</span>
+        <span class="ch-row-tags">Webtoon · Image · CAD · Pipeline</span>
+        <span class="ch-row-merit">사회 × 편집평가강박</span>
+      </div>
+      <div class="ch-row-status">
+        <span class="live-badge"><span class="live-pulse"></span>LIVE</span>
+      </div>
+    </a>
+
+    <a href="/channel/musician/" class="ch-row on-air">
+      <span class="ch-row-num">04</span>
+      <span class="ch-row-icon">🎵</span>
+      <div class="ch-row-info">
+        <span class="ch-row-name">MUSICIAN TV</span>
+        <span class="ch-row-tags">BGM · Audio · Lyria3</span>
+        <span class="ch-row-merit">국어 × 고전시가 × AI</span>
+      </div>
+      <div class="ch-row-status">
+        <span class="live-badge"><span class="live-pulse"></span>LIVE</span>
+      </div>
+    </a>
+
+    <a href="/channel/technician/" class="ch-row on-air">
+      <span class="ch-row-num">05</span>
+      <span class="ch-row-icon">🔧</span>
+      <div class="ch-row-info">
+        <span class="ch-row-name">TECHNICIAN TV</span>
+        <span class="ch-row-tags">Automation · Pipeline · Behind-the-scenes</span>
+        <span class="ch-row-merit">과학 × 허세교양</span>
+      </div>
+      <div class="ch-row-status">
+        <span class="live-badge"><span class="live-pulse"></span>LIVE</span>
+      </div>
+    </a>
 
     <!-- Station Info -->
     <footer class="lobby-footer">
@@ -1266,7 +1240,7 @@
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "PARKSY Broadcasting",
-    "description": "AI-Powered Media Station — Be a panelist with AI",
+    "description": "Korean Liberal Arts decoded by AI. Philosophy, KR Merit, HS Curriculum — 5-channel broadcasting.",
     "url": "https://parksy.kr",
     "applicationCategory": "Entertainment",
     "author": {
