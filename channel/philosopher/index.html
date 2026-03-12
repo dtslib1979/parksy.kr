@@ -8,6 +8,7 @@
   <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/design/cave-ui.css">
   <link rel="stylesheet" href="/design/broadcast-ui.css">
+  <link rel="stylesheet" href="/design/loopback.css">
   <style>
     body { background: var(--cave-void,#0a0a0a); color: var(--cave-glow,#e8e8e8); font-family: 'Inter',sans-serif; margin: 0; }
     .ch-hero {
@@ -98,7 +99,37 @@
       <div class="video-ph">Coming Soon</div>
     </div>
 
+
+    <!-- LOOPBACK SERVICES -->
+    <div class="lb-section">
+      <div class="lb-section-title">KR MERIT SELF-DIAGNOSIS</div>
+      <div class="lb-quiz-wrap">
+        <div class="lb-quiz-module-tabs">
+          <button class="lb-quiz-tab active" onclick="ParksyLoopback.initQuiz(document.getElementById('lb-quiz-body'),'democracy-fantasy');this.parentNode.querySelectorAll('.lb-quiz-tab').forEach(function(t){t.classList.remove('active')});this.classList.add('active')">민주주의 판타지</button>
+          <button class="lb-quiz-tab" onclick="ParksyLoopback.initQuiz(document.getElementById('lb-quiz-body'),'bluff-liberal-arts');this.parentNode.querySelectorAll('.lb-quiz-tab').forEach(function(t){t.classList.remove('active')});this.classList.add('active')">허세교양</button>
+          <button class="lb-quiz-tab" onclick="ParksyLoopback.initQuiz(document.getElementById('lb-quiz-body'),'halfblood-language');this.parentNode.querySelectorAll('.lb-quiz-tab').forEach(function(t){t.classList.remove('active')});this.classList.add('active')">하프블러드</button>
+          <button class="lb-quiz-tab" onclick="ParksyLoopback.initQuiz(document.getElementById('lb-quiz-body'),'edit-obsession');this.parentNode.querySelectorAll('.lb-quiz-tab').forEach(function(t){t.classList.remove('active')});this.classList.add('active')">편집강박</button>
+          </div>
+        <div class="lb-quiz-body" id="lb-quiz-body" data-loopback="quiz" data-module="democracy-fantasy"></div>
+      </div>
+    </div>
+
+    <div class="lb-section">
+      <div class="lb-section-title">WEBTOON VIEWER</div>
+      <div data-loopback="webtoon" data-url=""></div>
+    </div>
+
+    <div class="lb-section">
+      <div class="lb-section-title">BGM PLAYER</div>
+      <div data-loopback="bgm" data-url=""></div>
+    </div>
+
+    <div class="lb-section">
+      <div class="lb-section-title">AI PROMPTS USED</div>
+      <div data-loopback="prompts"></div>
+    </div>
     <a href="/" class="back">← Station Lobby</a>
   </div>
+  <script src="/design/loopback.js"></script>
 </body>
 </html>
