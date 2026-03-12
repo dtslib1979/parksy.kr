@@ -35,6 +35,54 @@
   <link rel="stylesheet" href="/design/elevator-ui.css">
 
   <style>
+    /* ── Channel Grid (Lobby) ── */
+    .channel-grid-lobby {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.6rem;
+      margin: 1.5rem 0;
+    }
+    .ch-card {
+      display: flex; align-items: center; gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      background: var(--cave-wall);
+      border: 1px solid var(--cave-faint);
+      border-left: 3px solid var(--cave-dim);
+      border-radius: 4px;
+      text-decoration: none; color: inherit;
+      transition: all 0.2s ease;
+    }
+    .ch-card:hover {
+      border-left-color: var(--flame-core);
+      background: var(--cave-stone);
+      transform: translateX(2px);
+    }
+    .ch-card.ch-live { border-left-color: var(--flame-core); }
+    .ch-card-num {
+      font-family: var(--font-mono);
+      font-size: 0.6rem; color: var(--cave-dim);
+      min-width: 1.5rem;
+    }
+    .ch-card-icon { font-size: 1.1rem; }
+    .ch-card-info { flex: 1; }
+    .ch-card-name {
+      font-family: var(--font-mono);
+      font-size: 0.75rem; font-weight: 600;
+      color: var(--cave-glow);
+      display: block;
+    }
+    .ch-card-desc {
+      font-size: 0.6rem; color: var(--cave-dim);
+    }
+    .ch-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--cave-faint);
+      flex-shrink: 0;
+    }
+    .ch-dot.live { background: var(--flame-core); box-shadow: 0 0 6px var(--flame-core); }
+    @media (max-width: 480px) {
+      .channel-grid-lobby { grid-template-columns: 1fr; }
+    }
     /* ── Scroll Progress Bar ── */
     .scroll-progress {
       position: fixed; top: 0; left: 0;
@@ -189,7 +237,7 @@
     <!-- Stats Bar -->
     <div class="stats-bar">
       <div class="stat-item">
-        <span class="stat-value">8</span>
+        <span class="stat-value">7</span>
         <span class="stat-label">Channels</span>
       </div>
       <div class="stat-item">
@@ -206,70 +254,81 @@
       </div>
     </div>
 
-    <!-- News Carousel -->
-    <section class="news-carousel">
-      <div class="carousel-header">
-        <h2 class="carousel-title">Latest Updates</h2>
-        <div class="carousel-nav">
-          <button class="carousel-btn prev" aria-label="Previous">←</button>
-          <button class="carousel-btn next" aria-label="Next">→</button>
-        </div>
-      </div>
-
-      <div class="carousel-track">
-        <article class="news-card featured">
-          <span class="news-tag">Featured</span>
-          <h3 class="news-title">AI-Powered Content Curation Now Live</h3>
-          <p class="news-excerpt">Transform your thoughts into broadcast-ready content with our new Studio engine.</p>
-          <time class="news-date">2026.03</time>
-        </article>
-
-        <article class="news-card">
-          <span class="news-tag">Channel</span>
-          <h3 class="news-title">Philosopher TV: New Series</h3>
-          <p class="news-excerpt">Exploring the intersection of AI and human consciousness.</p>
-          <time class="news-date">2026.03</time>
-        </article>
-
-        <article class="news-card">
-          <span class="news-tag">Update</span>
-          <h3 class="news-title">Platform Integration Expanded</h3>
-          <p class="news-excerpt">Now connected with YouTube, Spotify, and Notion ecosystems.</p>
-          <time class="news-date">2026.03</time>
-        </article>
-
-        <article class="news-card">
-          <span class="news-tag">Tech</span>
-          <h3 class="news-title">Studio Engine v2.0</h3>
-          <p class="news-excerpt">Claude Code integration for automated content workflows.</p>
-          <time class="news-date">2026.03</time>
-        </article>
-      </div>
-    </section>
-
-    <!-- Quick Access -->
-    <section class="quick-access">
-      <h2 class="section-label">Quick Access</h2>
-      <div class="quick-grid">
-        <a href="#floor-channels" class="quick-card" data-goto="channels">
-          <span class="quick-icon">📺</span>
-          <span class="quick-name">Channels</span>
-          <span class="quick-count">8 Active</span>
+    <!-- Channel Grid -->
+    <section>
+      <h2 class="section-label">On Air — 7 Channels</h2>
+      <div class="channel-grid-lobby">
+        <a href="/category/Philosopher-Parksy/" class="ch-card ch-live">
+          <span class="ch-card-num">01</span>
+          <span class="ch-card-icon">🤔</span>
+          <div class="ch-card-info">
+            <span class="ch-card-name">Philosopher TV</span>
+            <span class="ch-card-desc">Deep thinking & commentary</span>
+          </div>
+          <span class="ch-dot live"></span>
         </a>
-        <a href="#floor-studio" class="quick-card" data-goto="studio">
-          <span class="quick-icon">🎬</span>
-          <span class="quick-name">Studio</span>
-          <span class="quick-count">Engines</span>
+        <a href="/category/Blogger-Parksy/" class="ch-card">
+          <span class="ch-card-num">02</span>
+          <span class="ch-card-icon">📝</span>
+          <div class="ch-card-info">
+            <span class="ch-card-name">Blogger TV</span>
+            <span class="ch-card-desc">Essays & narratives</span>
+          </div>
+          <span class="ch-dot"></span>
         </a>
-        <a href="/archive/" class="quick-card">
-          <span class="quick-icon">📚</span>
-          <span class="quick-name">Archive</span>
-          <span class="quick-count">All Content</span>
+        <a href="/category/Visualizer-Parksy/" class="ch-card ch-live">
+          <span class="ch-card-num">03</span>
+          <span class="ch-card-icon">🎨</span>
+          <div class="ch-card-info">
+            <span class="ch-card-name">Visualizer TV</span>
+            <span class="ch-card-desc">Webtoon & data viz</span>
+          </div>
+          <span class="ch-dot live"></span>
         </a>
-        <a href="https://www.youtube.com/@EAE-University" target="_blank" class="quick-card external">
-          <span class="quick-icon">▶️</span>
-          <span class="quick-name">YouTube</span>
-          <span class="quick-count">↗</span>
+        <a href="/category/Musician-Parksy/" class="ch-card">
+          <span class="ch-card-num">04</span>
+          <span class="ch-card-icon">🎵</span>
+          <div class="ch-card-info">
+            <span class="ch-card-name">Musician TV</span>
+            <span class="ch-card-desc">BGM & audio pipeline</span>
+          </div>
+          <span class="ch-dot"></span>
+        </a>
+        <a href="/category/Technician-Parksy/" class="ch-card ch-live">
+          <span class="ch-card-num">05</span>
+          <span class="ch-card-icon">🔧</span>
+          <div class="ch-card-info">
+            <span class="ch-card-name">Technician TV</span>
+            <span class="ch-card-desc">Automation & tools</span>
+          </div>
+          <span class="ch-dot live"></span>
+        </a>
+        <a href="/category/Protocol-Parksy/" class="ch-card">
+          <span class="ch-card-num">06</span>
+          <span class="ch-card-icon">📋</span>
+          <div class="ch-card-info">
+            <span class="ch-card-name">Protocol TV</span>
+            <span class="ch-card-desc">Systems & frameworks</span>
+          </div>
+          <span class="ch-dot"></span>
+        </a>
+        <a href="/category/Orbit-Log/" class="ch-card ch-live">
+          <span class="ch-card-num">07</span>
+          <span class="ch-card-icon">🌌</span>
+          <div class="ch-card-info">
+            <span class="ch-card-name">Orbit-Log TV</span>
+            <span class="ch-card-desc">Analytics & tracking</span>
+          </div>
+          <span class="ch-dot live"></span>
+        </a>
+        <a href="/archive/" class="ch-card">
+          <span class="ch-card-num">—</span>
+          <span class="ch-card-icon">📚</span>
+          <div class="ch-card-info">
+            <span class="ch-card-name">Archive</span>
+            <span class="ch-card-desc">All content</span>
+          </div>
+          <span class="ch-dot"></span>
         </a>
       </div>
     </section>
@@ -288,7 +347,7 @@
     <header class="floor-header">
       <span class="floor-badge">B1</span>
       <h2 class="floor-title">Channels</h2>
-      <p class="floor-desc">8 Persona Broadcasting Channels</p>
+      <p class="floor-desc">7 Persona Broadcasting Channels</p>
     </header>
 
     <div class="channel-list">
@@ -357,23 +416,10 @@
         <span class="ch-icon">🔧</span>
       </a>
 
-      <!-- CH.06 Tester -->
-      <a href="/category/Tester-Parksy/" class="channel-row" data-channel="6">
+      <!-- CH.06 Protocol -->
+      <a href="/category/Protocol-Parksy/" class="channel-row" data-channel="6">
         <div class="channel-indicator">
           <span class="ch-num">06</span>
-          <span class="ch-status"></span>
-        </div>
-        <div class="channel-info">
-          <h3 class="ch-name">Tester TV</h3>
-          <p class="ch-desc">Experiments & testing protocols</p>
-        </div>
-        <span class="ch-icon">🧪</span>
-      </a>
-
-      <!-- CH.07 Protocol -->
-      <a href="/category/Protocol-Parksy/" class="channel-row" data-channel="7">
-        <div class="channel-indicator">
-          <span class="ch-num">07</span>
           <span class="ch-status"></span>
         </div>
         <div class="channel-info">
@@ -383,10 +429,10 @@
         <span class="ch-icon">📋</span>
       </a>
 
-      <!-- CH.08 Orbit-Log -->
-      <a href="/category/Orbit-Log/" class="channel-row" data-channel="8">
+      <!-- CH.07 Orbit-Log -->
+      <a href="/category/Orbit-Log/" class="channel-row" data-channel="7">
         <div class="channel-indicator">
-          <span class="ch-num">08</span>
+          <span class="ch-num">07</span>
           <span class="ch-status live"></span>
         </div>
         <div class="channel-info">
@@ -406,7 +452,6 @@
         <a href="/category/Visualizer-Parksy/" class="index-item">Data</a>
         <a href="/category/Musician-Parksy/" class="index-item">Music</a>
         <a href="/category/Technician-Parksy/" class="index-item">Tech</a>
-        <a href="/category/Tester-Parksy/" class="index-item">Lab</a>
         <a href="/category/Protocol-Parksy/" class="index-item">System</a>
         <a href="/category/Orbit-Log/" class="index-item">Log</a>
       </div>
