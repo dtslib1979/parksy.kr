@@ -1,53 +1,65 @@
 {
   "meta": {
-    "version": "1.0",
+    "version": "1.1",
     "description": "Korean High School Curriculum Module — dtslib1k axis",
-    "concept": "Korean HS subjects as content source. Global hook: Korean education intensity."
+    "account": "dtslib1k@kakao.com",
+    "rootUrl": "https://dtslib1k.tistory.com",
+    "mainBlog": "KR Merit x KR reading material"
   },
   "subjects": {
     "philosophy": {
       "name": "철학 (Philosophy)",
       "persona": "philosopher",
       "tistoryAccount": "dtslib1k",
+      "tistoryBlog": "중년고딩철학",
       "tistoryUrl": "https://dtslib1k.tistory.com",
       "youtubeHook": "Korean HS Philosophy — why they memorize Socrates for the SAT",
       "krMeritLink": "democracy-fantasy",
+      "krMeritBlog": "KR Merit-사면민주주의",
       "chalkboardReady": false
     },
     "math": {
       "name": "수학 (Math)",
       "persona": "blogger",
       "tistoryAccount": "dtslib1k",
+      "tistoryBlog": "중년고딩수학",
       "tistoryUrl": "https://dtslib1k.tistory.com",
       "youtubeHook": "Korean SAT Math with AI — Half-blood Edition",
       "krMeritLink": "halfblood-language",
+      "krMeritBlog": "KR Merit-하프블러드 어학",
       "chalkboardReady": false
     },
     "social-studies": {
       "name": "사회 (Social Studies)",
       "persona": "visualizer",
       "tistoryAccount": "dtslib1k",
+      "tistoryBlog": "중년고딩사회",
       "tistoryUrl": "https://dtslib1k.tistory.com",
       "youtubeHook": "Korean Social Studies — the subjects they don't teach outside Korea",
       "krMeritLink": "edit-obsession",
+      "krMeritBlog": "KR Merit-편집강박어그로",
       "chalkboardReady": false
     },
     "korean-language": {
       "name": "국어 (Korean Language/Literature)",
       "persona": "musician",
       "tistoryAccount": "dtslib1k",
+      "tistoryBlog": "KR Merit x KR reading material",
       "tistoryUrl": "https://dtslib1k.tistory.com",
       "youtubeHook": "Korean classical poetry remixed into music with Lyria3",
-      "krMeritLink": "language-music",
+      "krMeritLink": "halfblood-language",
+      "krMeritBlog": "KR Merit-하프블러드 어학",
       "chalkboardReady": false
     },
     "science": {
       "name": "과학 (Science)",
       "persona": "technician",
       "tistoryAccount": "dtslib1k",
+      "tistoryBlog": "중년고딩과학",
       "tistoryUrl": "https://dtslib1k.tistory.com",
       "youtubeHook": "Korean HS Science — memorization as performance art (AI decoded)",
       "krMeritLink": "bluff-liberal-arts",
+      "krMeritBlog": "KR Merit-허세교양",
       "chalkboardReady": false
     }
   }
