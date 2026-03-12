@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>PARKSY Broadcasting — AI-Powered Media Station</title>
+  <title>PARKSY Broadcasting — Korean Liberal Arts × AI</title>
 
   <!-- SEO -->
-  <meta name="description" content="Be a panelist with AI. PARKSY Broadcasting offers what YouTube cannot — a multi-channel media platform where everyone becomes a voice.">
+  <meta name="description" content="Korean philosophy, education &amp; identity — decoded by AI. 5-channel broadcasting where KR Merit meets High School curriculum meets Liberal Arts. Powered by Claude.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://parksy.kr/">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="PARKSY Broadcasting — AI-Powered Media Station">
-  <meta property="og:description" content="Be a panelist with AI. Multi-channel broadcasting platform.">
+  <meta property="og:title" content="PARKSY Broadcasting — Korean Liberal Arts × AI">
+  <meta property="og:description" content="Why do Koreans memorize Socrates for the SAT? 5-channel AI broadcasting decoding Korean education, identity &amp; philosophy for the world.">
   <meta property="og:url" content="https://parksy.kr/">
   <meta property="og:image" content="https://parksy.kr/assets/og/cover.png">
 
@@ -322,6 +322,101 @@
       .b4-kpi { min-width: 30%; }
       .b4-phase { flex-direction: column; gap: 0.2rem; }
     }
+
+    /* ── 3-Axis Equation ── */
+    .axis-equation {
+      display: flex; align-items: center; gap: 0.5rem;
+      margin: 1rem 0 0.75rem;
+      flex-wrap: wrap; justify-content: center;
+    }
+    .axis-pill {
+      font-family: var(--font-mono); font-size: 0.62rem; font-weight: 600;
+      padding: 0.25rem 0.65rem; border-radius: 2px;
+      letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .axis-pill.ai   { background: rgba(78,205,196,0.15); color: #4ecdc4; border: 1px solid rgba(78,205,196,0.3); }
+    .axis-pill.kr   { background: rgba(255,107,53,0.12); color: var(--flame-core); border: 1px solid rgba(255,107,53,0.3); }
+    .axis-pill.edu  { background: rgba(107,170,255,0.12); color: #6baaff; border: 1px solid rgba(107,170,255,0.3); }
+    .axis-cross {
+      font-family: var(--font-mono); font-size: 0.75rem;
+      color: var(--cave-faint); font-weight: 300;
+    }
+
+    /* ── Hook Strip ── */
+    .hook-strip {
+      display: flex; flex-direction: column; gap: 0.4rem;
+      margin: 1.25rem 0 1.5rem;
+      border-left: 2px solid var(--cave-faint);
+      padding-left: 1rem;
+    }
+    .hook-item {
+      display: flex; align-items: baseline; gap: 0.6rem;
+    }
+    .hook-label {
+      font-family: var(--font-mono); font-size: 0.55rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      min-width: 2.5rem; flex-shrink: 0;
+    }
+    .hook-label.ai  { color: #4ecdc4; }
+    .hook-label.kr  { color: var(--flame-core); }
+    .hook-label.edu { color: #6baaff; }
+    .hook-text {
+      font-size: 0.72rem; color: var(--cave-dim);
+      line-height: 1.4;
+    }
+
+    /* ── Channel Axis Tags ── */
+    .ch-row-axis {
+      display: flex; gap: 0.35rem; flex-wrap: wrap; margin-top: 0.35rem;
+    }
+    .axis-tag {
+      font-family: var(--font-mono); font-size: 0.5rem;
+      padding: 0.15rem 0.45rem; border-radius: 2px;
+      letter-spacing: 0.06em;
+    }
+    .axis-tag.hs  { background: rgba(107,170,255,0.1); color: #6baaff; border: 1px solid rgba(107,170,255,0.2); }
+    .axis-tag.kr  { background: rgba(255,107,53,0.08); color: var(--flame-core); border: 1px solid rgba(255,107,53,0.2); }
+    .axis-tag.ai  { background: rgba(78,205,196,0.1); color: #4ecdc4; border: 1px solid rgba(78,205,196,0.2); }
+
+    /* ── Entry Points ── */
+    .entry-section { margin: 1.5rem 0 0.5rem; }
+    .entry-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 0.6rem; margin-top: 0.75rem;
+    }
+    .entry-card {
+      display: flex; flex-direction: column; gap: 0.4rem;
+      padding: 1rem 0.85rem;
+      background: var(--cave-wall);
+      border: 1px solid var(--cave-faint);
+      border-radius: 4px;
+      transition: all 0.25s ease;
+    }
+    .entry-card:hover {
+      border-color: var(--cave-dim);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(0,0,0,0.35);
+    }
+    .entry-icon { font-size: 1.1rem; }
+    .entry-title {
+      font-family: var(--font-mono); font-size: 0.68rem; font-weight: 600;
+      color: var(--cave-glow); letter-spacing: 0.04em;
+      line-height: 1.3;
+    }
+    .entry-desc {
+      font-size: 0.62rem; color: var(--cave-dim); line-height: 1.5;
+    }
+    .entry-link {
+      font-family: var(--font-mono); font-size: 0.58rem;
+      color: var(--flame-core); text-decoration: none;
+      margin-top: auto;
+      transition: color 0.2s;
+    }
+    .entry-link:hover { color: var(--flame-edge); }
+    @media (max-width: 480px) {
+      .entry-grid { grid-template-columns: 1fr; }
+      .axis-equation { gap: 0.3rem; }
+    }
   </style>
 </head>
 <body>
@@ -384,9 +479,10 @@
     <span class="ticker-live"><span class="ticker-dot"></span>SIGNAL ON</span>
     <div class="ticker-stats">
       <span class="ticker-stat"><span>5</span> CH</span>
-      <span class="ticker-stat"><span>4</span> DOMAINS</span>
-      <span class="ticker-stat"><span>25</span> TOOLS</span>
-      <span class="ticker-stat"><span>12</span> PIPELINES</span>
+      <span class="ticker-stat" style="color:#4ecdc4;font-weight:600;">AI</span>
+      <span class="ticker-stat" style="color:var(--flame-core);font-weight:600;">KR MERIT</span>
+      <span class="ticker-stat" style="color:#6baaff;font-weight:600;">HS CURRICULUM</span>
+      <span class="ticker-stat">LIBERAL ARTS</span>
     </div>
   </div>
 
@@ -398,11 +494,37 @@
           ON AIR
         </div>
         <h1 class="station-title">PARKSY<br>Broadcasting</h1>
-        <p class="station-tagline">Be a Panelist with AI</p>
+
+        <!-- 3-Axis Equation -->
+        <div class="axis-equation">
+          <span class="axis-pill ai">AI</span>
+          <span class="axis-cross">×</span>
+          <span class="axis-pill kr">KR Merit</span>
+          <span class="axis-cross">×</span>
+          <span class="axis-pill edu">Liberal Arts</span>
+        </div>
+
+        <p class="station-tagline">Korean philosophy for the world.</p>
       </div>
     </header>
 
-    <!-- 5 CHANNELS ON AIR -->
+    <!-- 3 Hook Lines — why this exists -->
+    <div class="hook-strip">
+      <div class="hook-item">
+        <span class="hook-label edu">HS</span>
+        <span class="hook-text">Why do Koreans memorize Socrates for the SAT?</span>
+      </div>
+      <div class="hook-item">
+        <span class="hook-label kr">KR</span>
+        <span class="hook-text">허세교양 · 하프블러드 · 편집평가강박 · 민주주의판타지 — decoded.</span>
+      </div>
+      <div class="hook-item">
+        <span class="hook-label ai">AI</span>
+        <span class="hook-text">1 person. 5 channels. 25 programs. ₩0 server cost.</span>
+      </div>
+    </div>
+
+    <!-- 5 CHANNELS ON AIR — with axis tags -->
     <div class="bcast-header"><span class="live-pulse"></span>5 CHANNELS — ALL ON AIR</div>
     <a href="/channel/philosopher/" class="ch-row on-air">
       <span class="ch-row-num">01</span>
@@ -410,6 +532,10 @@
       <div class="ch-row-info">
         <span class="ch-row-name">PHILOSOPHER TV</span>
         <span class="ch-row-tags">Commentary · Framing · Experiment · Systems</span>
+        <div class="ch-row-axis">
+          <span class="axis-tag hs">철학 · HS</span>
+          <span class="axis-tag kr">민주주의판타지 · KR</span>
+        </div>
       </div>
       <div class="ch-row-status">
         <span class="live-badge"><span class="live-pulse"></span>LIVE</span>
@@ -421,6 +547,10 @@
       <div class="ch-row-info">
         <span class="ch-row-name">BLOGGER TV</span>
         <span class="ch-row-tags">Worldview · Essay · Narrative</span>
+        <div class="ch-row-axis">
+          <span class="axis-tag hs">수학 · HS</span>
+          <span class="axis-tag kr">하프블러드 · KR</span>
+        </div>
       </div>
       <div class="ch-row-status">
         <span class="live-badge"><span class="live-pulse"></span>LIVE</span>
@@ -432,6 +562,10 @@
       <div class="ch-row-info">
         <span class="ch-row-name">VISUALIZER TV</span>
         <span class="ch-row-tags">Webtoon · Image · CAD · Pipeline</span>
+        <div class="ch-row-axis">
+          <span class="axis-tag hs">사회 · HS</span>
+          <span class="axis-tag kr">편집평가강박 · KR</span>
+        </div>
       </div>
       <div class="ch-row-status">
         <span class="live-badge"><span class="live-pulse"></span>LIVE</span>
@@ -443,6 +577,10 @@
       <div class="ch-row-info">
         <span class="ch-row-name">MUSICIAN TV</span>
         <span class="ch-row-tags">BGM · Audio · Lyria3</span>
+        <div class="ch-row-axis">
+          <span class="axis-tag hs">국어 · HS</span>
+          <span class="axis-tag ai">고전시가 × AI</span>
+        </div>
       </div>
       <div class="ch-row-status">
         <span class="live-badge"><span class="live-pulse"></span>LIVE</span>
@@ -454,11 +592,40 @@
       <div class="ch-row-info">
         <span class="ch-row-name">TECHNICIAN TV</span>
         <span class="ch-row-tags">Automation · Pipeline · Behind-the-scenes</span>
+        <div class="ch-row-axis">
+          <span class="axis-tag hs">과학 · HS</span>
+          <span class="axis-tag kr">허세교양 · KR</span>
+        </div>
       </div>
       <div class="ch-row-status">
         <span class="live-badge"><span class="live-pulse"></span>LIVE</span>
       </div>
     </a>
+
+    <!-- 3 Entry Points -->
+    <div class="entry-section">
+      <div class="bcast-header standby">WHO ARE YOU? — CHOOSE YOUR ENTRY</div>
+      <div class="entry-grid">
+        <div class="entry-card">
+          <span class="entry-icon">🌏</span>
+          <h3 class="entry-title">Curious about Korea?</h3>
+          <p class="entry-desc">Korean education &amp; personality decoded in English. Why are Koreans like that?</p>
+          <a href="/channel/philosopher/" class="entry-link">→ Philosopher TV</a>
+        </div>
+        <div class="entry-card">
+          <span class="entry-icon">🤖</span>
+          <h3 class="entry-title">Building with AI?</h3>
+          <p class="entry-desc">1 person · 5 channels · 25 programs · ₩0/month. See the blueprint.</p>
+          <a href="/channel/technician/" class="entry-link">→ Technician TV</a>
+        </div>
+        <div class="entry-card">
+          <span class="entry-icon">📚</span>
+          <h3 class="entry-title">Liberal Arts fan?</h3>
+          <p class="entry-desc">Philosophy, social studies, Korean language — all through an AI lens.</p>
+          <a href="/channel/blogger/" class="entry-link">→ Blogger TV</a>
+        </div>
+      </div>
+    </div>
 
     <!-- Station Info -->
     <footer class="lobby-footer">
