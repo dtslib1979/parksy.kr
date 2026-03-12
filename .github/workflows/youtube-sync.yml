@@ -1,13 +1,20 @@
-name: YouTube Auto-Sync
+name: YouTube Multi-Channel Sync
 
 on:
-  # 수동 실행
   workflow_dispatch:
     inputs:
       max_results:
-        description: 'Maximum videos to fetch'
+        description: '채널당 최대 영상 수'
         required: false
-        default: '50'
+        default: '20'
+      channel:
+        description: '특정 채널만 (비우면 전체 5채널)'
+        required: false
+        default: ''
+      dry_run:
+        description: 'dry-run (저장 안 함)'
+        required: false
+        default: 'false'
 
   # 6시간마다 자동 실행
   schedule:
@@ -18,14 +25,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Check credentials
+      - name: Check API key
         id: check
         run: |
-          if [ -z "${{ vars.YOUTUBE_CHANNEL_ID }}" ] || [ -z "${{ secrets.YOUTUBE_API_KEY }}" ]; then
-            echo "⚠️ YOUTUBE_CHANNEL_ID 또는 YOUTUBE_API_KEY 미설정. 건너뜀."
+          if [ -z "${{ secrets.YOUTUBE_API_KEY }}" ]; then
+            echo "⚠️ YOUTUBE_API_KEY 미설정. 건너뜀."
             echo "skip=true" >> $GITHUB_OUTPUT
           else
             echo "skip=false" >> $GITHUB_OUTPUT
@@ -41,10 +48,15 @@ jobs:
         if: steps.check.outputs.skip == 'false'
         env:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
-          YOUTUBE_CHANNEL_ID: ${{ vars.YOUTUBE_CHANNEL_ID }}
         run: |
-          python scripts/youtube_sync.py \
-            --max-results ${{ github.event.inputs.max_results || '50' }}
+          ARGS="--max-results ${{ github.event.inputs.max_results || '20' }}"
+          if [ -n "${{ github.event.inputs.channel }}" ]; then
+            ARGS="$ARGS --channel ${{ github.event.inputs.channel }}"
+          fi
+          if [ "${{ github.event.inputs.dry_run }}" == "true" ]; then
+            ARGS="$ARGS --dry-run"
+          fi
+          python scripts/youtube_sync.py $ARGS
 
       - name: Check for changes
         id: changes
@@ -55,11 +67,11 @@ jobs:
             echo "has_changes=false" >> $GITHUB_OUTPUT
           fi
 
-      - name: Commit and push changes
+      - name: Commit and push
         if: steps.changes.outputs.has_changes == 'true'
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "PARKSY Auto-Sync"
-          git add data/ api/
-          git commit -m "sync: YouTube auto-sync $(date +'%Y-%m-%d %H:%M')"
+          git add api/v1/youtube.json data/youtube/
+          git commit -m "sync: YouTube 5채널 auto-sync $(date +'%Y-%m-%d %H:%M UTC')"
           git push
