@@ -35,54 +35,6 @@
   <link rel="stylesheet" href="/design/elevator-ui.css">
 
   <style>
-    /* ── Channel Grid (Lobby) ── */
-    .channel-grid-lobby {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 0.6rem;
-      margin: 1.5rem 0;
-    }
-    .ch-card {
-      display: flex; align-items: center; gap: 0.75rem;
-      padding: 0.75rem 1rem;
-      background: var(--cave-wall);
-      border: 1px solid var(--cave-faint);
-      border-left: 3px solid var(--cave-dim);
-      border-radius: 4px;
-      text-decoration: none; color: inherit;
-      transition: all 0.2s ease;
-    }
-    .ch-card:hover {
-      border-left-color: var(--flame-core);
-      background: var(--cave-stone);
-      transform: translateX(2px);
-    }
-    .ch-card.ch-live { border-left-color: var(--flame-core); }
-    .ch-card-num {
-      font-family: var(--font-mono);
-      font-size: 0.6rem; color: var(--cave-dim);
-      min-width: 1.5rem;
-    }
-    .ch-card-icon { font-size: 1.1rem; }
-    .ch-card-info { flex: 1; }
-    .ch-card-name {
-      font-family: var(--font-mono);
-      font-size: 0.75rem; font-weight: 600;
-      color: var(--cave-glow);
-      display: block;
-    }
-    .ch-card-desc {
-      font-size: 0.6rem; color: var(--cave-dim);
-    }
-    .ch-dot {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--cave-faint);
-      flex-shrink: 0;
-    }
-    .ch-dot.live { background: var(--flame-core); box-shadow: 0 0 6px var(--flame-core); }
-    @media (max-width: 480px) {
-      .channel-grid-lobby { grid-template-columns: 1fr; }
-    }
     /* ── Scroll Progress Bar ── */
     .scroll-progress {
       position: fixed; top: 0; left: 0;
@@ -91,34 +43,132 @@
       z-index: 9999;
       transition: width 0.1s linear;
     }
-    /* ── Stats Bar ── */
-    .stats-bar {
-      display: flex; justify-content: center; gap: 2rem;
-      padding: 1rem 0; margin: 1.5rem 0;
-      border-top: 1px solid var(--cave-faint);
-      border-bottom: 1px solid var(--cave-faint);
-    }
-    .stat-item { text-align: center; }
-    .stat-value {
+
+    /* ── Signal Ticker ── */
+    .signal-ticker {
+      display: flex; align-items: center; gap: 1.5rem;
+      padding: 0.5rem 1rem;
+      background: rgba(255,107,53,0.05);
+      border-bottom: 1px solid rgba(255,107,53,0.15);
+      overflow: hidden;
       font-family: var(--font-mono);
-      font-size: 1.5rem; font-weight: 600;
-      color: var(--cave-glow);
-      display: block;
+      font-size: 0.6rem;
+      color: var(--cave-dim);
+      letter-spacing: 0.08em;
     }
-    .stat-label {
-      font-size: 0.65rem; color: var(--cave-faint);
-      text-transform: uppercase; letter-spacing: 0.1em;
+    .ticker-live {
+      color: var(--flame-core); font-weight: 600;
+      display: flex; align-items: center; gap: 0.4rem;
+      flex-shrink: 0;
     }
-    /* ── Hero Character Animation ── */
+    .ticker-dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--flame-core);
+      animation: pulse-dot 1.4s ease-in-out infinite;
+    }
+    .ticker-stats {
+      display: flex; gap: 1.5rem; flex-wrap: wrap;
+    }
+    .ticker-stat { white-space: nowrap; }
+    .ticker-stat span { color: var(--cave-glow); font-weight: 600; }
+
+    /* ── Hero ── */
     .station-title .char {
       display: inline-block;
-      opacity: 0;
-      transform: translateY(20px);
+      opacity: 0; transform: translateY(20px);
       animation: char-rise 0.6s forwards;
     }
-    @keyframes char-rise {
-      to { opacity: 1; transform: translateY(0); }
+    @keyframes char-rise { to { opacity: 1; transform: translateY(0); } }
+
+    /* ── Broadcast Section Header ── */
+    .bcast-header {
+      display: flex; align-items: center; gap: 0.6rem;
+      padding: 1.2rem 0 0.6rem;
+      font-family: var(--font-mono);
+      font-size: 0.6rem; font-weight: 600;
+      color: var(--flame-core);
+      text-transform: uppercase; letter-spacing: 0.12em;
     }
+    .bcast-header::after {
+      content: ''; flex: 1; height: 1px;
+      background: linear-gradient(90deg, rgba(255,107,53,0.3), transparent);
+    }
+    .bcast-header.standby { color: var(--cave-dim); }
+    .bcast-header.standby::after {
+      background: linear-gradient(90deg, var(--cave-faint), transparent);
+    }
+
+    /* ── Channel Row (TV Guide Style) ── */
+    .ch-row {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 1rem 1.25rem; margin-bottom: 0.3rem;
+      background: var(--cave-wall);
+      border: 1px solid var(--cave-faint);
+      border-left: 4px solid var(--cave-dim);
+      border-radius: 4px;
+      text-decoration: none; color: inherit;
+      transition: all 0.2s ease;
+      position: relative; overflow: hidden;
+    }
+    .ch-row::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(255,107,53,0) 0%, transparent 100%);
+      transition: opacity 0.3s;
+      opacity: 0;
+    }
+    .ch-row.on-air {
+      border-left-color: var(--flame-core);
+      background: linear-gradient(135deg, rgba(255,107,53,0.07) 0%, var(--cave-wall) 50%);
+    }
+    .ch-row:hover {
+      border-left-color: var(--flame-edge);
+      transform: translateX(4px);
+      box-shadow: -4px 0 20px rgba(255,107,53,0.1);
+    }
+    .ch-row-num {
+      font-family: var(--font-mono);
+      font-size: 1.6rem; font-weight: 600;
+      color: rgba(255,255,255,0.08);
+      min-width: 3rem; line-height: 1;
+      transition: color 0.2s;
+    }
+    .ch-row.on-air .ch-row-num { color: var(--flame-core); opacity: 0.7; }
+    .ch-row:hover .ch-row-num { color: var(--cave-dim); opacity: 1; }
+    .ch-row-icon { font-size: 1.4rem; flex-shrink: 0; }
+    .ch-row-info { flex: 1; min-width: 0; }
+    .ch-row-name {
+      font-family: var(--font-mono);
+      font-size: 0.82rem; font-weight: 600;
+      color: var(--cave-glow);
+      display: block; letter-spacing: 0.06em;
+    }
+    .ch-row-tags {
+      font-size: 0.62rem; color: var(--cave-dim); margin-top: 0.2rem;
+    }
+    .ch-row-status { flex-shrink: 0; }
+    .live-badge {
+      font-family: var(--font-mono); font-size: 0.55rem; font-weight: 700;
+      color: var(--flame-core);
+      background: rgba(255,107,53,0.12);
+      border: 1px solid rgba(255,107,53,0.35);
+      padding: 0.25rem 0.6rem; border-radius: 2px;
+      display: flex; align-items: center; gap: 0.35rem;
+      letter-spacing: 0.1em;
+    }
+    .live-pulse {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--flame-core);
+      animation: pulse-dot 1.4s ease-in-out infinite;
+    }
+    .off-badge {
+      font-family: var(--font-mono); font-size: 0.55rem;
+      color: rgba(255,255,255,0.12); letter-spacing: 0.1em;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 0 rgba(255,107,53,0.4); }
+      50% { opacity: 0.5; transform: scale(0.7); box-shadow: 0 0 0 4px rgba(255,107,53,0); }
+    }
+
     /* ── Quartet Grid ── */
     .quartet-grid {
       display: grid;
@@ -149,10 +199,7 @@
       font-size: 0.75rem; font-weight: 600;
       color: var(--cave-glow);
     }
-    .quartet-role {
-      font-size: 0.6rem; color: var(--cave-dim);
-      text-align: center;
-    }
+    .quartet-role { font-size: 0.6rem; color: var(--cave-dim); text-align: center; }
     .quartet-badge {
       font-size: 0.5rem; padding: 0.15rem 0.4rem;
       border-radius: 2px; margin-top: 0.25rem;
@@ -163,7 +210,7 @@
     .badge-hub { background: var(--broadcast-purple); color: white; }
     @media (max-width: 480px) {
       .quartet-grid { grid-template-columns: repeat(2, 1fr); }
-      .stats-bar { gap: 1rem; flex-wrap: wrap; }
+      .ch-row-num { font-size: 1.1rem; min-width: 2rem; }
     }
   </style>
 </head>
@@ -222,6 +269,17 @@
   <!-- ═══════════════════════════════════════════════════════════════
        1F LOBBY - Broadcasting Station Entrance
        ═══════════════════════════════════════════════════════════════ -->
+  <!-- Signal Ticker -->
+  <div class="signal-ticker">
+    <span class="ticker-live"><span class="ticker-dot"></span>SIGNAL ON</span>
+    <div class="ticker-stats">
+      <span class="ticker-stat"><span>5</span> CH</span>
+      <span class="ticker-stat"><span>4</span> DOMAINS</span>
+      <span class="ticker-stat"><span>25</span> TOOLS</span>
+      <span class="ticker-stat"><span>12</span> PIPELINES</span>
+    </div>
+  </div>
+
   <main class="floor-section active" id="floor-lobby">
     <header class="lobby-header">
       <div class="station-masthead">
@@ -234,87 +292,66 @@
       </div>
     </header>
 
-    <!-- Stats Bar -->
-    <div class="stats-bar">
-      <div class="stat-item">
-        <span class="stat-value">5</span>
-        <span class="stat-label">Channels</span>
+    <!-- NOW ON AIR -->
+    <div class="bcast-header"><span class="live-pulse"></span>NOW ON AIR</div>
+    <a href="/category/Philosopher-Parksy/" class="ch-row on-air">
+      <span class="ch-row-num">01</span>
+      <span class="ch-row-icon">🤔</span>
+      <div class="ch-row-info">
+        <span class="ch-row-name">PHILOSOPHER TV</span>
+        <span class="ch-row-tags">Commentary · Framing · Experiment · Systems</span>
       </div>
-      <div class="stat-item">
-        <span class="stat-value">4</span>
-        <span class="stat-label">Domains</span>
+      <div class="ch-row-status">
+        <span class="live-badge"><span class="live-pulse"></span>LIVE</span>
       </div>
-      <div class="stat-item">
-        <span class="stat-value">25</span>
-        <span class="stat-label">Tools</span>
+    </a>
+    <a href="/category/Visualizer-Parksy/" class="ch-row on-air">
+      <span class="ch-row-num">03</span>
+      <span class="ch-row-icon">🎨</span>
+      <div class="ch-row-info">
+        <span class="ch-row-name">VISUALIZER TV</span>
+        <span class="ch-row-tags">Webtoon · Image · CAD · Pipeline</span>
       </div>
-      <div class="stat-item">
-        <span class="stat-value">12</span>
-        <span class="stat-label">Pipelines</span>
+      <div class="ch-row-status">
+        <span class="live-badge"><span class="live-pulse"></span>LIVE</span>
       </div>
-    </div>
+    </a>
+    <a href="/category/Technician-Parksy/" class="ch-row on-air">
+      <span class="ch-row-num">05</span>
+      <span class="ch-row-icon">🔧</span>
+      <div class="ch-row-info">
+        <span class="ch-row-name">TECHNICIAN TV</span>
+        <span class="ch-row-tags">Automation · Pipeline · Behind-the-scenes</span>
+      </div>
+      <div class="ch-row-status">
+        <span class="live-badge"><span class="live-pulse"></span>LIVE</span>
+      </div>
+    </a>
 
-    <!-- Channel Grid -->
-    <!-- Channel Grid -->
-    <section>
-      <h2 class="section-label">On Air — 5 Channels</h2>
-      <div class="channel-grid-lobby">
-        <a href="/category/Philosopher-Parksy/" class="ch-card ch-live">
-          <span class="ch-card-num">01</span>
-          <span class="ch-card-icon">🤔</span>
-          <div class="ch-card-info">
-            <span class="ch-card-name">Philosopher TV</span>
-            <span class="ch-card-desc">Commentary · Framing · Experiment</span>
-          </div>
-          <span class="ch-dot live"></span>
-        </a>
-        <a href="/category/Blogger-Parksy/" class="ch-card">
-          <span class="ch-card-num">02</span>
-          <span class="ch-card-icon">📝</span>
-          <div class="ch-card-info">
-            <span class="ch-card-name">Blogger TV</span>
-            <span class="ch-card-desc">Essays & narratives</span>
-          </div>
-          <span class="ch-dot"></span>
-        </a>
-        <a href="/category/Visualizer-Parksy/" class="ch-card ch-live">
-          <span class="ch-card-num">03</span>
-          <span class="ch-card-icon">🎨</span>
-          <div class="ch-card-info">
-            <span class="ch-card-name">Visualizer TV</span>
-            <span class="ch-card-desc">Webtoon & data viz</span>
-          </div>
-          <span class="ch-dot live"></span>
-        </a>
-        <a href="/category/Musician-Parksy/" class="ch-card">
-          <span class="ch-card-num">04</span>
-          <span class="ch-card-icon">🎵</span>
-          <div class="ch-card-info">
-            <span class="ch-card-name">Musician TV</span>
-            <span class="ch-card-desc">BGM & audio pipeline</span>
-          </div>
-          <span class="ch-dot"></span>
-        </a>
-        <a href="/category/Technician-Parksy/" class="ch-card ch-live">
-          <span class="ch-card-num">05</span>
-          <span class="ch-card-icon">🔧</span>
-          <div class="ch-card-info">
-            <span class="ch-card-name">Technician TV</span>
-            <span class="ch-card-desc">Automation & tools</span>
-          </div>
-          <span class="ch-dot live"></span>
-        </a>
-        <a href="/archive/" class="ch-card">
-          <span class="ch-card-num">—</span>
-          <span class="ch-card-icon">📚</span>
-          <div class="ch-card-info">
-            <span class="ch-card-name">Archive</span>
-            <span class="ch-card-desc">All content</span>
-          </div>
-          <span class="ch-dot"></span>
-        </a>
+    <!-- STANDBY -->
+    <div class="bcast-header standby">STANDBY</div>
+    <a href="/category/Blogger-Parksy/" class="ch-row">
+      <span class="ch-row-num">02</span>
+      <span class="ch-row-icon">📝</span>
+      <div class="ch-row-info">
+        <span class="ch-row-name">BLOGGER TV</span>
+        <span class="ch-row-tags">Worldview · Essay · Narrative</span>
       </div>
-    </section>
+      <div class="ch-row-status">
+        <span class="off-badge">● OFF</span>
+      </div>
+    </a>
+    <a href="/category/Musician-Parksy/" class="ch-row">
+      <span class="ch-row-num">04</span>
+      <span class="ch-row-icon">🎵</span>
+      <div class="ch-row-info">
+        <span class="ch-row-name">MUSICIAN TV</span>
+        <span class="ch-row-tags">BGM · Audio · Lyria3</span>
+      </div>
+      <div class="ch-row-status">
+        <span class="off-badge">● OFF</span>
+      </div>
+    </a>
 
     <!-- Station Info -->
     <footer class="lobby-footer">
@@ -330,7 +367,7 @@
     <header class="floor-header">
       <span class="floor-badge">B1</span>
       <h2 class="floor-title">Channels</h2>
-      <p class="floor-desc">7 Persona Broadcasting Channels</p>
+      <p class="floor-desc">5 Persona Broadcasting Channels</p>
     </header>
 
     <div class="channel-list">
