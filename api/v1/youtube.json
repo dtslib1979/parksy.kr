@@ -3,14 +3,14 @@
   "meta": {
     "generatedAt": "2026-03-12T00:00:00Z",
     "account": "C (dimas.thomas.sancho@gmail.com)",
-    "note": "5 active YouTube channels (2026-03-12). Tester+Protocol+Orbit merged into Philosopher. Fill channelId from YouTube Studio.",
+    "note": "5 active YouTube channels (2026-03-12). channelId auto-extracted from channel pages.",
     "verifiedAt": "2026-03-12"
   },
   "channels": {
     "philosopher": {
       "persona": "Philosopher-Parksy",
       "handle": "@philosopher-parksy",
-      "channelId": null,
+      "channelId": "UCJaGuXjxoNjFMqfYUSFjZVg",
       "youtubeUrl": "https://www.youtube.com/@philosopher-parksy",
       "category": "category/Philosopher-Parksy/",
       "contentType": [
@@ -35,7 +35,7 @@
     "blogger": {
       "persona": "Blogger-Parksy",
       "handle": "@blogger-parksy",
-      "channelId": null,
+      "channelId": "UC5H8CnRGDxvx4v3HWrktuSg",
       "youtubeUrl": "https://www.youtube.com/@blogger-parksy",
       "category": "category/Blogger-Parksy/",
       "contentType": [
@@ -52,7 +52,7 @@
     "visualizer": {
       "persona": "Visualizer-Parksy",
       "handle": "@visualizer-parksy",
-      "channelId": null,
+      "channelId": "UC2MfUghTnMRE1xrODSfoELA",
       "youtubeUrl": "https://www.youtube.com/@visualizer-parksy",
       "category": "category/Visualizer-Parksy/",
       "contentType": [
@@ -70,7 +70,7 @@
     "musician": {
       "persona": "Musician-Parksy",
       "handle": "@musician-parksy",
-      "channelId": null,
+      "channelId": "UCun6b2HD3ekp35PhqbTfOlg",
       "youtubeUrl": "https://www.youtube.com/@musician-parksy",
       "category": "category/Musician-Parksy/",
       "contentType": [
@@ -87,7 +87,7 @@
     "technician": {
       "persona": "Technician-Parksy",
       "handle": "@technician-parksy",
-      "channelId": null,
+      "channelId": "UCfRaJjIn2oXyThHpAhOBSYg",
       "youtubeUrl": "https://www.youtube.com/@technician-parksy",
       "category": "category/Technician-Parksy/",
       "contentType": [
