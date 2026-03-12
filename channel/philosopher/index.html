@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Philosopher TV — PARKSY Broadcasting</title>
+  <meta name="description" content="Philosopher-Parksy: Commentary, framing, existential inquiry — powered by AI & Korean spirit.">
+  <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/design/cave-ui.css">
+  <link rel="stylesheet" href="/design/broadcast-ui.css">
+  <style>
+    body { background: var(--cave-void,#0a0a0a); color: var(--cave-glow,#e8e8e8); font-family: 'Inter',sans-serif; margin: 0; }
+    .ch-hero {
+      min-height: 38vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center;
+      padding: 3rem 1.5rem;
+      background: linear-gradient(180deg, rgba(255,107,53,0.06) 0%, transparent 100%);
+      border-bottom: 1px solid rgba(255,107,53,0.15);
+    }
+    .ch-eyebrow { font-family: 'JetBrains Mono',monospace; font-size: 0.6rem; color: var(--flame-core,#ff6b35); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem; }
+    .live-dot { width: 6px; height: 6px; background: var(--flame-core,#ff6b35); border-radius: 50%; animation: pulse 1.4s ease-in-out infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(255,107,53,0.4)} 50%{opacity:.5;box-shadow:0 0 0 5px rgba(255,107,53,0)} }
+    .ch-name { font-family: 'JetBrains Mono',monospace; font-size: 2.2rem; font-weight: 600; margin: 0.25rem 0; letter-spacing: 0.04em; }
+    .ch-subject { font-size: 0.85rem; color: var(--cave-dim,#666); margin-top: 0.5rem; max-width: 420px; line-height: 1.6; }
+    .ch-wrap { max-width: 720px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+    .sec-title { font-family: 'JetBrains Mono',monospace; font-size: 0.6rem; color: var(--cave-dim,#666); letter-spacing: 0.12em; text-transform: uppercase; padding: 1.5rem 0 0.6rem; border-top: 1px solid var(--cave-faint,#222); margin-top: 1.5rem; }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.5rem 0 1rem; }
+    .tag { font-family: 'JetBrains Mono',monospace; font-size: 0.65rem; padding: 0.25rem 0.7rem; border: 1px solid var(--cave-dim,#666); border-radius: 2px; color: var(--cave-dim,#666); }
+    .module-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin: 0.75rem 0; }
+    .module-card { padding: 1rem; background: var(--cave-wall,#1a1a1a); border: 1px solid var(--cave-faint,#222); border-left: 3px solid var(--cave-dim,#666); border-radius: 3px; }
+    .module-card.active { border-left-color: var(--flame-core,#ff6b35); }
+    .module-label { font-family: 'JetBrains Mono',monospace; font-size: 0.6rem; color: var(--cave-dim,#666); text-transform: uppercase; letter-spacing: 0.1em; }
+    .module-name { font-size: 0.82rem; font-weight: 600; color: var(--cave-glow,#e8e8e8); margin-top: 0.3rem; }
+    .module-desc { font-size: 0.65rem; color: var(--cave-dim,#666); margin-top: 0.2rem; line-height: 1.5; }
+    .yt-box { padding: 1.5rem; background: var(--cave-deep,#111); border: 1px solid var(--cave-faint,#222); border-radius: 4px; text-align: center; margin: 0.75rem 0; }
+    .yt-handle { font-family: 'JetBrains Mono',monospace; font-size: 0.75rem; color: var(--cave-dim,#666); margin-bottom: 0.75rem; }
+    .yt-btn { display: inline-block; padding: 0.6rem 2rem; background: #ff0000; color: #fff; text-decoration: none; font-family: 'JetBrains Mono',monospace; font-size: 0.78rem; font-weight: 600; border-radius: 2px; letter-spacing: 0.05em; }
+    .yt-btn:hover { background: #cc0000; }
+    .video-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; margin: 0.75rem 0; }
+    .video-ph { aspect-ratio: 16/9; background: var(--cave-wall,#1a1a1a); border: 1px solid var(--cave-faint,#222); display: flex; align-items: center; justify-content: center; color: var(--cave-faint,#333); font-size: 0.7rem; font-family: 'JetBrains Mono',monospace; border-radius: 3px; }
+    .back { display: inline-block; font-family: 'JetBrains Mono',monospace; font-size: 0.7rem; color: var(--cave-dim,#666); text-decoration: none; letter-spacing: 0.05em; margin: 1.5rem 0 0.5rem; }
+    .back:hover { color: var(--cave-glow,#e8e8e8); }
+    @media(max-width:480px){ .module-grid{grid-template-columns:1fr} .video-grid{grid-template-columns:1fr} .ch-name{font-size:1.6rem} }
+  </style>
+</head>
+<body>
+  <div class="ch-hero">
+    <div class="ch-eyebrow"><span class="live-dot"></span>CH.01 — PARKSY BROADCASTING — LIVE</div>
+    <h1 class="ch-name">PHILOSOPHER TV</h1>
+    <p class="ch-subject">Depth of thought — existential inquiry, democratic fantasy, Korean spirit decoded through AI</p>
+  </div>
+
+  <div class="ch-wrap">
+    <a href="/" class="back">← Station Lobby</a>
+
+    <div class="sec-title">Program Categories</div>
+    <div class="tag-row">
+      <span class="tag">Commentary</span>
+      <span class="tag">Framing</span>
+      <span class="tag">Experiment</span>
+      <span class="tag">Systems</span>
+      <span class="tag">With-AI</span>
+    </div>
+
+    <div class="sec-title">Content Modules</div>
+    <div class="module-grid">
+      <div class="module-card active">
+        <div class="module-label">KR Merit</div>
+        <div class="module-name">민주주의 판타지</div>
+        <div class="module-desc">Korean politics & society reinterpreted as fantasy genre</div>
+      </div>
+      <div class="module-card active">
+        <div class="module-label">고교 교재</div>
+        <div class="module-name">철학 (Philosophy)</div>
+        <div class="module-desc">Why Koreans memorize Socrates for the SAT</div>
+      </div>
+      <div class="module-card">
+        <div class="module-label">With-AI</div>
+        <div class="module-name">Prompt → Essay</div>
+        <div class="module-desc">Full prompt chain published — AI writes, persona edits</div>
+      </div>
+      <div class="module-card">
+        <div class="module-label">Tistory</div>
+        <div class="module-name">Chalkboard</div>
+        <div class="module-desc">Lecture materials & source texts — coming soon</div>
+      </div>
+    </div>
+
+    <div class="sec-title">YouTube Channel</div>
+    <div class="yt-box">
+      <div class="yt-handle">@philosopher-parksy</div>
+      <a href="https://www.youtube.com/@philosopher-parksy" class="yt-btn" target="_blank" rel="noopener">Subscribe on YouTube</a>
+    </div>
+
+    <div class="sec-title">Latest Videos</div>
+    <div class="video-grid">
+      <div class="video-ph">Coming Soon</div>
+      <div class="video-ph">Coming Soon</div>
+    </div>
+
+    <a href="/" class="back">← Station Lobby</a>
+  </div>
+</body>
+</html>

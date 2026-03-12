@@ -13,13 +13,24 @@
       "channelId": null,
       "youtubeUrl": "https://www.youtube.com/@philosopher-parksy",
       "category": "category/Philosopher-Parksy/",
-      "contentType": ["commentary", "framing", "concert", "experiment", "systems", "analytics"],
-      "siteUrl": "https://parksy.kr/category/Philosopher-Parksy/",
+      "contentType": [
+        "commentary",
+        "framing",
+        "concert",
+        "experiment",
+        "systems",
+        "analytics"
+      ],
+      "siteUrl": "https://parksy.kr/channel/philosopher/",
       "subscribers": 0,
       "verified": true,
       "videos": [],
       "lastSynced": null,
-      "absorbed": ["Tester-Parksy", "Protocol-Parksy", "Orbit-Log"]
+      "absorbed": [
+        "Tester-Parksy",
+        "Protocol-Parksy",
+        "Orbit-Log"
+      ]
     },
     "blogger": {
       "persona": "Blogger-Parksy",
@@ -27,8 +38,12 @@
       "channelId": null,
       "youtubeUrl": "https://www.youtube.com/@blogger-parksy",
       "category": "category/Blogger-Parksy/",
-      "contentType": ["worldview", "essay", "narrative"],
-      "siteUrl": "https://parksy.kr/category/Blogger-Parksy/",
+      "contentType": [
+        "worldview",
+        "essay",
+        "narrative"
+      ],
+      "siteUrl": "https://parksy.kr/channel/blogger/",
       "subscribers": 0,
       "verified": true,
       "videos": [],
@@ -40,8 +55,13 @@
       "channelId": null,
       "youtubeUrl": "https://www.youtube.com/@visualizer-parksy",
       "category": "category/Visualizer-Parksy/",
-      "contentType": ["webtoon", "image", "cad", "pipeline"],
-      "siteUrl": "https://parksy.kr/category/Visualizer-Parksy/",
+      "contentType": [
+        "webtoon",
+        "image",
+        "cad",
+        "pipeline"
+      ],
+      "siteUrl": "https://parksy.kr/channel/visualizer/",
       "subscribers": 0,
       "verified": true,
       "videos": [],
@@ -53,8 +73,12 @@
       "channelId": null,
       "youtubeUrl": "https://www.youtube.com/@musician-parksy",
       "category": "category/Musician-Parksy/",
-      "contentType": ["bgm", "audio", "lyria3"],
-      "siteUrl": "https://parksy.kr/category/Musician-Parksy/",
+      "contentType": [
+        "bgm",
+        "audio",
+        "lyria3"
+      ],
+      "siteUrl": "https://parksy.kr/channel/musician/",
       "subscribers": 1,
       "verified": true,
       "videos": [],
@@ -66,8 +90,12 @@
       "channelId": null,
       "youtubeUrl": "https://www.youtube.com/@technician-parksy",
       "category": "category/Technician-Parksy/",
-      "contentType": ["automation", "pipeline", "behind-the-scenes"],
-      "siteUrl": "https://parksy.kr/category/Technician-Parksy/",
+      "contentType": [
+        "automation",
+        "pipeline",
+        "behind-the-scenes"
+      ],
+      "siteUrl": "https://parksy.kr/channel/technician/",
       "subscribers": 0,
       "verified": true,
       "videos": [],
