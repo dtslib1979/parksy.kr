@@ -595,6 +595,59 @@
       .sched-fbt { font-size: 0.52rem; padding: 0.18rem 0.48rem; }
     }
 
+    /* ── B1 Episode Matrix ── */
+    .ep-matrix-wrap { margin: 1.5rem 0 0.5rem; }
+    .ep-matrix-label {
+      font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+      color: var(--cave-dim); letter-spacing: 0.15em; text-transform: uppercase;
+      padding: 0.6rem 0 0.5rem; border-top: 1px solid var(--cave-faint);
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .ep-selectors {
+      display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 0.75rem;
+    }
+    .ep-sel-row { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+    .ep-sel-axis {
+      font-family: var(--font-mono); font-size: 0.52rem; font-weight: 700;
+      letter-spacing: 0.1em; min-width: 3rem; text-transform: uppercase;
+    }
+    .ep-sel-axis.why { color: var(--flame-core, #ff6b35); }
+    .ep-sel-axis.what { color: #6baaff; }
+    .ep-btn {
+      font-family: var(--font-mono); font-size: 0.6rem; font-weight: 600;
+      padding: 0.28rem 0.65rem; border-radius: 2px; cursor: pointer;
+      transition: all 0.15s; letter-spacing: 0.06em; border: 1px solid;
+    }
+    .ep-btn.why  { color: var(--cave-dim); border-color: var(--cave-faint); background: transparent; }
+    .ep-btn.what { color: var(--cave-dim); border-color: var(--cave-faint); background: transparent; }
+    .ep-btn.why.sel  { color: var(--flame-core); border-color: var(--flame-core); background: rgba(255,107,53,0.08); }
+    .ep-btn.what.sel { color: #6baaff; border-color: #6baaff; background: rgba(107,170,255,0.08); }
+    .ep-result {
+      display: none; padding: 1rem 1.25rem; margin: 0.5rem 0 1rem;
+      background: var(--cave-deep, #111);
+      border: 1px solid rgba(255,107,53,0.25);
+      border-left: 3px solid var(--flame-core, #ff6b35);
+      border-radius: 3px;
+    }
+    .ep-result.show { display: block; }
+    .ep-result-combo {
+      font-family: var(--font-mono); font-size: 0.55rem; color: var(--cave-dim);
+      letter-spacing: 0.1em; margin-bottom: 0.5rem; text-transform: uppercase;
+    }
+    .ep-result-prop {
+      font-size: 0.9rem; font-weight: 600; color: var(--cave-glow);
+      line-height: 1.65; margin-bottom: 0.75rem;
+    }
+    .ep-result-pipe {
+      display: flex; gap: 0.3rem; flex-wrap: wrap; align-items: center;
+      font-family: var(--font-mono); font-size: 0.5rem; color: var(--cave-faint);
+    }
+    .ep-pipe-step {
+      padding: 0.1rem 0.4rem; border: 1px solid var(--cave-faint);
+      border-radius: 2px; color: var(--cave-dim);
+    }
+    .ep-pipe-arrow { color: var(--cave-faint); }
+
     /* ── Graph Module — B2 / B3 ── */
     .graph-wrap {
       position: relative;
@@ -907,6 +960,43 @@
           <button class="sched-fbt" data-filter="merit" data-val="편집평가강박">편집강박</button>
           <button class="sched-fbt" data-filter="merit" data-val="허세교양">허세교양</button>
           <button class="sched-fbt" data-filter="merit" data-val="하프블러드">하프블러드</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Episode Matrix: 모듈 곱하기 → 명제 생성 ── -->
+    <div class="ep-matrix-wrap">
+      <div class="ep-matrix-label">
+        <span>📐 에피소드 매트릭스</span>
+        <span style="color:var(--cave-faint);font-weight:400">WHY × WHAT = 명제</span>
+      </div>
+      <div class="ep-selectors">
+        <div class="ep-sel-row">
+          <span class="ep-sel-axis why">WHY</span>
+          <button class="ep-btn why" data-merit="bluff-liberal-arts">허세교양</button>
+          <button class="ep-btn why" data-merit="halfblood-language">하프블러드</button>
+          <button class="ep-btn why" data-merit="edit-obsession">편집평가강박</button>
+          <button class="ep-btn why" data-merit="democracy-fantasy">민주주의판타지</button>
+        </div>
+        <div class="ep-sel-row">
+          <span class="ep-sel-axis what">WHAT</span>
+          <button class="ep-btn what" data-subject="philosophy">철학</button>
+          <button class="ep-btn what" data-subject="math">수학</button>
+          <button class="ep-btn what" data-subject="social-studies">사회</button>
+          <button class="ep-btn what" data-subject="korean-language">국어</button>
+          <button class="ep-btn what" data-subject="science">과학</button>
+        </div>
+      </div>
+      <div class="ep-result" id="ep-result">
+        <div class="ep-result-combo" id="ep-combo">—</div>
+        <div class="ep-result-prop" id="ep-prop">—</div>
+        <div class="ep-result-pipe">
+          <span class="ep-pipe-step">💡 명제</span><span class="ep-pipe-arrow">→</span>
+          <span class="ep-pipe-step">🎨 웹툰</span><span class="ep-pipe-arrow">→</span>
+          <span class="ep-pipe-step">🔮 OrbitPrompt</span><span class="ep-pipe-arrow">→</span>
+          <span class="ep-pipe-step">📖 북페이지</span><span class="ep-pipe-arrow">→</span>
+          <span class="ep-pipe-step">✏️ 판서</span><span class="ep-pipe-arrow">→</span>
+          <span class="ep-pipe-step">▶️ YouTube</span>
         </div>
       </div>
     </div>
@@ -1250,6 +1340,155 @@
        SCRIPTS
        ═══════════════════════════════════════════════════════════════ -->
   <script>
+  // ── B1 Episode Matrix — 모듈 곱하기 → 명제 생성 ──
+  (function() {
+    var PROPS = {
+      'bluff-liberal-arts': {
+        'philosophy':      '한국인이 철학을 공부하는 건 이해하려는 게 아니라 말할 수 있으려는 것이다',
+        'math':            '수학을 잘하는 건 실력이 아니라 허세를 유지하기 위한 생존본능이다',
+        'social-studies':  '사회 교과서는 지식이 아니라 허세의 공통어를 가르친다',
+        'korean-language': '국어 시험은 문학을 읽는 게 아니라 아는 척하는 법을 배우는 것이다',
+        'science':         '과학 암기는 과학이 아니다. 허세를 장착하는 공정이다'
+      },
+      'halfblood-language': {
+        'philosophy':      '반쪽짜리 언어로 배운 철학은 반쪽짜리 세계관을 만든다',
+        'math':            '수식은 이해하지만 언어는 모른다 — 하프블러드의 수학',
+        'social-studies':  '사회를 배웠지만 사회를 읽지 못한다 — 번역된 세계관의 한계',
+        'korean-language': '국어를 모국어로 쓰면서 왜 국어를 외국어처럼 배우는가',
+        'science':         '과학 용어는 알지만 과학적 사고는 없다 — 언어 장벽 안의 과학'
+      },
+      'edit-obsession': {
+        'philosophy':      '한국 철학 교육은 사유가 아니라 답안지 편집을 가르친다',
+        'math':            '수학 풀이는 정답을 향한 강박적 편집 과정이다',
+        'social-studies':  '역사는 편집된다. 그 편집자가 교과서다',
+        'korean-language': '작문은 표현이 아니라 채점자의 기대를 편집하는 기술이다',
+        'science':         '실험 결과보다 실험 보고서 편집이 더 중요한 나라'
+      },
+      'democracy-fantasy': {
+        'philosophy':      '한국 고교 철학은 민주주의를 설명하지 않는다 — 판타지처럼 믿게 만든다',
+        'math':            '수능은 공정하다는 민주주의 판타지 — 숫자로 포장된 계급 재생산',
+        'social-studies':  '민주주의 단원은 민주주의를 가르치는가, 민주주의의 판타지를 주입하는가',
+        'korean-language': '문학 속 영웅은 항상 민주투사다 — 교과서가 만든 정치 판타지',
+        'science':         '과학기술이 민주주의를 구한다는 판타지 — 한국 과학교육의 이데올로기'
+      }
+    };
+    var MERIT_NAMES = {
+      'bluff-liberal-arts':'허세교양', 'halfblood-language':'하프블러드 어학',
+      'edit-obsession':'편집평가강박', 'democracy-fantasy':'민주주의 판타지'
+    };
+    var SUBJ_NAMES = {
+      'philosophy':'철학', 'math':'수학', 'social-studies':'사회',
+      'korean-language':'국어', 'science':'과학'
+    };
+
+    var selMerit = null, selSubject = null;
+
+    function tryGenerate() {
+      if (!selMerit || !selSubject) return;
+      var prop = PROPS[selMerit][selSubject];
+      var combo = MERIT_NAMES[selMerit] + ' (WHY) × ' + SUBJ_NAMES[selSubject] + ' (WHAT)';
+      document.getElementById('ep-combo').textContent = combo;
+      document.getElementById('ep-prop').textContent = '"' + prop + '"';
+      document.getElementById('ep-result').classList.add('show');
+    }
+
+    document.addEventListener('click', function(e) {
+      var btn = e.target.closest('.ep-btn');
+      if (!btn) return;
+      if (btn.dataset.merit) {
+        document.querySelectorAll('.ep-btn.why').forEach(function(b){ b.classList.remove('sel'); });
+        btn.classList.add('sel');
+        selMerit = btn.dataset.merit;
+      } else if (btn.dataset.subject) {
+        document.querySelectorAll('.ep-btn.what').forEach(function(b){ b.classList.remove('sel'); });
+        btn.classList.add('sel');
+        selSubject = btn.dataset.subject;
+      }
+      tryGenerate();
+    });
+  })();
+
+  // ── B1 Schedule Grid — initSchedule() ──
+  (function() {
+    var PROGRAMS = [
+      { ch:'01', icon:'🤔', name:'Philosopher TV', merit:'민주주의판타지', subject:'철학', format:'VIDEO', desc:'한국 고교 철학은 민주주의를 설명하지 않는다' },
+      { ch:'01', icon:'🤔', name:'Philosopher TV', merit:'허세교양',       subject:'철학', format:'TEXT',  desc:'한국인이 철학을 공부하는 건 아는 척하려는 것' },
+      { ch:'02', icon:'📝', name:'Blogger TV',     merit:'하프블러드',     subject:'수학', format:'TEXT',  desc:'수식은 이해하지만 언어는 모른다' },
+      { ch:'02', icon:'📝', name:'Blogger TV',     merit:'편집평가강박',   subject:'국어', format:'TEXT',  desc:'작문은 채점자의 기대를 편집하는 기술이다' },
+      { ch:'03', icon:'🎨', name:'Visualizer TV',  merit:'편집평가강박',   subject:'사회', format:'WEBTOON','desc':'역사는 편집된다. 그 편집자가 교과서다' },
+      { ch:'03', icon:'🎨', name:'Visualizer TV',  merit:'민주주의판타지', subject:'사회', format:'WEBTOON','desc':'민주주의 단원은 판타지를 주입하는가' },
+      { ch:'04', icon:'🎵', name:'Musician TV',    merit:'하프블러드',     subject:'국어', format:'AUDIO', desc:'국어를 모국어로 쓰면서 왜 외국어처럼 배우는가' },
+      { ch:'04', icon:'🎵', name:'Musician TV',    merit:'허세교양',       subject:'국어', format:'AUDIO', desc:'국어 시험은 아는 척하는 법을 배우는 것' },
+      { ch:'05', icon:'🔧', name:'Technician TV',  merit:'허세교양',       subject:'과학', format:'VIDEO', desc:'과학 암기는 허세를 장착하는 공정이다' },
+      { ch:'05', icon:'🔧', name:'Technician TV',  merit:'민주주의판타지', subject:'과학', format:'VIDEO', desc:'과학기술이 민주주의를 구한다는 판타지' }
+    ];
+
+    var filters = { channel: 'all', format: 'all', merit: 'all' };
+
+    function render() {
+      var grid = document.getElementById('sched-grid');
+      var empty = document.getElementById('sched-empty');
+      if (!grid) return;
+
+      // Group by channel
+      var channels = {};
+      PROGRAMS.forEach(function(p) {
+        if (!channels[p.ch]) channels[p.ch] = [];
+        channels[p.ch].push(p);
+      });
+
+      var html = '';
+      var totalVisible = 0;
+      Object.keys(channels).sort().forEach(function(ch) {
+        var progs = channels[ch].filter(function(p) {
+          if (filters.channel !== 'all' && filters.channel !== p.ch) return false;
+          if (filters.format  !== 'all' && filters.format  !== p.format) return false;
+          if (filters.merit   !== 'all' && !p.merit.replace(/\s/g,'').includes(filters.merit.replace(/\s/g,''))) return false;
+          return true;
+        });
+        if (progs.length === 0 && filters.channel !== 'all' && filters.channel !== ch) return;
+        var hidden = progs.length === 0 ? ' data-hidden="true"' : '';
+        totalVisible += progs.length;
+        html += '<div class="sched-ch-block" data-ch="' + ch + '" data-open="true"' + hidden + '>';
+        html += '<div class="sched-ch-hd" onclick="this.parentElement.dataset.open=this.parentElement.dataset.open===\'true\'?\'false\':\'true\'">';
+        html += '<span class="sched-ch-num" style="color:var(--flame-core,#ff6b35)">' + ch + '</span>';
+        html += '<div class="sched-ch-meta"><span class="sched-ch-name">' + channels[ch][0].icon + ' ' + channels[ch][0].name + '</span>';
+        html += '<span class="sched-ch-cnt">' + progs.length + ' episode' + (progs.length!==1?'s':'') + '</span></div>';
+        html += '<span class="sched-ch-caret">▾</span></div>';
+        html += '<div class="sched-prog-list">';
+        progs.forEach(function(p) {
+          html += '<div class="sched-prog-row">';
+          html += '<div class="sched-prog-text">';
+          html += '<span class="sched-prog-name">' + p.subject + ' × ' + p.merit + '</span>';
+          html += '<span class="sched-prog-desc">"' + p.desc + '"</span>';
+          html += '</div>';
+          html += '<div class="sched-badges">';
+          html += '<span class="sched-merit">' + p.merit + '</span>';
+          html += '<span class="sched-fmt sched-fmt-' + p.format + '">' + p.format + '</span>';
+          html += '</div>';
+          html += '<span class="sched-arrow">→</span></div>';
+        });
+        html += '</div></div>';
+      });
+
+      grid.innerHTML = html;
+      if (empty) empty.classList.toggle('visible', totalVisible === 0);
+    }
+
+    document.addEventListener('click', function(e) {
+      var btn = e.target.closest('.sched-fbt');
+      if (!btn) return;
+      var f = btn.dataset.filter, v = btn.dataset.val;
+      if (!f) return;
+      document.querySelectorAll('.sched-fbt[data-filter="' + f + '"]').forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      filters[f] = v;
+      render();
+    });
+
+    window.addEventListener('load', render);
+  })();
+
   // B3 Console — PO Routing display
   (function() {
     document.addEventListener('click', function(e) {
