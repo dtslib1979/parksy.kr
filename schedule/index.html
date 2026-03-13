@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>편성표 — PARKSY Broadcasting</title>
+  <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/design/cave-ui.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body { background: var(--cave-void, #0a0a0a); color: var(--cave-glow, #e8e8e8); font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
+
+    /* Header */
+    .sched-header {
+      padding: 2rem 1.5rem 1rem;
+      border-bottom: 1px solid rgba(255,107,53,0.15);
+      max-width: 960px; margin: 0 auto;
+    }
+    .sched-eyebrow {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.58rem;
+      color: var(--flame-core, #ff6b35); letter-spacing: 0.2em; text-transform: uppercase;
+      display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;
+    }
+    .live-dot { width: 5px; height: 5px; background: var(--flame-core, #ff6b35); border-radius: 50%; animation: pulse 1.4s ease-in-out infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+    .sched-title { font-family: 'JetBrains Mono', monospace; font-size: 1.8rem; font-weight: 600; margin: 0 0 0.25rem; }
+    .sched-sub { font-size: 0.78rem; color: var(--cave-dim, #666); }
+    .back { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--cave-dim, #666); text-decoration: none; margin-top: 0.75rem; }
+    .back:hover { color: var(--cave-glow, #e8e8e8); }
+
+    .sched-wrap { max-width: 960px; margin: 0 auto; padding: 2rem 1.5rem 5rem; }
+
+    /* Formula */
+    .formula-box {
+      display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;
+      padding: 1rem 1.25rem; margin-bottom: 2rem;
+      background: var(--cave-wall, #1a1a1a);
+      border: 1px solid rgba(255,107,53,0.2);
+      border-left: 3px solid var(--flame-core, #ff6b35);
+      border-radius: 3px; font-family: 'JetBrains Mono', monospace;
+    }
+    .formula-why { font-size: 0.78rem; font-weight: 600; color: var(--flame-core, #ff6b35); }
+    .formula-op  { font-size: 1rem; color: var(--cave-dim, #666); }
+    .formula-what{ font-size: 0.78rem; font-weight: 600; color: #6baaff; }
+    .formula-eq  { font-size: 0.78rem; color: var(--cave-dim, #666); }
+    .formula-out { font-size: 0.78rem; font-weight: 600; color: var(--cave-glow, #e8e8e8); }
+
+    /* Section label */
+    .sec-label {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.58rem;
+      color: var(--cave-dim, #666); letter-spacing: 0.15em; text-transform: uppercase;
+      padding: 1.5rem 0 0.6rem; border-top: 1px solid var(--cave-faint, #222); margin-top: 1.5rem;
+    }
+
+    /* Matrix Grid */
+    .matrix-wrap { overflow-x: auto; margin: 0.75rem 0 2rem; }
+    .matrix-grid {
+      display: grid;
+      grid-template-columns: 140px repeat(5, 1fr);
+      gap: 2px; min-width: 640px;
+    }
+    .mx-corner { background: transparent; }
+    .mx-col-header {
+      padding: 0.6rem 0.4rem; text-align: center;
+      background: var(--cave-deep, #111);
+      font-family: 'JetBrains Mono', monospace; font-size: 0.58rem;
+      color: #6baaff; letter-spacing: 0.08em; text-transform: uppercase;
+      border-radius: 2px;
+    }
+    .mx-row-header {
+      padding: 0.7rem 0.75rem; display: flex; flex-direction: column; gap: 0.15rem;
+      background: var(--cave-deep, #111); border-radius: 2px;
+    }
+    .mx-row-name { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; font-weight: 600; color: var(--flame-core, #ff6b35); }
+    .mx-row-sub  { font-size: 0.55rem; color: var(--cave-dim, #666); line-height: 1.4; }
+    .mx-cell {
+      padding: 0.6rem 0.5rem; background: var(--cave-wall, #1a1a1a);
+      border: 1px solid var(--cave-faint, #222); border-radius: 2px;
+      cursor: pointer; transition: all 0.2s; text-align: center;
+      display: flex; flex-direction: column; align-items: center; gap: 0.2rem;
+    }
+    .mx-cell:hover { border-color: var(--flame-core, #ff6b35); background: rgba(255,107,53,0.06); }
+    .mx-cell:hover .mx-slot-label { color: var(--cave-glow, #e8e8e8); }
+    .mx-slot-label { font-family: 'JetBrains Mono', monospace; font-size: 0.55rem; color: var(--cave-dim, #666); }
+    .mx-slot-status {
+      font-size: 0.5rem; padding: 0.1rem 0.35rem; border-radius: 1px;
+      font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.08em;
+    }
+    .status-open    { background: rgba(255,107,53,0.1); color: var(--flame-core, #ff6b35); border: 1px solid rgba(255,107,53,0.25); }
+    .status-wip     { background: rgba(107,170,255,0.1); color: #6baaff; border: 1px solid rgba(107,170,255,0.25); }
+    .status-done    { background: rgba(100,200,100,0.1); color: #64c864; border: 1px solid rgba(100,200,100,0.25); }
+
+    /* Pipeline */
+    .pipeline {
+      display: flex; align-items: flex-start; gap: 0;
+      overflow-x: auto; margin: 0.75rem 0 2rem;
+      padding-bottom: 0.5rem;
+    }
+    .pipe-stage {
+      display: flex; flex-direction: column; align-items: center;
+      min-width: 120px; flex-shrink: 0;
+    }
+    .pipe-node {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: var(--cave-wall, #1a1a1a);
+      border: 2px solid var(--cave-faint, #222);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; position: relative; z-index: 1;
+      transition: border-color 0.2s;
+    }
+    .pipe-stage:hover .pipe-node { border-color: var(--flame-core, #ff6b35); }
+    .pipe-step {
+      position: absolute; top: -6px; right: -6px;
+      width: 16px; height: 16px; border-radius: 50%;
+      background: var(--flame-core, #ff6b35);
+      font-family: 'JetBrains Mono', monospace; font-size: 0.5rem; font-weight: 600;
+      color: #000; display: flex; align-items: center; justify-content: center;
+    }
+    .pipe-label {
+      margin-top: 0.5rem; text-align: center;
+      font-family: 'JetBrains Mono', monospace; font-size: 0.58rem;
+      color: var(--cave-dim, #666); line-height: 1.4; max-width: 100px;
+    }
+    .pipe-tool {
+      font-size: 0.5rem; color: rgba(255,255,255,0.2); margin-top: 0.15rem;
+    }
+    .pipe-arrow {
+      flex-shrink: 0; width: 32px; display: flex; align-items: center;
+      justify-content: center; color: var(--cave-faint, #333);
+      font-size: 1rem; padding-top: 14px;
+    }
+    .pipe-loopback {
+      width: 100%; margin-top: 0.75rem; padding: 0.5rem 0.75rem;
+      background: rgba(255,107,53,0.04); border: 1px dashed rgba(255,107,53,0.2);
+      border-radius: 2px; text-align: center;
+      font-family: 'JetBrains Mono', monospace; font-size: 0.55rem; color: var(--cave-dim, #666);
+    }
+
+    /* Preview panel */
+    .preview-panel {
+      display: none; padding: 1.25rem; margin: 0.75rem 0;
+      background: var(--cave-deep, #111); border: 1px solid rgba(255,107,53,0.2);
+      border-left: 3px solid var(--flame-core, #ff6b35); border-radius: 3px;
+    }
+    .preview-panel.active { display: block; }
+    .preview-title { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--flame-core, #ff6b35); margin-bottom: 0.5rem; }
+    .preview-proposition {
+      font-size: 0.88rem; font-weight: 600; color: var(--cave-glow, #e8e8e8);
+      line-height: 1.6; margin-bottom: 0.75rem;
+    }
+    .preview-meta { font-size: 0.65rem; color: var(--cave-dim, #666); }
+
+    @media (max-width: 480px) {
+      .sched-title { font-size: 1.3rem; }
+      .formula-box { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="sched-header">
+  <div class="sched-eyebrow"><span class="live-dot"></span>PARKSY BROADCASTING — PROGRAM SCHEDULE</div>
+  <h1 class="sched-title">편성표</h1>
+  <p class="sched-sub">KR Merit (WHY) × 교과목 (WHAT) = 명제 → 에피소드 → 루프백</p>
+  <a href="/" class="back">← 로비로</a>
+</div>
+
+<div class="sched-wrap">
+
+  <!-- Formula -->
+  <div class="formula-box">
+    <span class="formula-why">KR Merit</span>
+    <span class="formula-op">×</span>
+    <span class="formula-what">교과목</span>
+    <span class="formula-eq">=</span>
+    <span class="formula-out">명제 (가설)</span>
+    <span class="formula-eq">→</span>
+    <span class="formula-out">에피소드</span>
+  </div>
+
+  <!-- Matrix -->
+  <div class="sec-label">에피소드 매트릭스 — 4 × 5 = 20 슬롯</div>
+  <div class="matrix-wrap">
+    <div class="matrix-grid" id="matrix-grid">
+      <!-- JS가 채움 -->
+    </div>
+  </div>
+
+  <!-- Preview -->
+  <div class="preview-panel" id="preview-panel">
+    <div class="preview-title" id="preview-title">—</div>
+    <div class="preview-proposition" id="preview-prop">셀을 클릭하면 명제가 생성됩니다.</div>
+    <div class="preview-meta" id="preview-meta"></div>
+  </div>
+
+  <!-- Pipeline -->
+  <div class="sec-label">제작 파이프라인 — 명제 → 루프백</div>
+  <div class="pipeline" id="pipeline">
+    <!-- JS가 채움 -->
+  </div>
+  <div class="pipe-loopback">
+    ↩ YouTube 댓글 · 조회수 · 반응 → 새 명제 시드로 루프백
+  </div>
+
+</div>
+
+<script>
+const KR_MERIT = [
+  { id: 'bluff-liberal-arts',  name: '허세교양',       en: 'Bluff Liberal Arts',  concept: '아는 척하는 문화' },
+  { id: 'halfblood-language',  name: '하프블러드 어학', en: 'Half-blood Language',  concept: '반쪽짜리 언어로 보기' },
+  { id: 'edit-obsession',      name: '편집평가강박',    en: 'Edit Obsession',       concept: '강박적 편집과 평가' },
+  { id: 'democracy-fantasy',   name: '민주주의 판타지', en: 'Democracy Fantasy',    concept: '판타지로 읽는 정치' }
+];
+
+const SUBJECTS = [
+  { id: 'philosophy',      name: '철학', en: 'Philosophy' },
+  { id: 'math',            name: '수학', en: 'Math' },
+  { id: 'social-studies',  name: '사회', en: 'Social' },
+  { id: 'korean-language', name: '국어', en: 'Korean Lit' },
+  { id: 'science',         name: '과학', en: 'Science' }
+];
+
+const PIPELINE = [
+  { step: 1, icon: '💡', name: '명제 생성',    tool: 'JSON × Matrix' },
+  { step: 2, icon: '🎨', name: '웹툰',          tool: 'parksy-liner' },
+  { step: 3, icon: '🔮', name: '프롬프트엔진', tool: 'OrbitPrompt' },
+  { step: 4, icon: '📖', name: '웹앱 북페이지','tool': 'parksy.kr' },
+  { step: 5, icon: '✏️', name: '판서 영상',    tool: 'S Pen + PSE' },
+  { step: 6, icon: '▶️', name: 'YouTube',      tool: 'deploy pipeline' }
+];
+
+// Build matrix
+function buildMatrix() {
+  const grid = document.getElementById('matrix-grid');
+  let html = '<div class="mx-corner"></div>';
+
+  // Col headers (subjects)
+  SUBJECTS.forEach(s => {
+    html += `<div class="mx-col-header">${s.name}<br><span style="color:rgba(255,255,255,0.2);font-size:0.5rem">${s.en}</span></div>`;
+  });
+
+  // Rows (kr-merit)
+  KR_MERIT.forEach(m => {
+    html += `<div class="mx-row-header"><span class="mx-row-name">${m.name}</span><span class="mx-row-sub">${m.concept}</span></div>`;
+    SUBJECTS.forEach(s => {
+      html += `<div class="mx-cell" data-merit="${m.id}" data-subject="${s.id}" onclick="selectCell(this,'${m.id}','${s.id}')">
+        <span class="mx-slot-label">${m.name.slice(0,2)} × ${s.name}</span>
+        <span class="mx-slot-status status-open">OPEN</span>
+      </div>`;
+    });
+  });
+
+  grid.innerHTML = html;
+}
+
+// Generate proposition
+function generateProposition(meritId, subjectId) {
+  const m = KR_MERIT.find(x => x.id === meritId);
+  const s = SUBJECTS.find(x => x.id === subjectId);
+  const props = {
+    'bluff-liberal-arts': {
+      'philosophy': `한국인이 철학을 공부하는 건 이해하려는 게 아니라 말할 수 있으려는 것이다`,
+      'math':       `수학을 잘하는 건 실력이 아니라 허세를 유지하기 위한 생존본능이다`,
+      'social-studies': `사회 교과서는 지식이 아니라 허세의 공통어를 가르친다`,
+      'korean-language': `국어 시험은 문학을 읽는 게 아니라 아는 척하는 법을 배우는 것이다`,
+      'science':    `과학 암기는 과학이 아니다. 허세를 장착하는 공정이다`
+    },
+    'halfblood-language': {
+      'philosophy': `반쪽짜리 언어로 배운 철학은 반쪽짜리 세계관을 만든다`,
+      'math':       `수식은 이해하지만 언어는 모른다 — 하프블러드의 수학`,
+      'social-studies': `사회를 배웠지만 사회를 읽지 못한다 — 번역된 세계관의 한계`,
+      'korean-language': `국어를 모국어로 쓰면서 왜 국어를 외국어처럼 배우는가`,
+      'science':    `과학 용어는 알지만 과학적 사고는 없다 — 언어 장벽 안의 과학`
+    },
+    'edit-obsession': {
+      'philosophy': `한국 철학 교육은 사유가 아니라 답안지 편집을 가르친다`,
+      'math':       `수학 풀이는 정답을 향한 강박적 편집 과정이다`,
+      'social-studies': `역사는 편집된다. 그 편집자가 교과서다`,
+      'korean-language': `작문은 표현이 아니라 채점자의 기대를 편집하는 기술이다`,
+      'science':    `실험 결과보다 실험 보고서 편집이 더 중요한 나라`
+    },
+    'democracy-fantasy': {
+      'philosophy': `한국 고교 철학은 민주주의를 설명하지 않는다 — 판타지처럼 믿게 만든다`,
+      'math':       `수능은 공정하다는 민주주의 판타지 — 숫자로 포장된 계급 재생산`,
+      'social-studies': `민주주의 단원은 민주주의를 가르치는가, 민주주의의 판타지를 주입하는가`,
+      'korean-language': `문학 속 영웅은 항상 민주투사다 — 교과서가 만든 정치 판타지`,
+      'science':    `과학기술이 민주주의를 구한다는 판타지 — 한국 과학교육의 이데올로기`
+    }
+  };
+  return props[meritId]?.[subjectId] || `"${m.name}" 렌즈로 "${s.name}"을 보면 — [명제 생성 대기]`;
+}
+
+function selectCell(el, meritId, subjectId) {
+  document.querySelectorAll('.mx-cell').forEach(c => c.style.borderColor = '');
+  el.style.borderColor = 'var(--flame-core, #ff6b35)';
+
+  const m = KR_MERIT.find(x => x.id === meritId);
+  const s = SUBJECTS.find(x => x.id === subjectId);
+  const prop = generateProposition(meritId, subjectId);
+
+  const panel = document.getElementById('preview-panel');
+  document.getElementById('preview-title').textContent = `${m.name} × ${s.name} → 명제`;
+  document.getElementById('preview-prop').textContent = `"${prop}"`;
+  document.getElementById('preview-meta').textContent = `WHY: ${m.en} · WHAT: ${s.en} · STATUS: OPEN`;
+  panel.classList.add('active');
+}
+
+// Build pipeline
+function buildPipeline() {
+  const el = document.getElementById('pipeline');
+  let html = '';
+  PIPELINE.forEach((p, i) => {
+    html += `<div class="pipe-stage">
+      <div class="pipe-node">
+        ${p.icon}
+        <span class="pipe-step">${p.step}</span>
+      </div>
+      <div class="pipe-label">${p.name}<div class="pipe-tool">${p.tool}</div></div>
+    </div>`;
+    if (i < PIPELINE.length - 1) html += `<div class="pipe-arrow">→</div>`;
+  });
+  el.innerHTML = html;
+}
+
+buildMatrix();
+buildPipeline();
+</script>
+</body>
+</html>

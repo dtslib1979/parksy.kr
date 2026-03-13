@@ -1,66 +1,44 @@
 {
   "meta": {
-    "version": "1.1",
+    "version": "2.0",
     "description": "KR Merit 4 Modules — How foreigners understand Koreans",
     "account": "dtslib2k@kakao.com",
-    "rootUrl": "https://dtslib2k.tistory.com"
+    "rootUrl": "https://dtslib2k.tistory.com",
+    "concept": "Independent content modules. Multiply with any highschool subject. 4 × 5 = 20 combinations.",
+    "matrix": "kr-merit × highschool-subject = episode. No fixed pairing."
   },
   "modules": {
     "bluff-liberal-arts": {
       "name": "허세교양 (Bluff Liberal Arts)",
-      "persona": "technician",
       "tistoryAccount": "dtslib2k",
       "tistoryBlog": "KR Merit-허세교양",
       "tistoryUrl": "https://dtslib2k.tistory.com",
       "concept": "Korean culture of performing educated — memorizing without understanding",
-      "youtubeHook": "Why Koreans act like they know everything (AI explains)",
-      "crossAxis": {
-        "highschool": "science",
-        "highschoolBlog": "중년고딩과학",
-        "reason": "Korean science education as performance art"
-      }
+      "youtubeHook": "Why Koreans act like they know everything (AI explains)"
     },
     "halfblood-language": {
       "name": "하프블러드 어학 (Half-blood Language)",
-      "persona": "blogger",
       "tistoryAccount": "dtslib2k",
       "tistoryBlog": "KR Merit-하프블러드 어학",
       "tistoryUrl": "https://dtslib2k.tistory.com",
       "concept": "Korean language through eyes of someone who half-understands it",
-      "youtubeHook": "Korean SAT explained by AI to a half-foreigner",
-      "crossAxis": {
-        "highschool": "math",
-        "highschoolBlog": "중년고딩수학",
-        "reason": "Math culture seen through language barrier"
-      }
+      "youtubeHook": "Korean SAT explained by AI to a half-foreigner"
     },
     "edit-obsession": {
       "name": "편집평가강박 (Edit Obsession)",
-      "persona": "visualizer",
       "tistoryAccount": "dtslib2k",
       "tistoryBlog": "KR Merit-편집강박어그로",
       "tistoryUrl": "https://dtslib2k.tistory.com",
       "concept": "Korean perfectionism — obsessive editing and evaluating everything",
-      "youtubeHook": "Why Koreans rewrite everything 10 times (visualized)",
-      "crossAxis": {
-        "highschool": "social-studies",
-        "highschoolBlog": "중년고딩사회",
-        "reason": "Social evaluation culture in education"
-      }
+      "youtubeHook": "Why Koreans rewrite everything 10 times (visualized)"
     },
     "democracy-fantasy": {
       "name": "민주주의 판타지 (Democracy Fantasy)",
-      "persona": "philosopher",
       "tistoryAccount": "dtslib2k",
       "tistoryBlog": "KR Merit-사면민주주의",
       "tistoryUrl": "https://dtslib2k.tistory.com",
       "concept": "Korean politics and society reinterpreted as fantasy genre",
-      "youtubeHook": "Korean democracy explained as a fantasy novel (with AI)",
-      "crossAxis": {
-        "highschool": "philosophy",
-        "highschoolBlog": "중년고딩철학",
-        "reason": "HS philosophy class feeds directly into political fantasy"
-      }
+      "youtubeHook": "Korean democracy explained as a fantasy novel (with AI)"
     }
   }
 }
