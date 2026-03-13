@@ -132,29 +132,39 @@
         { id:'eo',  label:'편집\n평가강박',     en:'Edit Obsession',     type:'primary',   color:'#ff6b35', url:TISTORY.eo,  desc:'KR Merit-편집강박어그로 — dtslib2k' },
         { id:'hb',  label:'하프블러드\n어학',   en:'Halfblood Language', type:'primary',   color:'#4ecdc4', url:TISTORY.hb,  desc:'KR Merit-하프블러드 어학 — dtslib2k' },
         { id:'ba',  label:'허세교양',           en:'Bluff Liberal Arts', type:'primary',   color:'#f4d35e', url:TISTORY.ba,  desc:'KR Merit-허세교양 — dtslib2k' },
-        { id:'hsp', label:'철학',               en:'중년고딩철학',       type:'secondary', color:'#555',    url:TISTORY.hsp, desc:'중년고딩철학 — dtslib1k' },
-        { id:'hss', label:'사회',               en:'중년고딩사회',       type:'secondary', color:'#555',    url:TISTORY.hss, desc:'중년고딩사회 — dtslib1k' },
-        { id:'hsm', label:'수학',               en:'중년고딩수학',       type:'secondary', color:'#555',    url:TISTORY.hsm, desc:'중년고딩수학 — dtslib1k' },
-        { id:'hsc', label:'과학',               en:'중년고딩과학',       type:'secondary', color:'#555',    url:TISTORY.hsc, desc:'중년고딩과학 — dtslib1k' }
+        { id:'hsp', label:'철학', en:'중년고딩철학', type:'secondary', color:'#555', url:TISTORY.hsp, desc:'중년고딩철학 — dtslib1k' },
+        { id:'hsm', label:'수학', en:'중년고딩수학', type:'secondary', color:'#555', url:TISTORY.hsm, desc:'중년고딩수학 — dtslib1k' },
+        { id:'hss', label:'사회', en:'중년고딩사회', type:'secondary', color:'#555', url:TISTORY.hss, desc:'중년고딩사회 — dtslib1k' },
+        { id:'hsk', label:'국어', en:'중년고딩국어', type:'secondary', color:'#555', url:TISTORY.hsk, desc:'KR Merit x KR reading material — dtslib1k' },
+        { id:'hsc', label:'과학', en:'중년고딩과학', type:'secondary', color:'#555', url:TISTORY.hsc, desc:'중년고딩과학 — dtslib1k' }
       ],
       edges: [
-        {a:'dm', b:'hsp'}, {a:'eo', b:'hss'}, {a:'hb', b:'hsm'}, {a:'ba', b:'hsc'}
+        // 4 KR Merit × 5 교과목 = 20 edges (전체 곱셈)
+        {a:'dm', b:'hsp'}, {a:'dm', b:'hsm'}, {a:'dm', b:'hss'}, {a:'dm', b:'hsk'}, {a:'dm', b:'hsc'},
+        {a:'eo', b:'hsp'}, {a:'eo', b:'hsm'}, {a:'eo', b:'hss'}, {a:'eo', b:'hsk'}, {a:'eo', b:'hsc'},
+        {a:'hb', b:'hsp'}, {a:'hb', b:'hsm'}, {a:'hb', b:'hss'}, {a:'hb', b:'hsk'}, {a:'hb', b:'hsc'},
+        {a:'ba', b:'hsp'}, {a:'ba', b:'hsm'}, {a:'ba', b:'hss'}, {a:'ba', b:'hsk'}, {a:'ba', b:'hsc'}
       ]
     },
     'hs-curriculum': {
       nodes: [
-        { id:'hsp', label:'철학', en:'중년고딩철학',       type:'primary', color:'#7b68ee', url:TISTORY.hsp, desc:'중년고딩철학 — dtslib1k' },
-        { id:'hsm', label:'수학', en:'중년고딩수학',       type:'primary', color:'#4ecdc4', url:TISTORY.hsm, desc:'중년고딩수학 — dtslib1k' },
-        { id:'hss', label:'사회', en:'중년고딩사회',       type:'primary', color:'#ff6b35', url:TISTORY.hss, desc:'중년고딩사회 — dtslib1k' },
-        { id:'hsk', label:'국어', en:'KR Merit x 국어',   type:'primary', color:'#f4d35e', url:TISTORY.hsk, desc:'KR Merit x KR reading material — dtslib1k' },
-        { id:'hsc', label:'과학', en:'중년고딩과학',       type:'primary', color:'#95e1d3', url:TISTORY.hsc, desc:'중년고딩과학 — dtslib1k' },
-        { id:'dm',  label:'민주\n판타지', en:'KR Merit-사면민주주의',  type:'secondary', color:'#555', url:TISTORY.dm, desc:'KR Merit-사면민주주의 — dtslib2k' },
+        { id:'hsp', label:'철학', en:'중년고딩철학', type:'primary', color:'#7b68ee', url:TISTORY.hsp, desc:'중년고딩철학 — dtslib1k' },
+        { id:'hsm', label:'수학', en:'중년고딩수학', type:'primary', color:'#4ecdc4', url:TISTORY.hsm, desc:'중년고딩수학 — dtslib1k' },
+        { id:'hss', label:'사회', en:'중년고딩사회', type:'primary', color:'#ff6b35', url:TISTORY.hss, desc:'중년고딩사회 — dtslib1k' },
+        { id:'hsk', label:'국어', en:'중년고딩국어', type:'primary', color:'#f4d35e', url:TISTORY.hsk, desc:'KR Merit x KR reading material — dtslib1k' },
+        { id:'hsc', label:'과학', en:'중년고딩과학', type:'primary', color:'#95e1d3', url:TISTORY.hsc, desc:'중년고딩과학 — dtslib1k' },
+        { id:'dm',  label:'민주\n판타지', en:'KR Merit-사면민주주의',   type:'secondary', color:'#555', url:TISTORY.dm, desc:'KR Merit-사면민주주의 — dtslib2k' },
         { id:'hb',  label:'하프\n블러드', en:'KR Merit-하프블러드어학', type:'secondary', color:'#555', url:TISTORY.hb, desc:'KR Merit-하프블러드 어학 — dtslib2k' },
         { id:'eo',  label:'편집\n강박',   en:'KR Merit-편집강박어그로', type:'secondary', color:'#555', url:TISTORY.eo, desc:'KR Merit-편집강박어그로 — dtslib2k' },
         { id:'ba',  label:'허세\n교양',   en:'KR Merit-허세교양',       type:'secondary', color:'#555', url:TISTORY.ba, desc:'KR Merit-허세교양 — dtslib2k' }
       ],
       edges: [
-        {a:'hsp', b:'dm'}, {a:'hsm', b:'hb'}, {a:'hss', b:'eo'}, {a:'hsc', b:'ba'}, {a:'hsk', b:'hb'}
+        // 5 교과목 × 4 KR Merit = 20 edges (전체 곱셈)
+        {a:'hsp', b:'dm'}, {a:'hsp', b:'hb'}, {a:'hsp', b:'eo'}, {a:'hsp', b:'ba'},
+        {a:'hsm', b:'dm'}, {a:'hsm', b:'hb'}, {a:'hsm', b:'eo'}, {a:'hsm', b:'ba'},
+        {a:'hss', b:'dm'}, {a:'hss', b:'hb'}, {a:'hss', b:'eo'}, {a:'hss', b:'ba'},
+        {a:'hsk', b:'dm'}, {a:'hsk', b:'hb'}, {a:'hsk', b:'eo'}, {a:'hsk', b:'ba'},
+        {a:'hsc', b:'dm'}, {a:'hsc', b:'hb'}, {a:'hsc', b:'eo'}, {a:'hsc', b:'ba'}
       ]
     }
   };
