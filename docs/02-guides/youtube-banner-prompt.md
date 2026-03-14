@@ -4,6 +4,87 @@
 
 ---
 
+## 필름스트립 썸네일 프롬프트 (2560×1440 기준)
+
+> 캔버스 60% 가로 / 20% 세로 — 필름 스트립이 중앙에 위치
+
+**핵심 수치:**
+
+| | px | 비율 |
+|--|--|--|
+| 좌우 dead zone | 각 512px | 20% |
+| 상하 dead zone | 각 576px | 40% |
+| 필름 스트립 가로 | 1536px (x=512~2048) | 60% |
+| 필름 스트립 세로 | 288px (y=576~864) | 20% |
+
+```
+Generate a single 2560×1440px image.
+
+DEAD ZONES — pure #0D0D0D, nothing else:
+  x=0    to x=511    (left 20%)
+  x=2049 to x=2560   (right 20%)
+  y=0    to y=575    (top 40%)
+  y=865  to y=1440   (bottom 40%)
+
+FILM STRIP ZONE — x=512 to x=2048, y=576 to y=864 (1536×288px)
+This entire zone is a single 35mm horizontal film strip.
+Three vertical columns:
+
+  LEFT REBATE   x=512 to x=699   (188px wide, full height y=576~864)
+    Background: #0F0C09
+    "KODAK PROFESSIONAL 400TX 135-36" rotated 90° CW
+      font: 12px condensed sans, color #3A3025, vertically centered
+    Frame numbers: "14A" "15" "15A" "16"
+      color #2E2820, 10px, evenly spaced vertically
+    DX barcode: 4px vertical lines alternating #1E1A14 / #0D0D0D
+      positioned at x=694~699
+    Perforations on right inner edge (x=686~697):
+      5 rectangles, 10×16px, rounded 1px, #0D0D0D with 1px #2A2018 border
+      evenly spaced vertically within y=576~864
+
+  RIGHT REBATE  x=1861 to x=2048  (188px wide)
+    Exact mirror of left rebate
+
+  CENTER FRAME  x=700 to x=1860  (1160px wide)
+
+    TOP PERFORATION STRIP  y=576 to y=647  (72px tall)
+      Background: #0F0C09
+      9 sprocket holes: 26×40px, rounded 3px, #0D0D0D
+      evenly spaced across x=700~1860, vertically centered at y=611
+
+    BOTTOM PERFORATION STRIP  y=793 to y=864  (72px tall)
+      Exact mirror of top strip
+
+    IMAGE AREA  x=700 to x=1860, y=648 to y=792  (1160×144px)
+
+      LEFT HALF  x=700 to x=1100
+        Background fades from #0D0D0D (at x=700) to transparent (at x=900)
+        BLOGGER-PARKSY
+          Geometric sans-serif, Extra Bold, 44px, ALL CAPS
+          color #F5EDD6, flat, zero shadow, zero glow
+          baseline at y=718
+        AI로 쓰는 에세이
+          Same family, Light weight, 22px, tracking 0.18em
+          color #A89888
+          baseline at y=742
+        Left-aligned, text block starts at x=740
+
+      RIGHT HALF  x=1100 to x=1860
+        Writer's desk scene:
+          Open notebook, matte black pen, dark ceramic mug with faint steam
+          Laptop lid 45° open, screen faces LEFT, emits #C8D8E8 cool light
+          Camera: 40° overhead, Dutch tilt 2°, f/1.8 shallow DoF
+        LEFT FADE: photo fades from #0D0D0D at x=1100 → fully visible at x=1260
+        RIGHT FADE: photo fades to #0D0D0D over x=1780~1860
+
+      Film grain overlay on entire image area, opacity 12%
+      Subtle vignette at all four corners of image area only
+
+2560×1440px. sRGB. One image only. No caption. No border. No text outside image area.
+```
+
+---
+
 ```
 You are a world-class creative director who has art-directed for
 Monocle, Kinfolk, The New Yorker, and A/P/O/C/. Your task is to
