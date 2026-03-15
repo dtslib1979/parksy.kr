@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>구씨 테스트 2</title>
+<!-- SOURCE: https://dtslib1k.tistory.com/222 -->
+<!-- DATE: Wed, 24 Dec 2025 11:47:22 +0900 -->
+<!-- BLOG: dtslib1k -->
+<!-- SCRAPED: 2026-03-14T18:12:21.632226 -->
+</head>
+<body>
+<!-- ===== RSS HTML (원문) ===== -->
+<div id="rss-content">
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+
+  <!-- SEO (non-visible) -->
+  <title>WebAppsBook Cast 기술 문서 웹페이지 템플릿 | Koosy.kr</title>
+  <meta name="description" content="WebAppsBook Cast 기술 문서 웹페이지 템플릿. 모바일 320px 대응, CSS 콘텐츠 슬라이더, 차트·갤러리·복사 박스·메일 버튼까지 한 번에 적용하세요." />
+  <meta name="keywords" content="WebAppsBook Cast,Koosy,Koosy.kr,기술 문서,웹페이지 템플릿,콘텐츠 슬라이더,CSS 슬라이더,모바일 반응형,SEO 메타태그,Open Graph,Twitter Card,JSON-LD,차트,시각화,이미지 갤러리,복사 텍스트 박스" />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+  <link rel="canonical" href="https://koosy.kr/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:locale" content="ko_KR" />
+  <meta property="og:site_name" content="Koosy.kr" />
+  <meta property="og:title" content="WebAppsBook Cast 기술 문서 웹페이지 템플릿" />
+  <meta property="og:description" content="CSS 콘텐츠 슬라이더 기반 기술 문서. 320px 모바일 대응, 차트·갤러리·복사 박스·mailto 버튼 포함." />
+  <meta property="og:url" content="https://koosy.kr/" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="WebAppsBook Cast 기술 문서 웹페이지 템플릿" />
+  <meta name="twitter:description" content="CSS 콘텐츠 슬라이더 기반 기술 문서. 320px 모바일 대응, 차트·갤러리·복사 박스·메일 버튼 포함." />
+
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Article",
+    "headline":"WebAppsBook Cast 기술 문서 웹페이지 템플릿",
+    "description":"WebAppsBook Cast 기술 문서 웹페이지 템플릿. 모바일 320px 대응, CSS 콘텐츠 슬라이더, 차트·갤러리·복사 박스·mailto 버튼 포함.",
+    "author":{"@type":"Person","name":"Koosy"},
+    "publisher":{"@type":"Organization","name":"Koosy.kr"},
+    "copyrightHolder":{"@type":"Organization","name":"Koosy.kr"},
+    "inLanguage":"ko",
+    "mainEntityOfPage":{"@type":"WebPage","@id":"https://koosy.kr/"},
+    "keywords":[
+      "WebAppsBook Cast","Koosy","Koosy.kr","기술 문서","CSS 슬라이더","모바일 320px","SEO","차트","갤러리","복사 박스"
+    ]
+  }
+  </script>
+
+  <style>
+    :root{
+      --bg:#f8f9fa;
+      --blue:#0066cc;
+      --green:#28a745;
+      --ink:#0f172a;
+      --muted:#334155;
+      --card:#ffffff;
+      --line:rgba(15,23,42,.14);
+      --shadow: 0 12px 28px rgba(2,6,23,.10);
+      --radius: 14px;
+      --pad: clamp(12px, 2.4vw, 18px);
+      --max: 980px;
+
+      --font: ui-sans-serif, system-ui, -apple-system, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", Segoe UI, Roboto, Helvetica, Arial, "Segoe UI Emoji";
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family:var(--font);
+      color:var(--ink);
+      background:
+        radial-gradient(1200px 600px at 10% 0%, rgba(0,102,204,.10), transparent 55%),
+        radial-gradient(900px 500px at 90% 10%, rgba(40,167,69,.10), transparent 60%),
+        linear-gradient(0deg, var(--bg), var(--bg));
+      word-break: keep-all;
+      overflow-wrap:anywhere;
+    }
+
+    a{ color:inherit; }
+    .wrap{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: calc(var(--pad) * 1.2);
+    }
+
+    header.hero{
+      border:1px solid var(--line);
+      border-radius: calc(var(--radius) + 6px);
+      background: linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,255,255,.86));
+      box-shadow: var(--shadow);
+      padding: calc(var(--pad) * 1.3);
+      position:relative;
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border:1px solid rgba(0,102,204,.22);
+      background: rgba(0,102,204,.08);
+      font-weight: 900;
+      font-size: 12px;
+      color: var(--muted);
+      text-shadow: 0 1px 0 rgba(255,255,255,.8);
+    }
+
+    h1{
+      margin: 12px 0 8px;
+      font-size: clamp(22px, 4.5vw, 34px);
+      line-height: 1.15;
+      letter-spacing: -0.3px;
+      text-shadow: 0 1px 0 rgba(255,255,255,.9), 0 10px 24px rgba(2,6,23,.06);
+    }
+
+    .sub{
+      margin:0;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: clamp(14px, 2.9vw, 16px);
+      text-shadow: 0 1px 0 rgba(255,255,255,.86);
+    }
+
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top: 12px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border:1px solid var(--line);
+      background: linear-gradient(180deg, rgba(0,102,204,.10), rgba(40,167,69,.08));
+      font-weight: 950;
+      text-decoration:none;
+      text-shadow: 0 1px 0 rgba(255,255,255,.9);
+      box-shadow: 0 10px 22px rgba(2,6,23,.08);
+    }
+    .btn:focus, .btn:hover{ outline:none; transform: translateY(-1px); }
+    .btn small{ font-weight:900; color: var(--muted); }
+
+    main{ margin-top: 14px; }
+    .card{
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--card);
+      box-shadow: 0 10px 26px rgba(2,6,23,.08);
+      padding: var(--pad);
+      margin-bottom: 14px;
+    }
+
+    h2{
+      margin:0 0 10px;
+      font-size: 18px;
+      letter-spacing: -0.2px;
+      text-shadow: 0 1px 0 rgba(255,255,255,.9);
+    }
+
+    h3{
+      margin:0 0 8px;
+      font-size: 15px;
+      color: var(--muted);
+      text-shadow: 0 1px 0 rgba(255,255,255,.86);
+    }
+
+    p{ margin:0 0 10px; line-height:1.65; }
+    ul{ margin:0; padding-left: 18px; line-height:1.65; }
+    li{ margin:6px 0; }
+
+    /* Slider (CSS only) */
+    .slider{
+      display:grid;
+      gap:12px;
+    }
+    .tabs{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+    .tabs input{
+      position:absolute;
+      opacity:0;
+      pointer-events:none;
+    }
+    .tabs label{
+      cursor:pointer;
+      user-select:none;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border:1px solid rgba(0,102,204,.22);
+      background: rgba(0,102,204,.06);
+      font-weight: 950;
+      font-size: 12px;
+      color: var(--muted);
+      text-shadow: 0 1px 0 rgba(255,255,255,.9);
+    }
+    .tabs label:hover{ transform: translateY(-1px); }
+    .panes{
+      border:1px solid rgba(15,23,42,.14);
+      border-radius: 14px;
+      background: linear-gradient(180deg, rgba(248,249,250,.95), rgba(248,249,250,.72));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.8);
+      overflow:hidden;
+    }
+    .pane{
+      display:none;
+      padding: 12px;
+    }
+
+    #t1:checked ~ .tabs label[for="t1"],
+    #t2:checked ~ .tabs label[for="t2"],
+    #t3:checked ~ .tabs label[for="t3"],
+    #t4:checked ~ .tabs label[for="t4"]{
+      background: linear-gradient(180deg, rgba(0,102,204,.16), rgba(40,167,69,.10));
+      border-color: rgba(0,102,204,.35);
+      color: var(--ink);
+      box-shadow: 0 10px 22px rgba(2,6,23,.06);
+    }
+
+    #t1:checked ~ .panes #p1{ display:block; }
+    #t2:checked ~ .panes #p2{ display:block; }
+    #t3:checked ~ .panes #p3{ display:block; }
+    #t4:checked ~ .panes #p4{ display:block; }
+
+    /* Copy box */
+    .copybox{
+      border:1px solid rgba(15,23,42,.14);
+      border-radius: 14px;
+      background: rgba(248,249,250,.9);
+      padding: 10px;
+      box-shadow: 0 10px 22px rgba(2,6,23,.06);
+    }
+    .copyhint{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom: 8px;
+      color: var(--muted);
+      font-weight: 900;
+      font-size: 12px;
+      text-shadow: 0 1px 0 rgba(255,255,255,.9);
+    }
+    .copyhint em{
+      font-style:normal;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border:1px solid rgba(0,102,204,.18);
+      background: rgba(0,102,204,.06);
+      font-weight: 950;
+    }
+    textarea{
+      width:100%;
+      min-height: 120px;
+      resize: vertical;
+      border-radius: 12px;
+      border:1px solid rgba(15,23,42,.16);
+      padding: 10px;
+      font-family: var(--mono);
+      font-size: 12.5px;
+      line-height: 1.55;
+      color: var(--ink);
+      background: #fff;
+      outline: none;
+    }
+    textarea:focus{
+      border-color: rgba(0,102,204,.45);
+      box-shadow: 0 0 0 4px rgba(0,102,204,.14);
+    }
+
+    /* Chart (HTML/CSS) */
+    .bars{ display:grid; gap:10px; }
+    .bar{
+      display:grid;
+      grid-template-columns: 84px 1fr 48px;
+      gap:10px;
+      align-items:center;
+    }
+    .bar b{
+      font-size: 12px;
+      color: var(--muted);
+      text-shadow: 0 1px 0 rgba(255,255,255,.9);
+    }
+    .track{
+      height: 14px;
+      border-radius: 999px;
+      background: rgba(15,23,42,.08);
+      border:1px solid rgba(15,23,42,.12);
+      overflow:hidden;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.8);
+    }
+    .fill{
+      height:100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(0,102,204,.85), rgba(40,167,69,.80));
+    }
+    .bar i{
+      font-style:normal;
+      font-weight: 950;
+      color: var(--muted);
+      font-size: 12px;
+      text-align:right;
+      text-shadow: 0 1px 0 rgba(255,255,255,.9);
+    }
+
+    /* Gallery (CSS only, no external libs) */
+    .gallery{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap:10px;
+    }
+    @media(min-width:520px){
+      .gallery{ grid-template-columns: repeat(4, 1fr); }
+    }
+    .ph{
+      border:1px solid rgba(15,23,42,.14);
+      border-radius: 14px;
+      overflow:hidden;
+      background: linear-gradient(180deg, rgba(0,102,204,.10), rgba(40,167,69,.08));
+      box-shadow: 0 10px 22px rgba(2,6,23,.06);
+      position:relative;
+      aspect-ratio: 1 / 1;
+    }
+    .ph::before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        radial-gradient(220px 160px at 20% 15%, rgba(0,102,204,.25), transparent 55%),
+        radial-gradient(220px 160px at 80% 75%, rgba(40,167,69,.22), transparent 60%),
+        repeating-linear-gradient(45deg, rgba(15,23,42,.07), rgba(15,23,42,.07) 2px, transparent 2px, transparent 8px);
+      opacity:.9;
+    }
+    .ph span{
+      position:absolute;
+      left:10px; bottom:10px;
+      padding: 6px 8px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.45);
+      background: rgba(255,255,255,.72);
+      font-weight: 950;
+      font-size: 12px;
+      color: var(--ink);
+      text-shadow: 0 1px 0 rgba(255,255,255,.95);
+    }
+
+    footer{
+      margin: 18px 0 6px;
+      color: var(--muted);
+      font-size: 12px;
+      text-shadow: 0 1px 0 rgba(255,255,255,.86);
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      justify-content:space-between;
+      align-items:center;
+    }
+    .sep{opacity:.6}
+
+    /* Mobile-first safeguards (320px) */
+    @media(max-width:360px){
+      .bar{ grid-template-columns: 74px 1fr 40px; }
+      .tabs label{ padding: 8px 9px; }
+      textarea{ font-size: 12px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header class="hero">
+      <div class="badge">  WebAppsBook Cast · Koosy.kr · Tech Doc</div>
+      <h1>WebAppsBook Cast 기술 문서 웹페이지 템플릿 | Koosy</h1>
+      <p class="sub">
+        CSS 콘텐츠 슬라이더 기반 기술 문서. 320px 모바일 대응, 차트·갤러리·복사 텍스트 박스·메일 버튼 포함.
+      </p>
+
+      <div class="actions">
+        <a class="btn" href="mailto:koosy@gmail.com?subject=WebAppsBook%20Cast%20%EA%B8%B0%EC%88%A0%20%EB%AC%B8%EC%84%9C%20%EB%AC%B8%EC%9D%98&body=%EB%AC%B8%EC%9D%98%20%EB%82%B4%EC%9A%A9%3A%0A%0A-%20%ED%95%84%EC%9A%94%20%EC%84%B9%EC%85%98%3A%0A-%20%ED%95%84%EC%9A%94%20%EA%B8%B0%EB%8A%A5%3A%0A-%20%EB%B0%98%EC%9D%91%ED%98%95%20%EC%9A%94%EA%B5%AC%3A%0A" aria-label="메일 버튼">
+          ✉️ 메일 보내기 <small>mailto:koosy@gmail.com</small>
+        </a>
+        <a class="btn" href="#copy" aria-label="복사 박스로 이동">
+            복사 박스 <small>수동 선택 복사</small>
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <article>
+        <section class="card" aria-label="콘텐츠 슬라이더">
+          <h2>콘텐츠 슬라이더 (CSS Only)</h2>
+
+          <div class="slider" role="region" aria-label="CSS 콘텐츠 슬라이더">
+            <!-- Default checked -->
+            <input type="radio" name="tab" id="t1" checked />
+            <input type="radio" name="tab" id="t2" />
+            <input type="radio" name="tab" id="t3" />
+            <input type="radio" name="tab" id="t4" />
+
+            <div class="tabs" aria-label="슬라이더 탭">
+              <label for="t1">Q&A</label>
+              <label for="t2">AI 한계</label>
+              <label for="t3">평가</label>
+              <label for="t4">갤러리</label>
+            </div>
+
+            <div class="panes" aria-label="슬라이더 콘텐츠">
+              <!-- Pane 1 -->
+              <section class="pane" id="p1" aria-label="대화 핵심 문답">
+                <h3>대화 핵심 문답 1개 (사용자 워딩 기반)</h3>
+                <p><b>Q.</b> “그러니까 나는 얘를 상대로만 방송을 찍고 튜트리얼 만들면 돼”</p>
+                <p><b>A.</b> 맞다. 타깃은 1명으로 고정한다. 그 장면(질문·반응·삽질)을 그대로 튜토리얼로 쓴다.</p>
+              </section>
+
+              <!-- Pane 2 -->
+              <section class="pane" id="p2" aria-label="AI 불가능 아이디어">
+                <h3>AI 불가능 아이디어 5개 명제 질문</h3>
+                <ul>
+                  <li><b>명제 Q1</b> 조회수/유입을 100% 보장하는 공식이 존재하는가?</li>
+                  <li><b>명제 Q2</b> 플랫폼 알고리즘의 내부 규칙을 “정답”으로 단정할 수 있는가?</li>
+                  <li><b>명제 Q3</b> 특정 네이밍이 전 세계에서 부정 연상을 절대 일으키지 않는다고 보증 가능한가?</li>
+                  <li><b>명제 Q4</b> 욕설 사용이 언제나 수익 제한을 피한다고 확정할 수 있는가?</li>
+                  <li><b>명제 Q5</b> 미래에도 기술 변화 없이 같은 튜토리얼이 계속 통한다고 보장 가능한가?</li>
+                </ul>
+              </section>
+
+              <!-- Pane 3 -->
+              <section class="pane" id="p3" aria-label="Claude 평가">
+                <h3>Claude 평가 4개 영역 (점수 + 사유)</h3>
+                <div class="bars" aria-label="평가 바차트">
+                  <div class="bar">
+                    <b>구조 설계</b>
+                    <div class="track"><div class="fill" style="width:90%"></div></div>
+                    <i>90</i>
+                  </div>
+                  <div class="bar">
+                    <b>UI/가독성</b>
+                    <div class="track"><div class="fill" style="width:86%"></div></div>
+                    <i>86</i>
+                  </div>
+                  <div class="bar">
+                    <b>실행 난이도</b>
+                    <div class="track"><div class="fill" style="width:82%"></div></div>
+                    <i>82</i>
+                  </div>
+                  <div class="bar">
+                    <b>리스크 관리</b>
+                    <div class="track"><div class="fill" style="width:76%"></div></div>
+                    <i>76</i>
+                  </div>
+                </div>
+
+                <div class="card" style="margin-top:12px; box-shadow:none;">
+                  <h3 style="margin-top:0;">간단 사유</h3>
+                  <ul>
+                    <li><b>구조 설계(90)</b> 1인 타깃 → 질문=챕터 흐름이 선명함.</li>
+                    <li><b>UI/가독성(86)</b> 슬라이더로 섹션 분리, 모바일에서도 단순함.</li>
+                    <li><b>실행 난이도(82)</b> JS 없이도 구성 가능하나 콘텐츠 관리 규칙이 필요.</li>
+                    <li><b>리스크 관리(76)</b> 플랫폼 정책·표현 수위는 운영 룰로 보완 필요.</li>
+                  </ul>
+                </div>
+              </section>
+
+              <!-- Pane 4 -->
+              <section class="pane" id="p4" aria-label="이미지 갤러리">
+                <h3>이미지 갤러리</h3>
+                <div class="gallery" aria-label="플레이스홀더 갤러리">
+                  <div class="ph"><span>IMG 01</span></div>
+                  <div class="ph"><span>IMG 02</span></div>
+                  <div class="ph"><span>IMG 03</span></div>
+                  <div class="ph"><span>IMG 04</span></div>
+                  <div class="ph"><span>IMG 05</span></div>
+                  <div class="ph"><span>IMG 06</span></div>
+                  <div class="ph"><span>IMG 07</span></div>
+                  <div class="ph"><span>IMG 08</span></div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </section>
+
+        <section class="card" id="copy" aria-label="수동 복사 가능한 텍스트 박스">
+          <h2>수동 복사 가능한 텍스트 박스</h2>
+
+          <div class="copybox">
+            <div class="copyhint">
+              <span>  아래 텍스트를 직접 선택해서 복사하세요.</span>
+              <em>모바일: 길게 누르기 → 전체 선택</em>
+            </div>
+            <textarea readonly aria-label="복사 텍스트">
+[WebAppsBook Cast · Koosy]
+타깃은 1명으로 고정한다.
+대화/질문/삽질/반응을 그대로 튜토리얼로 쓴다.
+
+[AI 한계]
+보장/확정/단정이 필요한 항목은 “명제 질문”으로 남기고 운영 룰로 관리한다.
+
+[연락]
+mailto:koosy@gmail.com
+            </textarea>
+          </div>
+        </section>
+      </article>
+
+      <footer>
+        <span>© Koosy.kr <span class="sep">|</span> 저자: Koosy <span class="sep">|</span> 프로젝트: WebAppsBook Cast</span>
+        <span>UI: Corporate BG + Blue/Green · CSS Slider · 320px 대응</span>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>
+</div>
+
+<!-- ===== PAGE HTML (파싱) ===== -->
+<div id="page-content">
+<!-- 본문 추출 실패 -->
+</div>
+
+<!-- ===== RAW PAGE (전체) ===== -->
+<script type="text/x-raw-page">
+<!-- parksy-webtoon-player v1.0 — 티스토리 HTML 모드에 복사-붙여넣기 -->
+<!-- 사용법: 아래 images 배열에 티스토리 업로드 후 이미지 URL을 넣고 전체 복사 -->
+<script>if(location.pathname.indexOf('/m')===0||location.href.indexOf('/m/')>-1){location.replace(location.href.replace(/\/m(\/|$)/,'/'));}</script>
+
+<div id="parksy-webtoon">
+  <!-- 플레이어가 여기에 렌더링됨 -->
+</div>
+
+<style>
+.pp-root{max-width:860px;margin:0 auto;background:#111;color:#eee;font-family:-apple-system,'Malgun Gothic',sans-serif;border-radius:8px;overflow:hidden;position:relative;user-select:none;-webkit-user-select:none}
+.pp-root *{box-sizing:border-box}
+.pp-root:-webkit-full-screen,.pp-root:fullscreen{max-width:100%;border-radius:0;background:#000}
+.pp-root:fullscreen .pp-viewport{height:calc(100vh - 100px)}
+.pp-header{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:rgba(0,0,0,0.6);font-size:14px}
+.pp-title{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-right:12px}
+.pp-counter{flex-shrink:0;color:#aaa;font-variant-numeric:tabular-nums}
+.pp-viewport{position:relative;width:100%;min-height:300px;display:flex;align-items:center;justify-content:center;background:#000;overflow:hidden}
+.pp-img-wrap{width:100%;display:flex;align-items:center;justify-content:center;transition:opacity 0.15s ease-in-out}
+.pp-img-wrap.pp-fade-out{opacity:0}
+.pp-img{max-width:100%;max-height:80vh;display:block;object-fit:contain}
+.pp-hit{position:absolute;top:0;bottom:0;width:35%;cursor:pointer;z-index:2}
+.pp-hit-left{left:0}
+.pp-hit-right{right:0}
+.pp-hit:hover{background:rgba(255,255,255,0.02)}
+.pp-controls{display:flex;justify-content:center;align-items:center;gap:8px;padding:10px 16px;background:rgba(0,0,0,0.6)}
+.pp-btn{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:#ddd;padding:6px 14px;border-radius:4px;cursor:pointer;font-size:13px;transition:background 0.15s,color 0.15s;white-space:nowrap}
+.pp-btn:hover{background:rgba(255,255,255,0.2);color:#fff}
+.pp-btn:disabled{opacity:0.3;cursor:default}
+.pp-btn.pp-active{background:rgba(66,133,244,0.4);border-color:rgba(66,133,244,0.6);color:#fff}
+.pp-progress-wrap{height:3px;background:rgba(255,255,255,0.1)}
+.pp-progress-bar{height:100%;background:#4285f4;transition:width 0.3s ease;width:0}
+@media(max-width:600px){.pp-root{border-radius:0}.pp-header{padding:8px 12px;font-size:13px}.pp-controls{gap:4px;padding:8px 8px}.pp-btn{padding:6px 10px;font-size:12px}.pp-btn-auto,.pp-btn-fs{display:none}.pp-img{max-height:70vh}}
+</style>
+
+<script>
+var ParksyPlayer=(function(){'use strict';var state={images:[],current:0,total:0,autoplay:false,autoplayTimer:null,autoplaySpeed:5000,title:'',episode:0,container:null,els:{},touchStartX:0,touchStartY:0,preloaded:{}};function init(config){state.images=config.images||[];state.total=state.images.length;state.title=config.title||'';state.episode=config.episode||0;state.current=0;state.autoplaySpeed=config.autoplaySpeed||5000;var containerEl=typeof config.container==='string'?document.querySelector(config.container):config.container;if(!containerEl){console.error('ParksyPlayer: container not found');return}state.container=containerEl;state.container.className='pp-root';buildDOM();bindEvents();preloadAround(0);render()}function buildDOM(){var c=state.container;c.innerHTML='';var header=mk('div','pp-header');var titleEl=mk('span','pp-title');var counterEl=mk('span','pp-counter');header.appendChild(titleEl);header.appendChild(counterEl);var viewport=mk('div','pp-viewport');var imgWrap=mk('div','pp-img-wrap');var img=document.createElement('img');img.className='pp-img';img.alt='';img.draggable=false;imgWrap.appendChild(img);viewport.appendChild(imgWrap);var hitLeft=mk('div','pp-hit pp-hit-left');var hitRight=mk('div','pp-hit pp-hit-right');viewport.appendChild(hitLeft);viewport.appendChild(hitRight);var controls=mk('div','pp-controls');var btnPrev=mk('button','pp-btn pp-btn-prev');btnPrev.innerHTML='&#9664; 이전';var btnAuto=mk('button','pp-btn pp-btn-auto');btnAuto.innerHTML='&#9654; 자동재생';var btnFS=mk('button','pp-btn pp-btn-fs');btnFS.innerHTML='&#x26F6; 전체화면';var btnNext=mk('button','pp-btn pp-btn-next');btnNext.innerHTML='다음 &#9654;';controls.appendChild(btnPrev);controls.appendChild(btnAuto);controls.appendChild(btnFS);controls.appendChild(btnNext);var pWrap=mk('div','pp-progress-wrap');var pBar=mk('div','pp-progress-bar');pWrap.appendChild(pBar);c.appendChild(header);c.appendChild(viewport);c.appendChild(controls);c.appendChild(pWrap);state.els={title:titleEl,counter:counterEl,viewport:viewport,imgWrap:imgWrap,img:img,hitLeft:hitLeft,hitRight:hitRight,btnPrev:btnPrev,btnAutoplay:btnAuto,btnFullscreen:btnFS,btnNext:btnNext,progressBar:pBar}}function mk(tag,cls){var e=document.createElement(tag);if(cls)e.className=cls;return e}function bindEvents(){var els=state.els;els.btnPrev.addEventListener('click',prev);els.btnNext.addEventListener('click',next);els.btnAutoplay.addEventListener('click',toggleAutoplay);els.btnFullscreen.addEventListener('click',toggleFullscreen);els.hitLeft.addEventListener('click',prev);els.hitRight.addEventListener('click',next);document.addEventListener('keydown',function(e){if(!isVisible())return;switch(e.key){case'ArrowLeft':prev();e.preventDefault();break;case'ArrowRight':case' ':next();e.preventDefault();break;case'f':case'F':toggleFullscreen();break}});var vp=els.viewport;vp.addEventListener('touchstart',function(e){state.touchStartX=e.changedTouches[0].clientX;state.touchStartY=e.changedTouches[0].clientY},{passive:true});vp.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-state.touchStartX;var dy=e.changedTouches[0].clientY-state.touchStartY;if(Math.abs(dx)<40||Math.abs(dy)>Math.abs(dx))return;if(dx<0)next();else prev()},{passive:true})}function isVisible(){if(!state.container)return false;var rect=state.container.getBoundingClientRect();return rect.top<window.innerHeight&&rect.bottom>0}function goTo(index){if(index<0||index>=state.total)return;state.current=index;preloadAround(index);render()}function next(){if(state.current<state.total-1){goTo(state.current+1)}else if(state.autoplay){stopAutoplay()}}function prev(){if(state.current>0)goTo(state.current-1)}function toggleAutoplay(){if(state.autoplay)stopAutoplay();else startAutoplay()}function startAutoplay(){state.autoplay=true;state.els.btnAutoplay.innerHTML='&#9724; 정지';state.els.btnAutoplay.classList.add('pp-active');state.autoplayTimer=setInterval(function(){next()},state.autoplaySpeed)}function stopAutoplay(){state.autoplay=false;state.els.btnAutoplay.innerHTML='&#9654; 자동재생';state.els.btnAutoplay.classList.remove('pp-active');if(state.autoplayTimer){clearInterval(state.autoplayTimer);state.autoplayTimer=null}}function toggleFullscreen(){var root=state.container;if(document.fullscreenElement||document.webkitFullscreenElement||document.msFullscreenElement){(document.exitFullscreen||document.webkitExitFullscreen||document.msExitFullscreen).call(document)}else{(root.requestFullscreen||root.webkitRequestFullscreen||root.msRequestFullscreen).call(root)}}function preloadAround(index){for(var i=index-1;i<=index+2;i++){if(i>=0&&i<state.total&&!state.preloaded[i]){var loader=new Image();loader.src=state.images[i];state.preloaded[i]=true}}}function render(){var els=state.els;var cur=state.current;var titleText=state.title;if(state.episode)titleText='EP.'+state.episode+' '+titleText;els.title.textContent=titleText;els.counter.textContent=(cur+1)+' / '+state.total;els.imgWrap.classList.add('pp-fade-out');setTimeout(function(){els.img.src=state.images[cur];els.img.onload=function(){els.imgWrap.classList.remove('pp-fade-out')};if(els.img.complete)els.imgWrap.classList.remove('pp-fade-out')},150);var pct=state.total>1?(cur/(state.total-1))*100:100;els.progressBar.style.width=pct+'%';els.btnPrev.disabled=cur===0;els.btnNext.disabled=cur===state.total-1}return{init:init,next:next,prev:prev,goTo:goTo}})();
+ParksyPlayer.init({container:'#parksy-webtoon',images:[],title:'에피소드 제목',episode:1});
+</script>
+</script>
+</body>
+</html>

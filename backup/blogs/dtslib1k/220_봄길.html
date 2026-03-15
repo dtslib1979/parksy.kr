@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>봄길</title>
+<!-- SOURCE: https://dtslib1k.tistory.com/220 -->
+<!-- DATE: Fri, 12 Dec 2025 14:13:34 +0900 -->
+<!-- BLOG: dtslib1k -->
+<!-- SCRAPED: 2026-03-14T18:12:24.923424 -->
+</head>
+<body>
+<!-- ===== RSS HTML (원문) ===== -->
+<div id="rss-content">
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>봄길 — 다국어 버전</title>
+  <style>
+    :root {
+      --bg-primary: #f9fafb;
+      --text-primary: #1e293b;
+      --text-secondary: #64748b;
+      --accent: #34d399;
+      --shadow: rgba(15, 23, 42, 0.1);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    body {
+      background: var(--bg-primary);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+      color: var(--text-primary);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .spring-wrapper {
+      max-width: 640px;
+      padding: 24px;
+      box-sizing: border-box;
+    }
+
+    .spring-card {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 28px 24px 32px;
+      box-shadow: 0 12px 28px var(--shadow);
+      transition: var(--transition);
+    }
+
+    .spring-card:hover {
+      box-shadow: 0 16px 36px var(--shadow);
+    }
+
+    .spring-svg {
+      width: 100%;
+      max-width: 520px;
+      margin: 0 auto 16px;
+      display: block;
+    }
+
+    .spring-title {
+      text-align: center;
+      margin: 12px 0 6px;
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    .spring-sub {
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    .lang-toggle {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 12px 0 20px;
+      flex-wrap: wrap;
+    }
+
+    .lang-toggle button {
+      border: none;
+      border-radius: 999px;
+      padding: 8px 16px;
+      font-size: 0.85rem;
+      background: #e5e7eb;
+      color: #475569;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .lang-toggle button:hover {
+      background: #d1d5db;
+    }
+
+    .lang-toggle button.active {
+      background: var(--accent);
+      color: #f9fafb;
+      box-shadow: 0 6px 14px rgba(52, 211, 153, 0.3);
+    }
+
+    .spring-poem {
+      font-size: 1rem;
+      line-height: 1.75;
+      white-space: pre-line;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: var(--transition);
+    }
+
+    .spring-poem.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .spring-poem:not(.active) {
+      display: none;
+    }
+
+    .spring-footer {
+      margin-top: 24px;
+      font-size: 0.8rem;
+      color: #94a3b8;
+      text-align: right;
+    }
+
+    @media (max-width: 480px) {
+      .spring-card {
+        padding: 24px 18px 28px;
+      }
+      .spring-title {
+        font-size: 1.2rem;
+      }
+      .spring-poem {
+        font-size: 0.95rem;
+      }
+    }
+
+    /* SVG Animations */
+    .path-animate {
+      stroke-dasharray: 200;
+      stroke-dashoffset: 200;
+      animation: dash 3s ease-in-out forwards;
+    }
+
+    @keyframes dash {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    .flower-animate {
+      animation: bloom 1.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes bloom {
+      from {
+        transform: scale(0.95);
+      }
+      to {
+        transform: scale(1.05);
+      }
+    }
+
+    .bird-animate {
+      animation: fly 2s ease-in-out infinite;
+    }
+
+    @keyframes fly {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-5px);
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="spring-wrapper">
+  <div class="spring-card">
+    <!-- 업그레이드된 SVG: 더 세련된 디자인, 애니메이션 추가 -->
+    <svg class="spring-svg" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <!-- 하늘 그라데이션 -->
+      <defs>
+        <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#dbeafe"/>
+          <stop offset="100%" stop-color="#fef3c7"/>
+        </linearGradient>
+        <linearGradient id="pathGrad" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#fbbf24"/>
+          <stop offset="50%" stop-color="#f59e0b"/>
+          <stop offset="100%" stop-color="#f97316"/>
+        </linearGradient>
+        <radialGradient id="flowerGrad" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+          <stop offset="0%" stop-color="#fda4af"/>
+          <stop offset="100%" stop-color="#fb7185"/>
+        </radialGradient>
+      </defs>
+      <rect x="0" y="0" width="400" height="200" fill="url(#skyGrad)" />
+
+      <!-- 언덕: 더 부드러운 곡선 -->
+      <path d="M0 130 Q 100 100 200 130 Q 300 100 400 130 L400 200 L0 200 Z"
+            fill="#bbf7d0" opacity="0.9" />
+      <path d="M0 150 Q 120 130 240 150 Q 360 130 400 150 L400 200 L0 200 Z"
+            fill="#4ade80" opacity="0.8" />
+
+      <!-- 길: 애니메이션된 곡선 경로 -->
+      <path class="path-animate" d="M180 200 C 200 160 220 140 240 110 C 260 80 260 60 240 30"
+            fill="none"
+            stroke="url(#pathGrad)"
+            stroke-width="12"
+            stroke-linecap="round" />
+
+      <!-- 꽃: 스타일화된 형태, 애니메이션 -->
+      <g class="flower-animate" transform="translate(60,160)">
+        <circle r="8" fill="url(#flowerGrad)"/>
+        <path d="M0 -8 L-4 -12 L0 -16 L4 -12 Z" fill="#fecaca" />
+        <path d="M-8 0 L-12 -4 L-16 0 L-12 4 Z" fill="#fecaca" />
+        <path d="M0 8 L-4 12 L0 16 L4 12 Z" fill="#fecaca" />
+        <path d="M8 0 L12 -4 L16 0 L12 4 Z" fill="#fecaca" />
+        <circle r="2.5" fill="#fff7ed"/>
+      </g>
+
+      <g class="flower-animate" transform="translate(330,160)" style="animation-delay: 0.5s;">
+        <circle r="8" fill="url(#flowerGrad)"/>
+        <path d="M0 -8 L-4 -12 L0 -16 L4 -12 Z" fill="#ffe4e6" />
+        <path d="M-8 0 L-12 -4 L-16 0 L-12 4 Z" fill="#ffe4e6" />
+        <path d="M0 8 L-4 12 L0 16 L4 12 Z" fill="#ffe4e6" />
+        <path d="M8 0 L12 -4 L16 0 L12 4 Z" fill="#ffe4e6" />
+        <circle r="2.5" fill="#fff7ed"/>
+      </g>
+
+      <!-- 새: 더 디테일한, 애니메이션 -->
+      <g class="bird-animate" transform="translate(260,50)">
+        <path d="M0 0 Q10 -10 20 0" stroke="#0f172a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <path d="M20 -5 Q28 -12 36 -5" stroke="#0f172a" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <circle cx="10" cy="-2" r="1" fill="#0f172a"/>
+      </g>
+    </svg>
+
+    <h1 class="spring-title">봄길</h1>
+    <p class="spring-sub">정호승 · Multi-language (KO / EN / ES)</p>
+
+    <div class="lang-toggle">
+      <button type="button" data-lang-btn="ko" class="active">한국어</button>
+      <button type="button" data-lang-btn="en">English</button>
+      <button type="button" data-lang-btn="es">Español</button>
+    </div>
+
+    <!-- 한국어 -->
+    <div class="spring-poem active" data-lang="ko">
+봄길 — 정호승
+
+길이 끝난 곳에서도
+길이 있다
+길이 끝난 곳에서도
+길이 되는 사람이 있다
+스스로 봄길이 되어
+끝없이 걸어가는 사람이 있다
+강물은 흐르다가 멈추고
+새들은 날아가 돌아오지 않고
+하늘과 땅 사이에 모든 꽃잎은 흩어져도
+보라
+사랑이 끝난 곳에서도
+사랑은 남아 있는 것이 있다
+스스로 사랑이 되어
+한없이 봄길을 걸어가는
+사람이 있다
+    </div>
+
+    <!-- English -->
+    <div class="spring-poem" data-lang="en">
+Spring Path — Jeong Ho-seung
+
+Where the road seems over,
+still a road appears.
+Where the road seems over,
+someone makes a road again.
+Becoming spring itself,
+one walks on without end.
+Rivers slow and finally stop,
+birds fly off and don't return.
+Even if every petal falls between earth and sky,
+look—
+Where love seems over,
+still something of love remains.
+Becoming love itself,
+one walks the spring path endlessly,
+one quiet, faithful soul.
+    </div>
+
+    <!-- Español -->
+    <div class="spring-poem" data-lang="es">
+Camino de Primavera — Jeong Ho-seung
+
+Donde parece que el camino acaba,
+otro camino continúa.
+Donde parece que el camino acaba,
+alguien vuelve a abrir su ruta.
+Haciéndose primavera,
+camina sin final.
+Los ríos dejan de fluir,
+las aves ya no regresan más.
+Aunque todos los pétalos caigan entre cielo y tierra,
+mira—
+Donde parece que el amor termina,
+algo del amor aún permanece.
+Haciéndose amor él mismo,
+camina por la senda de primavera sin fin,
+una alma fiel en silencio.
+    </div>
+
+    <div class="spring-footer">
+      * 언어 버튼을 눌러 번역을 전환할 수 있습니다.
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    const btns = document.querySelectorAll('[data-lang-btn]');
+    const poems = document.querySelectorAll('.spring-poem[data-lang]');
+
+    btns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const lang = btn.getAttribute('data-lang-btn');
+
+        btns.forEach(b => b.classList.toggle('active', b === btn));
+        poems.forEach(p => {
+          p.classList.toggle('active', p.getAttribute('data-lang') === lang);
+        });
+      });
+    });
+  })();
+</script>
+</body>
+</html>
+</div>
+
+<!-- ===== PAGE HTML (파싱) ===== -->
+<div id="page-content">
+<!-- 본문 추출 실패 -->
+</div>
+
+<!-- ===== RAW PAGE (전체) ===== -->
+<script type="text/x-raw-page">
+<!-- parksy-webtoon-player v1.0 — 티스토리 HTML 모드에 복사-붙여넣기 -->
+<!-- 사용법: 아래 images 배열에 티스토리 업로드 후 이미지 URL을 넣고 전체 복사 -->
+<script>if(location.pathname.indexOf('/m')===0||location.href.indexOf('/m/')>-1){location.replace(location.href.replace(/\/m(\/|$)/,'/'));}</script>
+
+<div id="parksy-webtoon">
+  <!-- 플레이어가 여기에 렌더링됨 -->
+</div>
+
+<style>
+.pp-root{max-width:860px;margin:0 auto;background:#111;color:#eee;font-family:-apple-system,'Malgun Gothic',sans-serif;border-radius:8px;overflow:hidden;position:relative;user-select:none;-webkit-user-select:none}
+.pp-root *{box-sizing:border-box}
+.pp-root:-webkit-full-screen,.pp-root:fullscreen{max-width:100%;border-radius:0;background:#000}
+.pp-root:fullscreen .pp-viewport{height:calc(100vh - 100px)}
+.pp-header{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:rgba(0,0,0,0.6);font-size:14px}
+.pp-title{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-right:12px}
+.pp-counter{flex-shrink:0;color:#aaa;font-variant-numeric:tabular-nums}
+.pp-viewport{position:relative;width:100%;min-height:300px;display:flex;align-items:center;justify-content:center;background:#000;overflow:hidden}
+.pp-img-wrap{width:100%;display:flex;align-items:center;justify-content:center;transition:opacity 0.15s ease-in-out}
+.pp-img-wrap.pp-fade-out{opacity:0}
+.pp-img{max-width:100%;max-height:80vh;display:block;object-fit:contain}
+.pp-hit{position:absolute;top:0;bottom:0;width:35%;cursor:pointer;z-index:2}
+.pp-hit-left{left:0}
+.pp-hit-right{right:0}
+.pp-hit:hover{background:rgba(255,255,255,0.02)}
+.pp-controls{display:flex;justify-content:center;align-items:center;gap:8px;padding:10px 16px;background:rgba(0,0,0,0.6)}
+.pp-btn{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:#ddd;padding:6px 14px;border-radius:4px;cursor:pointer;font-size:13px;transition:background 0.15s,color 0.15s;white-space:nowrap}
+.pp-btn:hover{background:rgba(255,255,255,0.2);color:#fff}
+.pp-btn:disabled{opacity:0.3;cursor:default}
+.pp-btn.pp-active{background:rgba(66,133,244,0.4);border-color:rgba(66,133,244,0.6);color:#fff}
+.pp-progress-wrap{height:3px;background:rgba(255,255,255,0.1)}
+.pp-progress-bar{height:100%;background:#4285f4;transition:width 0.3s ease;width:0}
+@media(max-width:600px){.pp-root{border-radius:0}.pp-header{padding:8px 12px;font-size:13px}.pp-controls{gap:4px;padding:8px 8px}.pp-btn{padding:6px 10px;font-size:12px}.pp-btn-auto,.pp-btn-fs{display:none}.pp-img{max-height:70vh}}
+</style>
+
+<script>
+var ParksyPlayer=(function(){'use strict';var state={images:[],current:0,total:0,autoplay:false,autoplayTimer:null,autoplaySpeed:5000,title:'',episode:0,container:null,els:{},touchStartX:0,touchStartY:0,preloaded:{}};function init(config){state.images=config.images||[];state.total=state.images.length;state.title=config.title||'';state.episode=config.episode||0;state.current=0;state.autoplaySpeed=config.autoplaySpeed||5000;var containerEl=typeof config.container==='string'?document.querySelector(config.container):config.container;if(!containerEl){console.error('ParksyPlayer: container not found');return}state.container=containerEl;state.container.className='pp-root';buildDOM();bindEvents();preloadAround(0);render()}function buildDOM(){var c=state.container;c.innerHTML='';var header=mk('div','pp-header');var titleEl=mk('span','pp-title');var counterEl=mk('span','pp-counter');header.appendChild(titleEl);header.appendChild(counterEl);var viewport=mk('div','pp-viewport');var imgWrap=mk('div','pp-img-wrap');var img=document.createElement('img');img.className='pp-img';img.alt='';img.draggable=false;imgWrap.appendChild(img);viewport.appendChild(imgWrap);var hitLeft=mk('div','pp-hit pp-hit-left');var hitRight=mk('div','pp-hit pp-hit-right');viewport.appendChild(hitLeft);viewport.appendChild(hitRight);var controls=mk('div','pp-controls');var btnPrev=mk('button','pp-btn pp-btn-prev');btnPrev.innerHTML='&#9664; 이전';var btnAuto=mk('button','pp-btn pp-btn-auto');btnAuto.innerHTML='&#9654; 자동재생';var btnFS=mk('button','pp-btn pp-btn-fs');btnFS.innerHTML='&#x26F6; 전체화면';var btnNext=mk('button','pp-btn pp-btn-next');btnNext.innerHTML='다음 &#9654;';controls.appendChild(btnPrev);controls.appendChild(btnAuto);controls.appendChild(btnFS);controls.appendChild(btnNext);var pWrap=mk('div','pp-progress-wrap');var pBar=mk('div','pp-progress-bar');pWrap.appendChild(pBar);c.appendChild(header);c.appendChild(viewport);c.appendChild(controls);c.appendChild(pWrap);state.els={title:titleEl,counter:counterEl,viewport:viewport,imgWrap:imgWrap,img:img,hitLeft:hitLeft,hitRight:hitRight,btnPrev:btnPrev,btnAutoplay:btnAuto,btnFullscreen:btnFS,btnNext:btnNext,progressBar:pBar}}function mk(tag,cls){var e=document.createElement(tag);if(cls)e.className=cls;return e}function bindEvents(){var els=state.els;els.btnPrev.addEventListener('click',prev);els.btnNext.addEventListener('click',next);els.btnAutoplay.addEventListener('click',toggleAutoplay);els.btnFullscreen.addEventListener('click',toggleFullscreen);els.hitLeft.addEventListener('click',prev);els.hitRight.addEventListener('click',next);document.addEventListener('keydown',function(e){if(!isVisible())return;switch(e.key){case'ArrowLeft':prev();e.preventDefault();break;case'ArrowRight':case' ':next();e.preventDefault();break;case'f':case'F':toggleFullscreen();break}});var vp=els.viewport;vp.addEventListener('touchstart',function(e){state.touchStartX=e.changedTouches[0].clientX;state.touchStartY=e.changedTouches[0].clientY},{passive:true});vp.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-state.touchStartX;var dy=e.changedTouches[0].clientY-state.touchStartY;if(Math.abs(dx)<40||Math.abs(dy)>Math.abs(dx))return;if(dx<0)next();else prev()},{passive:true})}function isVisible(){if(!state.container)return false;var rect=state.container.getBoundingClientRect();return rect.top<window.innerHeight&&rect.bottom>0}function goTo(index){if(index<0||index>=state.total)return;state.current=index;preloadAround(index);render()}function next(){if(state.current<state.total-1){goTo(state.current+1)}else if(state.autoplay){stopAutoplay()}}function prev(){if(state.current>0)goTo(state.current-1)}function toggleAutoplay(){if(state.autoplay)stopAutoplay();else startAutoplay()}function startAutoplay(){state.autoplay=true;state.els.btnAutoplay.innerHTML='&#9724; 정지';state.els.btnAutoplay.classList.add('pp-active');state.autoplayTimer=setInterval(function(){next()},state.autoplaySpeed)}function stopAutoplay(){state.autoplay=false;state.els.btnAutoplay.innerHTML='&#9654; 자동재생';state.els.btnAutoplay.classList.remove('pp-active');if(state.autoplayTimer){clearInterval(state.autoplayTimer);state.autoplayTimer=null}}function toggleFullscreen(){var root=state.container;if(document.fullscreenElement||document.webkitFullscreenElement||document.msFullscreenElement){(document.exitFullscreen||document.webkitExitFullscreen||document.msExitFullscreen).call(document)}else{(root.requestFullscreen||root.webkitRequestFullscreen||root.msRequestFullscreen).call(root)}}function preloadAround(index){for(var i=index-1;i<=index+2;i++){if(i>=0&&i<state.total&&!state.preloaded[i]){var loader=new Image();loader.src=state.images[i];state.preloaded[i]=true}}}function render(){var els=state.els;var cur=state.current;var titleText=state.title;if(state.episode)titleText='EP.'+state.episode+' '+titleText;els.title.textContent=titleText;els.counter.textContent=(cur+1)+' / '+state.total;els.imgWrap.classList.add('pp-fade-out');setTimeout(function(){els.img.src=state.images[cur];els.img.onload=function(){els.imgWrap.classList.remove('pp-fade-out')};if(els.img.complete)els.imgWrap.classList.remove('pp-fade-out')},150);var pct=state.total>1?(cur/(state.total-1))*100:100;els.progressBar.style.width=pct+'%';els.btnPrev.disabled=cur===0;els.btnNext.disabled=cur===state.total-1}return{init:init,next:next,prev:prev,goTo:goTo}})();
+ParksyPlayer.init({container:'#parksy-webtoon',images:[],title:'에피소드 제목',episode:1});
+</script>
+</script>
+</body>
+</html>

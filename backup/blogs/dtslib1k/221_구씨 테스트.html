@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>구씨 테스트</title>
+<!-- SOURCE: https://dtslib1k.tistory.com/221 -->
+<!-- DATE: Wed, 24 Dec 2025 11:45:57 +0900 -->
+<!-- BLOG: dtslib1k -->
+<!-- SCRAPED: 2026-03-14T18:12:23.280438 -->
+</head>
+<body>
+<!-- ===== RSS HTML (원문) ===== -->
+<div id="rss-content">
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+
+  <!-- SEO (non-visible) -->
+  <title>Parksy×Koosy 실사용 방송 튜토리얼 시스템 기술백서 | dtslib</title>
+  <meta name="description" content="Parksy×Koosy(쿠시) 실사용 방송으로 튜토리얼을 만드는 기술백서. Sy=씨 라임, 1:1 타깃 설계, 질문 기반 챕터화, SEO·모바일 최적화 템플릿까지 한 번에 적용하세요." />
+  <meta name="keywords" content="Parksy,Koosy,Sy,씨,실사용 방송,튜토리얼 제작,실험 로그,유튜브 운영,테스트 마케터,에듀아트 엔지니어,APK,GitHub Pages,dtslib,Claude 프롬프트,기술백서,모바일 반응형,SEO 메타태그,아코디언 UI" />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+  <link rel="canonical" href="https://dtslib.com/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:locale" content="ko_KR" />
+  <meta property="og:site_name" content="dtslib.com" />
+  <meta property="og:title" content="Parksy×Koosy 실사용 방송 튜토리얼 시스템 기술백서" />
+  <meta property="og:description" content="한 명만 상대로 찍고, 그 장면을 튜토리얼로 만든다. Parksy×Koosy(쿠시) 구조, Sy=씨 라임, 질문→챕터화, AI 한계 명제까지." />
+  <meta property="og:url" content="https://dtslib.com/" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Parksy×Koosy 실사용 방송 튜토리얼 시스템 기술백서" />
+  <meta name="twitter:description" content="실사용 방송을 교재로: 1인 타깃, 질문 기반 챕터화, Sy=씨 라임, AI 한계 명제 질문까지." />
+
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Article",
+    "headline":"Parksy×Koosy 실사용 방송 튜토리얼 시스템 기술백서",
+    "description":"Parksy×Koosy(쿠시) 실사용 방송으로 튜토리얼을 만드는 기술백서. Sy=씨 라임, 1:1 타깃 설계, 질문 기반 챕터화, SEO·모바일 최적화 템플릿.",
+    "author":{"@type":"Person","name":"중년작가지망생 EduArt Engineer"},
+    "publisher":{"@type":"Organization","name":"dtslib.com"},
+    "copyrightHolder":{"@type":"Organization","name":"dtslib.com"},
+    "inLanguage":"ko",
+    "mainEntityOfPage":{"@type":"WebPage","@id":"https://dtslib.com/"},
+    "keywords":[
+      "Parksy","Koosy","Sy","씨","실사용 방송","튜토리얼","실험 로그","유튜브","테스트 마케터","APK","GitHub Pages","dtslib","Claude 프롬프트","기술백서","모바일 반응형","SEO"
+    ]
+  }
+  </script>
+
+  <style>
+    :root{
+      --paper:#f4e5c9;
+      --clay:#cd853f;
+      --gold:#daa520;
+      --ink:#2b1b12;
+      --muted:#5a3b2c;
+      --card:rgba(244,229,201,.88);
+      --border:rgba(90,59,44,.22);
+      --shadow: 0 10px 30px rgba(43,27,18,.18);
+      --radius: 14px;
+      --pad: clamp(12px, 2.4vw, 18px);
+      --max: 980px;
+
+      --font: ui-sans-serif, system-ui, -apple-system, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", Segoe UI, Roboto, Helvetica, Arial, "Segoe UI Emoji";
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      color:var(--ink);
+      font-family:var(--font);
+      background:
+        radial-gradient(1200px 500px at 15% 10%, rgba(218,165,32,.25), transparent 60%),
+        radial-gradient(900px 450px at 85% 30%, rgba(205,133,63,.22), transparent 62%),
+        linear-gradient(0deg, rgba(244,229,201,.92), rgba(244,229,201,.92)),
+        repeating-linear-gradient(90deg, rgba(90,59,44,.045), rgba(90,59,44,.045) 2px, transparent 2px, transparent 8px),
+        repeating-linear-gradient(0deg, rgba(90,59,44,.03), rgba(90,59,44,.03) 1px, transparent 1px, transparent 10px);
+      word-break: keep-all;
+      overflow-wrap: anywhere;
+    }
+
+    a{color:inherit}
+    .wrap{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: calc(var(--pad) * 1.2);
+    }
+
+    header.hero{
+      position:relative;
+      border:1px solid var(--border);
+      border-radius: calc(var(--radius) + 6px);
+      background: linear-gradient(180deg, rgba(244,229,201,.94), rgba(244,229,201,.84));
+      box-shadow: var(--shadow);
+      padding: calc(var(--pad) * 1.3);
+    }
+
+    .badge{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border:1px solid var(--border);
+      background: rgba(218,165,32,.13);
+      font-weight: 700;
+      letter-spacing: .2px;
+      font-size: 12px;
+      color: var(--muted);
+      text-shadow: 0 1px 0 rgba(244,229,201,.8);
+    }
+
+    h1{
+      margin: 12px 0 8px;
+      font-size: clamp(22px, 4.5vw, 34px);
+      line-height: 1.15;
+      letter-spacing: -0.3px;
+      text-shadow: 0 1px 0 rgba(244,229,201,.9), 0 2px 10px rgba(43,27,18,.12);
+    }
+
+    .sub{
+      margin:0;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: clamp(14px, 2.9vw, 16px);
+      text-shadow: 0 1px 0 rgba(244,229,201,.85);
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-top: 14px;
+    }
+    @media (min-width: 760px){
+      .grid{ grid-template-columns: 1.2fr .8fr; }
+    }
+
+    .card{
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--card);
+      box-shadow: 0 8px 24px rgba(43,27,18,.12);
+      padding: var(--pad);
+    }
+
+    .kpi{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    @media (min-width: 760px){
+      .kpi{ grid-template-columns: 1fr 1fr; }
+    }
+
+    .k{
+      border:1px dashed rgba(90,59,44,.35);
+      border-radius: 12px;
+      padding: 10px 12px;
+      background: rgba(244,229,201,.6);
+    }
+    .k b{ display:block; font-size: 13px; color: var(--muted); margin-bottom: 4px; }
+    .k span{ display:block; font-weight: 800; font-size: 15px; text-shadow: 0 1px 0 rgba(244,229,201,.85); }
+
+    .btns{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top: 12px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border:1px solid var(--border);
+      background: linear-gradient(180deg, rgba(205,133,63,.16), rgba(218,165,32,.14));
+      font-weight: 900;
+      text-decoration:none;
+      text-shadow: 0 1px 0 rgba(244,229,201,.9);
+      box-shadow: 0 8px 18px rgba(43,27,18,.12);
+    }
+    .btn:focus, .btn:hover{ outline:none; transform: translateY(-1px); }
+    .btn small{ font-weight:800; color: var(--muted); }
+
+    main{ margin-top: 14px; }
+
+    h2{
+      margin: 0 0 10px;
+      font-size: 18px;
+      letter-spacing: -0.2px;
+      text-shadow: 0 1px 0 rgba(244,229,201,.85);
+    }
+    h3{
+      margin: 0 0 8px;
+      font-size: 15px;
+      color: var(--muted);
+      text-shadow: 0 1px 0 rgba(244,229,201,.85);
+    }
+    p{ margin: 0 0 10px; line-height: 1.65; }
+    ul{ margin: 0; padding-left: 18px; line-height: 1.65; }
+    li{ margin: 6px 0; }
+
+    /* Accordion (CSS only) */
+    .acc{
+      display:grid;
+      gap:10px;
+    }
+    .qa{
+      border:1px solid var(--border);
+      border-radius: 14px;
+      overflow:hidden;
+      background: rgba(244,229,201,.72);
+      box-shadow: 0 10px 22px rgba(43,27,18,.09);
+    }
+    .qa input{ position:absolute; opacity:0; pointer-events:none; }
+    .qa label{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      cursor:pointer;
+      padding: 12px 12px;
+      font-weight: 900;
+      border-left: 6px solid rgba(205,133,63,.55);
+      background: linear-gradient(90deg, rgba(205,133,63,.10), rgba(244,229,201,.20));
+      text-shadow: 0 1px 0 rgba(244,229,201,.95);
+    }
+    .qa label .num{
+      flex:0 0 auto;
+      width: 28px; height: 28px;
+      display:grid; place-items:center;
+      border-radius: 8px;
+      border:1px solid rgba(90,59,44,.25);
+      background: rgba(218,165,32,.15);
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 900;
+    }
+    .qa label .q{
+      flex:1;
+      font-size: 14px;
+    }
+    .qa label .chev{
+      flex:0 0 auto;
+      margin-left:auto;
+      width: 26px; height: 26px;
+      border-radius: 8px;
+      border:1px solid rgba(90,59,44,.2);
+      display:grid; place-items:center;
+      color: var(--muted);
+      background: rgba(244,229,201,.6);
+      transition: transform .22s ease;
+    }
+    .qa .panel{
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .28s ease;
+    }
+    .qa .inner{
+      padding: 0 12px 12px;
+      color: var(--ink);
+    }
+    .qa input:checked + label .chev{ transform: rotate(180deg); }
+    .qa input:checked ~ .panel{ max-height: 420px; }
+
+    /* Copy boxes */
+    .copybox{
+      border:1px solid rgba(90,59,44,.25);
+      border-radius: 14px;
+      background: rgba(244,229,201,.85);
+      padding: 10px;
+      box-shadow: 0 8px 18px rgba(43,27,18,.08);
+    }
+    .copyhint{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom: 8px;
+      color: var(--muted);
+      font-weight: 800;
+      font-size: 12px;
+      text-shadow: 0 1px 0 rgba(244,229,201,.9);
+    }
+    .copyhint em{
+      font-style:normal;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border:1px solid rgba(90,59,44,.22);
+      background: rgba(218,165,32,.12);
+      font-weight: 900;
+    }
+    textarea{
+      width:100%;
+      min-height: 120px;
+      resize: vertical;
+      border-radius: 12px;
+      border:1px solid rgba(90,59,44,.25);
+      padding: 10px;
+      font-family: var(--mono);
+      font-size: 12.5px;
+      line-height: 1.55;
+      color: var(--ink);
+      background: rgba(255,255,255,.55);
+      outline: none;
+    }
+    textarea:focus{
+      border-color: rgba(205,133,63,.55);
+      box-shadow: 0 0 0 4px rgba(205,133,63,.18);
+    }
+
+    /* Chart (HTML/CSS) */
+    .chart{
+      display:grid;
+      gap:10px;
+    }
+    .bars{
+      display:grid;
+      gap:8px;
+    }
+    .bar{
+      display:grid;
+      grid-template-columns: 84px 1fr 48px;
+      gap:10px;
+      align-items:center;
+    }
+    .bar b{
+      font-size: 12px;
+      color: var(--muted);
+      text-shadow: 0 1px 0 rgba(244,229,201,.85);
+    }
+    .track{
+      height: 14px;
+      border-radius: 999px;
+      background: rgba(90,59,44,.12);
+      border:1px solid rgba(90,59,44,.18);
+      overflow:hidden;
+      box-shadow: inset 0 1px 0 rgba(244,229,201,.6);
+    }
+    .fill{
+      height:100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(205,133,63,.78), rgba(218,165,32,.78));
+    }
+    .bar i{
+      font-style:normal;
+      font-weight: 900;
+      color: var(--muted);
+      font-size: 12px;
+      text-align:right;
+      text-shadow: 0 1px 0 rgba(244,229,201,.85);
+    }
+
+    /* Mindmap (HTML/CSS) */
+    .mindmap{
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      background: rgba(244,229,201,.74);
+      padding: 12px;
+      box-shadow: 0 10px 22px rgba(43,27,18,.09);
+    }
+    .mm-root{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    @media(min-width:760px){
+      .mm-root{ flex-direction:row; align-items:flex-start; }
+    }
+    .mm-node{
+      border:1px solid rgba(90,59,44,.22);
+      border-radius: 14px;
+      padding: 10px 12px;
+      background: rgba(218,165,32,.10);
+      box-shadow: 0 8px 18px rgba(43,27,18,.08);
+      min-width: 220px;
+    }
+    .mm-node strong{
+      display:block;
+      font-weight: 950;
+      letter-spacing: -0.2px;
+      text-shadow: 0 1px 0 rgba(244,229,201,.9);
+    }
+    .mm-node small{
+      display:block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-weight: 800;
+      text-shadow: 0 1px 0 rgba(244,229,201,.85);
+    }
+    .mm-branches{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:10px;
+      flex:1;
+    }
+    @media(min-width:760px){
+      .mm-branches{ grid-template-columns: 1fr 1fr; }
+    }
+    .mm-branch{
+      border:1px dashed rgba(90,59,44,.28);
+      border-radius: 14px;
+      padding: 10px 12px;
+      background: rgba(244,229,201,.68);
+    }
+    .mm-branch b{
+      display:block;
+      color: var(--muted);
+      font-weight: 950;
+      text-shadow: 0 1px 0 rgba(244,229,201,.9);
+      margin-bottom: 6px;
+    }
+    .mm-branch ul{ margin:0; padding-left: 18px; }
+
+    footer{
+      margin: 18px 0 6px;
+      color: var(--muted);
+      font-size: 12px;
+      text-shadow: 0 1px 0 rgba(244,229,201,.85);
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      justify-content:space-between;
+      align-items:center;
+    }
+    .sep{opacity:.6}
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header class="hero">
+      <div class="badge">  Papyrus Tech Brief · Parksy×Koosy · Sy=씨</div>
+      <h1>Parksy×Koosy 실사용 방송 튜토리얼 시스템 기술백서</h1>
+      <p class="sub">
+        불특정 다수 강의 대신, <b>말 많은 친구 1명(Koosy 씨)</b>만 상대로 찍고 그 장면을 그대로 튜토리얼로 쓴다.
+        네이밍은 <b>Sy=씨</b> 라임으로 고정해 글로벌/로컬 리듬을 동시에 확보한다.
+      </p>
+
+      <div class="grid">
+        <section class="card" aria-label="핵심 요약">
+          <h2>핵심 결론</h2>
+          <div class="kpi">
+            <div class="k"><b>타깃</b><span>Koosy 씨 한 명(실존 사용자)</span></div>
+            <div class="k"><b>제작 방식</b><span>방송 원본 → 질문=챕터 → 삽질=주의사항</span></div>
+            <div class="k"><b>네이밍 규칙</b><span>-sy = 씨(발음) / Parksy·Koosy</span></div>
+            <div class="k"><b>톤</b><span>강의 금지 · 설득 금지 · 실험 로그</span></div>
+          </div>
+
+          <div class="btns">
+            <a class="btn" href="mailto:dimas@dtslib.com?subject=Parksy%20x%20Koosy%20%EA%B8%B0%EC%88%A0%EB%B0%B1%EC%84%9C%20%EB%AC%B8%EC%9D%98&body=%EB%AC%B8%EC%9D%98%20%EB%82%B4%EC%9A%A9%3A%0A%0A-%20%EC%A0%81%EC%9A%A9%20%EB%8C%80%EC%83%81%3A%0A-%20%ED%8F%AC%EB%A7%B7%20%ED%99%95%EC%A0%95%20%EC%9A%94%EC%B2%AD%3A%0A-%20%ED%8E%B8%EC%A7%91%20%EA%B7%9C%EC%B9%99%3A%0A" aria-label="메일 문의 버튼">
+              ✉️ 메일로 문의 <small>mailto:dimas@dtslib.com</small>
+            </a>
+            <a class="btn" href="#copy" aria-label="복사 텍스트 박스로 이동">
+                복사 텍스트 박스 <small>한 번에 붙여넣기</small>
+            </a>
+          </div>
+        </section>
+
+        <aside class="card" aria-label="Before After 비교">
+          <h2>Before / After</h2>
+          <h3>Before (불특정 다수 강의)</h3>
+          <ul>
+            <li>설명 과잉 → 강의 톤 발생</li>
+            <li>가상의 수강생 상상 → 메시지 흐려짐</li>
+            <li>편집 부담 증가</li>
+          </ul>
+          <div style="height:10px"></div>
+          <h3>After (Koosy 씨 1명 실험)</h3>
+          <ul>
+            <li>실존 사용자 반응 → 대화체 자동 생성</li>
+            <li>질문이 곧 챕터 → 교재화 쉬움</li>
+            <li>실패/삽질도 콘텐츠 → 신뢰 확보</li>
+          </ul>
+        </aside>
+      </div>
+    </header>
+
+    <main>
+      <article>
+        <section class="card" aria-label="대화 핵심 문답 5개">
+          <h2>대화 핵심 문답 5개 (사용자 워딩 기반)</h2>
+
+          <div class="acc" role="region" aria-label="CSS 아코디언 문답">
+            <div class="qa">
+              <input type="checkbox" id="q1" />
+              <label for="q1">
+                <span class="num">Q1</span>
+                <span class="q">“그러니까 나는 얘를 상대로만 방송을 찍고 튜트리얼 만들면 돼”</span>
+                <span class="chev">▾</span>
+              </label>
+              <div class="panel">
+                <div class="inner">
+                  <p><b>A.</b> 맞다. 타깃은 1명으로 고정한다. 그 장면(질문·삽질·반응)을 그대로 튜토리얼로 쓴다.</p>
+                  <ul>
+                    <li>방송 원본 = 1차 자료</li>
+                    <li>Koosy 질문 = 챕터 제목</li>
+                    <li>Koosy 삽질 = 주의사항</li>
+                    <li>Koosy 한마디 = 요약 문장</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="qa">
+              <input type="checkbox" id="q2" />
+              <label for="q2">
+                <span class="num">Q2</span>
+                <span class="q">“Sy 이게 씨발음이라고.”</span>
+                <span class="chev">▾</span>
+              </label>
+              <div class="panel">
+                <div class="inner">
+                  <p><b>A.</b> 네이밍 규칙을 “-sy = 씨(발음)”으로 고정한다. 글로벌은 닉네임으로, 로컬은 호칭 리듬으로 먹는다.</p>
+                  <ul>
+                    <li>Parksy = 박-씨(리듬) / parksi(글로벌)</li>
+                    <li>Koosy = 구-씨(리듬) / kuzi·kuːsi(글로벌)</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="qa">
+              <input type="checkbox" id="q3" />
+              <label for="q3">
+                <span class="num">Q3</span>
+                <span class="q">“그래서 글로벌하게 괜찮냐고 쿠시”</span>
+                <span class="chev">▾</span>
+              </label>
+              <div class="panel">
+                <div class="inner">
+                  <p><b>A.</b> Koosy는 글로벌 발음 난이도 낮고, 위험한 속어/금기 연상도 낮다. (단, 설명하려 들지 말고 그냥 쓰면 된다.)</p>
+                  <ul>
+                    <li>발음: /ˈkuːzi/ 또는 /ˈkuːsi/로 자연 독해 가능</li>
+                    <li>기억성: “cozy” 연상으로 친근한 캐릭터 톤</li>
+                    <li>포지션: Parksy(구조) 옆에 Koosy(현장)를 둬서 밸런스 유지</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="qa">
+              <input type="checkbox" id="q4" />
+              <label for="q4">
+                <span class="num">Q4</span>
+                <span class="q">“Goosy Kusy Kusy Gusy Guusy. 어느 게 낫냐고”</span>
+                <span class="chev">▾</span>
+              </label>
+              <div class="panel">
+                <div class="inner">
+                  <p><b>A.</b> 최종 선택은 <b>Koosy</b>. (발음 안정, 기억성, Parksy와 페어링 최적)</p>
+                  <ul>
+                    <li>Goosy: goose(거위) 연상 강함</li>
+                    <li>Gusy: 발음 흔들림</li>
+                    <li>Guusy: 오타/지저분한 인상</li>
+                    <li>Kusy: “큐지”로 틀어질 확률</li>
+                    <li><b>Koosy:</b> “쿠-”로 안정, 캐릭터 톤 유지</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="qa">
+              <input type="checkbox" id="q5" />
+              <label for="q5">
+                <span class="num">Q5</span>
+                <span class="q">“YouTube에 욕하면 안되지?”</span>
+                <span class="chev">▾</span>
+              </label>
+              <div class="panel">
+                <div class="inner">
+                  <p><b>A.</b> 가능은 하지만 “초반 30초”와 “대상”이 관건이다. 욕은 리액션으로만 쓰고, 사람 공격은 금지한다.</p>
+                  <ul>
+                    <li>초반 30초: 욕 연타 금지</li>
+                    <li>대상: 시스템/UX에만 (사람/집단 공격 금지)</li>
+                    <li>분업: Parksy(절제) / Koosy(리액션 담당)</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="card" aria-label="AI 한계 명제 질문 10개">
+          <h2>AI 불가능 아이디어 10개 명제 질문 (시각화)</h2>
+          <p class="sub" style="margin-top:-4px">
+            아래는 “AI가 못하는 것(혹은 위험·불명확해서 못하게 해야 하는 것)”을 명제 질문으로 고정한 리스트다.
+          </p>
+
+          <div class="kpi" style="margin-top:10px">
+            <div class="k"><b>명제 Q1</b><span>영상 성과(조회·유입)를 100% 보장하는 제목/썸네일 공식을 만들 수 있는가?</span></div>
+            <div class="k"><b>명제 Q2</b><span>유튜브 알고리즘의 실제 내부 가중치/룰을 “정답”으로 단정해줄 수 있는가?</span></div>
+            <div class="k"><b>명제 Q3</b><span>Koosy 씨의 실제 심리·의도(속마음)를 텍스트만으로 확정 판정할 수 있는가?</span></div>
+            <div class="k"><b>명제 Q4</b><span>특정 욕설이 언제나 노란딱지를 피한다는 보증을 할 수 있는가?</span></div>
+            <div class="k"><b>명제 Q5</b><span>개인 브랜드/도메인 네이밍의 “법적 분쟁 리스크 0%”를 확정할 수 있는가?</span></div>
+            <div class="k"><b>명제 Q6</b><span>모든 국가·언어권에서 Koosy가 부정 연상을 절대 일으키지 않는다고 단정할 수 있는가?</span></div>
+            <div class="k"><b>명제 Q7</b><span>한 번 만든 튜토리얼이 미래에도 기술 변화 없이 그대로 통한다는 보증을 할 수 있는가?</span></div>
+            <div class="k"><b>명제 Q8</b><span>시청자 반응을 미리 예측해 댓글/밈까지 확정 설계할 수 있는가?</span></div>
+            <div class="k"><b>명제 Q9</b><span>“말 많은 친구”라는 한 요소만으로 시장 대표성이 항상 성립한다고 단정할 수 있는가?</span></div>
+            <div class="k"><b>명제 Q10</b><span>콘텐츠 성공의 핵심 변수를 모두 통제해 실패를 제거할 수 있는가?</span></div>
+          </div>
+        </section>
+
+        <section class="card" aria-label="Claude 평가 4개 영역">
+          <h2>Claude 평가 (4개 영역 · 점수 + 사유)</h2>
+
+          <div class="chart" aria-label="HTML CSS 차트">
+            <h3>평가 바차트 (0–100)</h3>
+            <div class="bars">
+              <div class="bar">
+                <b>구조 설계</b>
+                <div class="track"><div class="fill" style="width:92%"></div></div>
+                <i>92</i>
+              </div>
+              <div class="bar">
+                <b>브랜딩/네임</b>
+                <div class="track"><div class="fill" style="width:88%"></div></div>
+                <i>88</i>
+              </div>
+              <div class="bar">
+                <b>실행 난이도</b>
+                <div class="track"><div class="fill" style="width:84%"></div></div>
+                <i>84</i>
+              </div>
+              <div class="bar">
+                <b>유튜브 리스크</b>
+                <div class="track"><div class="fill" style="width:78%"></div></div>
+                <i>78</i>
+              </div>
+            </div>
+
+            <div class="kpi" style="margin-top:12px">
+              <div class="k"><b>구조 설계 (92)</b><span>1인 타깃 → 질문=챕터 → 로그=교재 흐름이 견고함.</span></div>
+              <div class="k"><b>브랜딩/네임 (88)</b><span>Sy=씨 라임은 로컬/글로벌 이중 청취 구조를 만듦.</span></div>
+              <div class="k"><b>실행 난이도 (84)</b><span>편집 부담을 줄이고 촬영/기록 중심으로 단순화 가능.</span></div>
+              <div class="k"><b>유튜브 리스크 (78)</b><span>욕/초반 30초/대상 공격만 피하면 대부분 관리 가능.</span></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="card" aria-label="마인드맵">
+          <h2>HTML/CSS 마인드맵</h2>
+          <div class="mindmap" role="region" aria-label="Parksy Koosy 시스템 마인드맵">
+            <div class="mm-root">
+              <div class="mm-node">
+                <strong>Parksy×Koosy 시스템</strong>
+                <small>실사용 방송 → 튜토리얼 → 기술백서</small>
+              </div>
+              <div class="mm-branches">
+                <div class="mm-branch">
+                  <b>캐스팅</b>
+                  <ul>
+                    <li>Parksy: 구조·판정</li>
+                    <li>Koosy: 반응·질문·삽질</li>
+                    <li>분업: 강의 톤 제거</li>
+                  </ul>
+                </div>
+                <div class="mm-branch">
+                  <b>제작 흐름</b>
+                  <ul>
+                    <li>방송 원본(실험)</li>
+                    <li>질문=챕터</li>
+                    <li>삽질=주의사항</li>
+                    <li>한 줄 결론=요약</li>
+                  </ul>
+                </div>
+                <div class="mm-branch">
+                  <b>네이밍</b>
+                  <ul>
+                    <li>-sy = 씨(발음)</li>
+                    <li>Parksy / Koosy</li>
+                    <li>설명 금지, 그냥 사용</li>
+                  </ul>
+                </div>
+                <div class="mm-branch">
+                  <b>운영 룰</b>
+                  <ul>
+                    <li>초반 30초 욕 연타 금지</li>
+                    <li>사람 공격 금지</li>
+                    <li>불편하면 기능 삭제 후보</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="card" id="copy" aria-label="수동 복사 텍스트 박스">
+          <h2>수동 복사 가능한 텍스트 박스</h2>
+
+          <div class="copybox">
+            <div class="copyhint">
+              <span>  아래 텍스트를 직접 선택해서 복사하세요.</span>
+              <em>모바일: 길게 누르기 → 전체 선택</em>
+            </div>
+            <textarea readonly aria-label="복사 텍스트: 한 줄 선언문">
+[한 줄 선언]
+나는 Koosy 씨 한 명만 상대로 방송을 찍고, 그 장면을 그대로 튜토리얼로 만든다.
+강의하지 않고, 설득하지 않고, “나는 이렇게 쓰고 있다”만 남긴다.
+
+[네이밍 룰]
+-sy = 씨(발음). Parksy / Koosy. 설명하지 말고 그냥 쓴다.
+
+[제작 룰]
+방송 원본 = 교재 원본
+Koosy 질문 = 챕터 제목
+Koosy 삽질 = 주의사항
+Koosy 한마디 = 요약 문장
+
+[유튜브 안전 룰]
+초반 30초 욕 연타 금지
+사람/집단 공격 금지 (시스템/UX에만 리액션)
+Parksy 절제 / Koosy 리액션 담당
+            </textarea>
+          </div>
+
+          <div style="height:12px"></div>
+
+          <div class="copybox">
+            <div class="copyhint">
+              <span>  파일럿 3편 주제 텍스트(복사용)</span>
+              <em>PC: Ctrl/Cmd + A → 복사</em>
+            </div>
+            <textarea readonly aria-label="복사 텍스트: 파일럿 3편 주제">
+[파일럿 EP1] “Koosy 씨가 안 쓰면 폐기” — 기능 최소화 테스트
+[파일럿 EP2] “질문=챕터” — 질문 5개로 튜토리얼 목차 만들기
+[파일럿 EP3] “Sy=씨 라임” — Parksy×Koosy 네이밍과 캐릭터 분업 고정
+            </textarea>
+          </div>
+        </section>
+      </article>
+
+      <footer>
+        <span>© dtslib.com <span class="sep">|</span> 저자: 중년작가지망생 EduArt Engineer</span>
+        <span>UI: Papyrus + #f4e5c9 / #cd853f / #daa520 · CSS-only Accordion · 320px 대응</span>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>
+</div>
+
+<!-- ===== PAGE HTML (파싱) ===== -->
+<div id="page-content">
+<!-- 본문 추출 실패 -->
+</div>
+
+<!-- ===== RAW PAGE (전체) ===== -->
+<script type="text/x-raw-page">
+<!-- parksy-webtoon-player v1.0 — 티스토리 HTML 모드에 복사-붙여넣기 -->
+<!-- 사용법: 아래 images 배열에 티스토리 업로드 후 이미지 URL을 넣고 전체 복사 -->
+<script>if(location.pathname.indexOf('/m')===0||location.href.indexOf('/m/')>-1){location.replace(location.href.replace(/\/m(\/|$)/,'/'));}</script>
+
+<div id="parksy-webtoon">
+  <!-- 플레이어가 여기에 렌더링됨 -->
+</div>
+
+<style>
+.pp-root{max-width:860px;margin:0 auto;background:#111;color:#eee;font-family:-apple-system,'Malgun Gothic',sans-serif;border-radius:8px;overflow:hidden;position:relative;user-select:none;-webkit-user-select:none}
+.pp-root *{box-sizing:border-box}
+.pp-root:-webkit-full-screen,.pp-root:fullscreen{max-width:100%;border-radius:0;background:#000}
+.pp-root:fullscreen .pp-viewport{height:calc(100vh - 100px)}
+.pp-header{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:rgba(0,0,0,0.6);font-size:14px}
+.pp-title{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-right:12px}
+.pp-counter{flex-shrink:0;color:#aaa;font-variant-numeric:tabular-nums}
+.pp-viewport{position:relative;width:100%;min-height:300px;display:flex;align-items:center;justify-content:center;background:#000;overflow:hidden}
+.pp-img-wrap{width:100%;display:flex;align-items:center;justify-content:center;transition:opacity 0.15s ease-in-out}
+.pp-img-wrap.pp-fade-out{opacity:0}
+.pp-img{max-width:100%;max-height:80vh;display:block;object-fit:contain}
+.pp-hit{position:absolute;top:0;bottom:0;width:35%;cursor:pointer;z-index:2}
+.pp-hit-left{left:0}
+.pp-hit-right{right:0}
+.pp-hit:hover{background:rgba(255,255,255,0.02)}
+.pp-controls{display:flex;justify-content:center;align-items:center;gap:8px;padding:10px 16px;background:rgba(0,0,0,0.6)}
+.pp-btn{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:#ddd;padding:6px 14px;border-radius:4px;cursor:pointer;font-size:13px;transition:background 0.15s,color 0.15s;white-space:nowrap}
+.pp-btn:hover{background:rgba(255,255,255,0.2);color:#fff}
+.pp-btn:disabled{opacity:0.3;cursor:default}
+.pp-btn.pp-active{background:rgba(66,133,244,0.4);border-color:rgba(66,133,244,0.6);color:#fff}
+.pp-progress-wrap{height:3px;background:rgba(255,255,255,0.1)}
+.pp-progress-bar{height:100%;background:#4285f4;transition:width 0.3s ease;width:0}
+@media(max-width:600px){.pp-root{border-radius:0}.pp-header{padding:8px 12px;font-size:13px}.pp-controls{gap:4px;padding:8px 8px}.pp-btn{padding:6px 10px;font-size:12px}.pp-btn-auto,.pp-btn-fs{display:none}.pp-img{max-height:70vh}}
+</style>
+
+<script>
+var ParksyPlayer=(function(){'use strict';var state={images:[],current:0,total:0,autoplay:false,autoplayTimer:null,autoplaySpeed:5000,title:'',episode:0,container:null,els:{},touchStartX:0,touchStartY:0,preloaded:{}};function init(config){state.images=config.images||[];state.total=state.images.length;state.title=config.title||'';state.episode=config.episode||0;state.current=0;state.autoplaySpeed=config.autoplaySpeed||5000;var containerEl=typeof config.container==='string'?document.querySelector(config.container):config.container;if(!containerEl){console.error('ParksyPlayer: container not found');return}state.container=containerEl;state.container.className='pp-root';buildDOM();bindEvents();preloadAround(0);render()}function buildDOM(){var c=state.container;c.innerHTML='';var header=mk('div','pp-header');var titleEl=mk('span','pp-title');var counterEl=mk('span','pp-counter');header.appendChild(titleEl);header.appendChild(counterEl);var viewport=mk('div','pp-viewport');var imgWrap=mk('div','pp-img-wrap');var img=document.createElement('img');img.className='pp-img';img.alt='';img.draggable=false;imgWrap.appendChild(img);viewport.appendChild(imgWrap);var hitLeft=mk('div','pp-hit pp-hit-left');var hitRight=mk('div','pp-hit pp-hit-right');viewport.appendChild(hitLeft);viewport.appendChild(hitRight);var controls=mk('div','pp-controls');var btnPrev=mk('button','pp-btn pp-btn-prev');btnPrev.innerHTML='&#9664; 이전';var btnAuto=mk('button','pp-btn pp-btn-auto');btnAuto.innerHTML='&#9654; 자동재생';var btnFS=mk('button','pp-btn pp-btn-fs');btnFS.innerHTML='&#x26F6; 전체화면';var btnNext=mk('button','pp-btn pp-btn-next');btnNext.innerHTML='다음 &#9654;';controls.appendChild(btnPrev);controls.appendChild(btnAuto);controls.appendChild(btnFS);controls.appendChild(btnNext);var pWrap=mk('div','pp-progress-wrap');var pBar=mk('div','pp-progress-bar');pWrap.appendChild(pBar);c.appendChild(header);c.appendChild(viewport);c.appendChild(controls);c.appendChild(pWrap);state.els={title:titleEl,counter:counterEl,viewport:viewport,imgWrap:imgWrap,img:img,hitLeft:hitLeft,hitRight:hitRight,btnPrev:btnPrev,btnAutoplay:btnAuto,btnFullscreen:btnFS,btnNext:btnNext,progressBar:pBar}}function mk(tag,cls){var e=document.createElement(tag);if(cls)e.className=cls;return e}function bindEvents(){var els=state.els;els.btnPrev.addEventListener('click',prev);els.btnNext.addEventListener('click',next);els.btnAutoplay.addEventListener('click',toggleAutoplay);els.btnFullscreen.addEventListener('click',toggleFullscreen);els.hitLeft.addEventListener('click',prev);els.hitRight.addEventListener('click',next);document.addEventListener('keydown',function(e){if(!isVisible())return;switch(e.key){case'ArrowLeft':prev();e.preventDefault();break;case'ArrowRight':case' ':next();e.preventDefault();break;case'f':case'F':toggleFullscreen();break}});var vp=els.viewport;vp.addEventListener('touchstart',function(e){state.touchStartX=e.changedTouches[0].clientX;state.touchStartY=e.changedTouches[0].clientY},{passive:true});vp.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-state.touchStartX;var dy=e.changedTouches[0].clientY-state.touchStartY;if(Math.abs(dx)<40||Math.abs(dy)>Math.abs(dx))return;if(dx<0)next();else prev()},{passive:true})}function isVisible(){if(!state.container)return false;var rect=state.container.getBoundingClientRect();return rect.top<window.innerHeight&&rect.bottom>0}function goTo(index){if(index<0||index>=state.total)return;state.current=index;preloadAround(index);render()}function next(){if(state.current<state.total-1){goTo(state.current+1)}else if(state.autoplay){stopAutoplay()}}function prev(){if(state.current>0)goTo(state.current-1)}function toggleAutoplay(){if(state.autoplay)stopAutoplay();else startAutoplay()}function startAutoplay(){state.autoplay=true;state.els.btnAutoplay.innerHTML='&#9724; 정지';state.els.btnAutoplay.classList.add('pp-active');state.autoplayTimer=setInterval(function(){next()},state.autoplaySpeed)}function stopAutoplay(){state.autoplay=false;state.els.btnAutoplay.innerHTML='&#9654; 자동재생';state.els.btnAutoplay.classList.remove('pp-active');if(state.autoplayTimer){clearInterval(state.autoplayTimer);state.autoplayTimer=null}}function toggleFullscreen(){var root=state.container;if(document.fullscreenElement||document.webkitFullscreenElement||document.msFullscreenElement){(document.exitFullscreen||document.webkitExitFullscreen||document.msExitFullscreen).call(document)}else{(root.requestFullscreen||root.webkitRequestFullscreen||root.msRequestFullscreen).call(root)}}function preloadAround(index){for(var i=index-1;i<=index+2;i++){if(i>=0&&i<state.total&&!state.preloaded[i]){var loader=new Image();loader.src=state.images[i];state.preloaded[i]=true}}}function render(){var els=state.els;var cur=state.current;var titleText=state.title;if(state.episode)titleText='EP.'+state.episode+' '+titleText;els.title.textContent=titleText;els.counter.textContent=(cur+1)+' / '+state.total;els.imgWrap.classList.add('pp-fade-out');setTimeout(function(){els.img.src=state.images[cur];els.img.onload=function(){els.imgWrap.classList.remove('pp-fade-out')};if(els.img.complete)els.imgWrap.classList.remove('pp-fade-out')},150);var pct=state.total>1?(cur/(state.total-1))*100:100;els.progressBar.style.width=pct+'%';els.btnPrev.disabled=cur===0;els.btnNext.disabled=cur===state.total-1}return{init:init,next:next,prev:prev,goTo:goTo}})();
+ParksyPlayer.init({container:'#parksy-webtoon',images:[],title:'에피소드 제목',episode:1});
+</script>
+</script>
+</body>
+</html>

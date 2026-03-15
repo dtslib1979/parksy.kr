@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>LLM맞춤지침 생성엔진</title>
+<!-- SOURCE: https://technician-parksy.tistory.com/3 -->
+<!-- DATE: Fri, 28 Nov 2025 10:38:55 +0900 -->
+<!-- BLOG: technician-parksy -->
+<!-- SCRAPED: 2026-03-14T18:12:19.025374 -->
+</head>
+<body>
+<!-- ===== RSS HTML (원문) ===== -->
+<div id="rss-content">
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<title>PARKSY WORLD · Multi-LLM Instruction Engine v1.1</title>
+<style>
+:root {
+  color-scheme: dark;
+  --bg: #050509;
+  --fg: #f9fafb;
+  --muted: #9ca3af;
+  --accent: #5cf0c0;
+  --accent-soft: rgba(92,240,192,0.12);
+  --border: #27272f;
+  --danger: #f87171;
+  --pill-bg: rgba(15,23,42,0.9);
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 20px 14px 40px;
+  background: radial-gradient(circle at top, #0b1020 0, #020308 45%, #000 100%);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  line-height: 1.5;
+}
+
+.app {
+  max-width: 1040px;
+  margin: 0 auto;
+}
+
+.app-header {
+  margin-bottom: 18px;
+}
+
+.app-header h1 {
+  font-size: 1.35rem;
+  margin: 0 0 4px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: baseline;
+}
+
+.app-header h1 span.small {
+  font-size: 0.85rem;
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.app-header p {
+  margin: 0;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.badge-row {
+  margin-top: 6px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.badge {
+  padding: 3px 9px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  font-size: 0.72rem;
+  color: var(--muted);
+  background: radial-gradient(circle at top left, rgba(148,163,184,0.18), transparent 60%);
+}
+
+.badge-accent {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: radial-gradient(circle at top left, rgba(92,240,192,0.16), transparent 60%);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
+  gap: 12px;
+}
+
+@media (max-width: 860px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.card {
+  position: relative;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  background: rgba(3, 7, 18, 0.86);
+  padding: 14px 12px 16px;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.55);
+  overflow: hidden;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top left, rgba(92,240,192,0.14), transparent 58%);
+  opacity: 0.85;
+  mix-blend-mode: soft-light;
+  pointer-events: none;
+}
+
+.card-inner {
+  position: relative;
+  z-index: 1;
+}
+
+.card h2 {
+  font-size: 0.98rem;
+  margin: 0 0 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.card h2 span.label {
+  font-size: 0.76rem;
+  color: var(--muted);
+}
+
+.hint {
+  font-size: 0.76rem;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.field-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 9px;
+}
+
+@media (max-width: 720px) {
+  .field-grid {
+    grid-template-columns: minmax(0,1fr);
+  }
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.field label {
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.field small {
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+
+input[type="text"],
+select,
+textarea {
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: rgba(10, 12, 20, 0.98);
+  color: var(--fg);
+  padding: 7px 9px;
+  font-size: 0.8rem;
+  font-family: var(--font-sans);
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 70px;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px rgba(92,240,192,0.6);
+  background: #020617;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-bottom: 8px;
+}
+
+.chip {
+  border-radius: 999px;
+  padding: 5px 10px;
+  font-size: 0.78rem;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  user-select: none;
+  color: var(--muted);
+  background: var(--pill-bg);
+}
+
+.chip.active {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.axis-grid {
+  display: grid;
+  grid-template-columns: minmax(0,1fr) minmax(0,1fr);
+  gap: 8px;
+  margin-top: 4px;
+}
+
+@media (max-width: 720px) {
+  .axis-grid {
+    grid-template-columns: minmax(0,1fr);
+  }
+}
+
+.axis-card {
+  border-radius: 12px;
+  border: 1px solid rgba(55,65,81,0.9);
+  background: rgba(15,23,42,0.96);
+  padding: 7px 8px;
+}
+
+.axis-card h3 {
+  font-size: 0.82rem;
+  margin: 0 0 3px;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  align-items: center;
+}
+
+.axis-card h3 span.sub {
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+.axis-row {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.axis-row label {
+  font-size: 0.75rem;
+}
+
+.axis-row select {
+  font-size: 0.76rem;
+  padding: 5px 8px;
+}
+
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+button {
+  border-radius: 999px;
+  border: none;
+  padding: 7px 13px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  box-shadow: 0 10px 22px rgba(0,0,0,0.55);
+  white-space: nowrap;
+  transition: transform 0.1s ease, box-shadow 0.12s ease, background 0.12s ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 26px rgba(0,0,0,0.65);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.55);
+}
+
+button.secondary {
+  background: #020617;
+  border-color: var(--border);
+  color: var(--muted);
+}
+
+button.danger {
+  background: rgba(127,29,29,0.92);
+  border-color: rgba(248,113,113,0.8);
+  color: #fee2e2;
+}
+
+.output-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.pill {
+  padding: 3px 9px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  font-size: 0.72rem;
+  color: var(--muted);
+  background: rgba(15,23,42,0.96);
+}
+
+textarea#instruction-output {
+  width: 100%;
+  min-height: 320px;
+  max-height: 640px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  white-space: pre;
+}
+
+textarea#chatgpt-compact {
+  width: 100%;
+  min-height: 220px;
+  max-height: 520px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  white-space: pre;
+}
+
+.status {
+  margin-top: 4px;
+  font-size: 0.74rem;
+  color: var(--muted);
+}
+
+.status strong {
+  color: var(--accent);
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="app-header">
+    <h1>
+      PARKSY WORLD · Multi-LLM Instruction Engine
+      <span class="small">ChatGPT · Claude · Grok · (+ Gemini 알바)</span>
+    </h1>
+    <p>모델만 고르고, 6축 벡터(D/E/S/V/C/P)랑 역할·톤·범위 선택하면, 박씨 전용 맞춤 인스트럭션이 자동으로 생성됩니다.</p>
+    <div class="badge-row">
+      <span class="badge badge-accent">v1.1 · Single HTML</span>
+      <span class="badge">Tistory / GitHub Pages 그대로 붙여쓰기용</span>
+      <span class="badge">Dual-Engine · 6-Vector Model</span>
+      <span class="badge">+ ChatGPT Custom Instruction Compact 블록</span>
+    </div>
+  </header>
+
+  <main class="grid">
+    <!-- LEFT: CONFIG -->
+    <section class="card">
+      <div class="card-inner">
+        <h2>
+          설정 패널
+          <span class="label">모델 · 역할 · 6축 → 변수화</span>
+        </h2>
+        <p class="hint">모델과 옵션들을 고르면, 우측에 그 모델 전용 System/Custom Instruction과 ChatGPT Compact 블록이 생성됩니다.</p>
+
+        <div class="field-grid">
+          <div class="field">
+            <label for="model">인스트럭션 생성 대상 모델</label>
+            <select id="model">
+              <option value="chatgpt">ChatGPT (Brain)</option>
+              <option value="claude">Claude (CTO)</option>
+              <option value="grok">Grok (Marketing/Trend)</option>
+              <option value="gemini">Gemini (알바)</option>
+            </select>
+            <small>지금 생성해서 붙여 넣을 대상 LLM</small>
+          </div>
+
+          <div class="field">
+            <label for="core-llm">아이디어 발상 주력 LLM</label>
+            <select id="core-llm">
+              <option value="chatgpt" selected>ChatGPT (브레인 코어)</option>
+              <option value="claude">Claude</option>
+              <option value="grok">Grok</option>
+              <option value="gemini">Gemini (알바)</option>
+            </select>
+            <small>Season(아이디어 폭발) 단계에서 기본으로 쓸 모델</small>
+          </div>
+
+          <div class="field">
+            <label for="userName">사용자 이름</label>
+            <input id="userName" type="text" value="박씨" />
+            <small>PARKSY WORLD Creator 이름</small>
+          </div>
+          <div class="field">
+            <label for="userPersona">사용자 페르소나</label>
+            <input id="userPersona" type="text" value="EduArt Engineer" />
+            <small>예: EduArt Engineer, Creator, Producer 등</small>
+          </div>
+          <div class="field">
+            <label for="engineTitle">엔진 타이틀</label>
+            <input id="engineTitle" type="text" value="Dual-Engine · Season→Production→Meta→Media" />
+            <small>인스트럭션 상단에 들어갈 박씨 월드 엔진 이름</small>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>버전 · 역할 · 톤 · 범위</label>
+        </div>
+
+        <!-- Version -->
+        <div class="row" id="version-row">
+          <div class="chip active" data-value="creator">Creator Ver. (콘텐츠/YouTube 중심)</div>
+          <div class="chip" data-value="edu">Edu Ver. (튜토리얼/수업용)</div>
+        </div>
+
+        <!-- Role -->
+        <div class="row" id="role-row">
+          <div class="chip active" data-value="brain">철학/구조 브레인 (Worldview)</div>
+          <div class="chip" data-value="cto">시스템/전략 CTO 모드</div>
+          <div class="chip" data-value="artist">서사/감정 아티스트 모드</div>
+        </div>
+
+        <!-- Tone -->
+        <div class="row" id="tone-row">
+          <div class="chip active" data-value="woody">Woody Allen식 위트 + 분석</div>
+          <div class="chip" data-value="clean">드라이 & 최소 위트</div>
+        </div>
+
+        <!-- Scope -->
+        <div class="row" id="scope-row">
+          <div class="chip active" data-value="full">풀 파이프라인 (Season→Media)</div>
+          <div class="chip" data-value="prod">Production (60분 공장) 집중</div>
+        </div>
+
+        <!-- Axis section -->
+        <div class="field">
+          <label>6축 벡터 (D/E/S/V/C/P)</label>
+          <small>각 축은 1~5 (낮음→높음) 기준. 모델 선택 시 기본값이 설정됩니다.</small>
+        </div>
+
+        <div class="axis-grid">
+          <!-- Left column -->
+          <div>
+            <div class="axis-card">
+              <h3>Data & Grounding (D)<span class="sub">웹/레퍼런스·근거력</span></h3>
+              <div class="axis-row">
+                <label for="axisD">Score</label>
+                <select id="axisD">
+                  <option value="2">2 · 조심해서 써야 함</option>
+                  <option value="3">3 · 평균</option>
+                  <option value="4" selected>4 · 꽤 믿을 만함</option>
+                  <option value="5">5 · 주력 데이터 브레인</option>
+                </select>
+              </div>
+              <div class="axis-row">
+                <label for="axisDlic">라이선스 민감도</label>
+                <select id="axisDlic">
+                  <option value="high">높음 (보수적)</option>
+                  <option value="mid" selected>중간</option>
+                  <option value="low">낮음 (알바 수준)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="axis-card" style="margin-top:8px;">
+              <h3>Engineering (E)<span class="sub">구현/코드 능력</span></h3>
+              <div class="axis-row">
+                <label for="axisElevel">레벨</label>
+                <select id="axisElevel">
+                  <option value="1">1 · 코드 스니펫/함수</option>
+                  <option value="2" selected>2 · PWA/단일 앱 유닛</option>
+                  <option value="3">3 · Repo/시스템 설계</option>
+                </select>
+              </div>
+              <div class="axis-row">
+                <label for="axisE">Score</label>
+                <select id="axisE">
+                  <option value="2">2 · 조심해서 써야 함</option>
+                  <option value="3">3 · 평균</option>
+                  <option value="4" selected>4 · 꽤 믿을 만함</option>
+                  <option value="5">5 · 핵심 구현 담당</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="axis-card" style="margin-top:8px;">
+              <h3>Structure (S)<span class="sub">테이블/다이어그램/구조화</span></h3>
+              <div class="axis-row">
+                <label for="axisS">Score</label>
+                <select id="axisS">
+                  <option value="2">2 · 리스트 위주</option>
+                  <option value="3">3 · 적당히 구조화</option>
+                  <option value="4" selected>4 · 테이블/섹션 잘함</option>
+                  <option value="5">5 · Mermaid/구조 설계 강함</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right column -->
+          <div>
+            <div class="axis-card">
+              <h3>Visual (V)<span class="sub">이미지/비유/시각 서사</span></h3>
+              <div class="axis-row">
+                <label for="axisV">Score</label>
+                <select id="axisV">
+                  <option value="1">1 · 거의 텍스트만</option>
+                  <option value="2">2 · 간단한 비유 정도</option>
+                  <option value="3">3 · 이미지 브리프 OK</option>
+                  <option value="4" selected>4 · 시각 서사 강함</option>
+                  <option value="5">5 · 메인 비주얼 디렉터</option>
+                </select>
+              </div>
+              <div class="axis-row">
+                <label for="axisVcap">Capability</label>
+                <select id="axisVcap">
+                  <option value="text">Text only</option>
+                  <option value="prompt" selected>Prompt-gen (이미지 브리프)</option>
+                  <option value="image">Image-gen/편집까지</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="axis-card" style="margin-top:8px;">
+              <h3>Concept (C)<span class="sub">개념/이론/철학 깊이</span></h3>
+              <div class="axis-row">
+                <label for="axisC">Score</label>
+                <select id="axisC">
+                  <option value="2">2 · 실용 위주, 이론 약함</option>
+                  <option value="3">3 · 가벼운 이론/비유 가능</option>
+                  <option value="4">4 · 개념/수식/이론 결합 좋음</option>
+                  <option value="5" selected>5 · 철학/세계관 연동 강함</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="axis-card" style="margin-top:8px;">
+              <h3>Platform (P)<span class="sub">속도·메모리·내보내기</span></h3>
+              <div class="axis-row">
+                <label for="axisPspeed">속도</label>
+                <select id="axisPspeed">
+                  <option value="2">2 · 느림</option>
+                  <option value="3">3 · 보통</option>
+                  <option value="4" selected>4 · 빠른 편</option>
+                  <option value="5">5 · 실시간 브레인스톰 가능</option>
+                </select>
+              </div>
+              <div class="axis-row">
+                <label for="axisPexport">Export/자동화</label>
+                <select id="axisPexport">
+                  <option value="none">없음/거의 없음</option>
+                  <option value="manual">수동 복사/다운로드 위주</option>
+                  <option value="api" selected>API/자동화 연동 좋음</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="btn-row">
+          <button type="button" onclick="generateInstruction()">⚡ 인스트럭션 생성</button>
+          <button type="button" class="secondary" onclick="copyInstruction()">  복사</button>
+          <button type="button" class="danger" onclick="resetAxis()">♻ 6축 리셋</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- RIGHT: OUTPUT -->
+    <section class="card">
+      <div class="card-inner">
+        <div class="output-label">
+          <span>  Generated Instruction (박씨 전용 / 모델별 커스텀)</span>
+          <span class="pill" id="meta-pill">대기 중…</span>
+        </div>
+        <textarea id="instruction-output" spellcheck="false" placeholder="여기에 ChatGPT / Claude / Grok / Gemini 알바 전용 인스트럭션이 생성됩니다."></textarea>
+        <div class="status" id="status"></div>
+
+        <div class="output-label" style="margin-top:10px;">
+          <span>  ChatGPT Custom Instruction Compact (아이디어 코어가 ChatGPT일 때 사용)</span>
+        </div>
+        <textarea id="chatgpt-compact" spellcheck="false" placeholder="ChatGPT를 아이디어 코어로 쓸 때, 여기에 맞춤 지침 Compact 블록이 생성됩니다."></textarea>
+
+        <div class="status" style="margin-top:6px;">
+          TIP: 한 번 생성한 뒤, 각 모델에게 자기 인스트럭션을 다시 리팩터링시키면 v2, v3 버전으로 자연스럽게 진화시킬 수 있습니다.
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+// --- ChatGPT Compact Block (맞춤 지침용) ---
+var chatgptCompact = [
+  "# ChatGPT = 박씨 세컨 브레인",
+  "",
+  "## 역할",
+  "즉흥 발화 → 구조화 → 콘텐츠 완성.",
+  "Claude 코드를 사람 언어로 번역.",
+  "",
+  "## 분업",
+  "- 박씨: 철학·결정·창작 에너지",
+  "- ChatGPT: 구조·정리·오케스트레이션",
+  "- Claude: 코드·설계",
+  "- Grok: 정보·트렌드",
+  "",
+  "## 도메인",
+  "parksy.kr(감성·세계관) / eae.kr(튜토리얼) / dtslib.com(코드·백서)",
+  "",
+  "## 스타일",
+  "철학+실용+위트. 간결·명료. 확장 우선.",
+  "금지: 논문체·장문·과장·엘리트 말투.",
+  "",
+  "## 작업",
+  "박씨 발화 → 핵심 추출 → Tistory/GitHub/YouTube 포맷 변환.",
+  "",
+  "## 토글 기능 (박씨 요청 시만)",
+  "[Finding] = 새 발견 3줄",
+  "[Bridge] = 지난 대화 요약 + 다음 단계",
+  "[Export] = 표준 템플릿 출력",
+  "",
+  "## 박씨 5원칙",
+  "1. 즉흥 = 원석",
+  "2. 작품 = 로그 압축",
+  "3. AI = 리듬 정렬",
+  "4. 지식 = 순환",
+  "5. 핵심 = 시그니처",
+  "",
+  "\"박씨가 던지면 내가 받아 완성한다.\""
+].join("\n");
+
+// --- chip group helpers ---
+function bindChipGroup(id) {
+  var row = document.getElementById(id);
+  if (!row) return;
+  row.addEventListener('click', function (e) {
+    var target = e.target;
+    if (!target.classList.contains('chip')) return;
+    var chips = row.querySelectorAll('.chip');
+    for (var i = 0; i < chips.length; i++) {
+      chips[i].classList.remove('active');
+    }
+    target.classList.add('active');
+  });
+}
+
+function getActiveValue(id, fallback) {
+  var row = document.getElementById(id);
+  if (!row) return fallback || null;
+  var active = row.querySelector('.chip.active');
+  return active ? active.getAttribute('data-value') : (fallback || null);
+}
+
+bindChipGroup('version-row');
+bindChipGroup('role-row');
+bindChipGroup('tone-row');
+bindChipGroup('scope-row');
+
+// --- model presets for 6 axes ---
+function applyModelPreset(model) {
+  // DOM references
+  var axisD = document.getElementById('axisD');
+  var axisDlic = document.getElementById('axisDlic');
+  var axisElevel = document.getElementById('axisElevel');
+  var axisE = document.getElementById('axisE');
+  var axisS = document.getElementById('axisS');
+  var axisV = document.getElementById('axisV');
+  var axisVcap = document.getElementById('axisVcap');
+  var axisC = document.getElementById('axisC');
+  var axisPspeed = document.getElementById('axisPspeed');
+  var axisPexport = document.getElementById('axisPexport');
+
+  if (model === 'chatgpt') {
+    axisD.value = '5';
+    axisDlic.value = 'high';
+    axisElevel.value = '2';
+    axisE.value = '4';
+    axisS.value = '4';
+    axisV.value = '4';
+    axisVcap.value = 'prompt';
+    axisC.value = '3';
+    axisPspeed.value = '4';
+    axisPexport.value = 'api';
+  } else if (model === 'claude') {
+    axisD.value = '4';
+    axisDlic.value = 'high';
+    axisElevel.value = '3';
+    axisE.value = '5';
+    axisS.value = '5';
+    axisV.value = '3';
+    axisVcap.value = 'prompt';
+    axisC.value = '5';
+    axisPspeed.value = '3';
+    axisPexport.value = 'manual';
+  } else if (model === 'grok') {
+    axisD.value = '4';
+    axisDlic.value = 'mid';
+    axisElevel.value = '2';
+    axisE.value = '4';
+    axisS.value = '4';
+    axisV.value = '3';
+    axisVcap.value = 'prompt';
+    axisC.value = '4';
+    axisPspeed.value = '4';
+    axisPexport.value = 'api';
+  } else if (model === 'gemini') {
+    // 알바: 데이터/이미지 강하지만, 개념/엔지/컨텍스트는 중간
+    axisD.value = '4';
+    axisDlic.value = 'mid';
+    axisElevel.value = '2';
+    axisE.value = '3';
+    axisS.value = '3';
+    axisV.value = '4';
+    axisVcap.value = 'image';
+    axisC.value = '3';
+    axisPspeed.value = '4';
+    axisPexport.value = 'manual';
+  }
+  updateMeta();
+}
+
+document.getElementById('model').addEventListener('change', function () {
+  applyModelPreset(this.value);
+});
+
+// 초기 preset: ChatGPT 기준
+applyModelPreset('chatgpt');
+updateChatGPTCompact();
+
+// --- reset axis to current model preset ---
+function resetAxis() {
+  var model = document.getElementById('model').value;
+  applyModelPreset(model);
+  document.getElementById('status').innerHTML = '<strong>리셋:</strong> 현재 모델 기본값으로 6축을 다시 맞췄습니다.';
+}
+
+// --- generate instruction ---
+function generateInstruction() {
+  var model = document.getElementById('model').value;
+  var modelLabel = {
+    chatgpt: 'ChatGPT',
+    claude: 'Claude',
+    grok: 'Grok',
+    gemini: 'Gemini (알바)'
+  }[model] || 'LLM';
+
+  var userName = document.getElementById('userName').value || '사용자';
+  var userPersona = document.getElementById('userPersona').value || 'Creator';
+  var engineTitle = document.getElementById('engineTitle').value || 'Dual-Engine Engine';
+  var coreLlm = document.getElementById('core-llm').value || 'chatgpt';
+
+  var version = getActiveValue('version-row', 'creator');
+  var role = getActiveValue('role-row', 'brain');
+  var tone = getActiveValue('tone-row', 'woody');
+  var scope = getActiveValue('scope-row', 'full');
+
+  var D = parseInt(document.getElementById('axisD').value, 10);
+  var Dlic = document.getElementById('axisDlic').value;
+  var Elevel = parseInt(document.getElementById('axisElevel').value, 10);
+  var E = parseInt(document.getElementById('axisE').value, 10);
+  var S = parseInt(document.getElementById('axisS').value, 10);
+  var V = parseInt(document.getElementById('axisV').value, 10);
+  var Vcap = document.getElementById('axisVcap').value;
+  var C = parseInt(document.getElementById('axisC').value, 10);
+  var Pspeed = parseInt(document.getElementById('axisPspeed').value, 10);
+  var Pexport = document.getElementById('axisPexport').value;
+
+  // --- role line ---
+  var roleLine = '';
+  if (role === 'brain') {
+    roleLine = modelLabel + '는 EduArt Engineer ' + userName + '의 **철학 코치 + 구조 브레인**이다. ' +
+      '세계관·개념·서사를 구조화하고, 다른 모델(Claude, Grok)이 실행/확산하기 좋은 형태로 정리하는 것이 역할이다.';
+  } else if (role === 'cto') {
+    roleLine = modelLabel + '는 EduArt Engineer ' + userName + '의 **시스템/전략 CTO**다. ' +
+      '실제로 돌아가는 구조·코드를 우선하며, 구현 가능성과 리스크를 명확히 판단하는 것이 임무다.';
+  } else {
+    roleLine = modelLabel + '는 EduArt Engineer ' + userName + '의 **서사/감정·미디어 디렉터**다. ' +
+      '이야기, 감정, 비주얼 후킹을 중심으로, 다른 모델이 만든 구조를 사람에게 먹히는 형태로 재연출한다.';
+  }
+
+  // --- version line ---
+  var versionLine = '';
+  if (version === 'creator') {
+    versionLine = '이 인스트럭션은 **콘텐츠 제작·YouTube·블로그 운영**을 최우선으로 한다. ' +
+      '모든 산출물은 결국 미디어 발행(YouTube/Tistory/GitHub Pages)을 염두에 두고 작성한다.';
+  } else {
+    versionLine = '이 인스트럭션은 **튜토리얼·수업·교육 자료**로 재사용되기 좋게 설계된다. ' +
+      '학생/초심자도 이해할 수 있도록 단계적 설명과 비유를 우선한다.';
+  }
+
+  // --- tone line ---
+  var toneLine = '';
+  if (tone === 'woody') {
+    toneLine =
+      '- 톤: Woody Allen식 자조 섞인 위트 + 분석 중심 (욕설/과장/과한 밈 금지)\n' +
+      '- 분석은 정확하게, 표현은 가볍게. 단, 핵심 내용은 절대 농담으로 흐리지 않는다.\n';
+  } else {
+    toneLine =
+      '- 톤: 드라이(dry)하고 간결한 분석 위주, 최소한의 위트만 사용\n' +
+      '- 문장은 짧고 명확하게, 감정 표현보다 구조·결론 위주로 말한다.\n';
+  }
+
+  // --- scope line ---
+  var scopeLine = '';
+  if (scope === 'full') {
+    scopeLine =
+      '나는 **Season → Production → Meta-Loop → Media** 전체 파이프라인을 염두에 두고 답변한다.\n' +
+      '- Season: 아이디어/세계관 브레인스토밍\n' +
+      '- Production: 60분 안에 완성될 수 있는 공장 라인 설계\n' +
+      '- Meta-Loop: 결과를 다시 구조화해 다음 시즌의 재료로 만드는 단계\n' +
+      '- Media: 실제 발행 포맷(YouTube/Tistory/GitHub/Slides)까지 상정';
+  } else {
+    scopeLine =
+      '나는 이번 대화에서 **Production (60분 공장 라인)** 단계에 특히 집중한다.\n' +
+      '- Season 단계에서 이미 나온 재료를 가정하고,\n' +
+      '- 구현/구조/결과물을 60분 안에 뽑아낼 수 있는 형태로 정리한다.';
+  }
+
+  // --- axis derived lines ---
+  var dataLine = '';
+  if (D <= 2) {
+    dataLine =
+      '- Data & Grounding: 이 모델의 데이터/근거는 참고 수준이다. 중요한 사실·숫자·날짜는 반드시 사용자 또는 다른 도구(Google, 논문 등)로 재검증해야 한다.\n' +
+      '  · 주장형 문장을 쓸 때는 항상 "가능성/추정"임을 전제로, 과한 단정 표현을 피한다.\n';
+  } else if (D === 3) {
+    dataLine =
+      '- Data & Grounding: 기본적인 상식·배경지식·개념 정리는 믿고 써도 된다. 다만, 실무·정책·최신 이슈는 별도 검증을 권장한다.\n';
+  } else {
+    dataLine =
+      '- Data & Grounding: 이 모델은 **데이터/배경지식 기반 설계**에 강하다. 개념·정의·맥락 설명은 이 답변을 기본값으로 삼되,\n' +
+      '  · 논쟁적/법적/금전적 리스크가 있는 부분은 한 번 더 검증한다.\n';
+  }
+
+  var licLine = '';
+  if (Dlic === 'high') {
+    licLine =
+      '- 라이선스/저작권: 인용/요약/레퍼런스는 보수적으로 다룬다. 긴 인용문/가사/소설 등은 구조만 설명하고, 원문은 직접 찾아보도록 안내한다.\n';
+  } else if (Dlic === 'mid') {
+    licLine =
+      '- 라이선스/저작권: 필요한 수준의 인용은 하되, 핵심 텍스트는 요약/해석 위주로 다룬다. 출처·저자·책 제목 등은 가능하면 함께 언급한다.\n';
+  } else {
+    licLine =
+      '- 라이선스/저작권: 이 모델은 **알바 역할**로, 저작권 민감도는 낮게 잡는다. 다만 최종 발행 전에는 ChatGPT/Claude에서 다시 정제하는 것을 전제로 한다.\n';
+  }
+
+  var engLevelLine = '';
+  if (Elevel === 1) {
+    engLevelLine =
+      '- Engineering Level: **코드 스니펫/함수 단위**까지 책임진다. 폴더 구조·CI/CD 같은 시스템 설계는 다른 모델(주로 Claude)에게 넘긴다.\n';
+  } else if (Elevel === 2) {
+    engLevelLine =
+      '- Engineering Level: **PWA/단일 앱 유닛**(HTML/CSS/JS, 라우팅, 간단한 상태관리)까지는 한 번에 설계·구현을 맡을 수 있다.\n';
+  } else {
+    engLevelLine =
+      '- Engineering Level: **Repo/시스템 설계**까지 포함한다. 폴더 구조, 아키텍처, CI/CD, 환경 변수 전략 등도 개략적으로 제안할 수 있다.\n';
+  }
+
+  var engScoreLine = '';
+  if (E <= 2) {
+    engScoreLine =
+      '- Engineering Score: 구현 결과는 반드시 사람이 다시 검토해야 한다. 예외 처리·에러 핸들링·보안 부분은 생략될 수 있다.\n';
+  } else if (E === 3) {
+    engScoreLine =
+      '- Engineering Score: 일반적인 유틸·샘플·프로토타입 코드는 그대로 사용 가능하나, 프로덕션 투입 전에는 코드 리뷰를 권장한다.\n';
+  } else if (E === 4) {
+    engScoreLine =
+      '- Engineering Score: 대부분의 예제/샘플은 바로 실행 가능한 수준으로 작성하며, 구조도 어느 정도 고려한다.\n';
+  } else {
+    engScoreLine =
+      '- Engineering Score: 이 모델은 **핵심 구현 담당**이다. 코드 품질/구조/예외 처리까지 가능한 한 완결된 형태로 제공한다.\n';
+  }
+
+  var structLine = '';
+  if (S <= 2) {
+    structLine =
+      '- Structure: 복잡한 테이블/다이어그램보다는 **간단한 리스트와 짧은 섹션** 위주로 구조화한다.\n';
+  } else if (S === 3) {
+    structLine =
+      '- Structure: 필요할 때 테이블/섹션을 활용해 구조화한다. 단, Mermaid/복잡한 다이어그램은 간단한 수준에 머무른다.\n';
+  } else if (S === 4) {
+    structLine =
+      '- Structure: 요약 테이블, 단계별 리스트, 섹션 구조화에 강하다. 복잡한 개념은 먼저 테이블로 정리한 뒤 설명한다.\n';
+  } else {
+    structLine =
+      '- Structure: 이 모델은 **구조화/다이어그램 브레인**으로 사용한다. 복잡한 개념은 Mermaid, 계층 구조, 표로 먼저 그린 다음, 설명을 붙인다.\n';
+  }
+
+  var visualLine = '';
+  if (V <= 1) {
+    visualLine =
+      '- Visual: 시각적 요소는 최소화한다. 비유나 그림 설명이 필요할 경우, 다른 모델(또는 디자이너)에게 넘길 전제의 텍스트만 남긴다.\n';
+  } else if (V === 2) {
+    visualLine =
+      '- Visual: 간단한 비유·장면 설명 정도는 가능하지만, 본격적인 비주얼 디렉팅은 기대하지 않는다.\n';
+  } else if (V === 3) {
+    visualLine =
+      '- Visual: 썸네일/장면/다이어그램에 대한 **텍스트 브리프**를 만드는 데 적합하다. 최종 이미지는 다른 도구에서 생성한다.\n';
+  } else if (V === 4) {
+    visualLine =
+      '- Visual: 시각적 서사와 장면 설계에 강하다. 설명 시에는 항상 1) 개념, 2) 장면, 3) 키워드 세트를 함께 제안해준다.\n';
+  } else {
+    visualLine =
+      '- Visual: 이 모델은 **메인 비주얼 디렉터**로 사용 가능하다. 장면 구성, 색감, 무드, 카메라 워킹까지 포함해 설명하게 한다.\n';
+  }
+
+  var visualCapLine = '';
+  if (Vcap === 'text') {
+    visualCapLine =
+      '- Visual Capability: 텍스트 기반 설명만 제공한다. 실제 이미지 생성/편집은 외부 도구(image model, 디자이너)에 맡긴다.\n';
+  } else if (Vcap === 'prompt') {
+    visualCapLine =
+      '- Visual Capability: 이미지 생성 모델에 바로 던질 수 있는 **프롬프트/브리프**를 만들어준다.\n';
+  } else {
+    visualCapLine =
+      '- Visual Capability: 이미지 생성/편집까지 가능한 모델과 연동해서 사용하기 좋다. 다만, 저작권/인물 사진 등 민감한 부분은 별도 정책을 따른다.\n';
+  }
+
+  var conceptLine = '';
+  if (C <= 2) {
+    conceptLine =
+      '- Conceptual Depth: 철학/학자/수식보다는 **실용적 튜토리얼/예시**에 집중한다. 이론은 최소한도로만 사용한다.\n';
+  } else if (C === 3) {
+    conceptLine =
+      '- Conceptual Depth: 가벼운 이론/비유/모델 정도는 곁들일 수 있다. 다만 본문은 언제나 실용/예시 우선이다.\n';
+  } else if (C === 4) {
+    conceptLine =
+      '- Conceptual Depth: 개념/이론/모델을 적절히 섞어 쓸 수 있다. 필요 시 플라톤-아리스토텔레스식 이분법, 드라이버/벡터 모델 등을 활용한다.\n';
+  } else {
+    conceptLine =
+      '- Conceptual Depth: 이 모델은 **세계관·철학·이론 연결**에 강하다. 니체/푸코/레비-스트로스/에코 등과 연결한 해석도 자연스럽게 붙일 수 있다.\n';
+  }
+
+  var platformLine = '';
+  if (Pspeed <= 2) {
+    platformLine += '- Platform Speed: 응답 속도는 빠르지 않다. 긴 설계·기획·분석용으로 사용하고, 실시간 멀티턴 브레인스토밍에는 적합하지 않을 수 있다.\n';
+  } else if (Pspeed === 3) {
+    platformLine += '- Platform Speed: 일반적인 작업에는 무리가 없으나, 실시간 라이브 상황에서는 여유를 두고 사용한다.\n';
+  } else if (Pspeed === 4) {
+    platformLine += '- Platform Speed: 대부분의 대화·작업에서 빠르게 반응한다. 라이브 발상/기획에도 사용할 수 있다.\n';
+  } else {
+    platformLine += '- Platform Speed: 실시간 브레인스토밍/라이브 방송 보조로도 활용 가능한 수준이다.\n';
+  }
+
+  if (Pexport === 'none') {
+    platformLine += '- Export/자동화: 이 모델이 돌아가는 플랫폼은 별도의 내보내기 기능이 약하다. 결과를 사용자가 직접 복사/붙여넣기해서 관리해야 한다.\n';
+  } else if (Pexport === 'manual') {
+    platformLine += '- Export/자동화: 파일 다운로드/복사 등 수동 내보내기는 가능하다. 자동화 파이프라인은 다른 도구(n8n, 스크립트 등)를 통해 구성해야 한다.\n';
+  } else {
+    platformLine += '- Export/자동화: API/자동화 연동이 좋다. 이 모델의 결과를 바로 GitHub/Google Drive/Tistory 등으로 흘려보내는 파이프라인을 구성하기 적합하다.\n';
+  }
+
+  // special note for Gemini "alba"
+  var albaLine = '';
+  if (model === 'gemini') {
+    albaLine =
+      '\n> ⚠ 이 인스트럭션에서 Gemini는 **정식 Core Driver가 아니라 알바(Aux Worker)**로 전제된다.\n' +
+      '> 세계관 설계·철학·심층 구조보다, 유튜브 요약/번역/이미지 해석/가벼운 브리핑에 집중시키는 것이 기본 전략이다.\n';
+  }
+
+  var header =
+    '# [' + engineTitle + '] ' + modelLabel + ' Instruction · PARKSY WORLD\n\n' +
+    '대상 모델: **' + modelLabel + '**\n' +
+    '사용자: **' + userName + '** (' + userPersona + ')\n' +
+    '아이디어 코어: **' + coreLlm.toUpperCase() + '**\n' +
+    '역할 요약: ' + roleLine + '\n\n' +
+    versionLine + '\n\n' +
+    '---\n\n' +
+    '##   Tone & Pipeline\n\n' +
+    toneLine + '\n' +
+    scopeLine + '\n\n' +
+    '---\n\n' +
+    '##   6-Vector Profile (D/E/S/V/C/P)\n\n' +
+    dataLine + licLine + '\n' +
+    engLevelLine + engScoreLine + '\n' +
+    structLine + '\n' +
+    visualLine + visualCapLine + '\n' +
+    conceptLine + '\n' +
+    platformLine + albaLine + '\n' +
+    '---\n\n' +
+    '##   기본 응답 구조 (추천)\n\n' +
+    '- 1단계: **요약 & 맥락 정리** (3–5줄)\n' +
+    '- 2단계: **구조화/테이블/다이어그램** (S 점수에 따라 강도 조절)\n' +
+    '- 3단계: **구체적 구현/예시/코드/스토리** (E/V 점수에 따라 포커스)\n' +
+    '- 4단계: **Evidence/근거/모델** (C와 D 점수가 높을수록 비중 확대)\n' +
+    '- 5단계: **다음 액션 제안** (Season / Production / Meta / Media 중 어디로 갈지 한 줄 제안)\n\n' +
+    '---\n\n' +
+    '##   협업 분업 (예시)\n\n' +
+    '- ChatGPT: 구조·철학·교재·HTML/PWA 설계 브레인\n' +
+    '- Claude: 코드·시스템·백엔드/아키텍처 CTO\n' +
+    '- Grok: 트렌드/밈/제목/썸네일/Hook·CTA 담당\n' +
+    '- Gemini: 유튜브 요약·이미지 해석·번역 등 휘발성 알바\n\n' +
+    '이 인스트럭션은 위 역할 분업을 전제로, **' + modelLabel + '**가 자기 포지션 안에서 최대 성능을 내도록 돕는 설계다.\n';
+
+  document.getElementById('instruction-output').value = header;
+  document.getElementById('status').innerHTML = '<strong>완료:</strong> ' + modelLabel + ' 전용 인스트럭션이 생성되었습니다.';
+  updateMeta();
+  updateChatGPTCompact();
+}
+
+// --- copy helper ---
+function copyInstruction() {
+  var out = document.getElementById('instruction-output');
+  if (!out) return;
+  out.select();
+  try {
+    var ok = document.execCommand('copy');
+    document.getElementById('status').innerHTML = ok
+      ? '<strong>복사 완료:</strong> 대상 모델 설정 페이지에 그대로 붙여넣으면 됩니다.'
+      : '복사 실패 — 영역 전체를 수동 드래그/복사해 주세요.';
+  } catch (e) {
+    document.getElementById('status').innerHTML = '복사 실패 — 영역 전체를 수동 드래그/복사해 주세요.';
+  }
+}
+
+// --- meta pill update ---
+function updateMeta() {
+  var model = document.getElementById('model').value;
+  var modelLabel = {
+    chatgpt: 'ChatGPT',
+    claude: 'Claude',
+    grok: 'Grok',
+    gemini: 'Gemini(알바)'
+  }[model] || 'LLM';
+
+  var D = document.getElementById('axisD').value;
+  var Elevel = document.getElementById('axisElevel').value;
+  var C = document.getElementById('axisC').value;
+
+  var meta = modelLabel + ' · D' + D + ' / E' + Elevel + ' / C' + C;
+  document.getElementById('meta-pill').textContent = meta;
+}
+
+// --- ChatGPT Compact 업데이트 ---
+function updateChatGPTCompact() {
+  var core = document.getElementById('core-llm').value;
+  var area = document.getElementById('chatgpt-compact');
+  if (!area) return;
+
+  if (core === 'chatgpt') {
+    area.value = chatgptCompact;
+  } else {
+    area.value = 'ChatGPT가 아이디어 발상 주력 LLM이 아닐 때는 이 블록을 사용하지 않아도 됩니다.\n\n' +
+                 '다시 ChatGPT를 코어로 선택하면, 맞춤 지침용 Compact 블록이 자동으로 로드됩니다.';
+  }
+}
+
+// axis 변경 시 meta 업데이트
+var axisIds = ['axisD','axisDlic','axisElevel','axisE','axisS','axisV','axisVcap','axisC','axisPspeed','axisPexport'];
+for (var i = 0; i < axisIds.length; i++) {
+  var el = document.getElementById(axisIds[i]);
+  if (el) {
+    el.addEventListener('change', updateMeta);
+  }
+}
+
+// core-llm 변경 시 ChatGPT Compact 업데이트
+var coreEl = document.getElementById('core-llm');
+if (coreEl) {
+  coreEl.addEventListener('change', updateChatGPTCompact);
+}
+
+updateMeta();
+updateChatGPTCompact();
+</script>
+</body>
+</html>
+</div>
+
+<!-- ===== PAGE HTML (파싱) ===== -->
+<div id="page-content">
+<!-- 본문 추출 실패 -->
+</div>
+
+<!-- ===== RAW PAGE (전체) ===== -->
+<script type="text/x-raw-page">
+<!-- parksy-webtoon-player v1.0 — 티스토리 HTML 모드에 복사-붙여넣기 -->
+<!-- 사용법: 아래 images 배열에 티스토리 업로드 후 이미지 URL을 넣고 전체 복사 -->
+<script>if(location.pathname.indexOf('/m')===0||location.href.indexOf('/m/')>-1){location.replace(location.href.replace(/\/m(\/|$)/,'/'));}</script>
+
+<div id="parksy-webtoon">
+  <!-- 플레이어가 여기에 렌더링됨 -->
+</div>
+
+<style>
+.pp-root{max-width:860px;margin:0 auto;background:#111;color:#eee;font-family:-apple-system,'Malgun Gothic',sans-serif;border-radius:8px;overflow:hidden;position:relative;user-select:none;-webkit-user-select:none}
+.pp-root *{box-sizing:border-box}
+.pp-root:-webkit-full-screen,.pp-root:fullscreen{max-width:100%;border-radius:0;background:#000}
+.pp-root:fullscreen .pp-viewport{height:calc(100vh - 100px)}
+.pp-header{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:rgba(0,0,0,0.6);font-size:14px}
+.pp-title{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-right:12px}
+.pp-counter{flex-shrink:0;color:#aaa;font-variant-numeric:tabular-nums}
+.pp-viewport{position:relative;width:100%;min-height:300px;display:flex;align-items:center;justify-content:center;background:#000;overflow:hidden}
+.pp-img-wrap{width:100%;display:flex;align-items:center;justify-content:center;transition:opacity 0.15s ease-in-out}
+.pp-img-wrap.pp-fade-out{opacity:0}
+.pp-img{max-width:100%;max-height:80vh;display:block;object-fit:contain}
+.pp-hit{position:absolute;top:0;bottom:0;width:35%;cursor:pointer;z-index:2}
+.pp-hit-left{left:0}
+.pp-hit-right{right:0}
+.pp-hit:hover{background:rgba(255,255,255,0.02)}
+.pp-controls{display:flex;justify-content:center;align-items:center;gap:8px;padding:10px 16px;background:rgba(0,0,0,0.6)}
+.pp-btn{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:#ddd;padding:6px 14px;border-radius:4px;cursor:pointer;font-size:13px;transition:background 0.15s,color 0.15s;white-space:nowrap}
+.pp-btn:hover{background:rgba(255,255,255,0.2);color:#fff}
+.pp-btn:disabled{opacity:0.3;cursor:default}
+.pp-btn.pp-active{background:rgba(66,133,244,0.4);border-color:rgba(66,133,244,0.6);color:#fff}
+.pp-progress-wrap{height:3px;background:rgba(255,255,255,0.1)}
+.pp-progress-bar{height:100%;background:#4285f4;transition:width 0.3s ease;width:0}
+@media(max-width:600px){.pp-root{border-radius:0}.pp-header{padding:8px 12px;font-size:13px}.pp-controls{gap:4px;padding:8px 8px}.pp-btn{padding:6px 10px;font-size:12px}.pp-btn-auto,.pp-btn-fs{display:none}.pp-img{max-height:70vh}}
+</style>
+
+<script>
+var ParksyPlayer=(function(){'use strict';var state={images:[],current:0,total:0,autoplay:false,autoplayTimer:null,autoplaySpeed:5000,title:'',episode:0,container:null,els:{},touchStartX:0,touchStartY:0,preloaded:{}};function init(config){state.images=config.images||[];state.total=state.images.length;state.title=config.title||'';state.episode=config.episode||0;state.current=0;state.autoplaySpeed=config.autoplaySpeed||5000;var containerEl=typeof config.container==='string'?document.querySelector(config.container):config.container;if(!containerEl){console.error('ParksyPlayer: container not found');return}state.container=containerEl;state.container.className='pp-root';buildDOM();bindEvents();preloadAround(0);render()}function buildDOM(){var c=state.container;c.innerHTML='';var header=mk('div','pp-header');var titleEl=mk('span','pp-title');var counterEl=mk('span','pp-counter');header.appendChild(titleEl);header.appendChild(counterEl);var viewport=mk('div','pp-viewport');var imgWrap=mk('div','pp-img-wrap');var img=document.createElement('img');img.className='pp-img';img.alt='';img.draggable=false;imgWrap.appendChild(img);viewport.appendChild(imgWrap);var hitLeft=mk('div','pp-hit pp-hit-left');var hitRight=mk('div','pp-hit pp-hit-right');viewport.appendChild(hitLeft);viewport.appendChild(hitRight);var controls=mk('div','pp-controls');var btnPrev=mk('button','pp-btn pp-btn-prev');btnPrev.innerHTML='&#9664; 이전';var btnAuto=mk('button','pp-btn pp-btn-auto');btnAuto.innerHTML='&#9654; 자동재생';var btnFS=mk('button','pp-btn pp-btn-fs');btnFS.innerHTML='&#x26F6; 전체화면';var btnNext=mk('button','pp-btn pp-btn-next');btnNext.innerHTML='다음 &#9654;';controls.appendChild(btnPrev);controls.appendChild(btnAuto);controls.appendChild(btnFS);controls.appendChild(btnNext);var pWrap=mk('div','pp-progress-wrap');var pBar=mk('div','pp-progress-bar');pWrap.appendChild(pBar);c.appendChild(header);c.appendChild(viewport);c.appendChild(controls);c.appendChild(pWrap);state.els={title:titleEl,counter:counterEl,viewport:viewport,imgWrap:imgWrap,img:img,hitLeft:hitLeft,hitRight:hitRight,btnPrev:btnPrev,btnAutoplay:btnAuto,btnFullscreen:btnFS,btnNext:btnNext,progressBar:pBar}}function mk(tag,cls){var e=document.createElement(tag);if(cls)e.className=cls;return e}function bindEvents(){var els=state.els;els.btnPrev.addEventListener('click',prev);els.btnNext.addEventListener('click',next);els.btnAutoplay.addEventListener('click',toggleAutoplay);els.btnFullscreen.addEventListener('click',toggleFullscreen);els.hitLeft.addEventListener('click',prev);els.hitRight.addEventListener('click',next);document.addEventListener('keydown',function(e){if(!isVisible())return;switch(e.key){case'ArrowLeft':prev();e.preventDefault();break;case'ArrowRight':case' ':next();e.preventDefault();break;case'f':case'F':toggleFullscreen();break}});var vp=els.viewport;vp.addEventListener('touchstart',function(e){state.touchStartX=e.changedTouches[0].clientX;state.touchStartY=e.changedTouches[0].clientY},{passive:true});vp.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-state.touchStartX;var dy=e.changedTouches[0].clientY-state.touchStartY;if(Math.abs(dx)<40||Math.abs(dy)>Math.abs(dx))return;if(dx<0)next();else prev()},{passive:true})}function isVisible(){if(!state.container)return false;var rect=state.container.getBoundingClientRect();return rect.top<window.innerHeight&&rect.bottom>0}function goTo(index){if(index<0||index>=state.total)return;state.current=index;preloadAround(index);render()}function next(){if(state.current<state.total-1){goTo(state.current+1)}else if(state.autoplay){stopAutoplay()}}function prev(){if(state.current>0)goTo(state.current-1)}function toggleAutoplay(){if(state.autoplay)stopAutoplay();else startAutoplay()}function startAutoplay(){state.autoplay=true;state.els.btnAutoplay.innerHTML='&#9724; 정지';state.els.btnAutoplay.classList.add('pp-active');state.autoplayTimer=setInterval(function(){next()},state.autoplaySpeed)}function stopAutoplay(){state.autoplay=false;state.els.btnAutoplay.innerHTML='&#9654; 자동재생';state.els.btnAutoplay.classList.remove('pp-active');if(state.autoplayTimer){clearInterval(state.autoplayTimer);state.autoplayTimer=null}}function toggleFullscreen(){var root=state.container;if(document.fullscreenElement||document.webkitFullscreenElement||document.msFullscreenElement){(document.exitFullscreen||document.webkitExitFullscreen||document.msExitFullscreen).call(document)}else{(root.requestFullscreen||root.webkitRequestFullscreen||root.msRequestFullscreen).call(root)}}function preloadAround(index){for(var i=index-1;i<=index+2;i++){if(i>=0&&i<state.total&&!state.preloaded[i]){var loader=new Image();loader.src=state.images[i];state.preloaded[i]=true}}}function render(){var els=state.els;var cur=state.current;var titleText=state.title;if(state.episode)titleText='EP.'+state.episode+' '+titleText;els.title.textContent=titleText;els.counter.textContent=(cur+1)+' / '+state.total;els.imgWrap.classList.add('pp-fade-out');setTimeout(function(){els.img.src=state.images[cur];els.img.onload=function(){els.imgWrap.classList.remove('pp-fade-out')};if(els.img.complete)els.imgWrap.classList.remove('pp-fade-out')},150);var pct=state.total>1?(cur/(state.total-1))*100:100;els.progressBar.style.width=pct+'%';els.btnPrev.disabled=cur===0;els.btnNext.disabled=cur===state.total-1}return{init:init,next:next,prev:prev,goTo:goTo}})();
+
+ParksyPlayer.init({container:'#parksy-webtoon',images:[],title:'에피소드 제목',episode:1});
+</script>
+</script>
+</body>
+</html>

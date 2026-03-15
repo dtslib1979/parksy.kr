@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>프로젝트지침 생성엔진</title>
+<!-- SOURCE: https://technician-parksy.tistory.com/4 -->
+<!-- DATE: Fri, 28 Nov 2025 10:41:01 +0900 -->
+<!-- BLOG: technician-parksy -->
+<!-- SCRAPED: 2026-03-14T18:12:17.388769 -->
+</head>
+<body>
+<!-- ===== RSS HTML (원문) ===== -->
+<div id="rss-content">
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PARKSY WORLD · Level-2 Project Instruction Engine</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #050509;
+      --fg: #f9fafb;
+      --muted: #9ca3af;
+      --accent: #5cf0c0;
+      --accent-soft: rgba(92,240,192,0.14);
+      --border: #27272f;
+      --danger: #f97373;
+      --pill-bg: rgba(15,23,42,0.92);
+      --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 18px 12px 36px;
+      background: radial-gradient(circle at top, #0b1020 0, #020308 45%, #000 100%);
+      color: var(--fg);
+      font-family: var(--font-sans);
+      line-height: 1.5;
+    }
+
+    .app {
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    .app-header {
+      margin-bottom: 14px;
+    }
+
+    .app-header h1 {
+      font-size: 1.25rem;
+      margin: 0 0 4px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: baseline;
+    }
+
+    .app-header h1 span.small {
+      font-size: 0.86rem;
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    .app-header p {
+      margin: 0;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .badge-row {
+      margin-top: 6px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .badge {
+      padding: 3px 9px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      font-size: 0.72rem;
+      color: var(--muted);
+      background: radial-gradient(circle at top left, rgba(148,163,184,0.18), transparent 60%);
+      white-space: nowrap;
+    }
+
+    .badge-accent {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: radial-gradient(circle at top left, rgba(92,240,192,0.18), transparent 60%);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.02fr) minmax(0, 1.2fr);
+      gap: 12px;
+    }
+
+    @media (max-width: 880px) {
+      .grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .card {
+      position: relative;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: rgba(3, 7, 18, 0.9);
+      padding: 13px 11px 15px;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.55);
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top left, rgba(92,240,192,0.16), transparent 60%);
+      opacity: 0.9;
+      mix-blend-mode: soft-light;
+      pointer-events: none;
+    }
+
+    .card-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .card h2 {
+      font-size: 0.96rem;
+      margin: 0 0 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card h2 span.label {
+      font-size: 0.76rem;
+      color: var(--muted);
+    }
+
+    .hint {
+      font-size: 0.76rem;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .field-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
+      gap: 8px;
+      margin-bottom: 9px;
+    }
+
+    @media (max-width: 720px) {
+      .field-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      margin-bottom: 7px;
+    }
+
+    .field label {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .field small {
+      font-size: 0.7rem;
+      color: var(--muted);
+    }
+
+    input[type="text"],
+    select,
+    textarea {
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: rgba(10, 12, 20, 0.98);
+      color: var(--fg);
+      padding: 7px 9px;
+      font-size: 0.8rem;
+      font-family: var(--font-sans);
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+      width: 100%;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 70px;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px rgba(92,240,192,0.6);
+      background: #020617;
+    }
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+
+    .chip {
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 0.76rem;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      user-select: none;
+      color: var(--muted);
+      background: var(--pill-bg);
+      white-space: nowrap;
+    }
+
+    .chip.active {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-soft);
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 9px;
+    }
+
+    button {
+      border-radius: 999px;
+      border: none;
+      padding: 7px 13px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      box-shadow: 0 10px 22px rgba(0,0,0,0.55);
+      white-space: nowrap;
+      transition: transform 0.1s ease, box-shadow 0.12s ease, background 0.12s ease;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 26px rgba(0,0,0,0.65);
+    }
+
+    button:active {
+      transform: translateY(0);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.55);
+    }
+
+    button.secondary {
+      background: #020617;
+      border-color: var(--border);
+      color: var(--muted);
+    }
+
+    button.danger {
+      background: rgba(127,29,29,0.92);
+      border-color: rgba(248,113,113,0.8);
+      color: #fee2e2;
+    }
+
+    .output-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .pill {
+      padding: 3px 9px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      font-size: 0.72rem;
+      color: var(--muted);
+      background: rgba(15,23,42,0.96);
+      white-space: nowrap;
+    }
+
+    #prompt-output {
+      width: 100%;
+      min-height: 320px;
+      max-height: 640px;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      white-space: pre;
+    }
+
+    .status {
+      margin-top: 4px;
+      font-size: 0.74rem;
+      color: var(--muted);
+    }
+
+    .status strong {
+      color: var(--accent);
+    }
+
+    /* Accordion */
+    .accordion {
+      margin-top: 6px;
+    }
+
+    .accordion-item {
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: rgba(15,23,42,0.96);
+      margin-bottom: 6px;
+      overflow: hidden;
+    }
+
+    .accordion-header {
+      padding: 6px 10px;
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      color: var(--fg);
+    }
+
+    .accordion-header span.tag {
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+
+    .accordion-icon {
+      font-size: 0.8rem;
+      color: var(--muted);
+      transition: transform 0.15s ease;
+    }
+
+    .accordion-item.open .accordion-icon {
+      transform: rotate(90deg);
+    }
+
+    .accordion-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.2s ease;
+      border-top: 1px solid rgba(55,65,81,0.8);
+      font-size: 0.75rem;
+      color: var(--muted);
+      padding: 0 10px;
+    }
+
+    .accordion-item.open .accordion-body {
+      padding: 8px 10px 10px;
+      max-height: 400px;
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="app-header">
+      <h1>
+        PARKSY WORLD · Level-2 Project Instruction Engine
+        <span class="small">저작권 없는 잡지 · 돈은 YouTube 퍼포먼스</span>
+      </h1>
+      <p>
+        레벨1에서 LLM별 기본 인스트럭션을 이미 맞춰두었다고 가정하고,
+        여기서는 <strong>프로젝트(잡지/채널)별</strong>로 각 LLM에게 줄 "설정 프롬프트"를 자동 생성한다.
+      </p>
+      <div class="badge-row">
+        <span class="badge badge-accent">v1.1 · Single HTML</span>
+        <span class="badge">Tistory / GitHub Pages에 그대로 붙여쓰기</span>
+        <span class="badge">Project-level Prompt Generator</span>
+      </div>
+    </header>
+
+    <main class="grid">
+      <!-- LEFT: CONFIG -->
+      <section class="card">
+        <div class="card-inner">
+          <h2>
+            프로젝트 설정
+            <span class="label">공리 + 직업 + 베이스라인 → 변수화</span>
+          </h2>
+          <p class="hint">여기서 프로젝트(잡지/채널)를 정의하면, 우측에 LLM별 프로젝트 인스트럭션 생성용 프롬프트가 만들어진다.</p>
+
+          <div class="field-grid">
+            <div class="field">
+              <label for="projectName">프로젝트 / 잡지 이름</label>
+              <input id="projectName" type="text" value="KR Merit Magazine" />
+              <small>예: KR Merit Magazine, Tablet Lab, Night Light Radio 등</small>
+            </div>
+            <div class="field">
+              <label for="projectSlug">슬러그 / 채널 ID</label>
+              <input id="projectSlug" type="text" value="kr-merit-mag" />
+              <small>예: kr-merit-mag, tablet-lab, night-light-radio</small>
+            </div>
+          </div>
+
+          <div class="field-grid">
+            <div class="field">
+              <label for="projectType">프로젝트 타입</label>
+              <select id="projectType">
+                <option value="magazine">블로그/매거진</option>
+                <option value="tutorial">튜토리얼/강의 시리즈</option>
+                <option value="podcast">팟캐스트/라디오</option>
+                <option value="music">뮤직/사운드트랙</option>
+                <option value="politics">정치/사회 분석</option>
+                <option value="sports">스포츠/리뷰</option>
+                <option value="other">기타 크로스오버</option>
+              </select>
+              <small>대략적인 포맷/장르</small>
+            </div>
+            <div class="field">
+              <label for="rolePersona">당신의 역할(직업 페르소나)</label>
+              <input id="rolePersona" type="text" value="출판사 사장 & YouTube PD" />
+              <small>예: 출판사 사장, 유튜버, 컨설턴트, 감독, 선생님 등</small>
+            </div>
+          </div>
+
+          <div class="field-grid">
+            <div class="field">
+              <label for="personaCombo">페르소나 조합 (박씨 5인)</label>
+              <input id="personaCombo" type="text" value="블로거 박씨 / 기능인 박씨 / 철학자 박씨 / 화가 박씨 / 뮤지션 박씨" />
+              <small>프로젝트에 주로 등장하는 박씨 페르소나들</small>
+            </div>
+            <div class="field">
+              <label for="targetAudience">타깃 독자/시청자</label>
+              <input id="targetAudience" type="text" value="고등학생 이상, AI 유료 사용자 수준의 엘리트 지향 대중" />
+              <small>누가 이 잡지/채널을 봐야 하는지</small>
+            </div>
+          </div>
+
+          <div class="field-grid">
+            <div class="field">
+              <label for="revenuePlan">수익화 계획</label>
+              <input id="revenuePlan" type="text" value="YouTube 광고 + 라이브 + 강의 패키지" />
+              <small>예: 광고, 슈퍼챗, 강의, 컨설팅, 굿즈 등</small>
+            </div>
+            <div class="field">
+              <label for="productionCycle">생산 사이클</label>
+              <input id="productionCycle" type="text" value="60분 루틴 · 시즌 5회차 구조" />
+              <small>예: 60분 루틴, 주 2회, 시즌 5회차 등</small>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="baselineSample">베이스라인 샘플 설명</label>
+            <textarea id="baselineSample" placeholder="참고하고 싶은 잡지/채널, 정서, 레퍼런스를 간단히 적어 주세요.">예: WIRED + 뉴요커 + 빅데이터/AI 잡지를 섞은 느낌. 기술·철학·생활이 섞인 중년 엘리트용 매거진.</textarea>
+          </div>
+
+          <div class="field">
+            <label>공리(Axiom) 세트</label>
+            <small>필요한 공리만 켜서, LLM이 프로젝트 철학을 오해하지 않게 만든다.</small>
+          </div>
+
+          <div class="row" id="axiom-row">
+            <div class="chip active" data-key="copyright">저작권 없는 잡지</div>
+            <div class="chip active" data-key="youtube">돈은 YouTube 퍼포먼스</div>
+            <div class="chip active" data-key="generalist">직업 파괴 · 제너럴리스트</div>
+            <div class="chip active" data-key="edit">AI 편집 태도 (모두를 샘플로)</div>
+          </div>
+
+          <div class="field-grid">
+            <div class="field">
+              <label for="llmSet">참여 LLM 세트</label>
+              <select id="llmSet">
+                <option value="full">ChatGPT + Claude + Grok + Gemini</option>
+                <option value="gpt-claude">ChatGPT + Claude</option>
+                <option value="gpt-grok">ChatGPT + Grok</option>
+                <option value="minimal">ChatGPT 단독</option>
+              </select>
+              <small>실제로 사용할 LLM 범위</small>
+            </div>
+            <div class="field">
+              <label for="languageMode">언어 모드</label>
+              <select id="languageMode">
+                <option value="ko">한국어 중심 (필요 시 영어)</option>
+                <option value="ko-en">한/영 혼합</option>
+                <option value="en">영어 중심</option>
+              </select>
+              <small>각 LLM에게 요청할 설명 언어</small>
+            </div>
+          </div>
+
+          <div class="btn-row">
+            <button type="button" onclick="generatePrompts()">⚡ 프로젝트 프롬프트 생성</button>
+            <button type="button" class="secondary" onclick="copyPrompts()">  전체 복사</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- RIGHT: OUTPUT -->
+      <section class="card">
+        <div class="card-inner">
+          <div class="output-header">
+            <span>  Generated Project Prompts (LLM별 설정용)</span>
+            <span class="pill" id="meta-pill">대기 중…</span>
+          </div>
+          <textarea id="prompt-output" spellcheck="false" placeholder="여기에 ChatGPT / Claude / Grok / Gemini에게 붙여넣을 프로젝트 인스트럭션 생성 프롬프트 묶음이 생성됩니다."></textarea>
+          <div class="status" id="status"></div>
+        </div>
+      </section>
+    </main>
+
+    <!-- DOC: 백서 & 사용 설명서 (Accordion) -->
+    <section class="card" style="margin-top:12px;">
+      <div class="card-inner">
+        <h2>
+          Level-2 Project Instruction Engine · 백서 요약
+          <span class="label">레벨1 인스트럭션 엔진과의 연결 · 설계 철학</span>
+        </h2>
+        <p class="hint">
+          이 블록은 코드가 아니라, 박씨와의 대화에서 정리된 레벨2 설계 철학을 보존하기 위한 "페이지 내 백서"이다.
+          아래 아코디언을 열면서, 개념 구조를 시각적으로 훑을 수 있다.
+        </p>
+
+        <div class="accordion" id="doc-accordion">
+          <div class="accordion-item open">
+            <div class="accordion-header">
+              <span>0. 정의: 레벨2 엔진이 하는 일</span>
+              <span class="accordion-icon">▶</span>
+            </div>
+            <div class="accordion-body">
+              <p>
+                레벨2 엔진은 이미 레벨1에서 LLM별 기본 인스트럭션(역할·톤·6축 벡터)을 맞춰 둔 상태에서,
+                그 위에 얹히는 <strong>프로젝트 단위(= 잡지/채널 단위)의 규칙과 응답 구조</strong>를 설계하기 위한 프롬프트 생성기다.
+              </p>
+              <p>
+                즉, 레벨2는 인스트럭션 자체를 직접 쓰는 것이 아니라,
+                <strong>"각 LLM이 자기 프로젝트 인스트럭션을 설계하게 만드는 메타 프롬프트"</strong>를 생성한다.
+              </p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <span>1. 공리 세트: 저작권 없는 잡지 · 돈은 YouTube 퍼포먼스</span>
+              <span class="accordion-icon">▶</span>
+            </div>
+            <div class="accordion-body">
+              <ul>
+                <li><strong>공리 A – 저작권 없는 잡지</strong>: AI 시대에는 모든 콘텐츠가 샘플/편집 대상이고, 핵심 가치는 퍼포먼스와 조합 능력에 있다.</li>
+                <li><strong>공리 B – 돈은 YouTube 퍼포먼스</strong>: 실질 수익의 엔드 포인트를 유튜브(영상·라이브·스트리밍)로 고정한다.</li>
+                <li><strong>공리 C – AI 편집 태도</strong>: 세상 모든 것을 바텀업으로 다시 편집/요약/리믹스 해서 나만의 버전으로 만든다는 태도를 전제한다.</li>
+                <li><strong>공리 D – 직업 파괴 · 제너럴리스트</strong>: 기존 직업 구분을 깨고, 한 사람이 여러 역할(기능인·철학자·화가·뮤지션 등)을 순환하는 구조를 지향한다.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <span>2. 변수 체계: 프로젝트를 정의하는 입력값들</span>
+              <span class="accordion-icon">▶</span>
+            </div>
+            <div class="accordion-body">
+              <p>왼쪽 설정 패널의 모든 입력값은 프로젝트를 정의하는 변수다.</p>
+              <ul>
+                <li><strong>프로젝트/잡지 이름 · 슬러그</strong> → 브랜드·URL·채널 ID</li>
+                <li><strong>프로젝트 타입</strong> → 블로그/매거진, 튜토리얼, 팟캐스트, 뮤직, 정치, 스포츠 등</li>
+                <li><strong>당신의 역할(직업 페르소나)</strong> → 출판사 사장, 유튜버, 컨설턴트, 감독 등</li>
+                <li><strong>페르소나 조합</strong> → 블로거 박씨 / 기능인 박씨 / 철학자 박씨 / 화가 박씨 / 뮤지션 박씨</li>
+                <li><strong>타깃 독자/시청자</strong> → 고딩 이상, AI 유료 사용자, 중년 엘리트 등</li>
+                <li><strong>수익화 계획</strong> → 광고, 슈퍼챗, 강의, 컨설팅, 굿즈 등</li>
+                <li><strong>생산 사이클</strong> → 60분 루틴, 시즌 5회차 구조, 주 2회 등</li>
+                <li><strong>베이스라인 샘플</strong> → 참고 잡지/채널, 정서, 레퍼런스</li>
+                <li><strong>공리(Axiom) 칩</strong> → 위 철학을 온/오프하는 스위치</li>
+                <li><strong>LLM 세트 / 언어 모드</strong> → 어떤 모델들이 어떤 언어로 설명을 들을지</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <span>3. 출력물 정체: 뭐가 생성되는가?</span>
+              <span class="accordion-icon">▶</span>
+            </div>
+            <div class="accordion-body">
+              <p>
+                [⚡ 프로젝트 프롬프트 생성] 버튼을 누르면, 우측 textarea에는
+                <strong>각 LLM에게 붙여넣을 한글 프롬프트 묶음</strong>이 생성된다.
+              </p>
+              <p>
+                이 프롬프트들은 다음을 요구한다:
+              </p>
+              <ul>
+                <li>해당 LLM이 맡을 포지션(브레인/CTO/마케팅/알바)</li>
+                <li>프로젝트 철학(공리 세트), 타깃, 수익 구조, 생산 사이클</li>
+                <li>해당 정보를 반영한 "프로젝트 전용 인스트럭션 초안" 작성</li>
+              </ul>
+              <p>
+                사용자는 LLM이 작성한 인스트럭션을 검토·수정한 뒤,
+                각 플랫폼의 System/Custom Instruction 영역에 등록한다.
+              </p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <span>4. 레벨1과의 연결: 사람 설정 vs 프로젝트 설정</span>
+              <span class="accordion-icon">▶</span>
+            </div>
+            <div class="accordion-body">
+              <ul>
+                <li><strong>레벨1</strong>: Multi-LLM Instruction Engine v1.1 → LLM별 기본 프로필(D/E/S/V/C/P, 역할, 톤, 범위)을 정의한다.</li>
+                <li><strong>레벨2</strong>: Project Instruction Engine → 특정 프로젝트(잡지/채널) 단위에서, 각 LLM이 따라야 할 추가 규칙·우선순위·응답 템플릿을 설계하게 만든다.</li>
+              </ul>
+              <p>
+                비유하자면, 레벨1이 "사람(LLM)의 성격·역할 설정"이라면,
+                레벨2는 "그 사람이 특정 잡지를 맡았을 때의 근무 매뉴얼"에 가깝다.
+              </p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <span>5. 사용 워크플로: 6단계 루틴</span>
+              <span class="accordion-icon">▶</span>
+            </div>
+            <div class="accordion-body">
+              <ol>
+                <li>레벨1 페이지에서 각 LLM의 기본 인스트럭션을 세팅한다.</li>
+                <li>이 레벨2 페이지에서 프로젝트/잡지 설정을 입력한다.</li>
+                <li>[⚡ 프로젝트 프롬프트 생성]을 눌러, 우측에 생성된 묶음을 복사한다.</li>
+                <li>ChatGPT / Claude / Grok / Gemini 각각 새 대화에 붙여넣고 실행한다.</li>
+                <li>각 LLM이 설계해 준 "프로젝트 전용 인스트럭션"을 해당 플랫폼의 System/Custom Instruction에 등록한다.</li>
+                <li>이후 그 프로젝트와 관련된 대화는, 해당 LLM + 해당 인스트럭션 조합으로 진행한다.</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <span>6. 확장 아이디어: 데이터셋 · 메타 엔진</span>
+              <span class="accordion-icon">▶</span>
+            </div>
+            <div class="accordion-body">
+              <ul>
+                <li>같은 구조를 그대로 복제해서, 여러 프로젝트(= 여러 잡지/채널)를 병렬로 운영할 수 있다.</li>
+                <li>입력값을 JSON으로 내보내 dtslib/GitHub에 쌓아두면 "프로젝트 데이터셋"이 된다.</li>
+                <li>나중에 이 데이터셋을 다시 LLM에게 먹이면, "내가 지금까지 만든 모든 프로젝트의 패턴"을 역으로 분석하는 메타 엔진으로 활용 가능하다.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // chip toggle
+    (function bindAxiomChips() {
+      var row = document.getElementById('axiom-row');
+      if (!row) return;
+      row.addEventListener('click', function (e) {
+        var t = e.target;
+        if (!t.classList.contains('chip')) return;
+        t.classList.toggle('active');
+        updateMeta();
+      });
+    })();
+
+    function getActiveAxioms() {
+      var row = document.getElementById('axiom-row');
+      if (!row) return [];
+      var chips = row.querySelectorAll('.chip.active');
+      var list = [];
+      chips.forEach(function (chip) {
+        list.push(chip.getAttribute('data-key'));
+      });
+      return list;
+    }
+
+    function getLLMSetLabel(value) {
+      switch (value) {
+        case 'full': return 'ChatGPT + Claude + Grok + Gemini';
+        case 'gpt-claude': return 'ChatGPT + Claude';
+        case 'gpt-grok': return 'ChatGPT + Grok';
+        case 'minimal': return 'ChatGPT 단독';
+        default: return value;
+      }
+    }
+
+    function generatePrompts() {
+      var projectName = document.getElementById('projectName').value.trim();
+      var projectSlug = document.getElementById('projectSlug').value.trim();
+      var projectType = document.getElementById('projectType').value;
+      var rolePersona = document.getElementById('rolePersona').value.trim();
+      var personaCombo = document.getElementById('personaCombo').value.trim();
+      var targetAudience = document.getElementById('targetAudience').value.trim();
+      var revenuePlan = document.getElementById('revenuePlan').value.trim();
+      var productionCycle = document.getElementById('productionCycle').value.trim();
+      var baselineSample = document.getElementById('baselineSample').value.trim();
+      var llmSet = document.getElementById('llmSet').value;
+      var llmSetLabel = getLLMSetLabel(llmSet);
+      var languageMode = document.getElementById('languageMode').value;
+      var axioms = getActiveAxioms();
+
+      var axiomTextParts = [];
+      if (axioms.indexOf('copyright') !== -1) {
+        axiomTextParts.push('- 공리 A: "저작권 없는 잡지" → 모든 콘텐츠는 샘플/편집 대상이며, 핵심 가치는 퍼포먼스와 조합 능력에 있다고 본다.');
+      }
+      if (axioms.indexOf('youtube') !== -1) {
+        axiomTextParts.push('- 공리 B: "돈은 YouTube 퍼포먼스" → 실질적인 수익의 엔드 포인트를 YouTube(영상·라이브·스트리밍)로 고정한다.');
+      }
+      if (axioms.indexOf('generalist') !== -1) {
+        axiomTextParts.push('- 공리 C: "직업 파괴 · 제너럴리스트" → 기존 직업 구분을 깨고, 한 사람이 여러 역할을 순환하는 구조를 지향한다.');
+      }
+      if (axioms.indexOf('edit') !== -1) {
+        axiomTextParts.push('- 공리 D: "AI 편집 태도" → 세상 모든 것을 바텀업으로 다시 편집/요약/리믹스해서 나만의 버전으로 만든다는 태도를 전제한다.');
+      }
+
+      var axiomBlock = axiomTextParts.length
+        ? axiomTextParts.join('\n')
+        : '- (선택된 공리가 없습니다. 프로젝트 철학을 최소 한두 줄로 다시 정의해 주세요.)';
+
+      var baseIntro = `프로젝트 이름: ${projectName || '프로젝트 이름 미정'}
+슬러그/채널 ID: ${projectSlug || '(미정)'}
+
+프로젝트 타입: ${projectType}
+당신의 역할(직업 페르소나): ${rolePersona || '(미정)'}
+페르소나 조합: ${personaCombo || '(미정)'}
+타깃 독자/시청자: ${targetAudience || '(미정)'}
+
+수익화 계획: ${revenuePlan || '(미정)'}
+생산 사이클: ${productionCycle || '(미정)'}
+
+베이스라인 샘플 설명:
+${baselineSample || '(설명 없음)'}
+
+참여 LLM 세트: ${llmSetLabel}
+언어 모드: ${languageMode}
+
+[공리(Axiom) 세트]
+${axiomBlock}
+`;
+
+      var sections = [];
+
+      // ChatGPT
+      if (llmSet === 'full' || llmSet === 'gpt-claude' || llmSet === 'gpt-grok' || llmSet === 'minimal') {
+        sections.push(`==============================
+[1] ChatGPT용 프로젝트 인스트럭션 생성 프롬프트
+==============================
+
+아래는 내가 운영하려는 프로젝트/잡지에 대한 설정이다. 이 정보를 기반으로, 너(ChatGPT)는
+"브레인 & 구조 설계자" 역할로 이 프로젝트 전용 인스트럭션 초안을 작성해야 한다.
+
+${baseIntro}
+
+요청사항:
+1. 이 프로젝트에서 ChatGPT가 맡을 역할을 3줄로 정리해라. (브레인, 구조 설계, 교재/백서 작성 중심)
+2. Season → Production → Meta-Loop → Media 흐름에 맞춰, ChatGPT가 우선적으로 할 일을 5~7줄로 정리해라.
+3. 이 프로젝트 전용 System/Custom Instruction 텍스트 초안을 작성해라.
+   - 말투: 철학+실용+위트, 간결·명료, 논문체 금지.
+   - 항상 "출판사 사장 & PD" 입장에서 사고하도록 유도할 것.
+4. 마지막에, 이 인스트럭션을 테스트할 수 있는 샘플 프롬프트 3개를 제안해라.
+`);
+      }
+
+      // Claude
+      if (llmSet === 'full' || llmSet === 'gpt-claude') {
+        sections.push(`==============================
+[2] Claude용 프로젝트 인스트럭션 생성 프롬프트
+==============================
+
+아래는 내가 운영하려는 프로젝트/잡지에 대한 설정이다. 이 정보를 기반으로, 너(Claude)는
+"CTO & 시스템 설계자" 역할로 이 프로젝트 전용 인스트럭션 초안을 작성해야 한다.
+
+${baseIntro}
+
+요청사항:
+1. 이 프로젝트에서 Claude가 맡을 역할을 3줄로 정리해라. (코드·PWA·자동화·데이터 구조 중심)
+2. 레벨1에서 이미 설정된 Multi-LLM Instruction Engine과의 연동을 가정하고,
+   이 프로젝트를 위해 Claude가 특히 지켜야 할 규칙/주의사항을 5~7줄로 정리해라.
+3. n8n, GitHub, dtslib, Netlify 등과 연동될 수 있다는 전제하에, Claude 전용 인스트럭션 초안을 작성해라.
+4. 마지막에, 이 인스트럭션이 잘 적용되었는지 확인할 수 있는 테스트 태스크 3개를 제안해라.
+`);
+      }
+
+      // Grok
+      if (llmSet === 'full' || llmSet === 'gpt-grok') {
+        sections.push(`==============================
+[3] Grok용 프로젝트 인스트럭션 생성 프롬프트
+==============================
+
+아래는 내가 운영하려는 프로젝트/잡지에 대한 설정이다. 이 정보를 기반으로, 너(Grok)는
+"마케팅 · 트렌드 · 밈 스캐너" 역할로 이 프로젝트 전용 인스트럭션 초안을 작성해야 한다.
+
+${baseIntro}
+
+요청사항:
+1. 이 프로젝트에서 Grok이 맡을 역할을 3줄로 정리해라. (제목, 썸네일 카피, 밈/트렌드 스캔 중심)
+2. X/Twitter를 메인 레이더로 가정했을 때, 어떤 데이터를 어떻게 요약해서 박씨에게 넘겨야 하는지 5~7줄로 정리해라.
+3. Grok 전용 인스트럭션 초안을 작성해라.
+   - 말투: 가볍지만, 핵심은 절대 놓치지 않는 마케터 느낌.
+4. 마지막에, 이 인스트럭션을 기준으로 생성할 수 있는 "유튜브 제목 후보" 예시 5개를, 더미 주제를 잡아서 보여줘라.
+`);
+      }
+
+      // Gemini
+      if (llmSet === 'full') {
+        sections.push(`==============================
+[4] Gemini용 프로젝트 인스트럭션 생성 프롬프트
+==============================
+
+아래는 내가 운영하려는 프로젝트/잡지에 대한 설정이다. 이 정보를 기반으로, 너(Gemini)는
+"알바형 서포트" 역할로 이 프로젝트 전용 인스트럭션 초안을 작성해야 한다.
+
+${baseIntro}
+
+요청사항:
+1. 이 프로젝트에서 Gemini가 맡을 역할을 3줄로 정리해라. (유튜브 요약, 이미지 분석, 번역, 간단 브리핑 등 휘발성 작업 중심)
+2. 저작권/민감한 자료에 대해서는 요약·구조화 위주로 다루고, 원문을 직접 재생산하지 않도록 명시하라.
+3. Gemini 전용 인스트럭션 초안을 작성해라.
+4. 마지막에, 이 인스트럭션 기준으로 자주 맡게 될 작업 예시 5가지를 리스트로 제안해라.
+`);
+      }
+
+      var finalText = sections.join('\n\n');
+      document.getElementById('prompt-output').value = finalText;
+      document.getElementById('status').innerHTML = '<strong>완료:</strong> 선택한 LLM 세트에 맞춰 프로젝트 프롬프트를 생성했습니다.';
+      updateMeta();
+    }
+
+    function copyPrompts() {
+      var out = document.getElementById('prompt-output');
+      if (!out) return;
+      out.select();
+      try {
+        var ok = document.execCommand('copy');
+        document.getElementById('status').innerHTML = ok
+          ? '<strong>복사 완료:</strong> 각 LLM 새 대화에 붙여넣어 사용하세요.'
+          : '복사 실패 — 영역 전체를 수동 드래그/복사해 주세요.';
+      } catch (e) {
+        document.getElementById('status').innerHTML = '복사 실패 — 영역 전체를 수동 드래그/복사해 주세요.';
+      }
+    }
+
+    function updateMeta() {
+      var projectType = document.getElementById('projectType').value;
+      var llmSet = document.getElementById('llmSet').value;
+      var axioms = getActiveAxioms();
+      var pill = document.getElementById('meta-pill');
+      var axCount = axioms.length;
+      var text = projectType + ' · LLM:' + llmSet + ' · 공리 ' + axCount + '개';
+      pill.textContent = text;
+    }
+
+    // Accordion binding
+    (function bindAccordion() {
+      var acc = document.getElementById('doc-accordion');
+      if (!acc) return;
+      acc.addEventListener('click', function (e) {
+        var header = e.target.closest('.accordion-header');
+        if (!header) return;
+        var item = header.closest('.accordion-item');
+        if (!item) return;
+        // 모든 아이템 닫기 후 현재만 열기
+        var all = acc.querySelectorAll('.accordion-item');
+        all.forEach(function (el) {
+          if (el !== item) el.classList.remove('open');
+        });
+        item.classList.toggle('open');
+      });
+    })();
+
+    // 초기 메타 & 샘플 프롬프트 1회 생성
+    updateMeta();
+    generatePrompts();
+  </script>
+</body>
+</html>
+</div>
+
+<!-- ===== PAGE HTML (파싱) ===== -->
+<div id="page-content">
+<!-- 본문 추출 실패 -->
+</div>
+
+<!-- ===== RAW PAGE (전체) ===== -->
+<script type="text/x-raw-page">
+<!-- parksy-webtoon-player v1.0 — 티스토리 HTML 모드에 복사-붙여넣기 -->
+<!-- 사용법: 아래 images 배열에 티스토리 업로드 후 이미지 URL을 넣고 전체 복사 -->
+<script>if(location.pathname.indexOf('/m')===0||location.href.indexOf('/m/')>-1){location.replace(location.href.replace(/\/m(\/|$)/,'/'));}</script>
+
+<div id="parksy-webtoon">
+  <!-- 플레이어가 여기에 렌더링됨 -->
+</div>
+
+<style>
+.pp-root{max-width:860px;margin:0 auto;background:#111;color:#eee;font-family:-apple-system,'Malgun Gothic',sans-serif;border-radius:8px;overflow:hidden;position:relative;user-select:none;-webkit-user-select:none}
+.pp-root *{box-sizing:border-box}
+.pp-root:-webkit-full-screen,.pp-root:fullscreen{max-width:100%;border-radius:0;background:#000}
+.pp-root:fullscreen .pp-viewport{height:calc(100vh - 100px)}
+.pp-header{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:rgba(0,0,0,0.6);font-size:14px}
+.pp-title{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-right:12px}
+.pp-counter{flex-shrink:0;color:#aaa;font-variant-numeric:tabular-nums}
+.pp-viewport{position:relative;width:100%;min-height:300px;display:flex;align-items:center;justify-content:center;background:#000;overflow:hidden}
+.pp-img-wrap{width:100%;display:flex;align-items:center;justify-content:center;transition:opacity 0.15s ease-in-out}
+.pp-img-wrap.pp-fade-out{opacity:0}
+.pp-img{max-width:100%;max-height:80vh;display:block;object-fit:contain}
+.pp-hit{position:absolute;top:0;bottom:0;width:35%;cursor:pointer;z-index:2}
+.pp-hit-left{left:0}
+.pp-hit-right{right:0}
+.pp-hit:hover{background:rgba(255,255,255,0.02)}
+.pp-controls{display:flex;justify-content:center;align-items:center;gap:8px;padding:10px 16px;background:rgba(0,0,0,0.6)}
+.pp-btn{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:#ddd;padding:6px 14px;border-radius:4px;cursor:pointer;font-size:13px;transition:background 0.15s,color 0.15s;white-space:nowrap}
+.pp-btn:hover{background:rgba(255,255,255,0.2);color:#fff}
+.pp-btn:disabled{opacity:0.3;cursor:default}
+.pp-btn.pp-active{background:rgba(66,133,244,0.4);border-color:rgba(66,133,244,0.6);color:#fff}
+.pp-progress-wrap{height:3px;background:rgba(255,255,255,0.1)}
+.pp-progress-bar{height:100%;background:#4285f4;transition:width 0.3s ease;width:0}
+@media(max-width:600px){.pp-root{border-radius:0}.pp-header{padding:8px 12px;font-size:13px}.pp-controls{gap:4px;padding:8px 8px}.pp-btn{padding:6px 10px;font-size:12px}.pp-btn-auto,.pp-btn-fs{display:none}.pp-img{max-height:70vh}}
+</style>
+
+<script>
+var ParksyPlayer=(function(){'use strict';var state={images:[],current:0,total:0,autoplay:false,autoplayTimer:null,autoplaySpeed:5000,title:'',episode:0,container:null,els:{},touchStartX:0,touchStartY:0,preloaded:{}};function init(config){state.images=config.images||[];state.total=state.images.length;state.title=config.title||'';state.episode=config.episode||0;state.current=0;state.autoplaySpeed=config.autoplaySpeed||5000;var containerEl=typeof config.container==='string'?document.querySelector(config.container):config.container;if(!containerEl){console.error('ParksyPlayer: container not found');return}state.container=containerEl;state.container.className='pp-root';buildDOM();bindEvents();preloadAround(0);render()}function buildDOM(){var c=state.container;c.innerHTML='';var header=mk('div','pp-header');var titleEl=mk('span','pp-title');var counterEl=mk('span','pp-counter');header.appendChild(titleEl);header.appendChild(counterEl);var viewport=mk('div','pp-viewport');var imgWrap=mk('div','pp-img-wrap');var img=document.createElement('img');img.className='pp-img';img.alt='';img.draggable=false;imgWrap.appendChild(img);viewport.appendChild(imgWrap);var hitLeft=mk('div','pp-hit pp-hit-left');var hitRight=mk('div','pp-hit pp-hit-right');viewport.appendChild(hitLeft);viewport.appendChild(hitRight);var controls=mk('div','pp-controls');var btnPrev=mk('button','pp-btn pp-btn-prev');btnPrev.innerHTML='&#9664; 이전';var btnAuto=mk('button','pp-btn pp-btn-auto');btnAuto.innerHTML='&#9654; 자동재생';var btnFS=mk('button','pp-btn pp-btn-fs');btnFS.innerHTML='&#x26F6; 전체화면';var btnNext=mk('button','pp-btn pp-btn-next');btnNext.innerHTML='다음 &#9654;';controls.appendChild(btnPrev);controls.appendChild(btnAuto);controls.appendChild(btnFS);controls.appendChild(btnNext);var pWrap=mk('div','pp-progress-wrap');var pBar=mk('div','pp-progress-bar');pWrap.appendChild(pBar);c.appendChild(header);c.appendChild(viewport);c.appendChild(controls);c.appendChild(pWrap);state.els={title:titleEl,counter:counterEl,viewport:viewport,imgWrap:imgWrap,img:img,hitLeft:hitLeft,hitRight:hitRight,btnPrev:btnPrev,btnAutoplay:btnAuto,btnFullscreen:btnFS,btnNext:btnNext,progressBar:pBar}}function mk(tag,cls){var e=document.createElement(tag);if(cls)e.className=cls;return e}function bindEvents(){var els=state.els;els.btnPrev.addEventListener('click',prev);els.btnNext.addEventListener('click',next);els.btnAutoplay.addEventListener('click',toggleAutoplay);els.btnFullscreen.addEventListener('click',toggleFullscreen);els.hitLeft.addEventListener('click',prev);els.hitRight.addEventListener('click',next);document.addEventListener('keydown',function(e){if(!isVisible())return;switch(e.key){case'ArrowLeft':prev();e.preventDefault();break;case'ArrowRight':case' ':next();e.preventDefault();break;case'f':case'F':toggleFullscreen();break}});var vp=els.viewport;vp.addEventListener('touchstart',function(e){state.touchStartX=e.changedTouches[0].clientX;state.touchStartY=e.changedTouches[0].clientY},{passive:true});vp.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-state.touchStartX;var dy=e.changedTouches[0].clientY-state.touchStartY;if(Math.abs(dx)<40||Math.abs(dy)>Math.abs(dx))return;if(dx<0)next();else prev()},{passive:true})}function isVisible(){if(!state.container)return false;var rect=state.container.getBoundingClientRect();return rect.top<window.innerHeight&&rect.bottom>0}function goTo(index){if(index<0||index>=state.total)return;state.current=index;preloadAround(index);render()}function next(){if(state.current<state.total-1){goTo(state.current+1)}else if(state.autoplay){stopAutoplay()}}function prev(){if(state.current>0)goTo(state.current-1)}function toggleAutoplay(){if(state.autoplay)stopAutoplay();else startAutoplay()}function startAutoplay(){state.autoplay=true;state.els.btnAutoplay.innerHTML='&#9724; 정지';state.els.btnAutoplay.classList.add('pp-active');state.autoplayTimer=setInterval(function(){next()},state.autoplaySpeed)}function stopAutoplay(){state.autoplay=false;state.els.btnAutoplay.innerHTML='&#9654; 자동재생';state.els.btnAutoplay.classList.remove('pp-active');if(state.autoplayTimer){clearInterval(state.autoplayTimer);state.autoplayTimer=null}}function toggleFullscreen(){var root=state.container;if(document.fullscreenElement||document.webkitFullscreenElement||document.msFullscreenElement){(document.exitFullscreen||document.webkitExitFullscreen||document.msExitFullscreen).call(document)}else{(root.requestFullscreen||root.webkitRequestFullscreen||root.msRequestFullscreen).call(root)}}function preloadAround(index){for(var i=index-1;i<=index+2;i++){if(i>=0&&i<state.total&&!state.preloaded[i]){var loader=new Image();loader.src=state.images[i];state.preloaded[i]=true}}}function render(){var els=state.els;var cur=state.current;var titleText=state.title;if(state.episode)titleText='EP.'+state.episode+' '+titleText;els.title.textContent=titleText;els.counter.textContent=(cur+1)+' / '+state.total;els.imgWrap.classList.add('pp-fade-out');setTimeout(function(){els.img.src=state.images[cur];els.img.onload=function(){els.imgWrap.classList.remove('pp-fade-out')};if(els.img.complete)els.imgWrap.classList.remove('pp-fade-out')},150);var pct=state.total>1?(cur/(state.total-1))*100:100;els.progressBar.style.width=pct+'%';els.btnPrev.disabled=cur===0;els.btnNext.disabled=cur===state.total-1}return{init:init,next:next,prev:prev,goTo:goTo}})();
+
+ParksyPlayer.init({container:'#parksy-webtoon',images:[],title:'에피소드 제목',episode:1});
+</script>
+</script>
+</body>
+</html>

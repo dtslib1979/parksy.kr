@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>Roadmap</title>
+<!-- SOURCE: https://blogger-parksy.tistory.com/7 -->
+<!-- DATE: Fri, 24 Oct 2025 17:36:45 +0900 -->
+<!-- BLOG: blogger-parksy -->
+<!-- SCRAPED: 2026-03-14T18:12:09.763522 -->
+</head>
+<body>
+<!-- ===== RSS HTML (원문) ===== -->
+<div id="rss-content">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roadmap_Parksy - Persona-Based View with Custom Parts</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* New Papyrus Theme Palette */
+      --bg-color: #fefae0;       /* Pale papyrus yellow */
+      --text-color: #5c4033;     /* Dark earthy brown */
+      --primary-color: #bc6c25;   /* Burnt orange (for links, key focus) */
+      --secondary-color: #606c38; /* Olive/earthy green (for h3, h5) */
+      --accent-color: #d4a373;     /* Warm gold/tan (for h4) */
+      --border-color: #d7d1b8;   /* Light tan border */
+      --card-bg: #faf8f0;       /* Off-white card */
+      --card-hover-bg: #f4f0e4;   /* Slightly darker card hover */
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Noto Sans', sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.7;
+      padding: 1.2rem;
+      font-size: 16px;
+      overscroll-behavior: none;
+    }
+
+    h2 {
+      text-align: center;
+      color: var(--primary-color);
+      font-size: 1.9rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+    }
+
+    h3 {
+      text-align: center;
+      color: var(--secondary-color);
+      font-size: 1.5rem;
+      font-weight: 500;
+      margin-bottom: 1.2rem;
+    }
+
+    hr {
+      border: 0.5px solid var(--border-color);
+      margin: 1.8rem 0;
+    }
+
+    /* Filter */
+    .filter-container {
+      text-align: center;
+      margin: 1.2rem 0;
+    }
+
+    select {
+      background: var(--card-bg);
+      color: var(--text-color);
+      border: 1px solid var(--border-color);
+      padding: 0.6rem;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      outline: none;
+      transition: border-color 0.3s ease;
+      width: 100%;
+      max-width: 320px;
+    }
+
+    select:focus {
+      border-color: var(--primary-color);
+    }
+
+    /* Persona Sections */
+    .persona-section {
+      margin: 1.2rem 0;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 1.2rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(92, 64, 51, 0.05);
+    }
+    
+    .persona-section:hover {
+        background: var(--card-hover-bg);
+    }
+
+    .persona-section h4 {
+      color: var(--accent-color);
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 1.2rem;
+    }
+
+    /* Part and Chapter Styling */
+    .part {
+      margin-bottom: 1.2rem;
+    }
+
+    .part h5 {
+      color: var(--secondary-color);
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+      padding-left: 1rem;
+      border-left: 3px solid var(--primary-color);
+    }
+
+    .part .key-focus {
+      color: var(--primary-color);
+      font-size: 0.95rem;
+      font-weight: 500;
+      margin-bottom: 0.6rem;
+      padding-left: 1rem;
+    }
+
+    ul.chapter-list {
+      list-style: none;
+      padding: 0;
+      margin-left: 2.2rem;
+    }
+
+    ul.chapter-list li {
+      padding: 0.6rem 0;
+      font-size: 0.95rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    ul.chapter-list li:last-child {
+      border-bottom: none;
+    }
+
+    a {
+      color: var(--primary-color);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: #93561f; /* Darker orange for hover */
+      text-decoration: underline;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    /* Mobile Optimization */
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem;
+        font-size: 15px;
+      }
+
+      h2 {
+        font-size: 1.6rem;
+      }
+
+      h3 {
+        font-size: 1.3rem;
+      }
+
+      h4 {
+        font-size: 1.2rem;
+      }
+
+      h5 {
+        font-size: 1.1rem;
+      }
+
+      .key-focus {
+        font-size: 0.9rem;
+      }
+
+      select {
+        font-size: 0.95rem;
+      }
+
+      ul.chapter-list li {
+        font-size: 0.9rem;
+      }
+
+      ul.chapter-list {
+        margin-left: 1.8rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h2 {
+        font-size: 1.4rem;
+      }
+
+      h3 {
+        font-size: 1.2rem;
+      }
+
+      h4 {
+        font-size: 1.1rem;
+      }
+
+      h5 {
+        font-size: 1rem;
+      }
+
+      .key-focus {
+        font-size: 0.85rem;
+      }
+
+      select {
+        font-size: 0.9rem;
+      }
+
+      ul.chapter-list {
+        margin-left: 1.2rem;
+      }
+    }
+
+    /* Accessibility */
+    select:focus, a:focus {
+      outline: 2px solid var(--primary-color);
+      outline-offset: 2px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      touch-action: manipulation;
+    }
+  </style>
+</head>
+<body>
+  <h2>  PARKSY SERIES</h2>
+  <h3><a href="https://parksy.kr">parksy.kr</a> (Basic Course)</h3>
+  <hr>
+  <div class="filter-container">
+    <label for="persona-select" style="display: none;">Select Persona</label>
+    <select id="persona-select" onchange="filterPersona()">
+      <option value="all">All Personas</option>
+      <option value="Technician Parksy">Technician Parksy</option>
+      <option value="Blogger Parksy">Blogger Parksy</option>
+      <option value="Philosopher Parksy">Philosopher Parksy</option>
+      <option value="Artist Parksy">Artist Parksy</option>
+      <option value="Musician Parksy">Musician Parksy</option>
+    </select>
+  </div>
+  <div class="persona-section" data-persona="Technician Parksy">
+    <h4>Technician Parksy</h4>
+    <div class="part">
+      <h5>Smartphone Basics  </h5>
+      <div class="key-focus">Key Focus: LLM Speech</div>
+      <ul class="chapter-list">
+        <li>CH1: Samsung Keyboard STT</li>
+        <li>CH2: Samsung AI Drawing Assist × DALL-E 3</li>
+        <li>CH3: Samsung Screen Recording with Annotations</li>
+        <li>CH4: Samsung Pen × Excalidraw</li>
+      </ul>
+    </div>
+    <div class="part">
+      <h5>LLM Intermediate ⚙️</h5>
+      <div class="key-focus">Key Focus: Programming Formats</div>
+      <ul class="chapter-list">
+        <li>CH1: Professional Terminology</li>
+        <li>CH2: Prompts and Meta-Prompts</li>
+        <li>CH3: System Architect Instructions</li>
+      </ul>
+    </div>
+    <div class="part">
+      <h5>GitHub in Action  </h5>
+      <div class="key-focus">Key Focus: GitHub & Copilot</div>
+      <ul class="chapter-list">
+        <li>CH1: Free Cloud CPU Computer</li>
+        <li>CH2: Fork & Edit (Build = Edit)</li>
+        <li>CH3: Minimal Manual Work (Agent Management)</li>
+      </ul>
+    </div>
+    <div class="part">
+      <h5>Claude Advanced  </h5>
+      <div class="key-focus">Key Focus: Claude Mobile</div>
+      <ul class="chapter-list">
+        <li>CH1: Publishing</li>
+        <li>CH2: Artifacts</li>
+        <li>CH3: Connector Optimization within Limits (MCP)</li>
+        <li>CH4: Naver</li>
+      </ul>
+    </div>
+    <div class="part">
+      <h5>MCP × n8n Integration  </h5>
+      <div class="key-focus">Key Focus: Claude MCP Desktop × n8n</div>
+      <ul class="chapter-list">
+        <li>CH1: Claude MCP Desktop</li>
+        <li>CH2: Smithery Market</li>
+        <li>CH3: n8n</li>
+      </ul>
+    </div>
+    <div class="part">
+      <h5>GitHub ML Mastery  </h5>
+      <div class="key-focus">Key Focus: GitHub ML</div>
+      <ul class="chapter-list">
+        <li>CH1: Machine Learning</li>
+        <li>CH2: GitHub Marketplace Shopping</li>
+        <li>CH3: Replace Android Apps with GitHub Actions</li>
+      </ul>
+    </div>
+  </div>
+  <div class="persona-section" data-persona="Blogger Parksy">
+    <h4>Blogger Parksy</h4>
+    <div class="part">
+      <h5>Spoken Content = PWA  </h5>
+      <div class="key-focus">Key Focus: Spoken Content = PWA</div>
+      <ul class="chapter-list">
+        <li>CH1: Mid-Tier Research</li>
+        <li>CH2: Whitepaper (Seed)</li>
+        <li>CH3: Dialog</li>
+        <li>CH4: Dialog Reverse Engineering</li>
+      </ul>
+    </div>
+    <div class="part">
+      <h5>LLM Intermediate ⚙️</h5>
+      <div class="key-focus">Key Focus: Evidence-Based Content</div>
+      <ul class="chapter-list">
+        <li>CH1: MD (Markdown)</li>
+        <li>CH2: HTML</li>
+        <li>CH3: PWA (Progressive Web App)</li>
+      </ul>
+    </div>
+    <div class="part">
+      <h5>GitHub in Action  </h5>
+      <div class="key-focus">Key Focus: CDN</div>
+      <ul class="chapter-list">
+        <li>CH1: Audio on Cloudinary</li>
+        <li>CH2: SVG and Images on Netlify</li>
+        <li>CH3: Video on YouTube</li>
+      </ul>
+    </div>
+    <div class="part">
+      <h5>Claude Advanced  </h5>
+      <div class="key-focus">Key Focus: Blog Publishing Platforms</div>
+      <ul class="chapter-list">
+        <li>CH1: Tistory</li>
+        <li>CH2: GitHub Pages</li>
+        <li>CH3: WordPress</li>
+        <li>CH4: Naver</li>
+      </ul>
+    </div>
+    <div class="part">
+      <h5>MCP × n8n Integration  </h5>
+      <div class="key-focus">Key Focus: YouTube</div>
+      <ul class="chapter-list">
+        <li>CH1: Screen Recording</li>
+        <li>CH2: Edit with GitHub Actions</li>
+      </ul>
+    </div>
+    <div class="part">
+      <h5>GitHub ML Mastery  </h5>
+      <div class="key-focus">Key Focus: WebAppsBook</div>
+      <ul class="chapter-list">
+        <li>CH1: Making Film Essay</li>
+        <li>CH2: Making Film News Broadcast</li>
+        <li>CH3: Making Film Lecture</li>
+      </ul>
+    </div>
+  </div>
+  <div class="persona-section" data-persona="Philosopher Parksy">
+    <h4>Philosopher Parksy</h4>
+    <div class="part">
+      <h5>Smartphone Basics  </h5>
+      <div class="key-focus">Key Focus: Charm of Words</div>
+      <ul class="chapter-list">
+        <li>CH1: Charm of Words vs Wordplay</li>
+        <li>CH2: Metaphors and Provocation</li>
+        <li>CH3: Programming Memories</li>
+        <li>CH4: Thought Snapshot = De-automation</li>
+      </ul>
+    </div>
+    <div class="part">
+      <h5>LLM Intermediate ⚙️</h5>
+      <div class="key-focus">Key Focus: Critical Thinking</div>
+      <ul class="chapter-list">
+        <li>CH1: News Broadcast Evaluation</li>
+        <li>CH2: Confirmation Bias in Academia</li>
+        <li>CH3: Hypotheses and Science</li>
+      </ul>
+    </div>
+    <div class="part">
+      <h5>GitHub in Action  </h5>
+      <div class="key-focus">Key Focus: Memorization and Embodiment</div>
+      <ul class="chapter-list">
+        <li>CH1: Tables and Modules</li>
+        <li>CH2: Modular Product Object-Oriented</li>
+        <li>CH3: Body Ruler Cheating</li>
+      </ul>
+    </div>
+    <div class="part">
+      <h5>Claude Advanced  </h5>
+      <div class="key-focus">Key Focus: Self-Replication</div>
+      <ul class="chapter-list">
+        <li>CH1: ML GitHub Actions</li>
+        <li>CH2: Actor Role for Professions</li>
+        <li>CH3: Persona Fork (Plagiarism Learning)</li>
+      </ul>
+    </div>
+    <div class="part">
+      <h5>MCP × n8n Integration  </h5>
+      <div class="key-focus">Key Focus: Meta-Thinking</div>
+      <ul class="chapter-list">
+        <li>CH1: Scoring Evaluation</li>
+        <li>CH2: Past Self vs Pivot Comparison</li>
+        <li>CH3: LLM Rotation Debugging</li>
+      </ul>
+    </div>
+    <div class="part">
+      <h5>GitHub ML Mastery  </h5>
+      <div class="key-focus">Key Focus: Art Philosophy</div>
+      <ul class="chapter-list">
+        <li>CH1: Intentional Mistakes</li>
+        <li>CH2: Variable Creation</li>
+        <li>CH3: Cliché Fantasy Editing</li>
+      </ul>
+    </div>
+  </div>
+  <div class="persona-section" data-persona="Artist Parksy">
+    <h4>Artist Parksy</h4>
+    <div class="part">
+      <h5>Raster Images  </h5>
+      <div class="key-focus">Key Focus: Raster Images</div>
+      <ul class="chapter-list">
+        <li>CH1: Photography</li>
+        <li>CH2: Prompt-Based AI Creations</li>
+        <li>CH3: Uploaded AI Creations</li>
+        <li>CH4: Hand-Drawn Uploads</li>
+      </ul>
+    </div>
+    <div class="part">
+      <h5>LLM Intermediate ⚙️</h5>
+      <div class="key-focus">Key Focus: SVG</div>
+      <ul class="chapter-list">
+        <li>CH1: Code Meets Art</li>
+        <li>CH2: Diagrams</li>
+        <li>CH3: Diagrams to System Architect</li>
+      </ul>
+    </div>
+    <div class="part">
+      <h5>GitHub in Action  </h5>
+      <div class="key-focus">Key Focus: Infographics</div>
+      <ul class="chapter-list">
+        <li>CH1: Numbers and Art</li>
+        <li>CH2: Text and Art</li>
+        <li>CH3: Icons and Symbols</li>
+      </ul>
+    </div>
+    <div class="part">
+      <h5>Claude Advanced  </h5>
+      <div class="key-focus">Key Focus: Digital Drawing</div>
+      <ul class="chapter-list">
+        <li>CH1: ComfyUI / Midjourney</li>
+        <li>CH2: Digital vs Analog Vibes</li>
+        <li>CH3: Digital Drawing Isn't the Star</li>
+        <li>CH4: Using Digital Drawing</li>
+      </ul>
+    </div>
+    <div class="part">
+      <h5>MCP × n8n Integration  </h5>
+      <div class="key-focus">Key Focus: Digital Drawing Copyright</div>
+      <ul class="chapter-list">
+        <li>CH1: Case Study (My Case)</li>
+        <li>CH2: Global Law Research Prompts</li>
+        <li>CH3: Plagiarism vs Copyright Revenue Line</li>
+      </ul>
+    </div>
+    <div class="part">
+      <h5>GitHub ML Mastery  </h5>
+      <div class="key-focus">Key Focus: Digital Drawing Automation</div>
+      <ul class="chapter-list">
+        <li>CH1: Webtoon Automation Fork</li>
+        <li>CH2: Webtoon Automation Build</li>
+        <li>CH3: Webtoon Lap Time</li>
+      </ul>
+    </div>
+  </div>
+  <div class="persona-section" data-persona="Musician Parksy">
+    <h4>Musician Parksy</h4>
+    <div class="part">
+      <h5>Song Selection DJ  </h5>
+      <div class="key-focus">Key Focus: Song Selection DJ</div>
+      <ul class="chapter-list">
+        <li>CH1: Genre Patterns</li>
+        <li>CH2: Instrument Tones</li>
+        <li>CH3: Vocal Singer</li>
+        <li>CH4: Emotional vs Mood-Based Song Selection</li>
+      </ul>
+    </div>
+    <div class="part">
+      <h5>LLM Intermediate ⚙️</h5>
+      <div class="key-focus">Key Focus: Curation Swagger</div>
+      <ul class="chapter-list">
+        <li>CH1: Classical Forms</li>
+        <li>CH2: Music History × Philosophical Provocation</li>
+        <li>CH3: Classical vs Pop (Class and Swagger)</li>
+      </ul>
+    </div>
+    <div class="part">
+      <h5>GitHub in Action  </h5>
+      <div class="key-focus">Key Focus: A Cappella</div>
+      <ul class="chapter-list">
+        <li>CH1: Find Your Pitch & Memorize 7 Essential Songs</li>
+        <li>CH2: Repertoire (Swagger × Global)</li>
+        <li>CH3: One Verse Swagger Mastering</li>
+      </ul>
+    </div>
+    <div class="part">
+      <h5>Claude Advanced  </h5>
+      <div class="key-focus">Key Focus: Background Music Composition</div>
+      <ul class="chapter-list">
+        <li>CH1: AIVA × Classical Public Domain MIDI Upload</li>
+        <li>CH2: AIVA × Master Keyboard MIDI Upload</li>
+      </ul>
+    </div>
+    <div class="part">
+      <h5>MCP × n8n Integration  </h5>
+      <div class="key-focus">Key Focus: My Own Song Composition</div>
+      <ul class="chapter-list">
+        <li>CH1: AIVA × Classical Overture Public Domain MIDI</li>
+        <li>CH2: Post-Production Ableton Live Challenge</li>
+        <li>CH3: Audio Track Registration</li>
+      </ul>
+    </div>
+    <div class="part">
+      <h5>GitHub ML Mastery  </h5>
+      <div class="key-focus">Key Focus: Music Director</div>
+      <ul class="chapter-list">
+        <li>CH1: Ambient Composition</li>
+        <li>CH2: Theme Song (Overture-Style CM Song)</li>
+        <li>CH3: Nature Sounds and Audio Expansion</li>
+      </ul>
+    </div>
+  </div>
+  <script>
+    function filterPersona() {
+      const select = document.getElementById('persona-select');
+      const selectedPersona = select.value;
+      const sections = document.querySelectorAll('.persona-section');
+
+      sections.forEach(section => {
+        if (selectedPersona === 'all' || section.getAttribute('data-persona') === selectedPersona) {
+          section.classList.remove('hidden');
+        } else {
+          section.classList.add('hidden');
+        }
+      });
+    }
+
+    // Run filter on page load
+    filterPersona();
+  </script>
+</body>
+</html>
+</div>
+
+<!-- ===== PAGE HTML (파싱) ===== -->
+<div id="page-content">
+<!-- 본문 추출 실패 -->
+</div>
+
+<!-- ===== RAW PAGE (전체) ===== -->
+<script type="text/x-raw-page">
+<!-- parksy-webtoon-player v1.0 — 티스토리 HTML 모드에 복사-붙여넣기 -->
+<!-- 사용법: 아래 images 배열에 티스토리 업로드 후 이미지 URL을 넣고 전체 복사 -->
+<script>if(location.pathname.indexOf('/m')===0||location.href.indexOf('/m/')>-1){location.replace(location.href.replace(/\/m(\/|$)/,'/'));}</script>
+
+<div id="parksy-webtoon">
+  <!-- 플레이어가 여기에 렌더링됨 -->
+</div>
+
+<style>
+.pp-root{max-width:860px;margin:0 auto;background:#111;color:#eee;font-family:-apple-system,'Malgun Gothic',sans-serif;border-radius:8px;overflow:hidden;position:relative;user-select:none;-webkit-user-select:none}
+.pp-root *{box-sizing:border-box}
+.pp-root:-webkit-full-screen,.pp-root:fullscreen{max-width:100%;border-radius:0;background:#000}
+.pp-root:fullscreen .pp-viewport{height:calc(100vh - 100px)}
+.pp-header{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:rgba(0,0,0,0.6);font-size:14px}
+.pp-title{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-right:12px}
+.pp-counter{flex-shrink:0;color:#aaa;font-variant-numeric:tabular-nums}
+.pp-viewport{position:relative;width:100%;min-height:300px;display:flex;align-items:center;justify-content:center;background:#000;overflow:hidden}
+.pp-img-wrap{width:100%;display:flex;align-items:center;justify-content:center;transition:opacity 0.15s ease-in-out}
+.pp-img-wrap.pp-fade-out{opacity:0}
+.pp-img{max-width:100%;max-height:80vh;display:block;object-fit:contain}
+.pp-hit{position:absolute;top:0;bottom:0;width:35%;cursor:pointer;z-index:2}
+.pp-hit-left{left:0}
+.pp-hit-right{right:0}
+.pp-hit:hover{background:rgba(255,255,255,0.02)}
+.pp-controls{display:flex;justify-content:center;align-items:center;gap:8px;padding:10px 16px;background:rgba(0,0,0,0.6)}
+.pp-btn{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:#ddd;padding:6px 14px;border-radius:4px;cursor:pointer;font-size:13px;transition:background 0.15s,color 0.15s;white-space:nowrap}
+.pp-btn:hover{background:rgba(255,255,255,0.2);color:#fff}
+.pp-btn:disabled{opacity:0.3;cursor:default}
+.pp-btn.pp-active{background:rgba(66,133,244,0.4);border-color:rgba(66,133,244,0.6);color:#fff}
+.pp-progress-wrap{height:3px;background:rgba(255,255,255,0.1)}
+.pp-progress-bar{height:100%;background:#4285f4;transition:width 0.3s ease;width:0}
+@media(max-width:600px){.pp-root{border-radius:0}.pp-header{padding:8px 12px;font-size:13px}.pp-controls{gap:4px;padding:8px 8px}.pp-btn{padding:6px 10px;font-size:12px}.pp-btn-auto,.pp-btn-fs{display:none}.pp-img{max-height:70vh}}
+</style>
+
+<script>
+var ParksyPlayer=(function(){'use strict';var state={images:[],current:0,total:0,autoplay:false,autoplayTimer:null,autoplaySpeed:5000,title:'',episode:0,container:null,els:{},touchStartX:0,touchStartY:0,preloaded:{}};function init(config){state.images=config.images||[];state.total=state.images.length;state.title=config.title||'';state.episode=config.episode||0;state.current=0;state.autoplaySpeed=config.autoplaySpeed||5000;var containerEl=typeof config.container==='string'?document.querySelector(config.container):config.container;if(!containerEl){console.error('ParksyPlayer: container not found');return}state.container=containerEl;state.container.className='pp-root';buildDOM();bindEvents();preloadAround(0);render()}function buildDOM(){var c=state.container;c.innerHTML='';var header=mk('div','pp-header');var titleEl=mk('span','pp-title');var counterEl=mk('span','pp-counter');header.appendChild(titleEl);header.appendChild(counterEl);var viewport=mk('div','pp-viewport');var imgWrap=mk('div','pp-img-wrap');var img=document.createElement('img');img.className='pp-img';img.alt='';img.draggable=false;imgWrap.appendChild(img);viewport.appendChild(imgWrap);var hitLeft=mk('div','pp-hit pp-hit-left');var hitRight=mk('div','pp-hit pp-hit-right');viewport.appendChild(hitLeft);viewport.appendChild(hitRight);var controls=mk('div','pp-controls');var btnPrev=mk('button','pp-btn pp-btn-prev');btnPrev.innerHTML='&#9664; 이전';var btnAuto=mk('button','pp-btn pp-btn-auto');btnAuto.innerHTML='&#9654; 자동재생';var btnFS=mk('button','pp-btn pp-btn-fs');btnFS.innerHTML='&#x26F6; 전체화면';var btnNext=mk('button','pp-btn pp-btn-next');btnNext.innerHTML='다음 &#9654;';controls.appendChild(btnPrev);controls.appendChild(btnAuto);controls.appendChild(btnFS);controls.appendChild(btnNext);var pWrap=mk('div','pp-progress-wrap');var pBar=mk('div','pp-progress-bar');pWrap.appendChild(pBar);c.appendChild(header);c.appendChild(viewport);c.appendChild(controls);c.appendChild(pWrap);state.els={title:titleEl,counter:counterEl,viewport:viewport,imgWrap:imgWrap,img:img,hitLeft:hitLeft,hitRight:hitRight,btnPrev:btnPrev,btnAutoplay:btnAuto,btnFullscreen:btnFS,btnNext:btnNext,progressBar:pBar}}function mk(tag,cls){var e=document.createElement(tag);if(cls)e.className=cls;return e}function bindEvents(){var els=state.els;els.btnPrev.addEventListener('click',prev);els.btnNext.addEventListener('click',next);els.btnAutoplay.addEventListener('click',toggleAutoplay);els.btnFullscreen.addEventListener('click',toggleFullscreen);els.hitLeft.addEventListener('click',prev);els.hitRight.addEventListener('click',next);document.addEventListener('keydown',function(e){if(!isVisible())return;switch(e.key){case'ArrowLeft':prev();e.preventDefault();break;case'ArrowRight':case' ':next();e.preventDefault();break;case'f':case'F':toggleFullscreen();break}});var vp=els.viewport;vp.addEventListener('touchstart',function(e){state.touchStartX=e.changedTouches[0].clientX;state.touchStartY=e.changedTouches[0].clientY},{passive:true});vp.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-state.touchStartX;var dy=e.changedTouches[0].clientY-state.touchStartY;if(Math.abs(dx)<40||Math.abs(dy)>Math.abs(dx))return;if(dx<0)next();else prev()},{passive:true})}function isVisible(){if(!state.container)return false;var rect=state.container.getBoundingClientRect();return rect.top<window.innerHeight&&rect.bottom>0}function goTo(index){if(index<0||index>=state.total)return;state.current=index;preloadAround(index);render()}function next(){if(state.current<state.total-1){goTo(state.current+1)}else if(state.autoplay){stopAutoplay()}}function prev(){if(state.current>0)goTo(state.current-1)}function toggleAutoplay(){if(state.autoplay)stopAutoplay();else startAutoplay()}function startAutoplay(){state.autoplay=true;state.els.btnAutoplay.innerHTML='&#9724; 정지';state.els.btnAutoplay.classList.add('pp-active');state.autoplayTimer=setInterval(function(){next()},state.autoplaySpeed)}function stopAutoplay(){state.autoplay=false;state.els.btnAutoplay.innerHTML='&#9654; 자동재생';state.els.btnAutoplay.classList.remove('pp-active');if(state.autoplayTimer){clearInterval(state.autoplayTimer);state.autoplayTimer=null}}function toggleFullscreen(){var root=state.container;if(document.fullscreenElement||document.webkitFullscreenElement||document.msFullscreenElement){(document.exitFullscreen||document.webkitExitFullscreen||document.msExitFullscreen).call(document)}else{(root.requestFullscreen||root.webkitRequestFullscreen||root.msRequestFullscreen).call(root)}}function preloadAround(index){for(var i=index-1;i<=index+2;i++){if(i>=0&&i<state.total&&!state.preloaded[i]){var loader=new Image();loader.src=state.images[i];state.preloaded[i]=true}}}function render(){var els=state.els;var cur=state.current;var titleText=state.title;if(state.episode)titleText='EP.'+state.episode+' '+titleText;els.title.textContent=titleText;els.counter.textContent=(cur+1)+' / '+state.total;els.imgWrap.classList.add('pp-fade-out');setTimeout(function(){els.img.src=state.images[cur];els.img.onload=function(){els.imgWrap.classList.remove('pp-fade-out')};if(els.img.complete)els.imgWrap.classList.remove('pp-fade-out')},150);var pct=state.total>1?(cur/(state.total-1))*100:100;els.progressBar.style.width=pct+'%';els.btnPrev.disabled=cur===0;els.btnNext.disabled=cur===state.total-1}return{init:init,next:next,prev:prev,goTo:goTo}})();
+
+ParksyPlayer.init({container:'#parksy-webtoon',images:[],title:'에피소드 제목',episode:1});
+</script>
+</script>
+</body>
+</html>
